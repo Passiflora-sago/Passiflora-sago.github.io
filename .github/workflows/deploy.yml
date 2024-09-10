@@ -15,3 +15,8 @@ jobs:
       uses: actions/deploy-pages@v4
       with:
         token: ${{ PAT_TOKEN }}
+
+permissions:
+  pages: write
+  contents: write
+  metadata: write
