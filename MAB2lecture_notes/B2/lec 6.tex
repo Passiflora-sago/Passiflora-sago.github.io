@@ -27,7 +27,7 @@
     \item $D$的内点$M_0$ : $M_0 \in D$,且$\exists \delta > 0 $,使得$\overline U(M_0,\delta) \subset D$.
     \item $D$的外点$M_0$ : $M_0 \notin D$,且$\exists \delta > 0 $,使得$\overline U(M_0,\delta) \cap D = \varnothing$.
     \item $D$的边界点$M_0$ : $M_0$的任意$\delta$邻域中都同时含有$D$中点与$D^c$中点.点集$D$的边界点全体记作$\partial D: D$的边界.
-    \item 由全体内殿组成的点集称为开集,开集$D$的余集$D^c$称为闭集.闭集的余集是开集.
+    \item 由全体内点组成的点集称为开集,开集$D$的余集$D^c$称为闭集.闭集的余集是开集.
     \item 连通性:若$D$中任意两点$A,B$都可以用$D$中连续曲线连接,则称$D$是联通的.
     \item 开集若是联通的,称之为开区域,简称为区域,开区域$D$与$D$的边界$\partial D$之并,称之为闭区域,记作$\overline D = D \cup \partial D$.
     \begin{remark}
@@ -55,7 +55,7 @@
 \end{enumerate}
 
 \begin{definition}
-    设 \( z = f(x, y) \) 是定义在平面点集 \( D \) 上的二维函数，\( M_0 = (x_0, y_0) \) 是 \( D \) 的聚点，又设 \( a \) 是一个数。如果对任意给定的 \( \epsilon > 0 \)，存在 \( \delta > 0 \)，当 \( M = (x, y) \in D \) 满足
+    设 \( z = f(x, y) \) 是定义在平面点集 \( D \) 上的二维函数,\( M_0 = (x_0, y_0) \) 是 \( D \) 的聚点,又设 \( a \) 是一个数.如果对任意给定的 \( \epsilon > 0 \),存在 \( \delta > 0 \),当 \( M = (x, y) \in D \) 满足
 
 $$
 0 < \rho(M, M_0) = \sqrt{(x - x_0)^2 + (y - y_0)^2} < \delta
@@ -66,12 +66,12 @@ $$
 0 < |x - x_0| < \delta, \quad 0 < |y - y_0| < \delta
 $$
 
-时，有
+时,有
 $$
-|f(M) - a| < \epsilon,
+|f(M) - a| < \varepsilon,
 $$
 
-那么称当 \( M \) 趋于 \( M_0 \) 时 \( f(M) \) 以 \( a \) 为极限，记作
+那么称当 \( M \) 趋于 \( M_0 \) 时 \( f(M) \) 以 \( a \) 为极限,记作
 $$
 \lim_{M \to M_0} f(M) = a.
 $$
@@ -85,7 +85,7 @@ $$
 由于多元函数的极限与一元函数的极限定义的方式相同.因此,一元函数极限中的四则运算法则,夹逼准则,及极限的唯一性,局部有界性,保号性,保序性等都可以推广到多元函数的极限之中来.
 
 \begin{definition}
-    设 \( f(x, y) \) 在 \( (x_0, y_0) \) 的领域 \( B(M_0, r) = \{ M \mid \rho(M, M_0) < r \} \) 有定义, 如
+    设 \( f(x, y) \) 在 \( (x_0, y_0) \) 的邻域 \( B(M_0, r) = \{ M \mid \rho(M, M_0) < r \} \) 有定义, 如
 $$
 \rho = \sqrt{(x - x_0)^2 + (y - y_0)^2} < \delta,
 $$
@@ -97,7 +97,7 @@ $$
 
 时, 就有
 $$
-|f(x, y) - f(x_0, y_0)| < \epsilon
+|f(x, y) - f(x_0, y_0)| < \varepsilon
 $$
 
 也就是说极限
@@ -110,380 +110,91 @@ $$
 \lim_{\Delta x \to 0, \Delta y \to 0} f(x_0 + \Delta x, y_0 + \Delta y) = f(x_0, y_0),
 $$
 
-那么称 \( f \) 在 \( (x_0, y_0) \) 连续。如果 \( f \) 在区域 \( D \) 的每一个点连续，就称 \( f \) 在 \( D \) 上连续。
+那么称 \( f \) 在 \( (x_0, y_0) \) 连续.如果 \( f \) 在区域 \( D \) 的每一个点连续,就称 \( f \) 在 \( D \) 上连续.
 \end{definition}
 
 \begin{remark}
     多元函数的一致连续性指的是$\delta$与$\varepsilon$与点$M_0$无关,具体而言,若$\forall \varepsilon > 0, \exists \delta > 0$,使得$\forall M_1,M_2 \in D$,当$\rho(M_1,M_2) < \delta$时,有$|f(M_1)-f(M_2)| < \varepsilon$,则称$f(x,y)$在$D$上一致连续.
 \end{remark}
 
-从定义可知,若$M_0$是.
+从定义可知,若$M_0$是$D$是原点,则必有$\lim_{M \to M_0} f(M) = f(M_0) = f(\lim_{M \to M_0} M)$,即极限号与函数符号可交换.
 
+若$M_0(x_0,y_0)$是$D$的孤立点,则$f(M)$在$M_0$处必连续.
 
+\begin{proof}
+    $\forall \ve >0, \exists \delta >0$,使得$\overline U(M_0,\delta)$中除$M_0$外无$D$中点.当$M \in D, | MM_0 | < \delta $时,$|f(M) - f(M_0)| = 0 < \ve$,即$\lim_{M \to M_0} f(M) = f(M_0)$.
+\end{proof}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\chapter{空间解析几何综述}'
-
-\section{坐标系的平移与旋转}
-
-\begin{example}
-    设有二次曲面$\Sigma:4x^2+25y^2+4z^2-16x-50y-16z-4z=0$,
-
-    \begin{enumerate}
-        \item 指出$\Sigma$是何种二次曲面;
-        \item 将$\Sigma$一般化为参数式.
-    \end{enumerate}
-\end{example}\
-
-\begin{solution}
-\begin{enumerate}
-    \item 配方得,$4(x-2)^2+25(y-1)^2+4(z-2)^2 = 100$,即
-    $$
-    \frac{(x-2)^2}{5^2}+\frac{(y-1)^2}{2^2}+\frac{(z-2)^2}{5^2} = 1
-    $$
-    故$\Sigma$是一个旋转椭球面.
-
-    若令$\begin{cases}
-        x-2 = x'\\
-        y-1 = y'\\
-        z-2 = z'
-    \end{cases},M_0 = (2,1,2)=O'$,即是将坐标系的原点平移到$M_0$点,记作$O'$,新的经过平行移动得到的坐标系为$O'-x'y'z'$.
-    在新坐标系下,$\Sigma$的方程为
-    $$
-    \frac{x'^2}{5^2}+\frac{y'^2}{2^2}+\frac{z'^2}{5^2} = 1
-    $$
-    \item 若令$\begin{cases}
-        \frac{x'}{5} = \sin \theta \cos \varphi\\
-        \frac{y'}{2} = \sin \theta \sin \varphi\\
-        \frac{z'}{5} = \cos \theta
-    \end{cases}$,则$\begin{cases}
-        x' = 5\sin \theta \cos \varphi\\
-        y' = 2\sin \theta \sin \varphi\\
-        z' = 5\cos \theta
-    \end{cases}, \theta \in [0,\pi],\varphi \in [0,2\pi]$
-    即$\Sigma$的参数方程为
-    $$
-    \begin{cases}
-        x = 2 + 5 \sin \theta \cos \varphi\\
-        y = 1 + 2 \sin \theta \sin \varphi\\
-        z = 2 + 5 \cos \theta
-    \end{cases}, \theta \in [0,\pi],\varphi \in [0,2\pi]
-    $$
-    其中$\begin{cases}
-        x' = 5\sin \theta \cos \varphi\\
-        y' = 2\sin \theta \sin \varphi\\
-        z' = 5\cos \theta
-    \end{cases}, \theta \in [0,\pi],\varphi \in [0,2\pi]$是在新坐标系下的参数式,
-    $\begin{cases}
-        x = 2 + 5 \sin \theta \cos \varphi\\
-        y = 1 + 2 \sin \theta \sin \varphi\\
-        z = 2 + 5 \cos \theta
-    \end{cases}, \theta \in [0,\pi],\varphi \in [0,2\pi]$是在原坐标系下的参数式.
-\end{enumerate}
-\end{solution}
-
-\begin{remark}
-    曲面$\Sigma$的参数式都是双参数的,但是参数式不是唯一的,例如
-    $$
-    \begin{cases}
-        x = 2 + 5 \cos \theta \cos \varphi\\
-        y = 1 + 2 \cos \theta \sin \varphi\\
-        z = 2 + 5 \sin \theta
-    \end{cases}, \theta \in [-\frac{\pi}{2},\frac{\pi}{2}],\varphi \in [0,2\pi]
-    $$
-    也是$\Sigma$的参数式.
+\begin{remark}      
+    此处使用的是课本上的定义方式.
 \end{remark}
 
 \begin{example}
-    设有二次曲面$\Sigma:xy=z.$
+    $f(x,y) = \sqrt{\cos^2 \pi x + \cos^2 \pi y -2}$的定义域$D$由所有的整点(格点)$M(m,n),m,n \in \Z$组成.每个整点都是$D$的孤立点.也都是$f(x,y)$的连续点,从而$f(x,y)$在$D$上连续.
+\end{example}
+
+\begin{example}
+    考察下列极限:
     \begin{enumerate}
-        \item 指出$\Sigma$是何种二次曲面;
-        \item 求$\Sigma$的参数式.
+        \item 证明:$\lim_{x \to 0, y \to 0} \frac{x^2 y^2}{x^4 + y^2} =0$;
+        \item 证明:$\lim_{x \to 0, y \to 0} \frac{x^2 y}{x^4 + y^2} $不存在;
+        \item 证明:$\lim_{x \to 0, y \to 0} \left( 1 +xy \right)^{\frac{1}{x+y}} $不存在.
     \end{enumerate}
 \end{example}
 
-\begin{solution}
-    若保持坐标系的原点不动,让坐标系进行旋转变化.设$O-xyz$坐标系中,基向量为$\i,\j,\k$,在$O-x'y'z'$坐标系中,基向量为$\i',\j',\k'$,且$\i',\j',\k'$与$\i,\j,\k$的夹角如下表所示:
-    \begin{table}[htbp]\label{ijk-i'j'k'}
-        \centering
-        \begin{tabular}{|c|c|c|c|}
-            \hline
-            & $\i$ & $\j$ & $\k$\\
-            \hline
-            $\i'$ & $\alpha_1$ & $\beta_1$ & $\gamma_1$\\
-            \hline
-            $\j'$ & $\alpha_2$ & $\beta_2$ & $\gamma_2$\\
-            \hline
-            $\k'$ & $\alpha_3$ & $\beta_3$ & $\gamma_3$\\
-            \hline
-        \end{tabular}
-        \caption{}
-    \end{table}
+\begin{proof}
+    \begin{enumerate}
+        \item $0 \les \frac{x^2 y^2}{x^4 + y^2} \les \frac12 |y|$,且$\lim_{x \to 0, y \to 0} 0 = 0 = \lim_{x \to 0, y \to 0} \frac12 |y|$,由夹逼准则,得$\lim_{x \to 0, y \to 0} \frac{x^2 y^2}{x^4 + y^2} =0$;
+        \item 取$y = kx^2$,$k$为常数,即动点$M(x,y)$沿抛物线$y = kx^2$趋于原点,则$\lim_{x \to 0, y \to 0} \frac{x^2 y}{x^4 + y^2} = \lim_{x \to 0} \frac{kx^3}{x^4 + k^2 x^4} = \lim_{x \to 0} \frac{k}{1+k^2} = \frac{k}{1+k^2}$.当$k$取不同值时,即动点以不同方式趋于$(0,0)$时,函数有不同的极限,与极限存在的唯一性矛盾.
+        故$\lim_{x \to 0, y \to 0} \frac{x^2 y}{x^4 + y^2} $不存在,从而$\begin{cases}
+            \frac{x^2 y}{x^4 + y^2} ,  x^2 + y^2 \neq 0\\
+            0, x^2 + y^2 = 0
+        \end{cases}$在$(0,0)$处不连续;
+        \item $\lim_{x \to 0, y \to 0} \left( 1 +xy \right)^{\frac{1}{x+y}} = \lim_{x \to 0, y \to 0} \left( 1 +xy \right)^{\frac{1}{x+y} \cdot \frac{x+y}{xy}} $.其中
+        $$
+        \lim_{x \to 0, y \to 0} (1+xy)^{\frac{1}{xy}} = \lim_{u \to 0} (1+u)^{\frac{1}{u}} = \e
+        $$ 
 
-    \begin{figure}[htbp]
-        \centering
-        \includegraphics[width=0.3\textwidth]{figure/5-1.png}
-        \caption{}
-    \end{figure}
+        而取$y = -x + kx^2$时,$\lim_{x \to 0, y \to 0} \frac{x+y}{xy} = \lim_{x \to 0, y \to 0} \frac{x+y}{xy} = \lim_{x \to 0, y \to 0} \frac{-x^2 + kx^3}{kx^2} = -\frac{1}{k}$.
+        即$k$取不同值时,$M(x,y)$沿$y = -x + kx^2$趋于原点时,函数有不同的极限,与极限存在的唯一性矛盾.
+        $\lim_{x \to 0 ,y \to 0} \frac{xy}{x+y} $不存在,从而$\lim_{x \to 0, y \to 0} \left( 1 +xy \right)^{\frac{1}{x+y}} $不存在.
+    \end{enumerate}
+\end{proof}
 
-设$\overrightarrow{OM} = (a,b,c) \neq \theta$,则$\overrightarrow{OM}^\circ = \frac{\overrightarrow{OM}}{|\overrightarrow{OM}|} = (\frac{a}{|\overrightarrow{OM}|},\frac{b}{|\overrightarrow{OM}|},\frac{c}{|\overrightarrow{OM}|}) = (\cos \alpha, \cos \beta, \cos \gamma) = \cos \i + \cos \j + \cos \k$.
-即单位向量$\overrightarrow{OM}^\circ$可以用他的三个方向余弦作为坐标,由表5.1得
-$$
-\begin{cases}
-    \i' = \cos \alpha_1 \i + \cos \beta_1 \j + \cos \gamma_1 \k\\
-    \j' = \cos \alpha_2 \i + \cos \beta_2 \j + \cos \gamma_2 \k\\
-    \k' = \cos \alpha_3 \i + \cos \beta_3 \j + \cos \gamma_3 \k
-\end{cases}
-$$
+\begin{example}
+    设$f(x,y) = \begin{cases}
+        \frac{x^2 y}{x^4 + y^2}, x^2 + y^2 \neq 0\\
+        0, x^2 + y^2 = 0
+    \end{cases}$.证明在$(0,0)$处过此点的每一条射线$\begin{cases}
+        x = t \cos \alpha \\
+        y = t \sin \alpha
+    \end{cases}, 0 \les t < + \infty$,$f(x,y)$都连续,即$\lim_{t \to \delta^+} f(t \cos \alpha, t \sin \alpha) = f(0,0) = 0$.但$f(x,y)$在$(0,0)$处不连续.
+\end{example}
 
-现设点$Q$在$O-xyz$坐标系的坐标为$Q(x,y,z)$,在$O-x'y'z'$坐标系的坐标为$Q'(x',y',z')$,则
-\begin{align*}
-    \overrightarrow{OQ} &= x\i + y\j + z\k = x'\i' + y'\j' + z'\k'\\
-    &= x'(\cos \alpha_1 \i + \cos \beta_1 \j + \cos \gamma_1 \k) + y'(\cos \alpha_2 \i + \cos \beta_2 \j + \cos \gamma_2 \k) + z'(\cos \alpha_3 \i + \cos \beta_3 \j + \cos \gamma_3 \k)\\
-    &= (x' \cos \alpha_1 + y' \cos \alpha_2 + z' \cos \alpha_3)\i + (x' \cos \beta_1 + y' \cos \beta_2 + z' \cos \beta_3)\j + (x' \cos \gamma_1 + y' \cos \gamma_2 + z' \cos \gamma_3)\k
-\end{align*}
+\begin{proof}
+    不连续性已在上文证明.下证射线上的连续性.
 
-也就是得到了
-$$
-\begin{cases}\label{X=AX'}
-    x = x' \cos \alpha_1 + y' \cos \alpha_2 + z' \cos alpha_3\\
-    y = x' \cos \beta_1 + y' \cos \beta_2 + z' \cos \beta_3\\
-    z = x' \cos \gamma_1 + y' \cos \gamma_2 + z' \cos \gamma_3
-\end{cases}
-$$
+    $\lim_{t \to 0^+} f(t \cos \alpha, t \sin \alpha) = \lim_{t \to 0^+} \frac{(t \cos \alpha)^2 (t \sin \alpha)}{(t \cos \alpha)^4 + (t \sin \alpha)^3} = \lim_{t \to 0^+} \frac{t \cos^2 \alpha \sin \alpha}{t^2 \cos^4 \alpha + \sin^2 \alpha} = 0 = f(0,0)$.
+    因此对于任意$\alpha$,即对于任意射线,函数$f(x,y)$在射线上连续.
+\end{proof}
 
-若令$\X = \begin{pmatrix}
-    x\\
-    y\\
-    z   
-\end{pmatrix} , A = \begin{pmatrix}
-    \cos \alpha_1 & \cos \alpha_2 & \cos \alpha_3\\
-    \cos \beta_1 & \cos \beta_2 & \cos \beta_3\\
-    \cos \gamma_1 & \cos \gamma_2 & \cos \gamma_3
-\end{pmatrix} , \X' = \begin{pmatrix}
-    x'\\
-    y'\\
-    z'
-\end{pmatrix}$,则有$\X = A\X'$,即$\X' = A^{-1}\X$,其中$A$的各行各列都是单位向量,且任意两行(列)正交;
-在线性代数中,称$A$这样的矩阵为正交矩阵,即$AA^T  = A^T A = I$,其中$I$是单位矩阵.
-称$\ref{X=AX'}$为正交线性变化,简称正交变换.
-
-不难验证,$A A^T = A^T A = I$,即便几何中的旋转或物理中刚体的旋转,在代数中对应正交变换.\ref{X=AX'}表明旋转之后,原坐标$x,y,z$与新坐标$x',y',z'$之间的对应关系是正交变换关系.
+\section{连续多元函数的主要性质}
 
 \begin{enumerate}
-    \item 若保持$Oz$轴不便,让$Oxy$坐标平面绕$z$轴逆时针旋转$\frac{\pi}{4}$,得到了新坐标系$O-x'y'z'$,则有
-
-\begin{table}[htbp]
-    \centering
-    \begin{tabular}{|c|c|c|c|}
-        \hline
-        & $\i$ & $\j$ & $\k$\\
-        \hline
-        $\i'$ & $\pi / 4$ & $\pi / 4$ & $\pi /2$\\
-        \hline
-        $\j'$ & $3\pi / 4$ & $\pi / 4$ & $\pi /2$\\
-        \hline
-        $\k'$ & $\pi / 2$ & $\pi / 2$ & $0$\\
-        \hline
-    \end{tabular}
-\end{table}
-
-即有
-$$
-\begin{cases}
-    x = x' \cos \frac{\pi}{4} + y' \cos \frac{3\pi}{4} + z' \cos \frac{\pi}{2} = \frac{1}{\sqrt{2}}(x'-y')\\
-    y = x' \cos \frac{\pi}{4} + y' \cos \frac{\pi}{4} + z' \cos \frac{\pi}{2} = \frac{1}{\sqrt{2}}(x'+y')\\
-    z = x' \cos \frac{\pi}{2} + y' \cos \frac{\pi}{2} + z' \cos 0 = z'
-\end{cases}
-$$
-
-利用此正交变换,可以将$\Sigma:xy=z$化为$\Sigma: \frac{1}{\sqrt{2}}(x'-y')\frac{1}{\sqrt{2}}(x'+y')=z'$,即$z' = \frac{x'^2}{2} - \frac{y'^2}{2}$,即$\Sigma$是一个双曲抛物面.
-\item $\Sigma:xy = z$在原坐标系中的参数式为$\begin{cases}
-    x = x+0y\\
-    y = 0x+y\\
-    z = xy
-\end{cases}$,$x,y$为参数,则$\Sigma$在新坐标系中的参数式为:$\begin{cases}
-    x' = x' +0y'\\
-    y' = 0x'+y'\\
-    z' = \frac{1}{2}(x'^2-y'^2)
-\end{cases}$,$x',y'$为参数.
-
+    \item 连续多元函数的和,差,积,商(分母不为零)仍然是连续的多元函数;
+    \item 在复合有意义的前提下,连续多元函数的复合函数仍是连续函数;
+    \item 有界闭区域$D$上的连续多元函数具有“五性”;
+    \begin{enumerate}
+        \item 有界性;
+        \item 最值性;
+        \item 介值性;
+        \item 零值性;
+        \item 一致连续性,
+    \end{enumerate}
 \end{enumerate}
-\end{solution}
 
-\section{柱面坐标系与球面坐标系}
-
-\subsection{柱面坐标系}
-
-$\R^3$空间中任一点$Q(x,y,z)$都可以看作是在半径为$r$的某个圆柱面:$x^2+y^2 = r^2$上.而圆柱面$x^2+y^2=r^2$上的点都可以用$r,\theta,z$这三个参数来确定,称$(r,\theta,z)$为点$Q$的柱面坐标.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.3\textwidth]{figure/5-2.png}
-    \caption{}
-\end{figure}
-
-\subsection{球面坐标系}
-
-$\R^3$空间中任一点$Q(x,y,z)$都位于某个半径为$r$的球面$x^2+y^2+z^2=r^2$上,其中$r = | \overrightarrow{OQ} |$,$\overrightarrow{OQ}$与$Oz$轴的正向的夹角设为$\theta$,$\overrightarrow{OQ}$在$Oxy$平面中的投影与$Ox$轴正向夹角为$\varphi$,$0 \les \theta \les \pi, 0 \les \varphi \les 2 \pi$.
-则$y = | \overrightarrow{OA}| \sin \varphi = r \sin \theta \sin \varphi$,而$z = r \cos \theta$.
-
-称$(r,\theta,\varphi)$为点$Q$的球面坐标.球面坐标$r,\theta,\varphi$与直角坐标$x,y,z$之间的关系为
-$$
-\begin{cases}
-    x = r \sin \theta \cos \varphi\\
-    y = r \sin \theta \sin \varphi\\
-    z = r \cos \theta
-\end{cases},\theta \in [0,\pi],\varphi \in [0,2\pi], r \ges 0
-$$
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.3\textwidth]{figure/5-3.png}
-    \caption{}
-\end{figure}
-
-直角坐标系下的球面方程:$\Sigma:x^2+y^2+z^2 = R^2$在柱面坐标系下$\begin{cases}
-    x = r \cos \theta\\
-    y = r \sin \theta\\
-    z = z
-\end{cases}$ 化为$\Sigma:r^2+z^2 = R^2$,即$\Sigma:r = R$.
-
-在球面坐标系中,$\begin{cases}
-    x = r \sin \theta \cos \varphi\\
-    y = r \sin \theta \sin \varphi\\
-    z = r \cos \theta
-\end{cases}$下,化为$x^2+y^2+z^2 = r^2 = R^2$,即$\Sigma:r = R$.
-
-双叶双曲面$\Sigma:x^2-y^2-z^2 = 1$在柱面坐标系中化为$r^2 \cos 2 \theta - z^2 = 1$,在球面坐标系中化为$2x^2 - (x^2 + y^2 + z^2) = 2(r \sin \theta \cos \varphi)^2 - r^2 = r^2 ( 2 \sin^2 \theta \cos^2 \varphi -1) = 1$.
-
-\section{空间曲线的参数式}
-
-空间曲线可以写为交线方程组$\begin{cases}
-    F(x,y,z) = 0\\
-    G(x,y,z) = 0
-\end{cases}$,他可以改写为参数式.
-
-\begin{example}
-    将空间$\R^3$中的大圆周$\Gamma:\begin{cases}
-        x^2+y^2+z^2 = a^2,a >0\\
-        x+y+z = 0
-    \end{cases}$化为参数式.
-\end{example}
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.3\textwidth]{figure/5-4.png}
-    \caption{}
-\end{figure}
-
-\begin{solution}
-    从$z = -(x+y) \Rightarrow x^2 + y^2 + (x+y)^2 = a^2 \Rightarrow x^2 +xy +y^2 = \frac{a^2}2 \Rightarrow \left( x+ \frac{y}{2} \right)^2 + \left( \frac{\sqrt{3}}{2}y \right)^2 = \left( \frac{a}{\sqrt{2}} \right)^2$.
-    令$\begin{cases}
-        x + \frac{y}{2} = \frac{a}{\sqrt{2}} \cos \theta\\
-        \frac{\sqrt{3}}{2}y = \frac{a}{\sqrt{2}} \sin \theta
-    \end{cases}, \theta \in [0,2\pi]$.则$y = \frac{2}{\sqrt{6}} a \sin \theta \Rightarrow x = \frac{a}{\sqrt{6}} (\sqrt3 \cos \theta - \sin \theta) \Rightarrow z = -(x+y) = \frac{-a}{\sqrt 6}(\sqrt 3 \cos \theta + \sin \theta)$.
-    即圆周$\Gamma$的参数式为$\begin{cases}
-        x = \frac{a}{\sqrt{6}} (\sqrt 3 \cos \theta - \sin \theta)\\
-        y = \frac{2}{\sqrt{6}} a \sin \theta\\
-        z = \frac{-a}{\sqrt{6}} (\sqrt 3 \cos \theta + \sin \theta)
-    \end{cases}, \theta \in [0,2\pi]$.
-
-\end{solution}
-
-
-    若将$x$视为参数,则从$\begin{cases}
-        F(x,y,z) = 0\\
-        G(x,y,z) = 0
-    \end{cases}$中可以解出$\begin{cases}
-        x = x\\
-        y = y(x)\\
-        z = z(x)
-    \end{cases},x \in I$.
-
-\begin{example}
-    空间中的直线$\Gamma:\begin{cases}
-        x +y+z+5 =0\\
-        x-y-2z -1=0
-    \end{cases} \Leftrightarrow \begin{cases}
-        y+3 = -x-5\\
-        -y-2z = -x+1
-    \end{cases} \Rightarrow \begin{cases}
-        x = x\\
-        y = -3x - 9\\
-        z = 2x +4
-    \end{cases}$.
-\end{example}
-
-\begin{remark}
-    空间的曲线$\Gamma$的参数式中只有一个参数,且$\Gamma$的参数式不是唯一的.
-
-\end{remark}
-
-\begin{example}
-    $\Gamma:\begin{cases}
-        x = a \cos \theta\\
-        y = a \sin \theta\\
-        z = b \theta
-    \end{cases},\theta \in [0,+\theta),a,b > 0$所表示的空间光滑曲线,称之为螺旋线.并称$k = 2\pi b$为一个螺距.
-
-    \begin{figure}[htbp]
-        \centering
-        \includegraphics[width=0.3\textwidth]{figure/5-5.png}
-        \caption{}
-    \end{figure}
-
-    此题中$x^2+y^2 \equiv a^2$,因此$\Gamma$上的点都在圆柱面$x^2+y^2 = a^2$上,而从$z = b \theta \Rightarrow z_\theta ' \equiv b$,即质点在作圆周运动的同时如果向上作匀速运动,
-    则综合的结果是沿螺旋线作运动.
-
-    无论是在物理中,还是在几何中,参数增加的方向被认为是曲线$\Gamma$的正向,相反的方向是曲线的负向.
-\end{example}
+上述性质的证明方法,与一元连续函数的“五性”证明方法类似.
 
 \begin{homework}
-ex8.4:1,2,4(4)(5)(6)(10),8,9,11.
+    ex9.1:12,13,14(2)(7)(9)(10),15,17(1),18.
 \end{homework}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
