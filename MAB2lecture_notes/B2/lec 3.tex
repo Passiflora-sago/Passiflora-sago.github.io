@@ -1,0 +1,364 @@
+\chapter{向量,平面,直线习题课}
+
+\section{距离与投影}
+
+\begin{example}
+    证明:点$M_0(x_0,y_0,z_0)$到平面$\pi:Ax+By+Cz+D=0$的距离为
+    $$
+    d = \frac{|Ax_0+By_0+Cz_0+D|}{\sqrt{A^2+B^2+C^2}}
+    $$
+\end{example}
+
+\begin{proof}
+    在$\pi$中任取点$Q(a,b,c)$,则
+    \begin{align*}
+        d &= \left| |\overrightarrow{QM_0}|\cos\alpha \right| \\
+        &= \left| \frac{|\overrightarrow{QM_0}| |\n| \cos \alpha }{|\n|} \right| \\
+        &= \frac{|\overrightarrow{QM_0} \cdot \n|}{|\n|} \\
+        &= \frac{|(x_0-a, y_0-b, z_0-c) \cdot (A,B,C)|}{\sqrt{A^2+B^2+C^2}} \\
+        &= \frac{|Ax_0+By_0+Cz_0 - (aA+bB+cC)|}{\sqrt{A^2+B^2+C^2}} \\
+    \end{align*}
+
+    由$Q(a,b,c) \in \pi$,$aA+bB+cC+D = 0 \Rightarrow -(aA+bB+cC) = D$,代入上式得证.
+\end{proof}
+
+\begin{example}
+    证明:点$M_0(x_0,y_0,z_0)$到直线$l:\frac{x-x_1}{l} = \frac{y-y_1}{m} = \frac{z-z_1}{n}$的距离为
+    $$
+    d = \frac{|l(x_0-x_1)+m(y_0-y_1)+n(z_0-z_1)|}{\sqrt{l^2+m^2+n^2}} = \frac{|\overrightarrow{M_0 M_1} \times \v|}{|\v|}
+    $$
+    其中$M_1(x_1,y_1,z_1),\bm{\tau} = (l,m,n)$
+
+\end{example}
+
+\begin{proof}
+    $d = |\overrightarrow{M_1 M_0} |\sin \alpha = \frac{|\overrightarrow{M_1 M_0}| | \bm{\tau} | \sin \alpha }{|\bm{\tau}|} = \frac{|\overrightarrow{M_1 M_0}  \times \bm \tau |}{|\bm \tau|}$.
+\end{proof}
+
+\begin{example}
+    求直线$L: \frac{x-1}{1} = \frac{y+1}{1} = \frac{z-2}{2}$在平面$\pi: x-2y+3z+1 = 0$中的投影直线$L_1$的方程.
+\end{example}
+
+\begin{solution}
+
+    过$L$上已知点$M_1(1,-1,2)$作$\pi$的垂面$\pi_1$,则$\pi_1$的法向量$\n_1 = \n \times \bm \tau$,其中$\n = (1,-2,3),\bm \tau = (1,1,2)$,所以
+    $$\n_1 = \begin{vmatrix}
+        \i & \j & \k \\
+        1 & -2 & 3 \\
+        1 & 1 & 2 
+    \end{vmatrix} = -7\i + 1 \j + 3\k = (-7,1,3)$$
+
+    由平面的点法式方程知,$\pi_1$的方程为$\pi_1: -7(x-1)+1(y+1)+3(z-2) = 0 \Rightarrow 7x-y-3z+2 = 0$.
+    而所求的投影直线$L_1$正是平面$\pi$与垂面$\pi_1$的交线,所以$L_1$的方程为
+    $$
+    L_1:\begin{cases}
+        x-2y+3z+1 = 0 \\
+        7x-y-3z+2 = 0
+    \end{cases}
+    $$
+\end{solution}
+
+\section{异面直线}
+
+\begin{example}
+    证明:$L_1: \begin{cases}
+    x+y-z-1=0\\
+    2x+y-z-2=0
+    \end{cases}$与$L_2: \begin{cases}
+        x+2y-z-2=0\\
+        x+2y+2z+2=0
+    \end{cases}$为异面直线.
+\end{example}
+
+\begin{proof}
+    设$L_1$与$L_2$的方向向量分别为$\bm \delta_1,\bm \delta_2$,
+    则$\bm \delta_1 = \begin{pmatrix}
+        \i & \j & \k \\
+        1 & 1 & -1 \\
+        2 & 1 & -1
+    \end{pmatrix} = (0,-1,-1)$,$\bm \delta_2 = \begin{pmatrix}
+        \i & \j & \k \\
+        1 & 2 & -1 \\
+        1 & 2 & 2
+    \end{pmatrix} = (6,-3,0)$.取$\bm \delta_1 = (0,1,1),\bm \delta_2 = (2,-1,0)$,在$L_1$中令$z=0$,从$\begin{cases}
+        x+y=1\\
+        2x+y=2
+    \end{cases} \Rightarrow x=1,y=0,z=0$,即$L_1$的方向向量为$\bm \delta_1 = (0,1,1)$,且$M_1(1,0,0) \in L_1$.
+    
+    在$L_2$中令$y=0$,从$\begin{cases}
+        x-z=2\\
+        x+2z=-2
+    \end{cases} \Rightarrow x=\frac23,y=0,z=-\frac43$,即从$M_2(\frac23,0,-\frac43) \in L_2$.
+
+    由$\overrightarrow{M_1 M_2} = (\frac23,0,-\frac43) - (1,0,0) = (-\frac13,0,-\frac43)$,所以$\bm \delta_1 \times \bm \delta_2 \cdot \overrightarrow{M_1M_2} = \begin{vmatrix}
+        0 & 1 & 1 \\
+        2 & -1 & 0 \\
+        -\frac13 & 0 & -\frac43
+    \end{vmatrix} = \frac73 \neq 0$,所以$L_1$与$L_2$异面.
+\end{proof}
+
+\begin{example}
+    设$L_1: \frac{x-1}{2} = \frac{y}{-1} = \frac{z-3}{0}; L_2: \frac{x+1}{1} = \frac{y-2}{0} = \frac{z-1}{1}$.
+
+    \begin{enumerate}
+        \item 证明$L_1$与$L_2$异面;
+        \item 求$L_1$与$L_2$的公垂线段之长$d$;
+        \item 求公垂线段$L$的方程;
+        \item 求一个平面使得$L_1 / / \pi, L_2 / / \pi$,且$\pi$与$L_1,L_2$等距.
+    \end{enumerate}
+\end{example}
+
+\begin{proof}
+    
+\end{proof}
+
+\begin{solution}
+    \begin{enumerate}
+        \item 设两直线的方向向量分别为$\s_1 = (2,-1,0),\s_2 = (1,0,1)$,$M_1(1,0,3),M_2(-1,2,1) \Rightarrow \overrightarrow{M_2 M_1} = (2,-2,2) \Rightarrow$
+    $$
+    (\s_1 \times \s_2) \cdot \overrightarrow{M_2 M_1} = \begin{vmatrix}
+        2 & -1 & 0 \\
+        1 & 0 & 1 \\
+        2 & -2 & 2
+    \end{vmatrix} = 0-2+0-0+4+2 = 4 \neq 0
+    $$
+    所以$L_1$与$L_2$异面.
+    \item 设公垂线为$L$,则$L \perp L_1,L \perp L_2$,设$L$的方向向量为$\s$,则$\s \perp \s_1,\s \perp \s_2 \Rightarrow \s = \s_1 \times \s_2 = \begin{vmatrix}
+        \i & \j & \k \\
+        2 & -1 & 0 \\
+        1 & 0 & 1
+    \end{vmatrix} = (-1,-2,1)$.
+    设公垂线段为CD,则C,D是两个垂足,向量$\overrightarrow{M_2 M_1}$在公垂线方向向量$\s$上的投影:$\overline{M_2 M_1} \cos(\overline{M_2 M_1},\s) $,再取绝对值即为公垂线段的长.即
+    $$
+    d = \left| \overrightarrow{M_2 M_1} \cos (\overrightarrow{M_2 M_1},\s) \right| = \left| |\overrightarrow{M_2 M_1} \cdot \frac{\overrightarrow{M_2 M_1} \cdot \s}{|\overrightarrow{M_2 M_1}| |\s|} | \right| = \frac{|\overrightarrow{M_2 M_1} \cdot \s|}{|\s|} = \frac{4}{\sqrt{6}}
+    $$
+
+    \begin{remark}
+        \textbf{两异面直线的距离}  在两直线上各取一点 $M_1, M_2$,设两直线的方向向量分别为$\v_1,\v_2$,则距离为
+        $$
+        \frac{| \overrightarrow{M_1 M_2} \cdot \v_1 \times \v_2 }{|\v_1 \times \v_2|}
+        $$
+    \end{remark}
+
+    \item 已知公垂线$L$的方向向量为$\s = (-1,-2,1)$,$L_1$的方向向量为$\s_1 = (2,-1,0)$,设$L_1$与$L$所在的平面为$\pi_2$,则$\pi_2$的法向量$\n_2 = \s_1 \times \s = \begin{vmatrix}
+        \i & \j & \k \\
+        2 & -1 & 0 \\
+        -1 & -2 & 1
+    \end{vmatrix} = (-1,-2,-5)$,且$L_1$上的点$M_1(1,0,3) \in \pi_2$.
+    依点法式$\pi_2$方程为:
+    $$
+    \pi_2: -1(x-1)-2(y-0)-5(z-3) = 0 \Leftrightarrow x+2y+5z-16 = 0
+    $$
+
+    同理,设$L_2$与$L$所在的平面为$\pi_3$,则$\pi_3$的法向量$\n_3 = \s_2 \times \s = \begin{vmatrix}
+        \i & \j & \k \\
+        1 & 0 & 1 \\
+        -1 & -2 & 1
+    \end{vmatrix} = (2,-2,-2)$,且$L_2$上的点$M_2(-1,2,1) \in \pi_3$.依点法式$\pi_3$方程为:
+    $$
+    \pi_3: 2(x+1)-2(y-2)-2(z-1) = 0 \Leftrightarrow x-y-z+4=0.
+    $$
+    显然平面$\pi_2, \pi_3$的交线是公垂线$L$,所以$L$的方程为
+    $$
+    L: \begin{cases}
+        x+2y+5z-16 = 0 \\
+        x-y-z+4 = 0
+    \end{cases}
+    $$
+
+    \item 因$\pi // L_1, \pi L_2$,所以$\pi$的法向量$\n = \s_1 \times \s_2 = \begin{vmatrix}
+        \i & \j & \k \\
+        2 & -1 & 0 \\
+        1 & 0 & 1
+    \end{vmatrix} = (-1,-2,1)$,又$\pi$与$L_1,L_2$等距,故$M_2,M_1$的中点$O(0,1,2)$必在$\pi$上,即$O(0,1,2) \in \pi$,
+    依点法式,得$\pi$的方程为
+    $$
+    \pi: -1(x-0)-2(y-1)+1(z-2) = 0 \Leftrightarrow x+2y-z =0
+    $$
+    为$\pi$的方程.
+\end{enumerate}
+\end{solution}
+
+\section{二重外积公式与Lagrange恒等式}
+
+\begin{proposition}
+
+    \begin{enumerate}
+        \item $|\a \times \b| = \sqrt{|\a|^2|\b|^2 - (\a \cdot \b)^2}$;
+        \item $(\a \times \b) \times + (\b \times \c) \times \a + (\c \times \a) \times \b = 0$;
+    \end{enumerate}
+
+\end{proposition}
+
+\begin{proof}
+    \begin{enumerate}
+        \item $|\a \times \b|^2 = \left( |\a| |\b| \sin \theta \right)^2 = |\a|^2 |\b|^2 (1-\cos^2 \theta) = |\a|^2 |\b|^2 - (\a \cdot \b)^2$;
+        \item 我们称这条命题为\textbf{Lagrange恒等式},称$(\a \times \b) \times \c$为二重向量积,且有$\bm{a} \times (\bm{b} \times \bm{c}) = (\bm{a} \cdot \bm{c})\bm{b} - (\bm{a} \cdot \bm{b})\bm{c}$,我们先来证明这个引理.
+    \end{enumerate}
+\end{proof}
+
+\begin{lemma}[二重外积公式]
+    $$
+\bm{a} \times (\bm{b} \times \bm{c}) = (\bm{a} \cdot \bm{c})\bm{b} - (\bm{a} \cdot \bm{b})\bm{c}.
+$$
+
+\end{lemma}
+
+\begin{proof}
+   设 $\bm{a} = a_1 \bm{e_1} + a_2 \bm{e_2} + a_3 \bm{e_3}$, $\bm{b} = b_1 \bm{e_1} + b_2 \bm{e_2} + b_3 \bm{e_3}$, $\bm{c} = c_1 \bm{e_1} + c_2 \bm{e_2} + c_3 \bm{e_3}$。我们已知
+$$
+\bm{b} \times \bm{c} = (b_2 c_3 - b_3 c_2)\bm{e_1} + (b_3 c_1 - b_1 c_3)\bm{e_2} + (b_1 c_2 - b_2 c_1)\bm{e_3}.
+$$
+
+设 $\bm{a} \times (\bm{b} \times \bm{c}) = d_1 \bm{e_1} + d_2 \bm{e_2} + d_3 \bm{e_3}$, 则
+
+
+\begin{align*}
+    d_1 &= a_2 (b_1 c_2 - b_2 c_1) - a_3 (b_3 c_1 - b_1 c_3) \\
+    &= b_1 (\bm{a} \cdot \bm{c} - a_1 c_1) - c_1 (\bm{a} \cdot \bm{b} - a_1 b_1)\\
+    &= (\bm{a} \cdot \bm{c}) b_1 - (\bm{a} \cdot \bm{b}) c_1.
+\end{align*}
+
+同理
+$$
+d_2 = (\bm{a} \cdot \bm{c}) b_2, \quad d_3 = (\bm{a} \cdot \bm{c}) b_3 - (\bm{a} \cdot \bm{b}) c_3.
+$$ 
+
+因此
+$$
+\a \times ( \b \times \c) = (\a \cdot \c) \cdot \b - ( \a \cdot \b) .
+$$
+\end{proof}
+
+\begin{proposition}
+    证明 Jacobi 等式:
+    $$
+    \bm{a} \times (\bm{b} \times \bm{c}) + \bm{b} \times (\bm{c} \times \bm{a}) + \bm{c} \times (\bm{a} \times \bm{b}) = 0.
+    $$
+    \end{proposition}
+    
+    \begin{proof}
+    利用二重外积公式，我们有
+    $$
+    \bm{a} \times (\bm{b} \times \bm{c}) = (\bm{a} \cdot \bm{c})\bm{b} - (\bm{a} \cdot \bm{b})\bm{c},
+    $$
+    $$
+    \bm{b} \times (\bm{c} \times \bm{a}) = (\bm{b} \cdot \bm{a})\bm{c} - (\bm{b} \cdot \bm{c})\bm{a},
+    $$
+    $$
+    \bm{c} \times (\bm{a} \times \bm{b}) = (\bm{c} \cdot \bm{b})\bm{a} - (\bm{c} \cdot \bm{a})\bm{b}.
+    $$
+    将上述三等式相加即得Jacobi等式.
+    \end{proof}
+
+\section{习题}
+
+\begin{example}
+    \begin{enumerate}
+        \item 求数$\lambda$,使得直线$L_1:\frac{x-1}{\lambda} = \frac{y+4}{5} = \frac{z-3}{-3}$与直线$L_2:\frac{x+3}{3} = \frac{y-9}{-4} = \frac{z+4}{7}$相交.
+        \item 求$L_1$与$L_2$的交点.
+        \item 求$L_1$与$L_2$确定的平面方程.
+    \end{enumerate}
+
+\end{example}
+
+\begin{solution}
+    \begin{enumerate}
+        \item 设$L_1$与$L_2$的方向向量分别为$\s_1 = (\lambda,5,-3),\s_2 = (3,-4,7)$,$M_1(1,-4,3),M_2(-3,9,-4)$,则$\overrightarrow{M_1 M_2} = (-4,13,-7)$.
+        
+        当$\s_1,\s_2,\overrightarrow{M_1 M_2}$共面时,两直线可能相交,即
+        $$
+        (\s_1 \times \s_2) \cdot \overrightarrow{M_1 M_2} = \begin{vmatrix}
+            \lambda & 5 & -3 \\
+            3 & -4 & 7 \\
+            -4 & 13 & -7
+        \end{vmatrix} = 0
+        $$ 
+        解得$\lambda = 2$,此时$\begin{cases}
+            s_1 = (2,5,-3) \\
+            s_2 = (3,-4,7)
+        \end{cases} \Rightarrow %s_1 不平行于 s_2
+        s_1 \nparallel s_2$,所以两直线相交.
+
+        \item 由$L_1:\frac{x-1}{2} = \frac{y+4}{5} = \frac{z-3}{-3}$,得$L_1$的参数方程为
+        $$
+        \begin{cases}
+            x = 1+2t \\
+            y = -4+5t \\
+            z = 3-3t
+        \end{cases},t \in \R
+        $$
+        从$L_2:\frac{x+3}{3} = \frac{y-9}{-4} = \frac{z+4}{7}$,得$L_2$的参数方程为
+        $$
+        \begin{cases}
+            x = -3+3s \\
+            y = 9-4s \\
+            z = -4+7s
+        \end{cases},s \in \R
+        $$
+
+        设$M_0(x_0,y_0,z_0)$为$L_1$与$L_2$的交点,则
+        $$
+        \begin{cases}
+           x_0 = 1+2t = -3+3s \\
+        y_0 = -4+5t = 9-4s \\
+            z_0 = 3-3t = -4+7s
+        \end{cases} \Rightarrow
+        \begin{cases}
+            t = 1,s = -1 \\
+            x_0 = -1,y_0 = 1,z_0 = 0
+        \end{cases}
+        $$
+        所以$L_1$与$L_2$的交点为$M_0(-1,1,0)$.
+
+        \item 设$L_1$与$L_2$确定的平面为$\pi$,则$\pi$的法向量$\n = \s_1 \times \s_2 = \begin{vmatrix}
+            \i & \j & \k \\
+            2 & 5 & -3 \\
+            3 & -4 & 7
+        \end{vmatrix} = (23,-23,-23)$,取$\n = (1,-1,-1)$,且交点$M_0(3,1,0) \in \pi$,所以$\pi$的方程为
+        $$
+        \pi: 1 \cdot (x-3) - 1 \cdot (y-1) - 1 \cdot z = 0 \Leftrightarrow x-y-z-2 = 0
+        $$  
+    \end{enumerate}
+\end{solution}
+
+\begin{example}
+    求直线$L:\begin{cases}
+    x+y-z-1 = 0\\
+    x-y+z+1 = 0
+    \end{cases}$在平面$\pi:x+y+z=0$上的投影直线方程$L_1$.
+\end{example}
+
+\begin{solution}
+    $L$的方向向量$\s = \n_1 \times \n_2 = \begin{vmatrix}
+        \i & \j & \k \\
+        1 & 1 & -1 \\
+        1 & -1 & 1
+    \end{vmatrix} = (0,-2,-2)$,令$z=0$,从$\begin{cases}
+        x+y=1\\
+        x-y=1
+    \end{cases} $得到$L$上点$M_0(0,1,0)$.
+
+    设过$L$且垂直于平面$\pi$的平面为$\pi_1$,则$\pi_1$的法向量$\n_0 = \s \times \n = \begin{vmatrix}
+        \i & \j & \k \\
+        0 & -2 & -2 \\
+        1 & 1 & 1
+    \end{vmatrix} = (0,-2,2)$,且$M_0(0,1,0) \in \pi_1$,所以$\pi_1$的方程为
+    $$
+    \pi_1: 0 \cdot (x-0) - 2 \cdot (y-1) + 2 \cdot (z-0) = 0 \Leftrightarrow -y+z+1=0
+    $$
+    此时投影直线$L_1$的方程为
+    $$
+    L_1: \begin{cases}
+        x+y-z-1 = 0 \\
+        -y+z+1 = 0
+    \end{cases}.
+    $$
+\end{solution}
+
+
+\begin{homework}
+    ex8.2:18(1),19(1),20(2),21(1),22(1),23(1),29,30.
+\end{homework}
+
+

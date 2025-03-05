@@ -1,0 +1,197 @@
+\chapter{数列极限}
+
+\section{几个常用的记号}
+
+\begin{enumerate}
+    \item $\forall \leftarrow A \leftarrow any$:任意给定的一个；给定后为常数
+    \item $\exists \leftarrow E \leftarrow exist$:存在一个；通常不唯一
+    \item $\sup E$:数集$E$的最小上界，即$E$的上确界(supremum)
+
+    $\sup E$同时满足两条件：
+    \begin{enumerate}
+        \item $\forall x\in E, x\leq \sup E$;
+        \item $\forall \ve >0, \exists \ x_0\in E, \sup E-\ve<x_0$.
+    \end{enumerate}
+    \item $\inf E$:数集$E$的最大下界，即$E$的下确界(infimum)
+
+    $\inf E$同时满足两条件：
+    \begin{enumerate}
+        \item $\forall x\in E, x\geq \inf E$;
+        \item $\forall \ve >0, \exists \ x_0\in E, x_0<\inf E+\ve$.
+    \end{enumerate}
+\end{enumerate}
+
+\begin{definition}
+    \begin{enumerate}
+        \item $\sup E = \inf \{ u \in \R: u \geq x, \forall x \in E \}$;
+        \item $\inf E = \sup \{ u \in \R: u \leq x, \forall x \in E \}$.
+    \end{enumerate}
+\end{definition}
+
+
+\begin{example*}
+    设$E=\{1,3,5,8\} F= ( -\sqrt{3},\pi ]$,则:
+    
+    $\sup E=8, \inf E=1, \sup F=\pi, \inf F=-\sqrt{3}$.且有
+    \begin{enumerate}
+        \item $\sup E = -\inf(-E)$;
+        \item $\inf F = -\sup(-F)$;
+    \end{enumerate}
+
+    \begin{remark}
+        这里的$-E$表示$E$的相反数集合，即$-E=\{-e:e \in E\}$.
+    \end{remark}
+\end{example*}
+
+\section{数学分析建立在实数系上$\R$上}
+
+理由:极限运算时微积分的最基本运算,而有理数集合$\Q$关于极限运算时不封闭的.例如:
+$\lim_{n \to \infty} (1+\frac1n)^n=e;\forall n\in N, (1+\frac1n)\in \Q$,但$e \notin \Q$.
+又如,$\forall n\in N, a_n=\sum_{m=1}^n \frac1{m^2} \in \Q$,但$\lim_{n \to \infty} a_n=\dfrac{\pi^2}{6}\notin \Q$.
+
+实数集合$\R$在数轴上的点是连续不断的,且关于极限运算时封闭的.因此,称实数集$\R$是具有连续性.实数集$\R$的连续性也称为实数集的完备性.
+
+描述实数集$\R$连续性的公理通常有五个:
+\begin{enumerate}
+    \item 确界存在原理;
+    \item 单调有界极限存在准则;
+    \item 极限存在的柯西(Cauchy)准则;
+    \item 闭区间套定理;
+    \item 列紧性原理,即有界数列必有收敛子列定理.
+\end{enumerate}
+
+这五个公理是互相等价的,本课程采用\textbf{确界存在原理}作为实数集$\R$连续性的公理.
+
+\begin{remark}
+这五条公理与课本1.1.3的连续性公理是等价的,即任意一个公理都可以推导出另外四个公理.因此这里说这五个等价命题描述了$\R$的连续性.
+\end{remark}
+
+\begin{theorem}[公理:确界存在原理]
+    有上(下)界的非空实数集$E$必有上(下)确界$\sup E(\inf E)$.
+\end{theorem}
+
+\section{数列极限的科学定义}
+
+设数列$\{a_n\}$以常数$a$为极限,科学的定义如下:
+
+\begin{definition}[数列极限]\label{def:sequence_limit}
+    对于数列$\{a_n\}$,若$\forall \ve >0, \exists N\in N^*, \forall n>N $都有 $|a_n-a|<\ve$ 成立,则 $\{a_n\}$ 以常数 $a$ 为极限,记为 $\lim_{n \to \infty} a_n=a$ 或 $a_n\rightarrow a (n\rightarrow \infty)$.
+\end{definition}
+
+我们判断数列是否收敛,就是判断其是否满足数列极限存在的定义\ref{def:sequence_limit}.除此之外,也可以使用如下的性质:
+
+\begin{proposition}\label{prop:sequence_limit_equivalence}
+    对于数列$\{a_n\}$,以下命题等价:
+
+    \begin{enumerate}
+        \item $\forall \ve >0, \exists N\in N^*, \forall n>N $都有 $|a_n-a|<\ve$ 成立;
+        \item 存在常数$M$,使得$\forall \ve >0, \exists N\in N^*, \forall n>N $都有 $|a_n-a|<M \ve$ 成立;
+    \end{enumerate}
+\end{proposition}
+
+事实上,所有的收敛的有理数列,其极限点的全体即是实数集$\R$.即实数集$\R$是有理数列的极限值构成的.
+
+
+\begin{remark}
+    \begin{enumerate}
+        \item $\Q$对极限是不封闭的;
+        \item 由$\Q$组成的数列的极限可以是实数;
+        \item 由$\Q$组成的数列的极限只能是实数;
+        \item 由$\Q$组成的所有收敛数列,他们的极限的集合,恰好就是$\R$,不多不少.
+    \end{enumerate}
+
+    理由如下:
+
+对$\forall x\in \R$,设$x$的小数表示为: $x=a_0 . a_1 a_2 a_3 \cdots$,则有理数列: $a_0, a_0 . a_1, a_0 . a_1 a_2, \cdots$当$n\rightarrow \infty$时,其极限为$x$.若 $x$ 是有理数,则 $a_0 . a_1 a_2 \cdots a_n$ 是有限小数或循环小数,若 $x$ 是无理数,则 $a_0 . a_1 a_2 \cdots a_n$ 是无限不循环小数,则极限点 $x$ 是无理数.
+
+    此处 $x=a_0 . a_1 a_2 a_3 \cdots$ ,其中每一个 $a_i$ 都是一个数字，$a_0$ 是整数部分，$a_1 a_2 a_3 \cdots$是小数部分.比如，$x=3.1415926\cdots$,那么 $a_0=3, a_1=1, a_2=4, a_3=1, a_4=5, a_5=9, a_6=2, a_7=6,\cdots$.
+
+    可以由 $x=a_0 . a_1 a_2 a_3 \cdots$ 构造出一个数列 $\tau_1 = a_0, \tau_2 = a_0 . a_1, \tau_3 = a_0 . a_1 a_2, \cdots$,说 $x$ 为极限指的,是$x$是数列$\{\tau_n\}$的极限,记为$\lim_{n \to \infty} \tau_n = x$.
+    都用 $x$ 代指,是因为我这里不能确定 $x$ 是不是有限小数,有理数还是无理数.但是 $x$ 是数列 $\{\tau_n\}$ 的极限是确定的.
+
+
+\end{remark}
+
+\section{极限存在的两个常用准则}
+
+\begin{theorem}[单调有界极限存在准则]\label{thm:monotone_convergence_theorem}
+    若数列$\{a_n\}$单调增(减)且有上(下)界,则$\{a_n\}$收敛.且$\lim_{n \to \infty} a_n=\sup a_n(\inf a_n)$.
+    
+\end{theorem}
+
+\begin{proof}单调增有界极限存在.
+
+设数列$\{a_n\}$单调增且有上界,由确界存在定理,$\{a_n\}$有上确界.令$\sup a_n=\beta$,则$\beta$是$\{a_n\}$满足以下两点:
+
+1. $\forall n\in N, a_n\leq \beta$;
+
+2. $\forall \ve >0, \exists a_{n_0}\in \{a_n\}, \beta-\ve<a_{n_0}$.
+
+又因为$\{a_n\}$单调增,故$\forall n > n_0, a_n\leq a_{n_0} > \beta-\ve$,且$a_n \geq \beta <\beta +\ve.$即$|\beta-a_n|<\ve$ 在 $n>n_0$ 时成立.
+
+由定义\ref{def:sequence_limit}, 有 $\lim_{n \to \infty} a_n=\beta = \sup \{ a_n \}$.同理,单调减有下界极限存在.
+\end{proof}
+
+\begin{theorem}[夹逼准则]\label{thm:squeeze_theorem}
+    设数列$\{a_n\},\{b_n\},\{c_n\}$满足$a_n\leq b_n\leq c_n, \lim_{n \to \infty} a_n=\lim_{n \to \infty} c_n=a$,则$\lim_{n \to \infty} b_n=a$.
+\end{theorem}
+
+\begin{proof}
+    从 $\lim_{n \to \infty} a_n = a \Leftrightarrow \forall \ve >0, \exists N_1\in N^*, \forall n>N_1$ 都有 $|a_n-a|<\ve$. $ \Rightarrow a-\ve<a_n<a+\ve$ 当 $n>N_1$ 时恒成立.
+
+    再从 $\lim_{n \to \infty} c_n = a \Rightarrow $ 对上述 $\ve$ , $\exists N_2\in N^*, \forall n>N_2$ 都有 $|c_n-a|<\ve$. $ \Rightarrow a-\ve<c_n<a+\ve$ 当 $n>N_2$ 时恒成立.
+
+    令 $N=\max\{N_1,N_2\}$, 则当 $n>N$ 时, $a-\ve<a_n\leq b_n\leq c_n<a+\ve$, 即 $|b_n-a|<\ve$ 成立. 由定义\ref{def:sequence_limit}, $\lim_{n \to \infty} b_n=a$.
+
+
+\end{proof}
+
+\begin{example}
+    下列$a,b,q,c_1,c_2$皆为常数.
+
+    \begin{enumerate}
+        \item 设$|q|<1$,证明$\lim_{n \to \infty} aq^n=0$;
+        \item 设$a>0$,则$\lim_{n \to \infty} a^{\frac1n}=1$;
+        \item 证明$\lim_{n \to \infty} \sqrt[n]{n}=1$;
+        \item 设$\lim_{n \to \infty} a_n=a, \lim_{n \to \infty} b_n=b$,证明$\lim_{n \to \infty} (c_1a_n+c_2b_n)=c_1a+c_2b$.\textbf{即线性组合的极限等于极限的线性组合,称此为极限的线性性质.}
+    \end{enumerate}
+\end{example}
+
+\begin{proof}
+    \begin{enumerate}
+        \item 
+        \begin{enumerate}
+            \item 当 $q=0$ 时, $\lim_{n \to \infty} aq^n= \lim_{n \to \infty} 0 = 0$;
+            \item 当 $0 < |q| < 1$ 时, 对 $\forall 0 < \ve < 1 $ ,使得 $|q^n - 0 | < \ve $ ,只要 $n \ln |q| < \ln \ve $,即 $n > \dfrac{\ln \ve}{\ln |q|}$,令 $N = [ \dfrac{\ln \ve}{\ln |q|} ] + 1$ ,则当 $n > N$ 时, $n > \dfrac{\ln \ve}{\ln |q|} \Rightarrow |q^n - 0 | < \ve $,即 $\lim_{n \to \infty} aq^n=0$.
+        \end{enumerate}
+        综上可知, $\lim_{n \to \infty} aq^n=0, \forall |q|<1$.
+
+        \item 
+        \begin{enumerate}
+            \item 当 $a>1$时, 则 $a^{\frac1n} > 1$, 设 $ a^{\frac1n} = 1 + \lambda_n$, 则 $a = (1+\lambda_n)^n = 1 + n\lambda_n + \dfrac{n(n-1)}{2!}\lambda_n^2 + \cdots + \lambda_n^n > n\lambda_n$, 则 $ 0 < \lambda_n < \frac{a}{n} $且 $\lim_{n \to \infty} \frac{a}{n} = 0$, 由夹逼准则\ref{thm:squeeze_theorem}, $\lim_{n \to \infty} a^{\frac1n} = 1$.
+            \item 当 $0 < a <1 $时, 令 $b = \frac1a$, 则 $b > 1$, 由上一步可知 $\lim_{n \to \infty} b^{\frac1n} = 1$, 即 $\lim_{n \to \infty} a^{\frac1n} = 1$.
+            
+            \begin{remark}
+                助教: 我觉得最后一步的说明有一点跳步,讲义使用了$\lim_{n \to \infty} a^{1/n} = \lim_{n \to \infty} \frac{1}{b^{1/n}} = \frac{1}{\lim_{n \to \infty} b^{1/n}} = 1$.中间第二个等号是未证明的, 这个将在之后极限的四则运算得到证明.
+            \end{remark}
+        \end{enumerate}
+
+        \item 
+        当 $n \ges 2$时, $\sqrt[n]{n} \ges 1$, 设 $\sqrt[n]{n} = 1 + \lambda_n$, 则 $\lambda_n >0$. 且 $n = (1 + \lambda_n)^n > \frac{n(n+1)}{2} \lambda_n^2 $, 则$ 0 < \lambda_n < \sqrt{\frac{2}{n-1}}$, 且 $\lim_{n \to \infty} \sqrt{\frac{2}{n-1}} = 0$, 由夹逼准则\ref{thm:squeeze_theorem}, $\lim_{n \to \infty} \sqrt[n]{n} = 1$.
+
+        \item 
+        由 $\lim_{n \to \infty} a_n = a \Rightarrow \forall \ve > 0 , \exists N_1 \in N^*$, 当 $n > N_1 $时, $ |a_n - a| < \ve $.由 $\lim_{n \to \infty} b_n = b$ ,对上述 $\ve >0 , \exists N_2 \in N^*$, 当 $n > N_2 $时, $ |b_n - b| < \ve $. 令 $N = \max\{N_1,N_2\}$, 则当 $n > N$ 时, $ |a_n - a| < \ve, |b_n - b| < \ve $, 则 $ |c_1a_n + c_2b_n - c_1a - c_2b| = |c_1(a_n - a) + c_2(b_n - b)| \les |c_1(a_n - a)| + |c_2(b_n - b)| \les ( |c_1| + |c_2| ) \ve $, 即 $\lim_{n \to \infty} (c_1a_n + c_2b_n) = c_1a + c_2b$.
+        
+        \begin{remark}
+            证明数列极限时, 需要证明 $\forall \ve > 0, \exists N \in N^*$, 当 $n > N$ 时, $|a_n - a| < \ve$ 成立. 如果我们能证明 $\forall \ve >0,  \exists N \in N^*$, 当 $n > N$ 时, $|a_n - a| \les \ve$ 也是可以的.可以思考一下这是为什么? 提示:\ref{prop:sequence_limit_equivalence}.
+        \end{remark}
+        
+
+    \end{enumerate}
+\end{proof}
+
+数列的极限具有线性性质,同理函数极限也是具有线性性质的,统称为极限的线性性质.由极限的线性性质,可导出微积分中绝大多数概念也具有线性性质.如函数的导数、导数、微分、积分,都具有线性性质.
+
+\begin{homework}
+ex1.2:1(2)(4),3,4,5,6,8(5),15(1),19.
+\end{homework}

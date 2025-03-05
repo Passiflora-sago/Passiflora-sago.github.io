@@ -1,0 +1,49 @@
+\documentclass[lang=cn,12pt,scheme=chinese]{elegantbook}
+
+\title{数学分析(B1)课程讲义}
+
+\bioinfo{简介}{
+    本讲义为汪琥庭老师2024秋季学期数学分析B1课程讲义的latex整理版,不包括复习课内容.
+}
+\date{\today}
+\version{2.0}
+\author{助教 刘越}
+
+\setcounter{tocdepth}{3}
+\cover{cover.jpg}
+
+\extrainfo{\bfseries 本讲义仅供学习交流使用，未经许可请勿用于商业目的.\\
+如有错误或疏漏请联系邮箱:\url{liuyue22@ustc.mail.edu.cn}\\
+\href{https://passiflora-sago.github.io/24FallMAB1.html}{课程主页} \quad
+\href{https://github.com/Passiflora-sago/Passiflora-sago.github.io/releases/download/v1.0.0/maexams_2025-v1.pdf}{往年卷汇总}}
+
+
+% 本文档命令
+\usepackage{array}
+\newcommand{\ccr}[1]{\makecell{{\color{#1}\rule{1cm}{1cm}}}}
+
+% 修改标题页的橙色带
+\definecolor{customcolor}{RGB}{32,178,170}
+\colorlet{coverlinecolor}{customcolor}
+\usepackage{cprotect}
+
+\addbibresource[location=local]{reference.bib} % 参考文献，不要删除
+
+\input{preamble_command_mathematics_v1_0.tex}
+
+\definecolor{structurecolor}{RGB}{60,113,183}
+\definecolor{main}{RGB}{76,141,174}
+\definecolor{second}{RGB}{213,180,92}
+\definecolor{third}{RGB}{120,146,98}
+
+
+
+
+\begin{document}
+%设置章节计数器为2
+\setcounter{chapter}{4}
+\input{B2/lec 5.tex}
+
+
+
+\end{document}
