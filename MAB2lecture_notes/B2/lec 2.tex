@@ -1,224 +1,88 @@
-\chapter{数列极限的性质与应用}
+\chapter{空间平面与直线}
 
-\section{复习数列极限的线性性质}
+\section{平面(plane)的五种表示形式}
 
-\begin{theorem}[数列极限的线性性质]\label{thm:sequence_limit_linear}
-    设$a,b,c_1,c_2$为常数且$\lim_{n \to \infty} a_n = a, \lim_{n \to \infty} b_n=b$,则 $$\lim_{n \to \infty}(c_1 a_n+c_2b_n)=c_1a+c_2b =c_1 \lim_{n \to \infty} a_n+c_2 \lim_{n \to \infty} b_n . $$
-    
-\end{theorem}
-
-从上述极限的线性性质, 不难得到以下结论：
-
-\begin{enumerate}
-    \item 当$c_1=c_2=1$时, $\lim_{n \to \infty} (a_n+b_n)=\lim_{n \to \infty} a_n+\lim_{n \to \infty} b_n$;
-    \item 当$c_1=1,c_2=-1$时, $\lim_{n \to \infty} (a_n-b_n)=\lim_{n \to \infty} a_n-\lim_{n \to \infty} b_n$;
-    \item 当$c_1=k,c_2=0$时, $\lim_{n \to \infty} ka_n=k\lim_{n \to \infty} a_n$.
-    \item 数列的线性性质可推广到任意有限个收敛数列的情形:设$a_{1n} \rightarrow a_1, a_{2n} \rightarrow a_2, \cdots, a_{mn} \rightarrow a_m$,且$a_1,a_2,\cdots,a_m,c_1,c_2,\cdots,c_m$为常数,则
-    \begin{align*}
-    & \lim_{n \to \infty}(c_1a_{1n}+c_2a_{2n}+\cdots+c_ma_{mn}) \\
-    =& c_1a_1+c_2a_2+\cdots+c_ma_m \\
-    =&c_1\lim_{n \to \infty} a_{1n}+c_2\lim_{n \to \infty} a_{2n}+\cdots+c_m\lim_{n \to \infty} a_{mn}
-    \end{align*}
-
-    对$\forall m\in N^*$成立.
-\end{enumerate}
-
-\section{数列极限的“四性”}
-
-\begin{proposition}[数列极限的“四性”]\label{prop:sequence_limit_four_properties}
-    设$\{a_n\}$收敛,则$\{a_n\}$满足以下四性:
+\begin{definition}[平面的五种表示形式]
     \begin{enumerate}
-        \item 有界性:若$\{a_n\}$收敛,则$\{a_n\}$有界,反之未必;
-        \item 唯一性:若$\{a_n\}$收敛,则其极限唯一;
-        \item 保号性:若$\{a_n\}$收敛且$\lim_{n \to \infty} a_n = a$,$a_n \ges 0,\forall n \ges n_0$,则必有$a\ges 0$;
-        \item 保序性:若$a_n \rightarrow a, b_n \rightarrow b$,且$a_n \les(\ges) b_n,\forall n \ges n_0$,则必有$a\les(\ges) b$.
+        \item 向量式:设平面$\pi$过已知点$M_0(x_0,y_0,z_0)$,且与已知的非零向量$\n=(A,B,C)$垂直,则平面$\pi$唯一确定.设$P(x,y,z)$为$\pi$上任一点,则有$\overrightarrow{M_0P}\bot\n$,于是有$$\n\cdot \overrightarrow{M_0P}=0$$称为平面$\pi$的向量式方程.
+        \item 点法式:由向量式,有$\n\cdot \overrightarrow{M_0P}=0$,即$$A(x-x_0)+B(y-y_0)+C(z-z_0)=0$$,称为平面$\pi$的向量式方程.
+        \item 一般式:设$D=-Ax_0-By_0-Cz_0$,则有$$Ax+By+Cz+D=0$$称为平面$\pi$的一般式方程.
+        \item 截距式:一般式中,设$d\triangleq-D\neq 0$,令$\frac{d}{A}=a,\frac{d}{B}=b,\frac{d}{C}=c$,则$$\frac{x}{a}+\frac{y}{b}+\frac{z}{c}=1$$称为平面$\pi$的截距式方程.
+        \item 三点式:设$A(x_1,y_1,z_1),B(x_2,y_2,z_2),C(x_3,y_3,z_3)$为$\pi$上不共线的三点,则由$A,B,C$三点确定唯一的平面$\pi$,设$P(x,y,z)$为$\pi$上任一点,则有$\overrightarrow{AP},\overrightarrow{AB},\overrightarrow{AC}$共面,即$$\begin{vmatrix}x-x_1&y-y_1&z-z_1\\x_2-x_1&y_2-y_1&z_2-z_1\\x_3-x_1&y_3-y_1&z_3-z_1\end{vmatrix}=0$$称为平面$\pi$的三点式方程.
+    \end{enumerate}
+\end{definition}
+
+\section{空间直线(line)的五种表示形式}
+\begin{definition}[空间直线的五种表示形式]
+    \begin{enumerate}
+        \item 向量式:设直线$l$过已知点$M_0(x_0,y_0,z_0)$,且与已知的非零向量$\btau=(l,m,n)$平行,则直线$l$唯一确定.设$P(x,y,z)$为$l$上任一点,则有$\overrightarrow{M_0P}\parallel\n$,于是有$$\overrightarrow{M_0P}\times\btau=\0$$称为直线$l$的向量式方程.
+        \item 点向式:由向量式,有$\overrightarrow{M_0P}\parallel\btau$,则有$$\frac{x-x_0}{l}=\frac{y-y_0}{m}=\frac{z-z_0}{n}$$,称为直线$l$的点向式方程.
+        \item 参数式,在点向式中,令$\frac{x-x_0}{l}=\frac{y-y_0}{m}=\frac{z-z_0}{n}=t$,则有$$\begin{cases}x=x_0+lt\\y=y_0+mt\\z=z_0+nt\end{cases}$$称为直线$l$的参数式方程.
+        \item 交面式:设平面$p_1:A_1x+B_1y+C_1z+D_1=0$和平面$p_2:A_2x+B_2y+C_2z+D_2=0$不平行,则$\pi_1$与$\pi_2$有交线$l$,$l$上的点$P(x,y,z)$满足$$\begin{cases}A_1x+B_1y+C_1z+D_1=0\\A_2x+B_2y+C_2z+D_2=0\end{cases}$$称为直线$l$的交面式方程.
+        \item 两点式:设$Q_1(x_1,y_1,z_1),Q_2(x_2,y_2,z_2)$为直线$l$上的两点,则由$Q_1,Q_2$确定唯一的直线$l$,设$P(x,y,z)$为$l$上任一点,则有$\overrightarrow{Q_1P},\overrightarrow{Q_1Q_2}$共线,即$$\frac{x-x_1}{x_2-x_1}=\frac{y-y_1}{y_2-y_1}=\frac{z-z_1}{z_2-z_1}$$称为直线$l$的两点式方程.   
+    \end{enumerate}
+\end{definition}
+\newpage
+\section{面面,线线,线面之间的关系}
+\begin{proposition}
+    设$$\begin{cases}
+        \pi_1:A_1x+B_1y+C_1z+D_1=0,&\n_1=(A_1,B_1,C_1)\\
+        \pi_2:A_2x+B_2y+C_2z+D_2=0,&\n_2=(A_2,B_2,C_2)\\
+        L_1:\frac{x-x_1}{l_1}=\frac{y-y_1}{m_1}=\frac{z-z_1}{n_1},&\btau_1=(l_1,m_1,n_1)\\
+        L_2:\frac{x-x_2}{l_2}=\frac{y-y_2}{m_2}=\frac{z-z_2}{n_2},&\btau_2=(l_2,m_2,n_2)
+    \end{cases}$$
+    则\begin{enumerate}
+        \item $\pi_1\parallel\pi_2\Leftrightarrow\frac{A_1}{A_2}=\frac{B_1}{B_2}=\frac{C_1}{C_2}\Leftrightarrow\n_1\times\n_2=\0$.
+        \item $\pi_1\bot\pi_2\Leftrightarrow A_1A_2+B_1B_2+C_1C_2=0\Leftrightarrow\n_1\cdot\n_2=0$.
+        \item $\pi_1$与$\pi_2$的夹角$\alpha(0<\alpha\les\pi),\cos\alpha=\frac{\n_1\cdot\n_2}{\left|\n_1\right|\cdot\left|\n_2\right|}=\n_1^0\cdot\n_2^0$,即得$\alpha=\arccos\frac{\n_1\cdot\n_2}{\left|\n_1\right|\cdot\left|\n_2\right|}$.
+        \item $L_1\parallel L_2\Leftrightarrow\btau\parallel\btau_2\Leftrightarrow\btau_1\times\btau_2=\0\Leftrightarrow\frac{l_1}{l_2}=\frac{m_1}{m_2}=\frac{n_1}{n_2}$.
+        \item $L_1\bot L_2\Leftrightarrow\btau_1\bot\btau_2\Leftrightarrow\btau_1\cdot\btau_2=0\Leftrightarrow l_1l_2+m_1m_2+n_1n_2=0$.
+        \item $L_1$与$L_2$的夹角$\alpha(0\les\alpha\les\pi),\cos\alpha=\frac{\btau_1\cdot\btau_2}{\left|\btau_1\right|\cdot\left|\btau_2\right|}=\btau_1^0\cdot\btau_2^0$,即得$\alpha=\arccos\frac{\btau_1\cdot\btau_2}{\left|\btau_1\right|\cdot\left|\btau_2\right|}$.
+        \item $L_1\bot\pi_1\Leftrightarrow\btau_1\parallel\n_1\Leftrightarrow\btau_1\times\n_1=\0\Leftrightarrow \frac{A_1}{l_1}=\frac{B_1}{m_1}=\frac{C_1}{n_1}$.
+        \item $L_1\parallel\pi_1\Leftrightarrow\btau_1\bot\n_1\Leftrightarrow\btau_1\cdot\n_1=0\Leftrightarrow A_1l_1+B_1m_1+C_1n_1=0$.
+        \item $L_1$与$\pi_1$的夹角$\beta(0\les\beta\les\frac{\pi}{2}),\cos(\frac{\pi}{2}-\beta)=\left|\frac{\btau_1\cdot\n_1}{\left|\btau_1\right|\cdot\left|\n_1\right|}\right|=\left|\btau_1^0\cdot\n_1^0\right|$,故$\sin\beta=\left|\btau_1^0\cdot\n_1^0\right|0$,即得$\beta=\arcsin\left|\btau_1^0\cdot\n_1^0\right|$.
     \end{enumerate}
 \end{proposition}
 
-\begin{proof}
-    \begin{enumerate}
-        \item 
-        取 $\varepsilon = 1$, 由定义知道,当存在一个自然数 $N$, 使得当 $n > N$ 时,有 $|a_n - a| < 1$, 即当 $n > N$ 时,有 $|a_n| < |a| + 1$. 取
-        $$
-        M = \max(|a| + 1, |a_1|, |a_2|, \dots, |a_N|),
-        $$
-        注意到,第一,有有限个数中一定能取得一个最大的；第二,上面确定的 $M$ 显然与 $n$ 无关.则对所有自然数 $n$, 也就是说数列的所有项,都会有 $|a_n| \le M$.
-        \item 
-        如果 $\{a_n\}$ 有两个极限值 $a$ 和 $b$. 根据极限的定义,对于任意的正数 $\varepsilon$, 注意到 $\frac{\varepsilon}{2}$ 也是一个正数,因此对应两个极限值,分别存在正整数 $N_1$ 和 $N_2$, 使得当
-        $$
-        n > N_1 \text{ 时有 } |a_n - a| < \frac{\varepsilon}{2},
-        $$
-        $$
-        n > N_2 \text{ 时有 } |a_n - b| < \frac{\varepsilon}{2}.
-        $$
-        因此,当 $n > \max(N_1, N_2)$ 时（即 $n > N_1, n > N_2$）,上面两个不等式都满足,所以
-        $$
-        |a - b| = |(a - a_n) + (a_n - b)| \leq |a - a_n| + |a_n - b| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.
-        $$
-        两个数的距离要小于任意一个正数,这两个数必须相等,即 $a = b$.
-        \item 
-        若 $a > l$, 取 $\ve = a - l > 0$, 则存在一个自然数 $N$, 使得当 $n > N$ 时,有
-        $$
-        |a_n - a| < \ve = a - l, \text{因此} - (a - l) < a_n - a
-        $$
-        即,当 $n > N$ 时,不等式 $a_n > l$ 成立.对于 $a < l$ 的情况,可类似证明,在这种情况下,只要取 $\ve = l - a > 0$ 即可.对于此问,取$l = 0$.
-        \item
-        令$c_n = b_n - a_n$,则$c_n \rightarrow b - a$,且$c_n \les 0,\forall n \ges n_0$,由保号性可知,$b - a \les 0$,即$a \les b$.
-    \end{enumerate}
-\end{proof}
-
-\begin{remark}
-    其中唯一性暗示了,改变数列中有限多项的值,不会影响数列的收敛性及其极限.例如,对于数列 $1, 1/2, 1/3, 1/4, \dots$, 它的极限是 $0$, 即 $\lim_{n \to \infty} \frac{1}{n} = 0$. 如果我们改变数列的前 $10$项, 如$1,1,1,1,1,1,1,1,1,1,1/11,1/12,1/13,1/14,\dots$, 则数列的极限仍然是 $0$.这个性质在证明数列极限的存在性时,常常会被用到.
-
-有界性质给出了收敛数列的一个必要条件.因此无界数列一定是发散的.例如对于数列 $0,1,0,2,0,3,0,4,\cdots$ 显然是无界的,且发散的.
-
-保号性的条件是不严格不等,若调整为$a_n >0$, 则无法说明$a>0$.例如数列$1, 1/2, 1/3, 1/4, \dots$的极限是$0$,但数列的每一项都是正数.
-\end{remark}
-
-
-
-
-\section{收敛数列极限的四则运算法则}
-
-\begin{theorem}[收敛数列极限的四则运算法则]\label{thm:sequence_limit_arithmetic}
-    设$\{a_n\},\{b_n\}$收敛,且$\lim_{n \to \infty} a_n = a, \lim_{n \to \infty} b_n = b$,则有
-
-    \begin{enumerate}
-        \item $\lim\limits_{n \to \infty} (a_n \pm b_n) = \lim\limits_{n \to \infty} a_n \pm \lim\limits_{n \to \infty} b_n$.
-        \item $\lim\limits_{n \to \infty} a_n b_n = \lim\limits_{n \to \infty} a_n \cdot \lim\limits_{n \to \infty} b_n$.
-        \item $\lim\limits_{n \to \infty} \displaystyle \frac{a_n}{b_n} = \displaystyle \frac{\lim\limits_{n \to \infty} a_n}{\lim\limits_{n \to \infty} b_n}$, 其中 $\lim\limits_{n \to \infty} b_n \neq 0$.
-    \end{enumerate}
-    
-\end{theorem}
-
-\begin{proof}
-    \begin{enumerate}
-        \item 目的时要证明对于任意的正数 $\epsilon$, 能够找到一个正整数 $N$, 使得当 $n > N$ 时,不等式
-        $$
-        |a_n \pm b_n - (a \pm b)| \leq \epsilon
-        $$
-        成立.由 $\{a_n\}, \{b_n\}$ 的收敛性知,对于任意 $\frac{\epsilon}{2}$,分别存在正整数 $N_1$ 和 $N_2$ 使得
-        $$
-        \text{当 } n > N_1 \text{ 时有 } |a_n - a| < \frac{\epsilon}{2},
-        $$
-        以及
-        $$
-        \text{当 } n > N_2 \text{ 时有 } |b_n - b| < \frac{\epsilon}{2}.
-        $$
-        取 $N = \max(N_1, N_2)$,则当 $n > N$ 时,上面两个式子同时成立,因此有
-        $$
-        |a_n \pm b_n - (a \pm b)| \leq |a_n - a| + |b_n - b| < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon.
-        $$
-        \item 注意到
-        $$
-        |a_n b_n - ab| \leq |a_n b_n - a_n b| + |a_n b - ab| = |a_n| |b_n - b| + |b_n - b| |a_n - a|.
-        $$
-        由于 $\{a_n\}, \{b_n\}$ 是收敛数列,故都是有界的,取一个大的界 $M$, 使得
-        $$
-        |a_n|, |b_n| < M (n \ges 1)
-        $$
-        因此 $|b| \leq M$ (定理 1.4 中的 3°).对于任意的正数 $\epsilon$, 对应 $\frac{\epsilon}{2M}$,分别存在整数 $N_1$ 和 $N_2$, 使得当 $n > N$ 时,
-        $$
-        |a_n - a| < \frac{\epsilon}{2M}, |b_n - b| < \frac{\epsilon}{2M}.
-        $$
-        同时成立.因此当 $n > N$ 时,有
-        $$
-        |a_n b_n - ab| < M |b_n - b| + M |a_n - a| < M \cdot \frac{\epsilon}{2M} + M \cdot \frac{\epsilon}{2M} = \epsilon.
-        $$
-        \item 因为
-        $$
-        \frac{a_n}{b_n} = a_n \cdot \frac{1}{b_n},
-        $$
-        且 $b \neq 0$, 由 2° 可知,只需证明数列 $\left\{\frac{1}{b_n}\right\}$ 收敛于 $\frac{1}{b}$ 即可.假设 $b > 0$,则
-        $$
-        \left| \frac{1}{b_n} - \frac{1}{b} \right| = \left| \frac{|b_n - b|}{|b_n b|} \right|.
-        $$
-        由于 $b_n$ 收敛于 $b$, 一方面对于正数 $b/2 > 0$, 存在 $N_1$, 当 $n > N_1$ 时,
-        $$
-        |b_n - b| < \frac{b}{2}.
-        $$
-        另一方面,对于任意给定的正数 $\epsilon$, 存在 $N_2$, 使得当 $n > N_2$ 时,
-        $$
-        |b_n - b| < \frac{b^2 \epsilon}{2}.
-        $$
-        所以,当 $n > N = \max(N_1, N_2)$ 时,
-        $$
-        \left| \frac{1}{b_n} - \frac{1}{b} \right| \leq |b_n - b| \cdot \frac{2}{b^2} \cdot \frac{\epsilon}{2} = \epsilon.
-        $$
-        即
-        $$
-        \lim_{n \to \infty} \frac{1}{b_n} = \frac{1}{b}.
-        $$
-        
-    \end{enumerate}
-    
-\end{proof}
-
-定理\ref{prop:sequence_limit_four_properties}说明收敛数列的极限运算和四则运算是可以交换的,并可推广到有限多个收敛数列与四则运算的情况.对于 3 中的结论,会因为某些 $b_n$ 为 $0$ 而使得分式没有意义. 但是因为 $\{b_n\}$ 的极限 $b \neq 0$,所以 $b_n$ 为 $0$ 的项至多只有有限个.可以改变这有限多项的值,这不会改变 $\{b_n\}$ 的收敛性和极限.或者在 $\{a_n b_n\}$ 中删去这些没有定义的有限多项,不会改变其收敛性和极限.
-有了定理\ref{prop:sequence_limit_four_properties},在计算复数列极限时,可以将其化为简极限的四则运算,而不必再使用“$\ve$-$N$”语言作繁琐的论述.
-
-
 \section{例题}
-
-\begin{example}\label{example:e_n}
-    设$a_n= (1+ \frac 1n )^n , n \in N^*$,证明:
-    \begin{enumerate}
-        \item $\lim_{n \to \infty} a_n = \e \approx 2.7182818128$;
-        \item $\underset{x\rightarrow +\infty }{\lim} (1 +\frac 1x )^x = \e =\underset{x\rightarrow -\infty }{\lim} (1 +\frac 1x )^x,x \in R$
-        \item $\underset{x\rightarrow \infty }{\lim} (1 +\frac 1x )^x = \e, x \in R$
-    \end{enumerate}
-
-    \begin{solution}
-        函数极限还没有讲到, 此处仅证明第1问.证明数列$a_n$收敛即可.
-        首先证明该数列是递增的。事实上，由二项式定理可得
-        $$
-        a_n = 1 + \sum_{k=1}^{n} C_n^k \cdot \frac{1}{n^k} = 1 + \sum_{k=1}^{n} \frac{1}{k!}.
-        $$
-        $$
-        = 1 + 1 + \sum_{k=2}^{n} \frac{1}{k!} \left( 1 - \frac{1}{n} \right) \left( 1 - \frac{2}{n} \right) \dots \left( 1 - \frac{k-1}{n} \right),
-        $$
-        $$
-        a_{n+1} = 1 + 1 + \sum_{k=2}^{n} \frac{1}{k!} \left( 1 - \frac{1}{n+1} \right) \left( 1 - \frac{2}{n+1} \right) \dots \left( 1 - \frac{k-1}{n+1} \right) + \left( \frac{1}{n+1} \right)^{n+1}.
-        $$
-        比较 $a_n$ 和 $a_{n+1}$ 两个表达式的右端和号中的对应项，显然，前者较小。而 $a_{n+1}$ 所多出来的一项 $\left( \frac{1}{n+1} \right)^{n+1} > 0$，故 $a_{n+1} > a_n$。所以 $\{a_n\}$ 为严格递增数列。
-        
-        其次，我们将证明数列是有界的。在 $a_n$ 的上述展开式中，
-        $$
-        0 < \left( 1 - \frac{1}{n} \right) \left( 1 - \frac{2}{n} \right) \dots \left( 1 - \frac{k-1}{n} \right) < 1.
-        $$
-        所以
-        $$
-        2 < a_n < 2 + \sum_{k=2}^{n} \frac{1}{k!} = 1 + \frac{1}{1!} + \frac{1}{2!} + \cdots + \frac{1}{n!}.
-        $$
-        $$
-        < 2 + \frac{1}{1 \cdot 2} + \frac{1}{2 \cdot 3} + \cdots + \frac{1}{n(n-1)} = 3 - \frac{1}{n} < 3,
-        $$
-        即 $n = 2, 3, \dots$，也就是说数列 $\{a_n\}$ 是单调递增且有上界的，因此一定收敛。
-    \end{solution}
-
+\begin{example}
+    分别求已知点$M(1,-1,-2)$关于点$A(1,0,1)$,平面$\pi:3x+4y-5z-1=0$,直线$L:\frac{x-1}{-1}=\frac{y-1}{2}=\frac{z-1}{0}$的对称点$Q(x,y,z)$.
 \end{example}
+\begin{solution}
+    \begin{enumerate}
+        \item $A(1,0,1)$是线段$MQ$的中点,有$\begin{cases}\frac{1+x}{2}=1\\y=\frac{-1+y}{2}=0\\z=\frac{-2+z}{2}=1\end{cases}\Rightarrow\begin{cases}x=1\\y=1\\z=4\end{cases}$,即$Q(1,1,4)$.
+        \item $\n=(3,4,-5)$,则有$\begin{cases}\overrightarrow{MQ}\parallel\n\\MQ\text{中点}N(\frac{x+1}{2},\frac{y-1}{2},\frac{z-2}{2})\text{在}\pi\text{上} \end{cases}$
+        
+        $\Rightarrow\begin{cases}x=1+3t\\y=-1+4t\\z=-2-5t\\3(\frac{x+1}{2})+4(\frac{y-1}{2})-5\frac{z-2}{2}-1=0\end{cases}$
+        
+        $\Rightarrow t=\frac{12}{25}$,带回$x,y,z$可知$Q(\frac{61}{25},\frac{23}{25},-\frac{10}{25})$.
 
+        \item $\btau=(-1,2,0)$,则有$\begin{cases}\overrightarrow{MQ}\bot\btau\\MQ\text{中点}N(\frac{x+1}{2},\frac{y-1}{2},\frac{z-2}{2})\text{在}L\text{上} \end{cases}$
+        
+        $\Rightarrow\begin{cases}\frac{x+1}{2}=1-t\\\frac{y-1}{2}=1+2t\\\frac{z-2}{2}=1\\-1(x-1)+2(y+1)+0(z+2)=0\end{cases}$
 
+        $\Rightarrow \begin{cases}x=1-2t\\\y=3+4t\\\z=4\\-1(x-1)+2(y+1)+0(z+2)=0\end{cases}$
+
+        $\Rightarrow t=-\frac{5}{3}$,带回$x,y,z$可知$Q(\frac{13}{3},-\frac{1}{5},4)$.
+    \end{enumerate}
+\end{solution}
 
 \begin{example}
-    证明闭区间套定理.
-
-    \begin{theorem}[闭区间套定理]
-        若$\{[a_n,b_n]\}$是一列闭区间,满足$[a_n,b_n]\supset[a_{n+1},b_{n+1}],n=1,2,\cdots$,且$\lim_{n \to \infty} (b_n-a_n)=0$,则存在唯一的实数$\xi$,使得$\xi \in [a_n,b_n],n=1,2,\cdots$.
-    \end{theorem}
-
-    所有区间的左端点构成的数列$\{a_n\}$是单调递增有上界的,故有极限,记为$a$,即$\lim_{n \to \infty} a_n = a$.同理,所有区间的右端点构成的数列$\{b_n\}$是单调递减有下界的,故有极限,记为$b$,即$\lim_{n \to \infty} b_n = b$.因此 $a-b = \lim_{n \to \infty} (a_n - b_n) = 0$,即$a=b$.
-    即证存在$\xi = a = b$.
-
-    若存在另一实数$\eta \in [a_n,b_n],n=1,2,\cdots$,则$\xi \les \eta \les \xi$,即$\xi = \eta$.故唯一性得证.
+    设$A(1,0,1),B(0,1,1),C(2,0,3),D(1,1,1)$为已知的四点,求
+    \begin{enumerate}
+        \item 求四面体$\Omega:A-BCD$的体积$V(\Omega)$.
+        \item 求$B,C,D$三点确定的三角形$\triangle$的面积$S_\triangle$.
+        \item 求$B,C,D$三点确定的平面方程.
+    \end{enumerate}
 \end{example}
+\begin{solution}
+    \begin{enumerate}
+        \item $V(\Omega)=\frac{1}{6}\left|(\overrightarrow{BC}\times\overrightarrow{BD})\cdot\overrightarrow{BA}\right|=\frac{1}{6}\left|\begin{vmatrix}2&-1&2\\1&0&0\\1&-1&0\end{vmatrix}\right|=\frac{1}{6}\times2=\frac{1}{3}$.
+        \item $S_\triangle=\frac{1}{2}\left|\overrightarrow{BC}\times\overrightarrow{BD}\right|=\frac{1}{2}\left|\begin{vmatrix}\i&\j&\k\\2&-1&2\\1&0&0\end{vmatrix}\right|=\frac{1}{2}\left|0\i+2\j+1\k\right|=\frac{1}{2}\sqrt{0^2+2^2+1^2}=\frac{\sqrt{5}}{2}$.
+        \item 设$P(x,y,z)$为$\pi$中的任一点,则$\overrightarrow{BP},\overrightarrow{BC},\overrightarrow{BD}$共面,即$\begin{vmatrix}x-0&y-1&z-1\\2&-1&2\\1&0&0\end{vmatrix}=0$,解得$\pi:2y+z-3=0$为所求平面方程.
+    \end{enumerate}
+\end{solution}
 
-\begin{remark}
-    闭区间套定理,是刻画实数集$\R$的连续性的五个等价公理之一.
-\end{remark}
-
-为了纪念数学家Euler(欧拉)在其中的贡献,将$\lim_{n \to \infty} (1+\frac 1n )^n $记为 $\e$.经计算可知,$\e \approx 2.718281828$.讲义中还证明了 $\e$是一个无理数,且将以 $\e$为底的对数称为自然对数,记为$\ln x$,即$\ln x = \log_\e x$.
-
-\begin{homework}
-ex1.2: 14,15(3)(4),16,18(3),22(2)(4);CH1:3(2).
+\begin{homework} 
+    ex8.2:1,2,3,6,7,14(1),15(1),16.
 \end{homework}

@@ -1,197 +1,211 @@
-\chapter{数列极限}
+\chapter{三维向量的五种运算}
 
-\section{几个常用的记号}
+\section{三维直角坐标系与三维向量的线性运算}
 
-\begin{enumerate}
-    \item $\forall \leftarrow A \leftarrow any$:任意给定的一个；给定后为常数
-    \item $\exists \leftarrow E \leftarrow exist$:存在一个；通常不唯一
-    \item $\sup E$:数集$E$的最小上界，即$E$的上确界(supremum)
-
-    $\sup E$同时满足两条件：
-    \begin{enumerate}
-        \item $\forall x\in E, x\leq \sup E$;
-        \item $\forall \ve >0, \exists \ x_0\in E, \sup E-\ve<x_0$.
-    \end{enumerate}
-    \item $\inf E$:数集$E$的最大下界，即$E$的下确界(infimum)
-
-    $\inf E$同时满足两条件：
-    \begin{enumerate}
-        \item $\forall x\in E, x\geq \inf E$;
-        \item $\forall \ve >0, \exists \ x_0\in E, x_0<\inf E+\ve$.
-    \end{enumerate}
-\end{enumerate}
-
-\begin{definition}
-    \begin{enumerate}
-        \item $\sup E = \inf \{ u \in \R: u \geq x, \forall x \in E \}$;
-        \item $\inf E = \sup \{ u \in \R: u \leq x, \forall x \in E \}$.
-    \end{enumerate}
+\begin{definition}[空间直角坐标系]
+    从空间一点$O$出发,作三条两两垂直(正交)的射线,并确定单位与方向,构成$O-xyz$直角坐标系.
 \end{definition}
 
 
-\begin{example*}
-    设$E=\{1,3,5,8\} F= ( -\sqrt{3},\pi ]$,则:
-    
-    $\sup E=8, \inf E=1, \sup F=\pi, \inf F=-\sqrt{3}$.且有
+\begin{proposition}
     \begin{enumerate}
-        \item $\sup E = -\inf(-E)$;
-        \item $\inf F = -\sup(-F)$;
+        \item $xOy$坐标面,$zOy$坐标面,$zOx$坐标面两两正交并将整个空间分割成八个卦限.
+        \item 点$M$:设$M$为空间任一点,过$M$点分别作$Ox$,$Oy$,$Oz$轴的垂面.可得三个垂足$A$,$B$,$C$,设$A$,$B$,$C$代表的实数为$a$,$b$,$c$.则点,则点$M$与有序数组$(a,b,c)$一一对应,记作$M(a,b,c)$.坐标原点为$O(0,0,0)$.
+        \item 向量$\overrightarrow{OM}$:在$Ox$,$Oy$,$Oz$轴正向上分别取三个单位向量$\i,\j,\k$,则$\overrightarrow{OA}=a\i$, $\overrightarrow{OB}=b\j$,$\overrightarrow{OC}=c\k$,依照平面向量的加法法则(平行四边形法则,三角形法则)$\overrightarrow{OM}=\overrightarrow{ON}+\overrightarrow{OC}=\overrightarrow{OA}+\overrightarrow{OB}+\overrightarrow{OC}=a\i+b\j+c\k\triangleq(a,b,c)$.同时可得$\i=(1,0,0),\j=(0,1,0),\k=(0,0,1)$,零向量$\0=(0,0,0)$.
+        \item 如上定义的$M$,$\overrightarrow{OM}$与有序数组$(a,b,c)$一一对应.
+        \item $\i\bot\j$,$\i\bot\k$,$\j\bot\k$.
     \end{enumerate}
 
-    \begin{remark}
-        这里的$-E$表示$E$的相反数集合，即$-E=\{-e:e \in E\}$.
-    \end{remark}
-\end{example*}
-
-\section{数学分析建立在实数系上$\R$上}
-
-理由:极限运算时微积分的最基本运算,而有理数集合$\Q$关于极限运算时不封闭的.例如:
-$\lim_{n \to \infty} (1+\frac1n)^n=e;\forall n\in N, (1+\frac1n)\in \Q$,但$e \notin \Q$.
-又如,$\forall n\in N, a_n=\sum_{m=1}^n \frac1{m^2} \in \Q$,但$\lim_{n \to \infty} a_n=\dfrac{\pi^2}{6}\notin \Q$.
-
-实数集合$\R$在数轴上的点是连续不断的,且关于极限运算时封闭的.因此,称实数集$\R$是具有连续性.实数集$\R$的连续性也称为实数集的完备性.
-
-描述实数集$\R$连续性的公理通常有五个:
-\begin{enumerate}
-    \item 确界存在原理;
-    \item 单调有界极限存在准则;
-    \item 极限存在的柯西(Cauchy)准则;
-    \item 闭区间套定理;
-    \item 列紧性原理,即有界数列必有收敛子列定理.
-\end{enumerate}
-
-这五个公理是互相等价的,本课程采用\textbf{确界存在原理}作为实数集$\R$连续性的公理.
-
-\begin{remark}
-这五条公理与课本1.1.3的连续性公理是等价的,即任意一个公理都可以推导出另外四个公理.因此这里说这五个等价命题描述了$\R$的连续性.
-\end{remark}
-
-\begin{theorem}[公理:确界存在原理]
-    有上(下)界的非空实数集$E$必有上(下)确界$\sup E(\inf E)$.
-\end{theorem}
-
-\section{数列极限的科学定义}
-
-设数列$\{a_n\}$以常数$a$为极限,科学的定义如下:
-
-\begin{definition}[数列极限]\label{def:sequence_limit}
-    对于数列$\{a_n\}$,若$\forall \ve >0, \exists N\in N^*, \forall n>N $都有 $|a_n-a|<\ve$ 成立,则 $\{a_n\}$ 以常数 $a$ 为极限,记为 $\lim_{n \to \infty} a_n=a$ 或 $a_n\rightarrow a (n\rightarrow \infty)$.
-\end{definition}
-
-我们判断数列是否收敛,就是判断其是否满足数列极限存在的定义\ref{def:sequence_limit}.除此之外,也可以使用如下的性质:
-
-\begin{proposition}\label{prop:sequence_limit_equivalence}
-    对于数列$\{a_n\}$,以下命题等价:
-
-    \begin{enumerate}
-        \item $\forall \ve >0, \exists N\in N^*, \forall n>N $都有 $|a_n-a|<\ve$ 成立;
-        \item 存在常数$M$,使得$\forall \ve >0, \exists N\in N^*, \forall n>N $都有 $|a_n-a|<M \ve$ 成立;
-    \end{enumerate}
 \end{proposition}
 
-事实上,所有的收敛的有理数列,其极限点的全体即是实数集$\R$.即实数集$\R$是有理数列的极限值构成的.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{figure/1-1空间直角坐标系.png}
+    \caption{空间直角坐标系}
+    \label{fig:fig1}
+\end{figure}
+
+\begin{definition}
+    $\overrightarrow{OM}=(a,b,c)$,称$\sqrt{a^2+b^2+c^2}$为向量$\overrightarrow{OM}$的模,记为$\left|\overrightarrow{OM}\right|$.
+
+    模长为$0$的向量为零向量$\0=(0,0,0)$,模长为$1$的向量称为单位向量.
+\end{definition}
+\begin{proposition}
+    设向量$\balpha=(a,b,c)\neq \0$,则$\left|\balpha\right|\neq 0$.
+    
+    此时,$\balpha^0\triangleq\frac{\balpha}{\left|\balpha\right|}=\left(\frac{a}{\sqrt{a^2+b^2+c^2}},\frac{b}{\sqrt{a^2+b^2+c^2}},\frac{c}{\sqrt{a^2+b^2+c^2}}\right)$是单位向量.
+\end{proposition}
 
 
 \begin{remark}
+\begin{enumerate}
+    \item 这种定义方式较为依赖直观的几何性质,且可能存在一些循环定义的问题,当然针对这一阶段这样大概就足够了.
+    \item 这种方式可以想见,是可以从三维向量(three-dimensional vector)推广至$n$维的,对应的向量就是$n$维向量(n-dimensional vector).
+\end{enumerate}
+\end{remark}
+设$P=(x_1,y_1,z_1),Q=(x_1,y_1,z_1)$是空间的任意两点,$\overrightarrow{OP}=(x_1,y_1,z_1)$,$\overrightarrow{OQ}=(x_2,y_2,z_2)$.则$\overrightarrow{PQ}=(x_2,y_2,z_2)-(x_1,y_1,z_1)=(x\i+x_2\j+z_2\k)-(x_1\i+y_1\j+z_1\k)=(x_2-x_1)\i+(y_2-y_1)\j+(z_2-z_1)\k=(x_2-x_1,y_2-y_1,z_2-z_1)$.
+即空间的任一个向量$\overrightarrow{PQ}=(x_2-x_1,y_2-y_1,z_2-z_1)$.
+
+空间中的向量有无数个,但每一个都可用单位向量$\i,\j,\k$的线性组合来表示,称之前定义的$\i,\j,\k$为三维向量空间的标准正交基.
+
+在任一个有限维的向量空间中,一旦选定了基向量,则"无限的问题便可有限化表示"了.
+
+\begin{proposition}[三维数组向量的线性运算法则]
+    设$\balpha=(a_1,b_1,c_1),\bbeta=(a_2,b_2,c_2),\lambda_1\in\R,\lambda_2\in\R$,则
     \begin{enumerate}
-        \item $\Q$对极限是不封闭的;
-        \item 由$\Q$组成的数列的极限可以是实数;
-        \item 由$\Q$组成的数列的极限只能是实数;
-        \item 由$\Q$组成的所有收敛数列,他们的极限的集合,恰好就是$\R$,不多不少.
+        \item 加、减法:$\balpha\pm\bbeta=(a_1\i+b_1\j+c_1\k)\pm(a_2\i+b_2\j+c_2\k)=(a_1\pm a_2)\i+(b_1\pm b_2)\j+(c_1\pm c_2)\k=(a_1\pm a_2,b_1\pm b_2,c_1\pm c_2)$.
+        \item 数乘:$\lambda_1\balpha=\lambda_1(a_1\i+b_1\j+c_1\k)=(\lambda_1a_1)\i+(\lambda_1b_1)\j+(\lambda_1c_1)\k=(\lambda_1a_1,\lambda_1b_1,\lambda_1c_1)$.
     \end{enumerate}
+    向量的加法、减法及数乘三种运算统称为向量的线性运算.统一为
+    
+    $\lambda_1\balpha+\lambda_2\bbeta=(\lambda_1a_1,\lambda_1b_1,\lambda_1c_1)+(\lambda_2a_2,\lambda_2b_2,\lambda_2c_2)=(\lambda_1a_1+\lambda_2a_2,\lambda_1b_1+\lambda_2b_2,\lambda_1c_1+\lambda_2c_2)$.
+\end{proposition}
 
-    理由如下:
+\section{向量的内积与外积}
+\begin{definition}[内积与外积]
+    设$\balpha=(a_1,b_1,c_1),\bbeta=(a_2,b_2,c_2)$.则
+    \begin{enumerate}
+        \item 内积: $\balpha\cdot\bbeta=\left|\balpha\right|\left|\bbeta\right|\cos(\widehat{\balpha,\bbeta})$
+        \item 外积: $\balpha\times\bbeta$,满足$\begin{cases}
+            \left|\balpha\times\bbeta\right|=\left|\balpha\right|\left|\bbeta\right|\sin(\widehat{\balpha,\bbeta})\\
+            \balpha\times\bbeta\bot\balpha,\balpha\times\bbeta\bot\bbeta,\text{且}\balpha,\bbeta,\balpha\times\bbeta\text{构成右手系}.
+        \end{cases}$
+    \end{enumerate}
+\end{definition}
 
-对$\forall x\in \R$,设$x$的小数表示为: $x=a_0 . a_1 a_2 a_3 \cdots$,则有理数列: $a_0, a_0 . a_1, a_0 . a_1 a_2, \cdots$当$n\rightarrow \infty$时,其极限为$x$.若 $x$ 是有理数,则 $a_0 . a_1 a_2 \cdots a_n$ 是有限小数或循环小数,若 $x$ 是无理数,则 $a_0 . a_1 a_2 \cdots a_n$ 是无限不循环小数,则极限点 $x$ 是无理数.
-
-    此处 $x=a_0 . a_1 a_2 a_3 \cdots$ ,其中每一个 $a_i$ 都是一个数字，$a_0$ 是整数部分，$a_1 a_2 a_3 \cdots$是小数部分.比如，$x=3.1415926\cdots$,那么 $a_0=3, a_1=1, a_2=4, a_3=1, a_4=5, a_5=9, a_6=2, a_7=6,\cdots$.
-
-    可以由 $x=a_0 . a_1 a_2 a_3 \cdots$ 构造出一个数列 $\tau_1 = a_0, \tau_2 = a_0 . a_1, \tau_3 = a_0 . a_1 a_2, \cdots$,说 $x$ 为极限指的,是$x$是数列$\{\tau_n\}$的极限,记为$\lim_{n \to \infty} \tau_n = x$.
-    都用 $x$ 代指,是因为我这里不能确定 $x$ 是不是有限小数,有理数还是无理数.但是 $x$ 是数列 $\{\tau_n\}$ 的极限是确定的.
-
-
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{figure/1-2外积的图示.png}
+    \caption{外积的图示}
+    \label{fig:fig2}
+\end{figure}
+\begin{remark}
+    \begin{enumerate}
+        \item $\balpha\cdot\bbeta$的规定来源于物理中里做功的运算,$\balpha\cdot\bbeta$是一个数,故称内积$\balpha\cdot\bbeta$为$\balpha$与$\bbeta$的数量积,或者称为点乘.
+        \item $\balpha\times\bbeta$的规定来源于物理中的力矩的运算,$\balpha\times\bbeta$是一个向量,故称外积$\balpha\times\bbeta$为$\balpha$与$\bbeta$的向量积,或者称为叉乘.
+    \end{enumerate}
 \end{remark}
 
-\section{极限存在的两个常用准则}
-
-\begin{theorem}[单调有界极限存在准则]\label{thm:monotone_convergence_theorem}
-    若数列$\{a_n\}$单调增(减)且有上(下)界,则$\{a_n\}$收敛.且$\lim_{n \to \infty} a_n=\sup a_n(\inf a_n)$.
-    
-\end{theorem}
-
-\begin{proof}单调增有界极限存在.
-
-设数列$\{a_n\}$单调增且有上界,由确界存在定理,$\{a_n\}$有上确界.令$\sup a_n=\beta$,则$\beta$是$\{a_n\}$满足以下两点:
-
-1. $\forall n\in N, a_n\leq \beta$;
-
-2. $\forall \ve >0, \exists a_{n_0}\in \{a_n\}, \beta-\ve<a_{n_0}$.
-
-又因为$\{a_n\}$单调增,故$\forall n > n_0, a_n\leq a_{n_0} > \beta-\ve$,且$a_n \geq \beta <\beta +\ve.$即$|\beta-a_n|<\ve$ 在 $n>n_0$ 时成立.
-
-由定义\ref{def:sequence_limit}, 有 $\lim_{n \to \infty} a_n=\beta = \sup \{ a_n \}$.同理,单调减有下界极限存在.
-\end{proof}
-
-\begin{theorem}[夹逼准则]\label{thm:squeeze_theorem}
-    设数列$\{a_n\},\{b_n\},\{c_n\}$满足$a_n\leq b_n\leq c_n, \lim_{n \to \infty} a_n=\lim_{n \to \infty} c_n=a$,则$\lim_{n \to \infty} b_n=a$.
-\end{theorem}
-
-\begin{proof}
-    从 $\lim_{n \to \infty} a_n = a \Leftrightarrow \forall \ve >0, \exists N_1\in N^*, \forall n>N_1$ 都有 $|a_n-a|<\ve$. $ \Rightarrow a-\ve<a_n<a+\ve$ 当 $n>N_1$ 时恒成立.
-
-    再从 $\lim_{n \to \infty} c_n = a \Rightarrow $ 对上述 $\ve$ , $\exists N_2\in N^*, \forall n>N_2$ 都有 $|c_n-a|<\ve$. $ \Rightarrow a-\ve<c_n<a+\ve$ 当 $n>N_2$ 时恒成立.
-
-    令 $N=\max\{N_1,N_2\}$, 则当 $n>N$ 时, $a-\ve<a_n\leq b_n\leq c_n<a+\ve$, 即 $|b_n-a|<\ve$ 成立. 由定义\ref{def:sequence_limit}, $\lim_{n \to \infty} b_n=a$.
-
-
-\end{proof}
-
-\begin{example}
-    下列$a,b,q,c_1,c_2$皆为常数.
-
+\begin{theorem}
     \begin{enumerate}
-        \item 设$|q|<1$,证明$\lim_{n \to \infty} aq^n=0$;
-        \item 设$a>0$,则$\lim_{n \to \infty} a^{\frac1n}=1$;
-        \item 证明$\lim_{n \to \infty} \sqrt[n]{n}=1$;
-        \item 设$\lim_{n \to \infty} a_n=a, \lim_{n \to \infty} b_n=b$,证明$\lim_{n \to \infty} (c_1a_n+c_2b_n)=c_1a+c_2b$.\textbf{即线性组合的极限等于极限的线性组合,称此为极限的线性性质.}
+        \item $\balpha\bot\bbeta\Leftrightarrow\balpha\cdot\bbeta=0\Leftrightarrow a_1a_2+b_1b_2+c_1c_2=0$.
+        \item $\balpha\parallel\bbeta\Leftrightarrow\balpha\times\bbeta=\0\Leftrightarrow\frac{a_1}{a_2}=\frac{b_1}{b_2}=\frac{c_1}{c_2}\Leftrightarrow \balpha=\lambda\bbeta$
     \end{enumerate}
+\end{theorem}
+\begin{proof}
+    \begin{enumerate}
+        \item 
+        \begin{enumerate}[1)]
+            \item 若$\balpha\bot\bbeta$,则$\cos(\widehat{\balpha,\bbeta})=0\Rightarrow\balpha\cdot\bbeta=\left|\balpha\right|\left|\bbeta\right|\cos(\widehat{\balpha,\bbeta})=0$.            
+            \item 反之,若$\balpha\cdot\bbeta=0$,则$\left|\balpha\right|\left|\bbeta\right|\cos(\widehat{\balpha,\bbeta})=0$,若$\left|\balpha\right|\left|\bbeta\right|\neq 0$,则$\cos(\widehat{\balpha,\bbeta})=0$,从而$\balpha\bot\bbeta$.若$\left|\balpha\right|\left|\bbeta\right|=0$,则$\balpha=\0$或$\bbeta=\0$,由于零向量$\0$垂直于任意向量,故$\balpha\bot\bbeta$.
+            \item $\balpha\cdot\bbeta=(a_1\i+b_1\j+c_1\k)\cdot(a_2\i+b_2\j+c_2\k)=a_1a_2\i\cdot\i+a_1b_2\i\cdot\j+a_1c_2\i\cdot\k+b_1a_2\j\cdot\i+b_1b_2\j\cdot\j+b_1c_2\j\cdot\k+c_1a_2\k\cdot\i+c_1b_2\k\cdot\j+c_1c_2\k\cdot\k.\text{而}\i\cdot\i=\left|\i\right|\left|\i\right|\cos(\widehat{\i,\i})=1\times1\times\cos0=1=\j\cdot\j=\k\cdot\k,\text{且由于}\i\bot\j,\i\bot\k,\j\bot\k,\text{故}\i\cdot\j=\i\cdot\k=\j\cdot\k=0,\text{故}\balpha\cdot\bbeta=a_1a_2+b_1b_2+c_1c_2$.
+        \end{enumerate}
+        \item
+        \begin{enumerate}[1)]
+            \item 若$\balpha\parallel\bbeta$,则$\sin(\widehat{\balpha,\bbeta})=0\Rightarrow\left|\balpha\times\bbeta\right|=\left|\balpha\right|\left|\bbeta\right|\sin(\widehat{\balpha,\bbeta})=0\Rightarrow\balpha\times\bbeta=\0$.
+            \item 反之,若$\balpha\times\bbeta=\0$,则$\left|\balpha\times\bbeta\right|=\left|\0\right|=0=\left|\balpha\right|\left|\bbeta\right|\sin(\widehat{\balpha,\bbeta})$,若$\left|\balpha\right|\left|\bbeta\right|\neq 0$,则$\sin(\widehat{\balpha,\bbeta})=0$,从而$\balpha\parallel\bbeta$.若$\left|\balpha\right|\left|\bbeta\right|=0$,则$\balpha=\0$或$\bbeta=\0$,由于零向量$\0$平行于任意向量,故$\balpha\parallel\bbeta$.
+            \item $
+            \begin{cases}
+                \i\times\i=\0,\j\times\j=\0,\k\times\k=\0\\
+                \i\times\j=\k,\j\times\i=-\k,\j\times\k=\i\\
+                \k\times\j=-\i,\k\times\i=\j,\i\times\k=-\j
+            \end{cases}$
+            $\Rightarrow \balpha\times\bbeta=(a_1\i+b_1\j+c_1\k)\times(a_2\i+b_2\j+c_2\k)=a_1a_2\i\times\i+a_1b_2\i\times\j+a_1c_2\i\times\k+b_1a_2\j\times\i+b_1b_2\j\times\j+b_1c_2\j\times\k+c_1a_2\k\times\i+c_1b_2\k\times\j+c_1c_2\k\times\k=a_1b_2\k-a_1c_2\j-b_1a_2\k+b_1c_2\i+c_1a_2\j-c_1b_2\i=(b_1c_2-c_1b_2)\i-(a_1c_2-c_1a_2)\j+(a_1b_2-b_1a_2)\k=\begin{matrix}
+                \begin{vmatrix}
+                    \i&\j&\k\\
+                    a_1&b_1&c_1\\
+                    a_2&b_2&c_2
+                \end{vmatrix}
+            \end{matrix}$.
+            由$bf{\alpha}\parallel\bbeta\Leftrightarrow\balpha\times\bbeta=\0=(0,0,0)\Leftrightarrow\begin{cases}
+                b_1c_2-c_1b_2=0\\
+                c_1a_2-a_1c_2=0\\
+                a_1b_2-b_1a_2=0
+            \end{cases}
+            \Leftrightarrow \frac{a_1}{a_2}=\frac{b_1}{b_2}=\frac{c_1}{c_2}\triangleq\lambda$.
+            因此可得$\balpha=\lambda\bbeta$.
+        \end{enumerate}
+    \end{enumerate}
+\end{proof}
+\begin{remark}
+    \begin{enumerate}
+        \item 在上述证明中,不加证明地使用了点乘与叉乘的分配率等性质.
+        \item 与证明中提到的类似,点乘有坐标表达$\balpha\cdot\bbeta=a_1a_2+b_1b_2+c_1c_2$,叉乘有坐标表达$\balpha\times\bbeta=\begin{matrix}
+            \begin{vmatrix}
+                \i&\j&\k\\
+                a_1&b_1&c_1\\
+                a_2&b_2&c_2
+            \end{vmatrix}\end{matrix}$,     
+        这也是最常用的计算公式.
+    \end{enumerate}
+\end{remark}
+
+\section{例题}
+    设$\balpha=(a_1,b_1,c_1),\bbeta=(a_2,b_2,c_2),\bgamma=(a_3,b_3,c_3)$.
+\begin{example}
+    证明:柯西不等式$\left|a_1a_2+b_1b_2+c_1c_2\right|\les\sqrt{a_1^2+b_1^2+c_1^2}\sqrt{a_2^2+b_2^2+c_2^2}$.
 \end{example}
 
 \begin{proof}
-    \begin{enumerate}
-        \item 
-        \begin{enumerate}
-            \item 当 $q=0$ 时, $\lim_{n \to \infty} aq^n= \lim_{n \to \infty} 0 = 0$;
-            \item 当 $0 < |q| < 1$ 时, 对 $\forall 0 < \ve < 1 $ ,使得 $|q^n - 0 | < \ve $ ,只要 $n \ln |q| < \ln \ve $,即 $n > \dfrac{\ln \ve}{\ln |q|}$,令 $N = [ \dfrac{\ln \ve}{\ln |q|} ] + 1$ ,则当 $n > N$ 时, $n > \dfrac{\ln \ve}{\ln |q|} \Rightarrow |q^n - 0 | < \ve $,即 $\lim_{n \to \infty} aq^n=0$.
-        \end{enumerate}
-        综上可知, $\lim_{n \to \infty} aq^n=0, \forall |q|<1$.
-
-        \item 
-        \begin{enumerate}
-            \item 当 $a>1$时, 则 $a^{\frac1n} > 1$, 设 $ a^{\frac1n} = 1 + \lambda_n$, 则 $a = (1+\lambda_n)^n = 1 + n\lambda_n + \dfrac{n(n-1)}{2!}\lambda_n^2 + \cdots + \lambda_n^n > n\lambda_n$, 则 $ 0 < \lambda_n < \frac{a}{n} $且 $\lim_{n \to \infty} \frac{a}{n} = 0$, 由夹逼准则\ref{thm:squeeze_theorem}, $\lim_{n \to \infty} a^{\frac1n} = 1$.
-            \item 当 $0 < a <1 $时, 令 $b = \frac1a$, 则 $b > 1$, 由上一步可知 $\lim_{n \to \infty} b^{\frac1n} = 1$, 即 $\lim_{n \to \infty} a^{\frac1n} = 1$.
-            
-            \begin{remark}
-                助教: 我觉得最后一步的说明有一点跳步,讲义使用了$\lim_{n \to \infty} a^{1/n} = \lim_{n \to \infty} \frac{1}{b^{1/n}} = \frac{1}{\lim_{n \to \infty} b^{1/n}} = 1$.中间第二个等号是未证明的, 这个将在之后极限的四则运算得到证明.
-            \end{remark}
-        \end{enumerate}
-
-        \item 
-        当 $n \ges 2$时, $\sqrt[n]{n} \ges 1$, 设 $\sqrt[n]{n} = 1 + \lambda_n$, 则 $\lambda_n >0$. 且 $n = (1 + \lambda_n)^n > \frac{n(n+1)}{2} \lambda_n^2 $, 则$ 0 < \lambda_n < \sqrt{\frac{2}{n-1}}$, 且 $\lim_{n \to \infty} \sqrt{\frac{2}{n-1}} = 0$, 由夹逼准则\ref{thm:squeeze_theorem}, $\lim_{n \to \infty} \sqrt[n]{n} = 1$.
-
-        \item 
-        由 $\lim_{n \to \infty} a_n = a \Rightarrow \forall \ve > 0 , \exists N_1 \in N^*$, 当 $n > N_1 $时, $ |a_n - a| < \ve $.由 $\lim_{n \to \infty} b_n = b$ ,对上述 $\ve >0 , \exists N_2 \in N^*$, 当 $n > N_2 $时, $ |b_n - b| < \ve $. 令 $N = \max\{N_1,N_2\}$, 则当 $n > N$ 时, $ |a_n - a| < \ve, |b_n - b| < \ve $, 则 $ |c_1a_n + c_2b_n - c_1a - c_2b| = |c_1(a_n - a) + c_2(b_n - b)| \les |c_1(a_n - a)| + |c_2(b_n - b)| \les ( |c_1| + |c_2| ) \ve $, 即 $\lim_{n \to \infty} (c_1a_n + c_2b_n) = c_1a + c_2b$.
-        
-        \begin{remark}
-            证明数列极限时, 需要证明 $\forall \ve > 0, \exists N \in N^*$, 当 $n > N$ 时, $|a_n - a| < \ve$ 成立. 如果我们能证明 $\forall \ve >0,  \exists N \in N^*$, 当 $n > N$ 时, $|a_n - a| \les \ve$ 也是可以的.可以思考一下这是为什么? 提示:\ref{prop:sequence_limit_equivalence}.
-        \end{remark}
-        
-
-    \end{enumerate}
+    $\left|a_1a_2+b_1b_2+c_1c_2\right|=\left|\balpha\cdot\bbeta\right|=\left|\balpha\right|\left|\bbeta\right|\cos(\widehat{\balpha,\bbeta})\les\left|\balpha\right|\left|\bbeta\right|=\sqrt{a_1^2+b_1^2+c_1^2}\sqrt{a_2^2+b_2^2+c_2^2}$.
 \end{proof}
 
-数列的极限具有线性性质,同理函数极限也是具有线性性质的,统称为极限的线性性质.由极限的线性性质,可导出微积分中绝大多数概念也具有线性性质.如函数的导数、导数、微分、积分,都具有线性性质.
+\begin{remark}
+    在$n$维向量空间中,设$\balpha=(a_1,a_2,\cdots,a_n),\bbeta=(b_1,b_2,\cdots,b_n)$,则$\left|\balpha\cdot\bbeta\right|=\left|\balpha\right|\left|\bbeta\right|\cos(\widehat{\balpha,\bbeta})\les\left|\balpha\right|\left|\bbeta\right|$,即$\left|a_1b_1+a_2b_2+\cdots+a_nb_n\right|\les\sqrt{a_1^2+a_2^2+\cdots+a_n^2}\sqrt{b_1^2+b_2^2+\cdots+b_n^2}$.
+\end{remark}
 
-\begin{homework}
-ex1.2:1(2)(4),3,4,5,6,8(5),15(1),19.
+\begin{example}
+    证明:$\left|\balpha\times\bbeta\right|^2=\left|\balpha\right|^2\left|\bbeta\right|^2-\left|\balpha\cdot\bbeta\right|^2$.
+\end{example}
+\begin{proof}
+    $\left|\balpha\times\bbeta\right|^2=\left|\balpha\right|^2\left|\bbeta\right|^2\sin^2(\widehat{\balpha,\bbeta})=\left|\balpha\right|^2\left|\bbeta\right|^2(1-\cos^2(\widehat{\balpha,\bbeta}))=\left|\balpha\right|^2\left|\bbeta\right|^2-\left|\balpha\right|^2\left|\bbeta\right|^2\cos^2(\widehat{\balpha,\bbeta})=\left|\balpha\right|^2\left|\bbeta\right|^2-\left|\balpha\cdot\bbeta\right|^2$.
+\end{proof}
+
+\begin{example}
+    证明:$(\balpha\times\bbeta)\cdot\bgamma=(\bbeta\times\bgamma)\cdot\balpha=(\bgamma\times\balpha)\cdot\bbeta$.
+\end{example}
+\begin{proof}
+    $(\balpha\times\bbeta)\cdot\bgamma=\begin{matrix}
+        \begin{vmatrix}
+            \i&\j&\k\\
+            a_1&b_1&c_1\\
+            a_2&b_2&c_2
+        \end{vmatrix}
+    \end{matrix}\cdot(a_3\i+b_3\j+c_3\k)=((b_1c_2-c_1b_2)\i+(c_1a_2-a_1c_2)\j+(a_1b_2-a_2b_1)\k)\cdot(a_3\i+b_3\j+c_3\k)=(b_1c_2-c_1b_2)a_3+(c_1a_2-a_1c_2)b_3+(a_1b_2-a_2b_1)c_3=\begin{matrix}
+        \begin{vmatrix}
+            a_1&b_1&c_1\\
+            a_2&b_2&c_2\\
+            a_3&b_3&c_3
+        \end{vmatrix}
+    \end{matrix}=(\bbeta\times\bgamma)\cdot\balpha=(\bgamma\times\balpha)\cdot\bbeta$.
+\end{proof}
+
+\begin{example}
+    证明:三个向量$\balpha,\bbeta,\bgamma$共面的充要条件是$(\balpha\times\bbeta)\cdot\bgamma=0$.
+\end{example}
+\begin{proof}
+    是如下结论的结果:如图所示,根据计算公式,$\left|\balpha\times\bbeta\right|$是以$\balpha$和$\bbeta$为两边的平行四边形的面积,而$\bgamma\left|\cos(\widehat{\balpha\times\bbeta,\bgamma})\right|$是$\bgamma$在垂直于平行四边形方向上的投影,即$h=\left|\bgamma\right|\left|\cos(\widehat{\balpha\times\bbeta,\bgamma})\right|$,因此$(\balpha\times\bbeta)\cdot\bgamma$是以$\balpha$, $\bbeta$和$\bgamma$为三边的平行六面体的体积,于是$\balpha,\bbeta,\bgamma$共面$\Leftrightarrow$平行六面体的体积为$0$ $\Leftrightarrow(\balpha\times\bbeta)\cdot\bgamma=\begin{matrix}
+        \begin{vmatrix}
+            a_1&b_1&c_1\\
+            a_2&b_2&c_2\\
+            a_3&b_3&c_3
+        \end{vmatrix}
+    \end{matrix}=0$.
+\end{proof}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{figure/1-3混合积与平行六面体.png}
+    \caption{混合积与平行六面体}
+    \label{fig:fig3}
+\end{figure}
+\begin{example}
+    $\forall \lambda_1,\lambda_2\in\R$总有$\balpha,\bbeta,\lambda_1\balpha+\lambda_2\bbeta$共面.
+\end{example}
+\begin{proof}
+    利用$\balpha\bot\balpha\times\bbeta,\bbeta\bot\balpha\times\bbeta$,则$(\balpha\times\bbeta)\cdot\balpha=0,(\balpha\times\bbeta)\cdot\bbeta=0$,从而$(\balpha\times\bbeta)\cdot(\lambda_1\balpha+\lambda_2\bbeta)=0$,因此可得$\balpha,\bbeta,\lambda_1\balpha+\lambda_2\bbeta$共面.
+\end{proof}
+
+\begin{homework} 
+    ex8.1:6,9,10,12,14,17,23,26.
 \end{homework}
