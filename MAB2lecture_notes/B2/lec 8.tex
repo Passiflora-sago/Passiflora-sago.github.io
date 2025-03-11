@@ -22,7 +22,7 @@
     $$
     同理,令$\Delta x = 0$,则$f_y'(M_0) = B$.
 
-    即$d z |_{M_0} = A \Delta x + B \Delta y = f_x'(M_0) \Delta x + f_y'(M_0) \Delta y \Rightarrow \dif z = f_x'(M_0) \Delta x + f_y'(M_0) \Delta y$.
+    即$\dif z |_{M_0} = A \Delta x + B \Delta y = f_x'(M_0) \Delta x + f_y'(M_0) \Delta y \Rightarrow \dif z = f_x'(M_0) \Delta x + f_y'(M_0) \Delta y$.
     将$f_x'$记为$\frac{\partial f}{\partial x}$,将$f_y'$记为$\frac{\partial f}{\partial y}$,则
     $$
     \dif z = \frac{\partial f}{\partial x} \Delta x + \frac{\partial f}{\partial y} \Delta y = \frac{\partial f}{\partial x} \dif x + \frac{\partial f}{\partial y} \dif y.
@@ -36,7 +36,7 @@
     $$
 \end{proof}
 
-\begin{theorem}{thm:8.2}
+\begin{theorem}\label{thm:8.2}
     若$f(x,y)$在$M_0$处可微,则$z = f(x,y)$在$M_0$处必连续,反之未必.
 \end{theorem}
 
@@ -47,7 +47,7 @@
     $$
     时,有
     $$
-    f_x'(M_0) \Delta x + f_y'(M_0) \Delta y + o(\rho) \to 0, \quad o(\rho) \to 0,
+    f_x'(M_0) \Delta x + f_y'(M_0) \Delta y + o(\rho) \to 0, \quad \rho \to 0,
     $$
     其中$\rho = \sqrt{(\Delta x)^2 + (\Delta y)^2}$,因此$\rho \to 0 \Leftrightarrow \Delta x \to 0, \Delta y \to 0$.
 
