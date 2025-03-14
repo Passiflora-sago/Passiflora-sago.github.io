@@ -13,29 +13,30 @@
 记$\Delta z_x =f(x_0+\Delta x,y_0)-f(x_0,y_0),\Delta z_y =f(x_0,y_0+\Delta y)-f(x_0,y_0)$分别称作因变量$z$关于$x,y$的偏增量,并有如下定义:
 \begin{definition}
     \begin{enumerate}
-        \item $\lim_{\delta x \to 0}\frac{f(x_0+\Delta x,y_0)-f(x_0,y_0)}{\Delta x}$为$z$关于$x$在$M_0(x_0,y_0)$处的偏导数,并记作
-        $$\frac{\partial z}{\partial x}\bigg|_{M_0}=f'_x(M_0)=f'_x(x_0,y_0)=\lim_{\delta x \to 0}\frac{f(x_0+\Delta x,y_0)-f(x_0,y_0)}{\Delta x}=\big(f(x,y_0)\big)'_x\bigg|_{x_0}$$
+        \item $\lim_{\Delta x \to 0}\frac{f(x_0+\Delta x,y_0)-f(x_0,y_0)}{\Delta x}$为$z$关于$x$在$M_0(x_0,y_0)$处的偏导数,并记作
+        $$\frac{\partial z}{\partial x}\bigg|_{M_0}=f'_x(M_0)=f'_x(x_0,y_0)=\lim_{\Delta x \to 0}\frac{f(x_0+\Delta x,y_0)-f(x_0,y_0)}{\Delta x}=\big(f(x,y_0)\big)'_x\bigg|_{x_0}$$
 
-        \item $\lim_{\delta y \to 0}\frac{f(x_0,y_0+\Delta y)-f(x_0,y_0)}{\Delta y}$为$z$关于$y$在$M_0(x_0,y_0)$处的偏导数,并记作
-        $$\frac{\partial z}{\partial y}\bigg|_{M_0}=f'_y(M_0)=f'_y(x_0,y_0)=\lim_{\delta y \to 0}\frac{f(x_0,y_0+\Delta y)-f(x_0,y_0)}{\Delta y}=\big(f(x_0,y)\big)'_y\bigg|_{y_0}$$
+        \item $\lim_{\Delta y \to 0}\frac{f(x_0,y_0+\Delta y)-f(x_0,y_0)}{\Delta y}$为$z$关于$y$在$M_0(x_0,y_0)$处的偏导数,并记作
+        $$\frac{\partial z}{\partial y}\bigg|_{M_0}=f'_y(M_0)=f'_y(x_0,y_0)=\lim_{\Delta y \to 0}\frac{f(x_0,y_0+\Delta y)-f(x_0,y_0)}{\Delta y}=\big(f(x_0,y)\big)'_y\bigg|_{y_0}$$
     \end{enumerate}
 \end{definition}
 
 \begin{remark}
+    我们采用的几种导数记号:
     \begin{enumerate}
         \item $\frac{\partial z}{\partial x}\bigg|_{(x_0,y_0)}$;
         \item $\frac{\partial f}{\partial x}(x_0,y_0),\frac{\partial f(x_0,y_0)}{\partial x},\frac{\partial f}{\partial x}\bigg|_{(x_0,y_0)}$;
         \item $f'_x(x_0,y_0)$;
-        \item $f'_1(x_0,y_0)$(一定程度上可以避免复合函数指代的问题,但最好标注一下是对$f$的第一个变量位置求导).
+        \item $f'_1(x_0,y_0)$(一定程度上可以避免复合函数指代的问题,推荐使用).
     \end{enumerate}
 \end{remark}
 
 $f'_x(M_0),f'_y(M_0)$实际上就是在点$M_0$处,因变量$z$分别关于$x,y$的相对瞬时变化率.
 即$$f'_x(x_0,y_0)=\frac{\dif{}f(x,y_0)}{\dif{}x}\bigg|_{x_0},f'_y(x_0,y_0)=\frac{\dif{}f(x_0,y)}{\dif{}y}\bigg|_{y_0}$$
 
-同理,设$u=f(x,y,z)$在$\bar{U}(M_0,\delta)$中有定义,则
+同理,设$u=f(x,y,z)$在$\bar{U}(M_0,\Delta)$中有定义,则
 
-$$f'_x(x_0,y_0,z_0)=\frac{\dif{}f(x,y_0,z_0)}{\dif{}x}\bigg|_{x_0},f'_y(x_0,y_0,z_0)=\frac{\dif{}f(x_0,y,z_0)}{\dif{}y}\bigg|_{y_0},f'_z(x_0,y_0,z_0)=\frac{\dif{}f(x_0,y_0,z)}{\dif{}z}\bigg|_{z_0}$$,其余情形可类推.
+$$f'_x(x_0,y_0,z_0)=\frac{\dif{}f(x,y_0,z_0)}{\dif{}x}\bigg|_{x_0},f'_y(x_0,y_0,z_0)=\frac{\dif{}f(x_0,y,z_0)}{\dif{}y}\bigg|_{y_0},f'_z(x_0,y_0,z_0)=\frac{\dif{}f(x_0,y_0,z)}{\dif{}z}\bigg|_{z_0}$$其余情形可类推.
 
 总之,多元函数的偏导数,就是将多元函数中的其余自变量固定,只把因变量对一个自变量求导的结果.
 
@@ -78,7 +79,7 @@ $$f'_x(x_0,y_0,z_0)=\frac{\dif{}f(x,y_0,z_0)}{\dif{}x}\bigg|_{x_0},f'_y(x_0,y_0,
 \begin{definition}
     设$z=f(x,y),(x,y)\in D\in \R^2$,并设$M_0(x_0,y_0),M(x_0+\Delta x,y_0+\Delta y)\in D $,若存在常数$A,B$,设$z=f(x,y)$在$M_0$处的全增量可表示为$$\Delta z=f(M)-f(M_0)=f(x_0+\Delta x ,y_0+\Delta y)-f(x_0,y_0)=A\Delta x+B\Delta y+o(\rho)$$q其中,$\rho=\rho(M,M_0)=\sqrt{(\Delta x)^2+(\Delta y)^2}$,则称$z=f(x,y)$是可微的.
     
-    称$\Delta x,\Delta y$的线性函数:$A\delta x+B\Delta y=A(x-x_0)+B(y-y_0)$为$f(x,y)$在$M_0$处的全微分,记作$\dif{}z\bigg|_{M_0}=A\Delta x+B\Delta y=A(x-x_0)+B(y-y_0)$
+    称$\Delta x,\Delta y$的线性函数:$A\Delta x+B\Delta y=A(x-x_0)+B(y-y_0)$为$f(x,y)$在$M_0$处的全微分,记作$\dif{}z\bigg|_{M_0}=A\Delta x+B\Delta y=A(x-x_0)+B(y-y_0)$
 
     即在$z=f(x,y)$在点$M_0(x_0,y_0)$可微的条件下,有$\Delta z=\dif{z}\bigg|_{M_0}+o(\rho)=A(x-x_0)+B(y-y_0)+o(\rho)$
 \end{definition}
@@ -97,7 +98,7 @@ $\Delta u=\dif{}u\bigg|_{M_0}+o(\rho)=A(x-x_0)+B(y-y_0)+C(z-z_0)+o(\rho)$
     \begin{enumerate}
         \item 完全当做记号来用,即只有全微分,积分,以及有些情况下的导数才使用,实际上B2中也确实最好这么做.
         \item 如上述表述中的,作为线性主部存在,$\dif{}z=A(x-x_0)+B(y-y_0)$.但一般不用$\dif{}d z$去直接代替做运算.
-        \item 特殊的线性映射,相当于认为$\dif{}z(\Delta x,\Delta y)\bigg|_{(x_,y_0)}=A(x_0+\Delta x-x_0)+B(y_0+\Delta y-y_0)$,这是B3中的定义,了解一下即可.
+        \item 特殊的线性映射,相当于认为$\dif{}z(\Delta x,\Delta y)\bigg|_{(x_0,y_0)}=A\Delta x+B\Delta y$,这是B3中的定义,了解一下即可.
         \item 一种特殊算子,在B2的后续选讲课程中微分形式涉及到这一部分,也是了解即可.
     \end{enumerate}
     我们在B2中实际上可以按照第二种方式去理解,但最好不要让$\dif{}z=A(x-x_0)+B(y-y_0)$这种形式出现,因为这种表达方式和另外三种都有些冲突,且容易出错.
@@ -117,8 +118,8 @@ $\Delta u=\dif{}u\bigg|_{M_0}+o(\rho)=A(x-x_0)+B(y-y_0)+C(z-z_0)+o(\rho)$
                 \item 当$\rho=\sqrt{(\Delta x)^2+(\Delta y)^2}\to 0$,有$\begin{cases}
                 \Delta x\to 0,\\
                 \Delta y\to 0;
-                \end{cases}$,而$$\lim_{\substack{\Delta x\to 0\\\Delta y \to 0}}\Delta z=\lim_{\substack{\Delta x\to 0\\\Delta y \to 0}}A\Delta x+B\Delta y+o(\rho)=0$$.
-                因此$$\lim_{\substack{\Delta x\to 0\\\Delta y \to 0}}f(x_0+\Delta x,y_0+\Delta y)=f(x_0,y_0)$$.
+                \end{cases}$而$$\lim_{\substack{\Delta x\to 0\\\Delta y \to 0}}\Delta z=\lim_{\substack{\Delta x\to 0\\\Delta y \to 0}}A\Delta x+B\Delta y+o(\rho)=0$$
+                因此$$\lim_{\substack{\Delta x\to 0\\\Delta y \to 0}}f(x_0+\Delta x,y_0+\Delta y)=f(x_0,y_0)$$
                 即有连续性.
                 \item 反例:$z=\sqrt{x^2+y^2}$在原点处连续但不可微,否则原点处可偏导.
             \end{enumerate}
