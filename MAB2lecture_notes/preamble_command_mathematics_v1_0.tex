@@ -234,3 +234,26 @@
 \newcommand{\bPsi}{\bm{\Psi}}
 \newcommand{\bZeta}{\bm{\Zeta}}
 \newcommand{\ve}{\varepsilon}
+
+% 启用 expl3 语法处理多个变量
+\ExplSyntaxOn
+
+% 定义 \parfrac 宏，默认阶数为 1，支持多个变量
+\NewDocumentCommand{\parfrac}{O{1} m m}
+{
+  \frac{
+    \int_compare:nNnTF {#1} = {1} {\partial #2} {\partial^{#1} #2}
+  }
+  {
+    \parfrac_process_vars:n { #3 }
+  }
+}
+
+% 处理逗号分隔的多个偏导变量
+\cs_new_protected:Nn \parfrac_process_vars:n
+{
+  \seq_set_split:Nnn \l_tmpa_seq { , } { #1 }
+  \seq_map_inline:Nn \l_tmpa_seq { \partial ##1 }
+}
+
+\ExplSyntaxOff

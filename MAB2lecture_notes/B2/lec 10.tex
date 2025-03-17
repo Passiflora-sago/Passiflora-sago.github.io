@@ -1,0 +1,438 @@
+
+\setcounter{chapter}{9} % 设置章节计数器
+
+\chapter{多元函数微分法习题课（1）}
+
+\section{例题}
+
+\begin{example}
+    设方程:$u^3 - 3(x+y) u^2 + z^3 = 0$确定了隐函数$u = f(x,y,z)$,求$\dif u$.
+\end{example}
+
+\begin{solution}
+解法一:
+
+原方程两边取全微分$\dif$,得
+\begin{align*}
+    & \diff (u^3 - 3(x+y) u^2 + z^3) = \diff (0) = 0 \\
+    \Rightarrow &\diff(u^3) - 3 \diff((x+y)u^2) + \diff(z^3) = 0 \\
+    \Rightarrow & 3u^2 \dif u - 3u^2 (\dif x + \dif y) - 3(x+y)2u \dif u + 3z^2 \dif z = 0 \\
+\end{align*}
+
+整理得
+$$
+\dif u = \frac{3u^2(\dif x + \dif y) + 3z^2 \dif z}{3u^2 + 6(x+y)u} = \frac{u^2 \dif x + u^2 \dif y - z^2 \dif z}{u^2 - 2(x+y)u}
+$$
+\end{solution}
+
+
+\begin{solution}
+解法二:
+
+令$F(x,y,z,u) = u^3 - 3(x+y)u^2 + z^3 $,其中$x,y,z,u$地位相同,则$F_u' = 3u^2 - 6(x+y)u$,$F_x' = -3u^2$,$F_y' = -3u^2$,$F_z' = 3z^2$.从而
+\begin{align*}
+    \parfrac{u}{x} &= - \frac{F_x'}{F_u'} = \frac{u^2}{-2(x+y)u + u^2}; \\
+    \parfrac{u}{y} &= - \frac{F_y'}{F_u'} = \frac{u^2}{-2(x+y)u + u^2}; \\
+    \parfrac{u}{z} &= \frac{F_z'}{F_u'} = \frac{z^2}{-2(x+y)u + u^2}.
+\end{align*}
+因此
+$$
+\dif u = \parfrac{u}{x} \dif x + \parfrac{u}{y} \dif y + \parfrac{u}{z} \dif z = \frac{u^2 \dif x + u^2 \dif y - z^2 \dif z}{u^2 - 2(x+y)u}.
+$$
+\end{solution}
+
+\begin{solution}
+解法三:
+
+原方程两边分别对$x,y,z$求偏导数,解出$\frac{\partial u}{\partial x},\frac{\partial u}{\partial y},\frac{\partial u}{\partial z}$再代入$\dif u = \frac{\partial u}{\partial x} \dif x + \frac{\partial u}{\partial y} \dif y + \frac{\partial u}{\partial z} \dif z$即可.
+\end{solution}
+
+\begin{example}
+    试证明方程
+    $$
+    \parfrac{^2 u}{x^2} + 2 \parfrac{^2 u}{x,y} - 3 \parfrac{^2 u}{y^2} + 2 \parfrac{u}{x} + 6 \parfrac{u}{y} = 0
+    $$
+    在线性变换
+    $$
+    \begin{cases}
+        \xi = x + y, \\
+        \eta = 3x - y
+    \end{cases}
+    $$
+    下可以化简为
+    $$
+    \parfrac{^2 u}{\xi,\eta} + \frac{1}{2} \parfrac{u}{\xi} = 0
+    $$
+\end{example}
+
+\begin{solution}
+    证法一:
+
+    从线性变换$\begin{cases}
+        \xi = x + y, \\
+        \eta = 3x - y
+    \end{cases}$可得$x = \frac{1}{4}(\xi + \eta)$,$y = \frac{1}{4}(3\xi - \eta)$,因此$\parfrac{x}{\xi} = \frac14,\parfrac{x}{\eta} = \frac14,\parfrac{y}{\xi} = \frac34,\parfrac{y}{\eta} = -\frac14$.由此得
+    \begin{align*}
+        \parfrac{u}{\xi} &= \parfrac{u}{x} \parfrac{x}{\xi} + \parfrac{u}{y} \parfrac{y}{\xi} = \frac14 \parfrac{u}{x} + \frac34 \parfrac{u}{y} \\
+        \Rightarrow \parfrac{^2 u}{\eta,\xi} &= \left( \parfrac{u}{\xi} \right)'_{\eta} = \left( \frac14 \parfrac{u}{x} \right)_\eta' + \left( \frac34 \parfrac{u}{y} \right)_\eta'\\
+        &= \frac14 \left( \parfrac{^2 u}{x^2} \parfrac{x}{\eta} + \parfrac{^2 u}{x,y} \parfrac{y}{\eta} \right) + \frac34 \left( \parfrac{^2 u}{x,y} \parfrac{x}{\eta} + \parfrac{^2 u}{y^2} \parfrac{y}{\eta} \right)\\
+        &= \frac14 \left( \parfrac{^2 u}{x^2} \frac14 + \parfrac{^2 u}{x,y} \left( -\frac14 \right) \right) + \frac34 \left( \parfrac{^2 u}{x,y} \frac14 + \parfrac{^2 u}{y^2} \left( -\frac14 \right) \right)\\
+        &= \frac{1}{16} \left( \parfrac{^2 u}{x^2} + 2 \parfrac{^2 u}{x,y} - 3 \parfrac{^2 u}{y^2} \right)
+    \end{align*}
+
+    即有$$
+    \begin{cases}
+        &\parfrac{^2 u}{x^2} + 2 \parfrac{^2 u}{x,y} - 3 \parfrac{^2 u}{y^2} = 16 \parfrac{^2 u}{\eta,\xi} \\
+        & \parfrac{u}{x} + 3 \parfrac{u}{y} = 4 \parfrac{u}{\xi}
+    \end{cases}$$
+
+    故原偏微分方程化简为
+    \begin{align*}
+        &16 \parfrac{^2 u}{\eta,\xi} + 2 \left( 4 \parfrac{u}{\xi} \right) = 0 \\
+        \Rightarrow &\parfrac{^2 u}{\eta,\xi} + \frac12 \parfrac{u}{\xi} = 0
+    \end{align*}
+\end{solution}
+
+\begin{solution}
+    解法二:
+
+    从线性变换$\begin{cases}
+        \xi = x + y, \\
+        \eta = 3x - y
+    \end{cases} \Rightarrow \parfrac{\xi}{x} = 1, \parfrac{\xi}{y} = 1, \parfrac{\eta}{x} = 3, \parfrac{\eta}{y} = -1$.而$u(x,y)$通过中间变量可视为$\xi,\eta$的函数,从而
+    $$
+    \begin{cases}
+        \parfrac{u}{x} = \parfrac{u}{\xi} \parfrac{\xi}{x} + \parfrac{u}{\eta} \parfrac{\eta}{x} = \parfrac{u}{\xi} + 3 \parfrac{u}{\eta}, \\
+        \parfrac{u}{y} = \parfrac{u}{\xi} \parfrac{\xi}{y} + \parfrac{u}{\eta} \parfrac{\eta}{y} = \parfrac{u}{\xi} - \parfrac{u}{\eta}.
+    \end{cases},
+    $$
+    从而
+    $$
+    \begin{cases}
+        \parfrac{^2 u}{x^2} = \left( \parfrac{u}{\xi} \right)_x' + 3 \left( \parfrac{u}{\eta} \right)_x' = \left( \parfrac{^2 u}{\xi^2} + 3 \parfrac{^2 u}{\eta,\xi}  \right) + 3 \left( \parfrac{^2 u}{\xi,\eta} +3 \parfrac{^2 u}{\eta^2} \right), \\
+        \parfrac{^2 u}{x,y} = \left( \parfrac{u}{\xi} - \parfrac{u}{\eta} \right)_x' = \left( \parfrac{^2 u}{\xi^2} + 3 \parfrac{^2 u}{\xi,\eta} \right) - \left( \parfrac{^2 u}{\xi,\eta} +3 \parfrac{^2 u}{\eta^2} \right), \\
+        \parfrac{^2 u}{y^2} = \left( \parfrac{u}{\xi} - \parfrac{u}{\eta} \right)_y' = \left( \parfrac{^2 u}{\xi^2} - \parfrac{^2 u}{\xi,\eta} \right) - \left( \parfrac{^2 u}{\xi,\eta} - \parfrac{^2 u}{\eta^2} \right).
+    \end{cases}
+    $$
+    即
+    $$
+    \begin{cases}
+        \parfrac{^2 u}{x^2} = \parfrac{^2 u}{\xi^2} + 6 \parfrac{^2 u}{\xi,\eta} + 9 \parfrac{^2 u}{\eta^2}, \\
+        \parfrac{^2 u}{x,y} = \parfrac{^2 u}{\xi^2} + 2 \parfrac{^2 u}{\xi,\eta} - 3 \parfrac{^2 u}{\eta^2}, \\
+        \parfrac{^2 u}{y^2} = \parfrac{^2 u}{\xi^2} - 2 \parfrac{^2 u}{\xi,\eta} + \parfrac{^2 u}{\eta^2}.
+    \end{cases}
+    $$
+    且
+    $$ 2 \parfrac{u}{x} + 6 \parfrac{u}{y} = 2 \left( \parfrac{u}{\xi} + 3 \parfrac{u}{\eta} \right) + 6 \left( \parfrac{u}{\xi} - \parfrac{u}{\eta} \right) = 8 \parfrac{u}{\xi},
+    $$
+    从而原方程化为
+    $$
+    \parfrac{^2 u}{\xi^2} (1+2-3) + \parfrac{^2 u}{\xi,\eta} (6+4+6) + \parfrac{^2 u}{\eta^2} (9-6-3) + 8 \parfrac{u}{\xi} = 0,
+    $$
+    即
+    $$
+    \parfrac{^2 u}{\xi,\eta} + \frac12 \parfrac{u}{\xi} = 0.
+    $$
+\end{solution}
+
+\begin{example}
+    设$u = f(x,y,z), \varphi(x^2,\e^y,z)=0, y = \sin x$,且$f,\varphi \in C^1, \parfrac{\varphi}{z} \neq 0$,求$\frac{\dif u}{\dif x}$.
+\end{example}
+
+\begin{solution}
+    从$\varphi(x^2, \e^{\sin x},z) = 0$及$\varphi_z' \neq 0$可知,由方程$\varphi(x^2, \e^{\sin x},z) = 0$可确定$z $ 是$x,y$的隐函数,从而$z$是$x$的复合函数.故从$u = f(x,y,z)$知,$u$是$x$的一元函数.
+
+    \begin{remark}
+        助教注:这个地方可以理解为由隐函数定理$F(x,y,z) = \varphi(x^2, \e^y, z)=0$,确定了隐函数$z = z(x,y)$,从而$u =f(x,y,z) = f(x,y,z(x,y))=f(x,\sin x, z(x,\sin x))$确定了$u$是$x$的函数.
+    \end{remark}
+    $$
+    \frac{\dif u}{\dif x} = f_1' \cdot 1 + f_2' \cdot y_x' + f_3' \cdot z_x' = f_1' + f_2' \cdot \cos x \cdot 2x + f_3' \cdot z_x'.
+    $$
+    令$F(x,y,z) = \varphi(x^2, \e^y, z)$,则
+    $$
+    \begin{cases}
+        F_x'(x,y,z) = \varphi_1' \cdot 2x + \varphi_2' \e^{\sin x} \cos x,\\
+        F_y'(x,y,z) = \varphi_3' \cdot 1 = \varphi_3'.
+    \end{cases}
+    $$
+    故
+    $z_x' = - \frac{F_x'}{F_z'} = - \frac{\varphi_1' \cdot 2x + \varphi_2' \e^{\sin x} \cos x}{\varphi_3'}$.代入$\frac{\dif u}{\dif x}$即有
+    $$
+    \frac{\dif u}{\dif x} = f_1' + f_2' \cdot y_x' + f_3' \cdot \left( - \frac{\varphi_1' \cdot 2x + \varphi_2' \e^{\sin x} \cos x}{\varphi_3'} \right).
+    $$
+\end{solution}
+
+\begin{example}
+    证明:全微分也具有一阶微分形式不变性,即,若$f(x,y)$可微,则不论$x,y$是自变量还是中间变量,则$z = f(x,y)$,总有
+    $$ \dif z= \dif f(x,y) = \parfrac{z}{x} \dif x + \parfrac{z}{y} \dif y = f_x' \dif x + f_y' \dif y. $$
+\end{example}
+
+\begin{proof}
+    \begin{enumerate}
+        \item 当$x,y$是自变量时,显然有$\dif z = f_x' \dif x + f_y' \dif y$.
+        \item 当$x,y$是中间变量时,设$\begin{cases}
+            x = g(s,t),\\
+            y = h(s,t),
+        \end{cases}$可微,且$f(g(s,t),h(s,t))$有意义时,$z$通过中间变量$x,y$成为$s,t$的复合函数,且有求偏导数的链式法则如下:
+        \begin{align*}
+            &\dif x = \parfrac{x}{s} \dif s + \parfrac{x}{t} \dif t,\\
+            &\dif y = \parfrac{y}{s} \dif s + \parfrac{y}{t} \dif t.
+        \end{align*}
+        且
+        \begin{align*}
+            \dif z&= \parfrac{z}{s} \dif s + \parfrac{z}{t} \dif t = \left( \parfrac{z}{x} \cdot \parfrac{x}{s} + \parfrac{z}{y} \cdot \parfrac{y}{s} \right) \dif s + \left( \parfrac{z}{x} \cdot \parfrac{x}{t} + \parfrac{z}{y} \cdot \parfrac{y}{t} \right) \dif t \\
+            &=\parfrac{z}{x} \left(\parfrac{x}{s} \dif s + \parfrac{x}{t} \dif t \right) + \parfrac{z}{y} \left( \parfrac{y}{s} \dif s + \parfrac{y}{t} \dif t \right)\\
+            &= \parfrac{z}{x} \dif x+ \parfrac{z}{y} \dif y.
+        \end{align*}
+        即$x,y$是中间变量时,也有$\dif z = f_x' \dif x + f_y' \dif y$.
+    \end{enumerate}
+\end{proof}
+
+\begin{remark}
+    利用全微分的一阶微分形式不变性,可导出多元可微函数的如下的微分四则运算法则:
+    \begin{enumerate}
+        \item $\diff ( u \pm v) = \dif u \pm \dif v$;
+        \item $\diff (uv) = u \dif v + v \dif u$;
+        \item $\diff \left( \frac{u}{v} \right) = \frac{v \dif u - u \dif v}{v^2}$,其中$u,v$均可微,且$v \neq 0$;
+    \end{enumerate}
+\end{remark}
+
+\begin{proof}
+    \begin{enumerate}
+        \item 令$f(u,v) = u+v$,则$f(u,v) \in C^1$,从而$f(u,v)$可微,无论$u,v$是自变量还是中间变量,总有
+    $$
+    \diff( u + v) = \dif f(u,v) = \parfrac{f}{u} \dif u + \parfrac{f}{v} \dif v = \dif u +\dif v
+    $$
+    从而有$\diff(u \pm v) = \dif u \pm \dif v$.这里$d$是全微分.
+    \item 令$f(u,v) = uv$,则$f(u,v) \in C^1$,从而$f(u,v)$可微,无论$u,v$是自变量还是中间变量,总有
+    $$
+    \diff(uv) = \dif f(u,v) = \parfrac{f}{u} \dif u + \parfrac{f}{v} \dif v = v \dif u + u \dif v
+    $$
+    从而有$\diff(uv) = u \dif v + v \dif u$.
+    \item 令$f(u,v) = \frac{u}{v}$,则$f(u,v) \in C^1$,从而$f(u,v)$可微,无论$u,v$是自变量还是中间变量,总有
+    $$
+    \diff \left( \frac{u}{v} \right) = \dif f(u,v) = \parfrac{f}{u} \dif u + \parfrac{f}{v} \dif v = \frac{1}{v} \dif u + \left( -\frac{u}{v^2} \right) \dif v = \frac{v \dif u - u \dif v}{v^2}
+    $$
+    \end{enumerate}
+    
+\end{proof}
+
+\begin{remark}
+    二阶及以上的微分通常没有形式不变性,具体而言,设$f(x,y) \in C^2$,则$z = f(x,y) \Rightarrow \dif z= \parfrac{z}{x} \dif x + \parfrac{z}{y} \dif y$.
+    \begin{align*}
+        \diff(\dif z) &:= \dif{^2} z = \diff \left( \parfrac{z}{x} \dif x+ \parfrac{z}{y} \dif y \right)\\
+        &= \left( \parfrac{z}{x} \dif x+ \parfrac{z}{y} \dif y \right)_x' \dif x + \left( \parfrac{z}{x} \dif x + \parfrac{z}{y} \dif y \right)_y' \dif y\\
+        &= \left( \parfrac{^2 z}{x^2} \dif x + \parfrac{^2 z}{x,y} \dif y \right) \dif x + \left( \parfrac{^2 z}{x,y} \dif x + \parfrac{^2 z}{y^2} \dif y \right) \dif y\\
+        &= \parfrac{^2 z}{x^2} (\dif x)^2 + 2 \parfrac{^2 z}{x,y} \dif x \dif y + \parfrac{^2 z}{y^2} (\dif y)^2.
+    \end{align*}
+    $\dif{^2} z$是$x,y$是自变量时的$z = f(x,y)$的二阶微分,而$\dif{^2} z$是$x,y$是中间变量时的$z = f(x,y)$的二阶微分,二者通常不相等.
+\end{remark}
+
+\begin{example}
+    设$u = u(x,y) , v=v(x,y)$是由方程组
+    $$
+    \begin{cases}
+        u = f(ux,v+y),\\
+        v = g(u-x,v^2y)
+    \end{cases}
+    $$所确定的隐函数组,求变换$\begin{cases}
+        u = u(x,y),\\
+        v = v(x,y)
+    \end{cases}$的Jacobi行列式:
+    $$
+    \begin{vmatrix}
+        u_x' & u_y'\\
+        v_x' & v_y'
+    \end{vmatrix} := \frac{\partial(u,v)}{\partial(x,y)}  \quad f,g \in C^1.
+    $$
+\end{example}
+
+\begin{solution}
+    令$A = ux, B = v+y,E = u-x, F = v^2y$,则方程组可化为
+    $$
+    \begin{cases}
+        u = f(A,B),\\
+        v = g(E,F).
+    \end{cases}
+    $$
+    方程组两边关于$x$求偏导
+    $$\begin{cases}
+        u_x' = f_1' \cdot ( u + x u_x' ) + f_2' \cdot (v_x' + 0),\\
+        v_x' = g_1' \cdot (u_x' - 1) + g_2' \cdot 2v v_x' y.
+    \end{cases}$$
+    标准化为
+    $$
+    \begin{cases}
+        (x f_1' -1) u_x' + f_2' v_x' = -f_1' u,\\
+        g_1' u_x' + (2v g_2' y - 1) v_x' = g_1'.
+    \end{cases}
+    $$
+    令$D = \begin{vmatrix}
+        x f_1' - 1 & f_2'\\
+        g_1' & 2v g_2' y - 1
+    \end{vmatrix}$,则$D \neq 0$,再令
+    $$
+    D_1 = \begin{vmatrix}
+        -f_1' u & f_2'\\
+        g_1' & 2v g_2' y - 1
+    \end{vmatrix}, \quad D_2 = \begin{vmatrix}
+        x f_1' - 1 & -f_1' u\\
+        g_1' & g_1'
+    \end{vmatrix},
+    $$
+    由克莱姆法则可得
+    $$
+    u_x' = \frac{D_1}{D}, \quad v_x' = \frac{D_2}{D}.
+    $$
+    方程组$\begin{cases}
+        u = f(A,B),\\
+        v = g(E,F)
+    \end{cases}$两边同时对$y$求偏导,可得
+    $$
+    \begin{cases}
+        u_y' = f_1' \cdot u_y' \cdot x + f_2' \cdot (v_y'+1),\\
+        v_y' = g_1' \cdot u_y' + g_2' \cdot (2 v v_y' y + 2v^2).
+    \end{cases}
+    $$
+    标准化为
+    $$
+    \begin{cases}
+        (x f_1' - 1) u_y' + f_2' v_y' = -f_2',\\
+        g_1' u_y' + (2v g_2' y - 1) v_y' = 2v g_2'.
+    \end{cases}
+    $$
+    令$D = \begin{vmatrix}
+        x f_1' - 1 & f_2'\\
+        g_1' & 2v g_2' y - 1
+    \end{vmatrix}$,则$D \neq 0$,再令
+    $$
+    \tilde{D_1} = \begin{vmatrix}
+        -f_2' & f_2'\\
+        v^2 g_2' & 2v g_2' y - 1
+    \end{vmatrix}, \quad \tilde{D_2} = \begin{vmatrix}
+        x f_1' - 1 & -f_2'\\
+        g_1' & g_1'v^2
+    \end{vmatrix},
+    $$
+    由克莱姆法则可得
+    $$
+    u_y' = \frac{\tilde{D_1}}{D}, \quad v_y' = \frac{\tilde{D_2}}{D}.
+    $$
+    从而
+    $$
+    \frac{\partial(u,v)}{\partial(x,y)}
+    = \begin{vmatrix}
+        u_x' & u_y'\\
+        v_x' & v_y'
+    \end{vmatrix} = \frac{\begin{vmatrix}
+        D_1 & \tilde{D_1}\\
+        D_2 & \tilde{D_2}
+    \end{vmatrix}}{D}
+    $$
+\end{solution}
+
+\begin{example}
+    设$\begin{cases}
+        u = u(x,y),\\
+        v = v(x,y)
+    \end{cases}$是由方程组
+    $$
+    \begin{cases}
+        F(x,y,u,v) = 0,\\
+        G(x,y,u,v) = 0
+    \end{cases}
+    $$ 确定的隐函数组,$F,G \in C^1$,且$\frac{
+        \partial (F,G)}{\partial (u,v)} \neq 0$,求$\dif u, \dif v$.
+\end{example}
+
+\begin{solution}
+    解法一:
+
+    $\dif u = \parfrac{u}{x} \dif x + \parfrac{u}{y} \dif y$, $\dif v = \parfrac{v}{x} \dif x + \parfrac{v}{y} \dif y$,对$\begin{cases}
+        F(x,y,u,v) = 0,\\
+        G(x,y,u,v) = 0
+    \end{cases}$两边关于$x$求偏导,可得
+    $$
+    \begin{cases}
+        F_x' \cdot 1 + F_u' \cdot \parfrac{u}{x} + F_v' \cdot \parfrac{v}{x} = 0,\\
+        G_x' \cdot 1 + G_u' \cdot \parfrac{u}{x} + G_v' \cdot \parfrac{v}{x} = 0.
+    \end{cases}
+    $$
+    标准化为
+    $$
+    \begin{cases}
+        F_u' \parfrac{u}{x} + F_v' \parfrac{v}{x} = -F_x',\\
+        G_u' \parfrac{u}{x} + G_v' \parfrac{v}{x} = -G_x'.
+    \end{cases}
+    $$
+    令$D = \begin{vmatrix}
+        F_u' & F_v'\\
+        G_u' & G_v'
+    \end{vmatrix}$,则$D \neq 0$,再令
+    $$
+    D_1 = \begin{vmatrix}
+        -F_x' & F_v'\\
+        -G_x' & G_v'
+    \end{vmatrix}, \quad D_2 = \begin{vmatrix}
+        F_u' & -F_x'\\
+        G_u' & -G_x'
+    \end{vmatrix},
+    $$
+    此时注意到$D_1 = \begin{vmatrix}
+        F_v' & F_x'\\
+        G_v' & G_x'
+    \end{vmatrix} = \frac{\partial (F,G)}{\partial (v,x)}$, $D_2 = \begin{vmatrix}
+        F_u' & F_v'\\
+        G_u' & G_v'
+    \end{vmatrix} = \frac{\partial (F,G)}{\partial (u,v)}$,由克莱姆法则可得
+    \begin{align*}
+        \parfrac{u}{x} &= \frac{D_1}{D} = \frac{\frac{\partial (F,G)}{\partial (v,x)}}{\frac{\partial (F,G)}{\partial (u,v)}},\\
+        \parfrac{v}{x} &= \frac{D_2}{D} = \frac{\frac{\partial (F,G)}{\partial (u,x)}}{\frac{\partial (F,G)}{\partial (u,v)}}.
+    \end{align*}
+    对原方程组两边对$y$求偏导,同样可得
+    \begin{align*}
+        \parfrac{u}{y} &= \frac{\frac{\partial (F,G)}{\partial (v,y)}}{\frac{\partial (F,G)}{\partial (u,v)}},\\
+        \parfrac{v}{y} &= \frac{\frac{\partial (F,G)}{\partial (u,y)}}{\frac{\partial (F,G)}{\partial (u,v)}}.
+    \end{align*}
+    从而
+    \begin{align*}
+        \dif u = \parfrac{u}{x} \dif x + \parfrac{u}{y} \dif y = \frac{\frac{\partial (F,G)}{\partial (v,x)}\dif x + \frac{\partial (F,G)}{\partial (v,y)} \dif y}{\frac{\partial (F,G)}{\partial (u,v)}},\\
+        \dif v = \parfrac{v}{x} \dif x + \parfrac{v}{y} \dif y = \frac{\frac{\partial (F,G)}{\partial (u,x)}\dif x + \frac{\partial (F,G)}{\partial (u,y)} \dif y}{\frac{\partial (F,G)}{\partial (u,v)}}.
+    \end{align*}
+\end{solution}
+
+\begin{solution}
+    解法二:
+
+    对原方程两边同时取全微分,可得
+    $$
+    \begin{cases}
+        F_x' \dif x + F_y' \dif y + F_u' \dif u + F_v' \dif v = 0,\\
+        G_x' \dif x + G_y' \dif y + G_u' \dif u + G_v' \dif v = 0.
+    \end{cases}
+    $$
+    以$\dif u, \dif v$为变量.依cramer法则,解得
+    \begin{align*}
+        \dif u = \frac{D_1}{D} = \parfrac{u}{x} \dif x + \parfrac{u}{y} \dif y = \frac{\frac{\partial (F,G)}{\partial (v,x)}\dif x + \frac{\partial (F,G)}{\partial (v,y)} \dif y}{\frac{\partial (F,G)}{\partial (u,v)}},\\
+        \dif v = \frac{D_2}{D} = \parfrac{v}{x} \dif x + \parfrac{v}{y} \dif y = \frac{\frac{\partial (F,G)}{\partial (u,x)}\dif x + \frac{\partial (F,G)}{\partial (u,y)} \dif y}{\frac{\partial (F,G)}{\partial (u,v)}}.
+    \end{align*}
+
+    其中,$$D_1 = \begin{vmatrix}
+        -(F_x' \dif x + F_y' \dif y) & F_v' \\
+        -(G_x' \dif x + G_y' \dif y) & G_v'
+    \end{vmatrix}, \quad D_2 = \begin{vmatrix}
+        F_u' & -(F_x' \dif x + F_y' \dif y)\\
+        G_u' & -(G_x' \dif x + G_y' \dif y)
+    \end{vmatrix},\quad D = \begin{vmatrix}
+        F_u' & F_v'\\
+        G_u' & G_v'
+    \end{vmatrix}= \frac{\partial (F,G)}{\partial (u,v)}.$$
+
+\end{solution}
+
+\begin{homework}
+    ex9.2:31;ex9.3:6,7,8,10,11(1),14.
+\end{homework}
+
+
+

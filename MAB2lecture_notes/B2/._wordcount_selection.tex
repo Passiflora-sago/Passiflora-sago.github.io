@@ -1,1 +1,307 @@
-thm:8.2
+
+
+
+
+
+
+\section{复合函数(composition)微分法}
+
+\begin{theorem}
+    设$z=f(u,v)$在区域$D$中可微,且
+    $\begin{cases}
+        u=g(x,y)\\
+        v=h(x,y)
+    \end{cases}$都在区域$E$中可微,当复合$f(g(x,y),h(x,y))$有意义时,$z$通过中间变量$u,v$成为$x,y$的多元复合函数,且有求偏导数的链式法则如下:
+    \begin{align}
+        \begin{cases}
+            \frac{\partial z}{\partial x}=\frac{\partial z}{\partial u}\frac{\partial u}{\partial x}+\frac{\partial z}{\partial v}\frac{\partial v}{\partial x},\\
+            \frac{\partial z}{\partial y}=\frac{\partial z}{\partial u}\frac{\partial u}{\partial y}+\frac{\partial z}{\partial v}\frac{\partial v}{\partial y};\label{9.1}
+        \end{cases}
+    \end{align}
+
+    同时,$z$作为$x,y$的多元复合函数可微,且不论$u,v$是作为$f(u,v)$的自变量,还是作为复合函数$f(g(x,y),h(x,y))$的中间变量,总有:
+    \begin{align}
+        \dif{}z=\frac{\partial z}{\partial u}\dif{}u+\frac{\partial z}{\partial v}\dif{}v.\label{9.2}
+    \end{align}
+
+    \ref{9.2}称为全微分的一阶形式不变性.
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item[\ref{9.1}] 固定$y$,令$x$有增量$\Delta x$,则
+        $$\begin{cases}
+            \Delta u_x = g(x+\Delta x,y)-g(x,y),\\
+            \Delta v_x = h(x+\Delta x,y)-h(x,y),\\
+            \Delta z_x = f(u+\Delta u_x,v+\Delta v_x)-f(u,v) = \frac{\partial z}{\partial u}\Delta u_x+\frac{\partial z}{\partial v}\Delta v_x + o(\rho);\\
+        \end{cases}$$
+        其中$\rho=\sqrt{\left(\Delta u_x\right)^2+\left(\Delta v_x\right)^2}$,并有$\Delta x\to 0\Rightarrow \begin{cases}
+            \Delta u_x\to 0,\\
+            \Delta v_x\to 0;
+        \end{cases}\Rightarrow \rho \to 0.$
+
+        利用
+        \begin{align*}
+            \lim_{\Delta x\to 0}\frac{o(\rho)}{\Delta x}
+            &=\lim_{\Delta x\to 0}\frac{o(\rho)}{\rho}\frac{\rho}{\Delta x}\\
+            &=\lim_{\Delta x\to 0}\frac{o(\rho)}{\rho}\lim_{\Delta x\to 0}\frac{\rho}{\Delta x}\\
+            &=\lim_{\rho\to 0}\frac{o(\rho)}{\rho}\lim_{\Delta x\to 0}\sqrt{\left(\frac{\Delta u_x}{\Delta x}\right)^2+\left(\frac{\Delta v_x}{\Delta x}\right)^2}\\
+            &=0\cdot\sqrt{\left(\frac{\partial u_x}{\partial x}\right)^2+\left(\frac{\partial v_x}{\partial x}\right)^2}\\&=0
+        \end{align*}
+        以及
+            $$
+            \lim_{\Delta x\to 0}\frac{\Delta u}{\Delta x}=\frac{\partial u}{\partial x},
+            \lim_{\Delta x\to 0}\frac{\Delta v}{\Delta x}=\frac{\partial v}{\partial x};
+            $$
+        因此有
+        \begin{align*}
+            \frac{\partial z}{\partial x}
+            &=\lim_{\Delta x\to 0}\frac{\Delta z_x}{\Delta x}\\
+            &=\lim_{\Delta x\to 0}\left(\frac{\partial z}{\partial u}\frac{\Delta u_x}{\Delta x}+\frac{\partial z}{\partial v}\frac{\Delta v_x}{\Delta x}+ \frac{o(\rho)}{\Delta x}\right)\\
+            &=\frac{\partial z}{\partial u}\lim_{\Delta x\to 0}\frac{\Delta u_x}{\Delta x}+\frac{\partial z}{\partial v}\lim_{\Delta x\to 0}\frac{\Delta v_x}{\Delta x}+ \lim_{\Delta x\to 0}\frac{o(\rho)}{\Delta x}\\
+            &=\frac{\partial z}{\partial u}\frac{\partial u}{\partial x}+\frac{\partial z}{\partial v}\frac{\partial v}{\partial x}
+        \end{align*}
+        同理,对$y$有$$\frac{\partial z}{\partial y}=\frac{\partial z}{\partial u}\frac{\partial u}{\partial y}+\frac{\partial z}{\partial v}\frac{\partial v}{\partial y}$$
+        \item[可微性] 
+            记$$\begin{cases}
+                \Delta u = g(x+\Delta x,y+\Delta y)-g(x,y),\\
+                \Delta v = h(x+\Delta x,y+\Delta y)-h(x,y),\\
+                \Delta z = f(u+\Delta u,v+\Delta v)-f(u,v),\\
+                r = \sqrt{(\Delta x)^2+(\Delta y)^2},\\
+                \rho =\sqrt{(\Delta u)^2+(\Delta v)^2};
+                \end{cases}$$
+            因此我们有
+            \begin{align*}
+                \Delta z
+                &=\frac{\partial z}{\partial u}\Delta u+\frac{\partial z}{\partial v}\Delta v + o(\rho)\\
+                &=\frac{\partial z}{\partial u} \left(\frac{\partial u}{\partial x}\Delta x+\frac{\partial u}{\partial y}\Delta y+o(r)\right) 
+                + \frac{\partial z}{\partial v} \left(\frac{\partial v}{\partial x}\Delta x+\frac{\partial v}{\partial y}\Delta y+o(r)\right) + o(\rho)\\
+                &=\left(\frac{\partial z}{\partial u}\frac{\partial u}{\partial x}+\frac{\partial z}{\partial v}\frac{\partial v}{\partial x}\right)\Delta x
+                + \left(\frac{\partial z}{\partial u}\frac{\partial u}{\partial y}+\frac{\partial z}{\partial v}\frac{\partial v}{\partial y}\right)\Delta y + o(r) + o(\rho)\\
+            \end{align*}
+            同时,当$r\to 0$,有$\rho\to0$与$\frac{o(r)}{r}$有界,因此
+            \begin{align*}
+                \frac{\rho}{r}
+                &=\frac{\sqrt{(\Delta u)^2+(\Delta v)^2}}{r}\\
+                &=\sqrt
+                {\left(\frac{\partial u}{\partial x}\frac{\Delta x}{r}+\frac{\partial u}{\partial y}\frac{\Delta y}{r}+\frac{o(r)}{r}\right)^2
+                +\left(\frac{\partial v}{\partial x}\frac{\Delta x}{r}+\frac{\partial v}{\partial y}\frac{\Delta y}{r}+\frac{o(r)}{r}\right)^2}\\
+                &\les \sqrt
+                {\left(\frac{\partial u}{\partial x}\right)^2
+                +\left(\frac{\partial u}{\partial y}\right)^2
+                +\left(\frac{\partial v}{\partial x}\right)^2
+                +\left(\frac{\partial v}{\partial y}\right)^2
+                +M_0}\triangleq M,r\to0
+            \end{align*}
+            因此
+            \begin{align*}
+                \lim_{r\to 0}\left|\frac{o(\rho)}{r}\right|
+                &=\lim_{r\to 0}\left|\frac{o(\rho)}{\rho}\right|\frac{\rho}{r}\\
+                &\les M\lim_{r\to 0} \left|\frac{o(\rho)}{\rho}\right|\\
+                &=0
+            \end{align*}
+            故$$\Delta z
+            =\left(\frac{\partial z}{\partial u}\frac{\partial u}{\partial x}+\frac{\partial z}{\partial v}\frac{\partial v}{\partial x}\right)\Delta x
+            +\left(\frac{\partial z}{\partial u}\frac{\partial u}{\partial y}+\frac{\partial z}{\partial v}\frac{\partial v}{\partial y}\right)\Delta y + o(r)$$
+            表明$z$作为$x,y$的多元复合函数可微.
+        \item[\ref{9.2}]
+        \begin{enumerate}
+            \item 当$u,v$作为$f(u,v)$的自变量时,$z=f(u,v)$可微,自然有$$\dif{}z=\frac{\partial z}{\partial u}\dif{}u+\frac{\partial z}{\partial v}\dif{}v.$$
+            \item 当$u,v$作为复合函数$f(g(x,y),h(x,y))$的中间变量时,
+            \begin{align*}
+                \dif{}z
+                &=\frac{\partial z}{\partial x}\dif{}x+\frac{\partial z}{\partial y}\dif{}y\\
+                &=\left(\frac{\partial z}{\partial u}\frac{\partial u}{\partial x}+\frac{\partial z}{\partial v}\frac{\partial v}{\partial x}\right)\dif{}x
+                +\left(\frac{\partial z}{\partial u}\frac{\partial u}{\partial y}+\frac{\partial z}{\partial v}\frac{\partial v}{\partial y}\right)\dif{}y\\
+                &=\frac{\partial z}{\partial u} \left(\frac{\partial u}{\partial x}\dif{}x+\frac{\partial u}{\partial y}\dif{}y\right) 
+                + \frac{\partial z}{\partial v} \left(\frac{\partial v}{\partial x}\dif{}x+\frac{\partial v}{\partial y}\dif{}y\right)\\
+                &=\frac{\partial z}{\partial u}\dif{}u+\frac{\partial z}{\partial v}\dif{}v
+            \end{align*}
+        \end{enumerate}
+    \end{enumerate}
+\end{proof}
+
+\section{隐函数(implicit function)微分法}
+\begin{example}
+    方程$$3x+4y-5z+7=0$$可确定$$
+    \begin{cases}
+        &z=\frac{3}{5}x+\frac{4}{5}y+\frac{7}{5},\\
+        \text{or}& y=-\frac{3}{4}x+\frac{5}{4}z-\frac{7}{4},\\
+        \text{or}& x=-\frac{4}{3}y+\frac{5}{3}z-\frac{7}{3};
+    \end{cases}$$
+    三个函数,分别可得
+    $$
+    \begin{cases}
+        \frac{\partial z}{\partial x}=\frac{3}{5},\\
+        \frac{\partial z}{\partial y}=\frac{4}{5};
+    \end{cases}
+    \begin{cases}
+        \frac{\partial y}{\partial z}=\frac{5}{4},\\
+        \frac{\partial y}{\partial x}=-\frac{3}{4};
+    \end{cases}
+    \begin{cases}
+        \frac{\partial x}{\partial y}=-\frac{4}{3},\\
+        \frac{\partial x}{\partial z}=\frac{5}{3};
+    \end{cases}
+    $$
+    可得
+    $$
+    \frac{\partial z}{\partial x}\cdot\frac{\partial x}{\partial y}\cdot\frac{\partial y}{\partial z}=\frac{3}{5}\times\left(-\frac{4}{3}\right)\times\frac{5}{4}=-1,\\
+    \frac{\partial x}{\partial z}\cdot\frac{\partial z}{\partial y}\cdot\frac{\partial y}{\partial x}=\frac{5}{3}\times\frac{4}{5}\times\left(-\frac{3}{4}\right)=-1.
+    $$
+    上述的三个二元函数,都是方程$F(x,y,z)=3x+4y-5z+7=0$所确定的隐函数.
+\end{example}
+
+\begin{theorem}
+    设方程$F(x,y)=0$满足:
+    \begin{enumerate}
+        \item $F(x,y)\in C^1(D)$,$D$为区域,
+        \item $F(M_0)=F(x_0,y_0)=0,M_0\in D,$
+        \item $F'_y(M_0)=F'_y(x_0,y_0)\neq0.$
+    \end{enumerate}
+    则方程$F(x,y)=0$可在点$M_0$的某个$\delta$邻域$\bar{U}(M_0,\delta)$中确定唯一隐函数:$y=\varphi(x)$满足
+    $$\begin{cases}
+        \varphi(x_0)=y_0,\\
+        \frac{\dif{}y}{\dif{}x}=\varphi'(x)=-\frac{F'_x(x,y)}{F'_y(x,y)}\in C
+    \end{cases}$$
+\end{theorem}
+\begin{proof}
+    不妨设$F'_y(x_0,y_0)>0$,则$F(x_0,y)$在$y_0$附近严格单调递增,即在$M(x_0,y_0)$附近形成了一条唯一存在的严格单调递增平面曲线,设此曲线的表达式为$y=\varphi(x),(x,y)\in \bar{U}(M_0,\delta)$,则$y=\varphi(x)$即为所求的隐函数.
+    
+    显然$y=\varphi(x)$穿过点$M_0(x_0,y_0)$,即$\varphi(x_0)=y_0$,且从$F(x,\varphi(x))\equiv 0$,两边对$x$求导,有:$F'_x\cdot 1+F'_y\cdot\frac{\dif{}\varphi(x)}{\dif{}x}\equiv 0\Rightarrow \frac{\dif{}y}{\dif{}x}=\varphi'(x)=-\frac{F'_x(x,y)}{F'_y(x,y)}$
+
+    从$F\in C^1(D)$知,$\varphi'(x)$是连续函数.
+\end{proof}
+
+\begin{theorem}
+    设方程$F(x,y,z)=0$满足:
+    \begin{enumerate}
+        \item $F(x,y,z)\in C^1(D)$,$D$为区域,
+        \item $F(M_0)=F(x_0,y_0,z_0)=0,M_0\in D,$
+        \item $F'_z(M_0)=F'_y(x_0,y_0,z_0)\neq0.$
+    \end{enumerate}
+    则方程$F(x,y,z)=0$可在点$M_0$的某个$\delta$邻域$\bar{U}(M_0,\delta)$中确定唯一隐函数:$z=\varphi(x,y)$满足
+    $$\begin{cases}
+        \varphi(x_0,y_0)=z_0,\\
+        \frac{\partial z}{\partial x}=-\frac{F'_x(x,y,z)}{F'_z(x,y,z)},\frac{\partial z}{\partial y}=-\frac{F'_y(x,y,z)}{F'_z(x,y,z)}.
+    \end{cases}$$
+\end{theorem}
+
+\begin{remark}
+    值得注意的是,上述隐函数$y=\varphi(x)$或者$z=\varphi(x,y)$只理论上存在,实际问题中未必能求出来,但隐函数的导数或偏导数是能够从已知方程$F(x,y)=0$或$F(x,y,z)=0$中求出来的.
+
+    例如,已知$z=\varphi(x,y)$是方程$F(x,y,z)=0$确定的隐函数,则由
+    $F(x,y,\varphi(x,y))\equiv 0$,两边对$x,y$分别求导,有
+    $$\begin{cases}
+        F'_x\cdot 1+F'_z\cdot\varphi'_x(x,y)=0\\
+        F'_y\cdot 1+F'_z\cdot\varphi'_y(x,y)=0
+    \end{cases}\Rightarrow
+    \begin{cases}
+        \varphi'_x(x,y)=\frac{\partial z}{\partial x}=-\frac{F'_x(x,y,z)}{F'_z(x,y,z)}\\
+        \varphi'_y(x,y)=\frac{\partial z}{\partial y}=-\frac{F'_y(x,y,z)}{F'_z(x,y,z)}.
+    \end{cases}$$
+\end{remark}
+
+\section{例题}
+\begin{example}
+    证明:$$u=\frac{1}{r},r=\sqrt{x^2+y^2+z^2}$$满足Laplace方程:
+    $$\frac{\partial^2u}{\partial x^2}+\frac{\partial^2u}{\partial y^2}+\frac{\partial^2u}{\partial z^2}\equiv 0,\forall (x,y,z)\neq(0,0,0).$$
+\end{example}
+\begin{proof}
+
+    由于
+    $\frac{\partial u}{\partial x}=\frac{\dif{}u}{\dif{}r}\frac{\partial r}{\partial x}=-\frac{1}{r^2}\frac{x}{r}=-\frac{x}{r^3},$
+
+    因此$\frac{\partial^2 u}{\partial x^2}=-\left(\frac{x}{r^3}\right)'_x=-\frac{r^3-3r^2\frac{x}{r}x}{r^6}=-\frac{r^2-3x^2}{r^5},$
+
+    由$u=\frac{1}{\sqrt{x^2+y^2+z^2}}$的对称性知$
+    \begin{cases}
+        \frac{\partial^2 u}{\partial y^2}=-\frac{r^2-3y^2}{r^5},\\
+        \frac{\partial^2 u}{\partial z^2}=-\frac{r^2-3z^2}{r^5};
+    \end{cases}$
+
+    故$\frac{\partial^2u}{\partial x^2}+\frac{\partial^2u}{\partial y^2}+\frac{\partial^2u}{\partial z^2}=-\frac{3r^2-3(x^2+y^2+z^2)}{r^5}=-\frac{3r^2-3r^2}{r^5}=0.$
+\end{proof}
+
+\begin{example}
+    证明:$$u=\frac{1}{2a\sqrt{\pi t}}\e^{-\frac{x^2}{4a^2t}}(x>0,t>0,a>0\text{常数})$$满足热传导方程:$$\frac{\partial u}{\partial t}=a^2\frac{\partial^2 u}{\partial x^2}.$$
+\end{example}
+\begin{proof}
+
+    $\frac{\partial u}{\partial t}=\frac{1}{2a\sqrt{\pi}}(t^{-\frac{1}{22}})'_t \e^{-\frac{x^2}{4a^2t}}+\frac{1}{2a\sqrt{\pi t}}\e^{-\frac{x^2}{4a^2t}}(-\frac{x^2}{4a^2t})'_t=\frac{1}{4a\sqrt{\pi t^3}}\e^{-\frac{x^2}{4a^2t}}\left(\frac{x^2}{2a^2t}-1\right).$
+
+    另外
+    $\frac{\partial u}{\partial x}=\frac{1}{2a\sqrt{\pi t}}\e^{-\frac{x^2}{4a^2t}}\left(-\frac{x^2}{4a^2t}\right)'_x=\frac{1}{2a\sqrt{\pi t}}\e^{-\frac{x^2}{4a^2t}}\left(-\frac{x}{2a^2t}\right),$
+
+    可得
+    $\frac{\partial^2 u}{\partial x^2}=\frac{1}{2a\sqrt{\pi t}}\left[\e^{-\frac{x^2}{4a^2t}}\left(-\frac{x}{2a^2t}\right)^2+\e^{-\frac{x^2}{4a^2t}}\left(-\frac{1}{2a^2t}\right)\right]=\frac{1}{4a\sqrt{\pi t^3}}\e^{-\frac{x^2}{4a^2t}}\left(\frac{x^2}{2a^4t}-\frac{1}{a^2}\right),$
+
+    因此$a^2\frac{\partial^2 u}{\partial x^2}=\frac{1}{4a\sqrt{\pi t^3}}\e^{-\frac{x^2}{4a^2t}}\left(\frac{x^2}{2a^2t}-1\right)=\frac{\partial u}{\partial t}.$
+\end{proof}
+ 
+\begin{example}
+    证明:设$$\varphi,\psi\in C^2(I),u=\varphi(x-at)+\psi(x+at),(x\in\R,t>0,a>0\text{常数})$$满足波动方程:$$\frac{\partial^2 u}{\partial t^2}=a^2\frac{\partial^2 u}{\partial x^2}.$$
+\end{example}
+\begin{proof}
+
+    令$\begin{cases}
+        v=x-at,\\
+        w=x+at;
+    \end{cases}$则有$u=\varphi(v)+\psi(w)$且
+    $\begin{cases}
+        \frac{\partial v}{\partial x}=1,\\
+        \frac{\partial w}{\partial x}=1;\\
+    \end{cases}$与
+    $\begin{cases}
+        \frac{\partial v}{\partial t}=-a,\\
+        \frac{\partial w}{\partial t}=a;\\
+    \end{cases}$
+
+    因此我们有$\frac{\partial u}{\partial x}=\varphi'(v)\frac{\partial v}{\partial x}+\psi'(w)\frac{\partial w}{\partial x}=\varphi'(v)+\psi'(w)$,
+    
+    故$\frac{\partial^ 2 u}{\partial x^2}=\varphi''(v)\frac{\partial v}{\partial x}+\psi''(w)\frac{\partial w}{\partial x}=\varphi''(v)+\psi''(w).$
+
+    同时$\frac{\partial u}{\partial t}=\varphi'(v)\frac{\partial v}{\partial t}+\psi'(w)\frac{\partial w}{\partial t}=-a\varphi'(v)+a\psi'(w),$
+    
+    故$\frac{\partial^ 2 u}{\partial x^2}=-a\varphi''(v)\frac{\partial v}{\partial x}+a\psi''(w)\frac{\partial w}{\partial x}=a^2\left(\varphi''(v)+\psi''(w)\right)=a^2\frac{\partial^ 2 u}{\partial x^2}.$
+\end{proof}
+
+\begin{example}
+    球面方程$x^2+y^2+z^2=a^2(a>0\text{常数})$在第一卦限内可确定三个隐函数
+    $$x=\sqrt{a^2-y^2-z^2},y=\sqrt{a^2-x^2-z^2},z=\sqrt{a^2-x^2-y^2};
+    $$
+    证明:$$\frac{\partial x}{\partial y}\frac{\partial y}{\partial z}\frac{\partial z}{\partial x}\equiv -1.$$
+\end{example}
+\begin{proof}
+    
+    $\frac{\partial x}{\partial y}=-\frac{2y}{2\sqrt{a^2-y^2-z^2}}=-\frac{y}{x},$
+    $\frac{\partial y}{\partial z}=-\frac{2z}{2\sqrt{a^2-x^2-z^2}}=-\frac{z}{y},$
+
+    $\frac{\partial z}{\partial x}=-\frac{2x}{2\sqrt{a^2-x^2-y^2}}=-\frac{x}{z};$
+    $(x>0,y>0,z>0),$
+    
+    因此$\frac{\partial x}{\partial y}\frac{\partial y}{\partial z}\frac{\partial z}{\partial x}=\left(-\frac{y}{x}\right)\left(-\frac{z}{y}\right)\left(-\frac{x}{z}\right)\equiv -1,\forall x>0,y>0,z>0,x^2+y^2+z^2=a^2.$
+\end{proof}
+
+\begin{example}
+    设$F(x,y)\in C^2(D)$,$D$是区域,函数$y=\varphi(x)$由方程$F(x,y)=0$确定,
+    
+    证明:
+    $$\varphi''(x)=\frac{\dif{}^2y}{\dif{}x^2}=-\frac{\frac{\partial^2F}{\partial x^2}\left(\frac{\partial F}{\partial y}\right)^2-2\frac{\partial^2F}{\partial x\partial y}\frac{\partial F}{\partial x}\frac{\partial F}{\partial y}+\frac{\partial^2F}{\partial y^2}\left(\frac{\partial F}{\partial x}\right)^2}{\left(\frac{\partial F}{\partial y}\right)^3}$$
+\end{example}
+\begin{proof}可知
+    \begin{align*}
+        \varphi''(x)
+        &=\left(\varphi'(x)\right)'_x=-\left(\frac{F'_x(x,y)}{F'_y(x,y)}\right)'_x\\
+        &=-\frac{\left(F'_x(x,y)\right)'_x F'_y(x,y)-\left(F'_y(x,y)\right)'_x F'_x(x,y)}{\left(F'_y(x,y)\right)^2}\\
+        &=-\frac{\left(F''_{xx}\cdot1+F''_{xy}\cdot y'_x\right) F'_y-\left(F''_{yx}\cdot1+F''_{yy}\cdot y'_x\right) F'_x}{\left(F'_y\right)^2}\\
+        &=-\frac{\left(F''_{xx}+F''_{xy}\left(-\frac{F'_x}{F'_y}\right)\right) F'_y-\left(F''_{yx}+F''_{yy}\left(-\frac{F'_x}{F'_y}\right)\right) F'_x}{\left(F'_y\right)^2}\\
+        &=-\frac{F''_{xx}\left(F'_y\right)^2-F''_{xy}F'_x F'_y-F''_{xy}F'_x F'_y+F''_{yy}\left(F'_x\right)^2}{\left(F'_y\right)^3}\\
+        &=-\frac{\frac{\partial^2F}{\partial x^2}\left(\frac{\partial F}{\partial y}\right)^2-2\frac{\partial^2F}{\partial x\partial y}\frac{\partial F}{\partial x}\frac{\partial F}{\partial y}+\frac{\partial^2F}{\partial y^2}\left(\frac{\partial F}{\partial x}\right)^2}{\left(\frac{\partial F}{\partial y}\right)^3}
+    \end{align*}
+    其中$y'_x=\frac{\dif{}y}{\dif{}x}=-\frac{F'_x(x,y)}{F'_y(x,y)}$.
+\end{proof}
+        
+\begin{homework} 
+    ex9.2:20(2)(3)(4),25,28,32;ex9.3:1(1),2(2)(5),4(1).
+\end{homework}
