@@ -152,7 +152,7 @@ $$
     $$
     \begin{cases}
         F_x'(x,y,z) = \varphi_1' \cdot 2x + \varphi_2' \e^{\sin x} \cos x,\\
-        F_y'(x,y,z) = \varphi_3' \cdot 1 = \varphi_3'.
+        F_z'(x,y,z) = \varphi_3' \cdot 1 = \varphi_3'.
     \end{cases}
     $$
     故
@@ -160,6 +160,17 @@ $$
     $$
     \frac{\dif u}{\dif x} = f_1' + f_2' \cdot y_x' + f_3' \cdot \left( - \frac{\varphi_1' \cdot 2x + \varphi_2' \e^{\sin x} \cos x}{\varphi_3'} \right).
     $$
+
+    \begin{remark}
+        助教注: 这里老师写的确实很模糊.我们要区分两个式子和他们分别的含义.
+        \begin{enumerate}
+            \item 令$F(x,y,z) = \varphi(x^2, \e^y, z)$,则$F(x,y,z) = 0$确定了$z = z(x,y)$,其中$z_x' = - \frac{F_x'}{F_z'}$.这时候$z_x'$表示的是$\parfrac{z}{x}$.
+            $F_x'(x,y,z) = \varphi_1' \cdot 2x, F_z'(x,y,z) = \varphi_3'$,从而$z_x' = - \frac{F_x'}{F_z'} = - \frac{2x \varphi_1'}{\varphi_3'}$.
+            \item 令$F(x,z) = \varphi(x^2, \e^{\sin x}, z)$,则$F(x,z) = 0$确定了$z = z(x)$.这时候$z_x'$表示的是$\frac{\dif z}{\dif x}$.
+            $F_x'(x,z) = \varphi_1' \cdot 2x + \varphi_2' \e^{\sin x} \cos x, F_z'(x,z) = \varphi_3'$,从而$z_x' = - \frac{F_x'}{F_z'} = - \frac{2x \varphi_1' + \varphi_2' \e^{\sin x} \cos x}{\varphi_3'}$.
+        \end{enumerate}
+        老师要表示的实际是第二种情况,即$z = z(x)$.只不过写成的形式看起来像是第一种情况.
+    \end{remark}
 \end{solution}
 
 \begin{example}
