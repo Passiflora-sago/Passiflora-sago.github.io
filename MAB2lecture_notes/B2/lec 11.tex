@@ -1,0 +1,262 @@
+\setcounter{chapter}{10} % 设置章节计数器
+
+\chapter{方向导数与梯度}
+
+\section{方向导数}
+
+\begin{definition}
+    设函数$u=f(x,y)$定义在$\bar{U}(M_0,\delta)$中,$M_t=(x_0+t\cos\alpha,y_0+t\cos\beta)\in \bar{U}(M_0,\delta),\l=(\cos\alpha,\sin\alpha)=(\cos\alpha,\cos\beta),\alpha+\beta=\frac{\pi}{2}$.
+
+    如果极限$$\lim_{t\to 0}\frac{f(x_0+t\cos \alpha,y_0+t\cos \beta)-f(x_0,y_0)}{t}$$
+    存在,那么称$\left. \parfrac{u}{\l}\right|_{M_0}=\lim_{t\to 0}\frac{f(x_0+t\cos \alpha,y_0+t\sin \beta)-f(x_0,y_0)}{t}$为函数$u=f(x,y)$在点$M_0$处沿方向$\l=(\cos\alpha,\cos\beta)$的方向导数(directional derivative),表示$u$关于$\l$方向在$M_0$处的变化率.
+\end{definition}
+\begin{example}
+    若$f'_x(M_0)=f'_x(x_0,y_0)$存在,则$u=f(x,y)$在$M_0$处沿$x$轴方向$\i=(1,0)$的方向导数为
+    $$\left.\parfrac{u}{\i}\right|_{M_0}=\lim_{\Delta x\to 0}\frac{f(x_0+\Delta x,y_0)-f(x_0,y_0)}{\Delta x}=\lim_{\Delta x\to 0}\frac{f(x_0+\Delta x,y_0)-f(x_0,y_0)}{\Delta x}=f'_x(x_0,y_0);$$
+    
+    而$u=f(x,y)$在$M_0$处沿$x$轴负向$\l=(-1,0)=-i$的方向导数为
+    $$\left.\parfrac{u}{(-\i)}\right|_{M_0}=\lim_{-\Delta x\to 0}\frac{f(x_0+\Delta x,y_0)-f(x_0,y_0)}{-\Delta x}=-\lim_{\Delta x\to 0}\frac{f(x_0+\Delta x,y_0)-f(x_0,y_0)}{\Delta x}=-f'_x(M_0).$$
+
+    同理,当$f'_y(x_0,y_0)=B$(常数)存在时,则$u=f(x,y)$在$M_0$处沿$y$轴正负方向都存在,且$$\left.\parfrac{u}{\j}\right|_{M_0}=f'_y(M_0),\left.\parfrac{u}{(-\j)}\right|_{M_0}=-f'_y(M_0).$$
+
+    这里$\j=(0,1),-\j=(0,-1)$分别为$y$轴的正负向.
+\end{example}
+
+\begin{example}
+    $u=f(x,y)=\sqrt{x^2+y^2}$在$(0,0)$处连续,但$u=f(x,y)$在$(0,0)$处沿任何方向$\l^0=(\cos\alpha,\sin\alpha)$的方向导数均不存在,
+    
+    这是由于$$\left.\parfrac{u}{\l^0}\right|=\lim_{t\to0}\frac{f(0+t\cos\alpha,0+t\sin\alpha)-f(0,0)}{t}=\lim_{t\to0}\frac{\sqrt{\left(t\cos\alpha\right)^2+\left(\t\sin\alpha\right)^2-0}}{t}=\lim_{t\to0}\frac{|t|}{t}.$$
+
+    但$\lim_{t\to0^+}\frac{|t|}{t}=1\neq\lim_{t\to0^-}\frac{|t|}{t}=-1$
+\end{example}
+
+
+
+
+
+\begin{example}
+    设函数$u=f(x,y,z)$定义在$\bar{U}(M_0,\delta)$中,$M_0(x_0,y_0,z_0),M_t(x_0+t\cos\alpha,y_0+t\cos\beta,z_0+\t\cos\gamma)=M_0+t\l\in \bar{U}(M_0,\delta),\l=(\cos\alpha,\cos\beta,\cos\gamma)$已知,则定义
+    $$\left.\parfrac{u}{\l}\right|=\lim_{t\to0}\frac{f(M_t)-f(M_0)}{t}=\lim_{t\to0}\frac{f(x_0+t\cos\alpha,y_0+t\cos\beta,z_0+t\cos\gamma)-f(x_0,y_0,z_0)}{t}.$$
+
+    当偏导数$f'_x(x_0,y_0,z_0)=A$(常数)存在时,$u=f(x,y,z)$在$M_0$处沿$x$轴正向$\i=(1,0,0)$,负向$-\i=(-1,0,0)$的方向导数都存在,且
+    $$\left.\parfrac{u}{\i}\right|_{M_0}=A,\left.\parfrac{u}{(-\i)}\right|_{M_0}=-A,$$
+    其余情况可类推.
+\end{example}
+
+\begin{theorem}\label{Thm11.1}
+    当$u=f(x,y)$在点$M_0(x_0,y_0)$处可微时,$u$在点$M_0$处沿任何方向$\l^0=(\cos\alpha,\sin\alpha)$的方向导数都存在,且
+    \begin{align}
+        \left.\parfrac{u}{\l^0}\right|_{M_0}=f'_x(M_0)\cos\alpha+f'_y(M_0)\sin\alpha=f'_x(M_0)\cos\alpha+f'_y(M_0)\cos\beta,(\alpha+\beta=\frac{\pi}{2})\label{11.1}
+    \end{align}
+\end{theorem}
+\begin{proof}
+    设$M_t(x_0+t\cos\alpha,y_0+t\sin\alpha)\in \bar{U}(M_0,\delta)$,则
+    $$f(x_0+t\cos\alpha,y_0+t\sin\alpha)-f(x_0,y_0)=f'_x(M_0)t\cos\alpha+f'_y(M_0)t\cos\beta+o(\rho),$$
+    其中
+    \begin{align*}
+        \rho&=\rho(M_0,M_t)\\
+        &=\sqrt{\left(x_0+t\cos\alpha-x_0\right)^2+\left(y_0+t\sin\alpha-y_0\right)^2}\\
+        &=\sqrt{\left(t\cos\alpha\right)^2+\left(t\sin\alpha\right)^2}\\
+        &=\sqrt{t^2\cos^2\alpha+t^2\sin^2\alpha}\\
+        &=\sqrt{t^2}\\
+        &=|t|
+    \end{align*}
+    而有$\lim_{t\to0}\frac{o(\rho)}{t}=\lim_{t\to0}\frac{o(|t|)}{t}=\lim_{t\to0}\frac{o(|t|)}{|t|}\frac{|t|}{t}$
+
+    $\left|\frac{|t|}{t}\right|=|\pm1|=1\les 1$有界,$\lim_{t\to0}\frac{o(|t|)}{|t|}=0.$
+
+    因此$\lim_{t\to0}\frac{o(\rho)}{t}=0$
+    \begin{align*}
+        \left.\parfrac{u}{\l^0}\right|_{M_0}
+        &=\lim_{t\to0}\frac{f(x_0+t\cos\alpha,y_0+t\sin\alpha)-f(x_0,y_0)}{t}\\
+        &=\lim_{t\to0}\frac{f'_x(M_0)t\cos\alpha+f'_y(M_0)t\sin\alpha+o(\rho)}{t}\\
+        &=\lim_{t\to0}\left(f'_x(M_0)\cos\alpha+f'_y(M_0)\sin\alpha+\frac{o(\rho)}{t}\right)\\
+        &=f'_x(M_0)\cos\alpha+f'_y(M_0)\sin\alpha\\
+    \end{align*}
+\end{proof}
+
+\begin{example}
+    设$z=f(x,y)=\begin{cases}
+        \frac{x^2y^2}{(x^2+y^2)^{\frac{3}{2}}},&x^2+y^2\neq0\\
+        0,&x^2+y^2=0
+    \end{cases},\l=(\cos\theta,\sin\theta),\theta \in [0,2\pi)$,
+    
+    求$f'_x(0,0),f'_y(0,0),\left.\parfrac{z}{\l}\right|_{O(0,0)}$,并证明在$O(0,0)$处,$z=f(x,y)$不可微.
+\end{example}
+\begin{solution}
+
+        \begin{enumerate}
+            \item \begin{align*} 
+                f'_x(0,0)
+                &=\lim_{\Delta x\to 0}\frac{f(0+\Delta x,0)-f(0,0)}{\Delta x}\\
+                &=\lim_{\Delta x\to 0}\frac{\frac{(\Delta x)^20^2}{((\Delta x)^2+0^2)^{\frac{3}{2}}}-0}{\Delta x}\\
+                &=\lim_{\Delta x\to 0}\frac{0}{\Delta x}\\
+                &=0
+            \end{align*}
+            由对称性可知,$f'_y(0,0)=f'_x(0,0)=0$
+            \item \begin{align*}
+                \left.\parfrac{z}{\l}\right|_{O(0,0)}
+                &=\lim_{t\to0}\frac{f(0+t\cos\theta,0+t\sin\theta)-f(0,0)}{t}\\
+                &=\lim_{t\to0}\frac{\frac{(t\cos\theta)^2(t\sin\theta)^2}{((t\cos\theta)^2+(t\sin\theta)^2)^{\frac{3}{2}}}}{t}\\
+                &=\lim_{t\to\0}\frac{t^3\cos^2\theta\sin^2\theta}{|t|^3}
+            \end{align*}
+            $\frac{t^3}{|t|^3}=\pm 1$有界,但趋于零时极限不存在,
+            
+            因此
+            当且仅当$\theta=0,\frac{\pi}{2},\pi,\frac{3\pi}{2}$时,$\cos^2\theta\sin^2\theta=0$,$\left.\parfrac{z}{\l}\right|_{O(0,0)}=0$
+            
+            即只在$\theta=0,\frac{\pi}{2},\pi,\frac{3\pi}{2}$四个方向上存在方向导数,且方向导数为$0$,其他方向上无方向导数.
+            \item \begin{align*}
+                \lim_{\rho\to0}\frac{\Delta z-f'_x(0,0)\Delta x+f'_y(0,0)\Delta y}{\rho}
+                &=\lim_{\substack{\Delta x\to 0\\\Delta y \to 0}}\frac{(\Delta x)^2(\Delta y)^2}{((\Delta x)^2+(\Delta y)^2)^{2}}\\
+                &=\lim_{\substack{\Delta x\to0\\\Delta y=k\Delta x}}\frac{k^2(\Delta x)^4}{((\Delta x)^2+k^2(\Delta x)^2)^2}\\
+                &=\frac{k^2}{(1+k^2)^2}\neq0
+            \end{align*}
+            故不可微.
+            \item 不可微这一问依照定理\ref{Thm11.1}的结论直接可得:
+            
+            若可微则应有$\left.\parfrac{z}{\l}\right|_{O(0,0)}=f'_x(0,0)\cos\theta+f'_y(0,0)\sin\theta=0$,即沿各个方向的方向导数都存在,均为$0$.但这与第二问中我们求出来的结果矛盾,故不可微.
+        \end{enumerate}
+
+
+
+\end{solution}
+    同理,当$u=f(x,y,z)$在点$M_0(x_0,y_0,z_0)$处可微时,$u$在点$M_0$处沿任何方向
+    
+    $\l^0=(\cos\alpha,\cos\beta,\cos\gamma)$的方向导数都存在,且
+    \begin{align}
+        \left.\parfrac{u}{\l^0}\right|_{M_0}=f'_x(M_0)\cos\alpha+f'_y(M_0)\cos\beta+f'_z(M_0)\cos\gamma \label{11.2}
+    \end{align}
+    在\ref{11.1}中称向量$(f'_x(M_0),f'_y(M_0))$为函数$u=f(x,y)$在点$M_0(x_0,y_0)$处的梯度;在\ref{11.2}中称向量$(f'_x(M_0),f'_y(M_0),f'_z(M_0))$为函数$u=f(x,y,z)$在点$M_0(x_0,y_0,z_0)$处的梯度,记作
+    $$\grad f(x_0,y_0)=(f'_x(M_0),f'_y(M_0));\grad f(x_0,y_0,z_0)=(f'_x(M_0),f'_y(M_0),f'_z(M_0)).$$
+    或
+    $$\grad f(x_0,y_0)=\left.\left(\parfrac{f}{x},\parfrac{f}{y}\right)\right|_{M_0};\grad f(x_0,y_0,z_0)=\left.\left(\parfrac{f}{x},\parfrac{f}{y},\parfrac{f}{z}\right)\right|_{M_0}.$$
+    $u=f(x,y,z)$在$\bar{U}(M_0,\delta)$中任一点$M$的梯度记作
+    $$\grad f=\left(\parfrac{f}{x},\parfrac{f}{y},\parfrac{f}{z}\right)=\left(\parfrac{u}{x},\parfrac{u}{y},\parfrac{u}{z}\right)=\left(\parfrac{}{x},\parfrac{}{y},\parfrac{}{z}\right)u=\nabla u$$
+    其中$\nabla=\left(\parfrac{}{x},\parfrac{}{y},\parfrac{}{z}\right)$称为微分向量算子,也称为Hamilton算子,此时\ref{11.2}可改写为:
+    \begin{align*}
+        \left.\parfrac{u}{\l^0}\right|_{M_0}
+        &=\left(f'_x(M_0),f'_y(M_0),f'_z(M_0)\right)\cdot(\cos\alpha,\cos\beta,\cos\gamma)\\
+        &=\left.\nabla u\right|\cdot \l^0\\
+        &=\grad f(x_0,y_0,z_0)\cdot \l^0\\
+        &=\left|\grad f(x_0,y_0,z_0)\right|\left|\l^0\right|\cos\left(\widehat{\grad f(M_0),\l^0}\right)\\
+        &\les \left|\grad f(x_0,y_0,z_0)\right|\\
+        &=\left|\nabla u(M_0)\right|
+    \end{align*}
+    等号当且仅当$\l^0$与$\grad f(M_0)$一致时取到.
+
+\section{函数的梯度(陡度,倾斜度)}
+    设$u=f(x,y,z)$在点$M_0(x_0,y_0,z_0)$处可微,则$f(x,y,z)$在$M_0(x_0,y_0,z_0)$处的梯度$$\grad f(x_0,y_0,z_0)=(f'_x(M_0),f'_y(M_0),f'_z(M_0))$$是一个向量.这个向量的模$\left|\grad f(x_0,y_0,z_0)\right|$是$f(x,y,z)$在点$M_0$处所有方向的方向导数中的最大值,而梯度的方向即是$f(x,y,z)$在点$M_0$处所有方向的方向导数中取最大值的方向.
+    
+    $\left.\parfrac{u}{\l^0}\right|_{M_0}=\grad f(x_0,y_0,z_0)\cdot \l^0
+        =\left|\grad f(x_0,y_0,z_0)\right|\left|\l^0\right|\cos\left(\widehat{\grad f(M_0),\l^0}\right) \les \left|\nabla u(M_0)\right|$可知,当$\l^0$与$\grad f(M_0)$方向一致时,$\left.\parfrac{u}{\l^0}\right|_{M_0}$取最大值$\left|\grad f(M_0)\right|$;而当$\l^0$与$\grad f(M_0)$方向相反时,$\left.\parfrac{u}{\l^0}\right|_{M_0}$取最小值$-\left|\grad f(M_0)\right|$;
+
+        即
+        $$\left(\left.\parfrac{u}{\l}\right|_{M_0}\right)_{\max}=\left|\grad f(M_0)\right|,\left(\left.\parfrac{u}{\l}\right|_{M_0}\right)_{\min}=-\left|\grad f(M_0)\right|$$
+
+    换言之,在点$M_0$处沿梯度$\grad f(M_0)$的方向,$f(x,y,z)$的变化率是最大的,
+
+    而沿着$-\grad f(M_0)$的方向,$f(x,y,z)$的变化率最小:
+    $$-\left|\grad f(M_0)\right|\les\left.\parfrac{u}{\l}\right|_{M_0}\les\left|\grad f(M_0)\right|$$
+
+    并由$\grad f(M_0)=\nabla u(M_0)=\left.\left(\parfrac{u}{x},\parfrac{u}{y},\parfrac{u}{z}\right)\right|_{M_0}$,从而有
+    $$-\left|\nabla u(M_0)\right|\les\left.\parfrac{u}{\l}\right|_{M_0}\les\left|\nabla u(M_0)\right|$$
+
+\begin{proposition}
+    求函数或数量场$u$的梯度是一种特定的微分运算,设$u_2=f_1(x,y,z),u_2=f_2(x,y,z)$均可微,或$f_1,f_2\in C^1$,则必有:
+    \begin{enumerate}
+        \item $\nabla (c_1u_1+c_2u_2)=c_1\nabla u_1+c_2\nabla u_2$,$c_1,c_2$为任意常数;
+        \item $\nabla (u_1 u_2)=u_2\nabla u_1+u_1\nabla u_2;$
+        \item $\nabla f(u_1)=f'(u)\nabla u,\forall f \in C^1.$
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    \begin{enumerate}
+        \item $c_1,c_2$是常数\begin{align*}
+            \nabla (c_1u_1+c_2u_2)
+            &=\left((c_1u_1+c_2u_2)'_x,(c_1u_1+c_2u_2)'_y,(c_1u_1+c_2u_2)'_z\right)\\
+            &=\left(c_1(u_1)'_x+c_2(u_2)'_x,c_1(u_1)'_y+c_2(u_2)'_y,c_1(u_1)'_z+c_2(u_2)'_z\right)\\
+            &=c_1\left((u_1)'_x,(u_1)'_y,(u_1)'_z\right)+c_2\left((u_2)'_x,(u_2)'_y,(u_2)'_z\right)\\
+            &=c_1 \nabla u_1+c_2 \nabla u_2
+        \end{align*}
+        \item  \begin{align*}
+            \nabla (u_1u_2)
+            &=\left((u_1u_2)'_x,(u_1u_2)'_y,(u_1u_2)'_z\right)\\
+            &=\left(u_2(u_1)'_x+u_1(u_2)'_x,u_2(u_1)'_y+u_1(u_2)'_y,u_2(u_1)'_z+u_1(u_2)'_z\right)\\
+            &=u_2\left((u_1)'_x,(u_1)'_y,(u_1)'_z\right)+u_1\left((u_2)'_x,(u_2)'_y,(u_2)'_z\right)\\
+            &=u_2 \nabla u_1+u_1 \nabla u_2
+        \end{align*}
+        \item \begin{align*}
+            \nabla f(u)
+            &=\left((f(u))'_x,(f(u))'_y,(f(u))'_z\right)\\
+            &=\left(f'(u)u'_x,f'(u)u'_y,f'(u)u'_z\right)\\
+            &=f'(u)\left(u'_x,u'_y,u'_z\right)\\
+            &=f'(u)\nabla u
+        \end{align*}
+    \end{enumerate}
+\end{proof}
+从这三条性质可知,哈密顿算子$\nabla$与微分算子$\dif$非常类似.
+
+\begin{example}
+    求解下列各题:
+    \begin{enumerate}
+        \item 求$z=x^2+y^2$在点$M_0(1,2)$处,沿着(1,2)到$(2,2+\sqrt{3})$方向的方向导数,并求$\left.\parfrac[1]{z}{\l}\right|_{M_0(1,2)}$的最大值和最小值.
+        \item 求$z=1-(\frac{x^2}{a^2}+\frac{y^2}{b^2})$在点$M_0(\frac{a}{\sqrt{2}},\frac{b}{\sqrt{2}})$处,沿曲线$L:\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$在这点的内法线方向的方向导数.
+        \item 求数量场$\frac{m}{r}$所产生的梯度场$\nabla \frac{m}{r}$,其中$m>0$为常数,$r=\sqrt{x^2+y^2+z^2}$是向径$(x,y,z)$的模.
+    \end{enumerate}
+\end{example}
+\begin{solution}
+    \begin{enumerate}
+        \item $\l=(2-1,2+\sqrt{3}-2)=\left(1,\sqrt{3}\right)\Rightarrow\l^0=\left(\frac{1}{2},\frac{\sqrt{3}}{2}\right)=(\cos\alpha,\cos\beta)$
+        
+        $\nabla z(M_0)=\left(z'_x(M_0),z'_y(M_0)\right)=(2x,2y)\bigg|_{M_0(1,2)}=(2,4)$
+
+        因此$$\left.\parfrac[1]{z}{\l}\right|_{M_0(1,2)}=(2,4)\cdot(\frac{1}{2},\frac{\sqrt{3}}{2})=1+2\sqrt{3}$$
+
+        而又有
+        $\left|\nabla z(M_0)\right|=\left|(2,4)\right|=2\sqrt{5}$
+
+        因此$$\left(\left.\parfrac[1]{z}{\l}\right|_{M_0(1,2)}\right)_{max}=2\sqrt{5},\left(\left.\parfrac[1]{z}{\l}\right|_{M_0(1,2)}\right)_{min}=-2\sqrt{5}$$
+
+        \item $L$有参数方程表示$$\mathbf{r}(t)=(x(t),y(t))=(a\cos t,b\sin t),t\in[0,2\pi]$$
+        因此$M_0=\mathbf{r}(t_0),t_0=\frac{\pi}{4}.$
+
+        有$r'(t)=(x'(t),y'(t))\bigg|_{M_0}=(-a\sin t,b\cos t)\bigg|_{t=\frac{\pi}{4}}=\left(-\frac{\sqrt{2}}{2}a,\frac{\sqrt{2}}{2}b\right)$
+        
+        可取切向量$\btau=(-a,b)$,则过$M_0$的外法向量为$\n=(b,a)$,因此过$M_0$的内法向量为$\l=-\n=(-b,-a)\Rightarrow \l^0=-\frac{1}{\sqrt{a^2+b^2}}\left(b,a\right)$,
+
+        同时$z'_x(M_0)=\left.-\frac{2x}{a^2}\right|_{M_0}=-\frac{2}{a^2}\frac{a}{\sqrt{2}}=-\frac{\sqrt{2}}{a},z'_y(M_0)=\left.-\frac{2y}{b^2}\right|_{M_0}=-\frac{2}{b^2}\frac{b}{\sqrt{2}}=-\frac{\sqrt{2}}{b}$
+
+        故$$\left.\parfrac{z}{\l}\right|_{M_0}=-\frac{1}{\sqrt{a^2+b^2}}\left(-\frac{\sqrt{2}}{a},-\frac{\sqrt{2}}{b}\right)\cdot \left(b,a\right)=\frac{\sqrt{2}}{\sqrt{a^2+b^2}}\left(\frac{b}{a}+\frac{a}{b}\right)=\frac{\sqrt{2(a^2+b^2)}}{ab}$$
+
+        \item $\nabla \left(\frac{m}{r}\right)=\left(\left(\frac{m}{r}\right)'_x,\left(\frac{m}{r}\right)'_y,\left(\frac{m}{r}\right)'_z\right).$
+        
+        而$\left(\frac{m}{r}\right)'_x=m\left(\frac{1}{r}\right)'_x=-\frac{m}{r^2}r'_x=-\frac{m}{r^2}\frac{x}{r}=-\frac{mx}{r^3}.$
+
+        由对称性知$\left(\frac{m}{r}\right)'_y=-\frac{my}{r^3},\left(\frac{m}{r}\right)'_z=-\frac{mz}{r^3}$
+
+        因此$$\nabla \left(\frac{m}{r}\right)=-\frac{m}{r^3}(x,y,z)$$
+
+        令$\mathbf{r}^0=\frac{1}{r}(x,y,z)$,则\begin{align}
+            \nabla \left(\frac{m}{r}\right)=-\frac{m}{r^2}\mathbf{r}^0=-\frac{m\cdot 1}{r^2}\mathbf{r}^0\label{11.3}
+        \end{align}
+    \end{enumerate}
+\end{solution}
+    \ref{11.3}右端的力学解释:位于原点$O(0,0,0)$的质量为$m$的顶点,对位于点$M(x,y,z)$且质量为$1$的单位质点的引力,该引力大小与两质点的质量乘积成正比,而与它们的距离的平方成反比,并且和这个引力的方向由点$M$指向原点.
+    
+    在物理中,称$\nabla \left(\frac{m}{r}\right)=\frac{m\cdot 1}{r^2}(-\mathbf{r}^0)$为引力场,这是一个向量场,而称$\frac{m}{r}=\frac{m}{\sqrt{x^2+y^2+z^2}}$为对应的引力势函数,简称势函数.
+
+    因为引力场$\frac{m}{r^2}(-\mathbf{r}^0)=-\frac{m}{x^2+y^2+z^2}\frac{(x,y,z)}{\sqrt{x^2+y^2+z^2}}$是通过势函数$\frac{m}{r}$取梯度得到的,因此,也常成这个引力场为梯度场.
+    
+
+\begin{remark}
+    设$\nabla=(\parfrac{}{x},\parfrac{}{y},\parfrac{}{z})$,则$\nabla^2=\nabla\cdot\nabla=(\parfrac{}{x},\parfrac{}{y},\parfrac{}{z})\cdot(\parfrac{}{x},\parfrac{}{y},\parfrac{}{z})=\left(\parfrac{}{x}\right)^2+\left(\parfrac{}{y}\right)^2+\left(\parfrac{}{z}\right)^2=\parfrac{^2}{x^2}+\parfrac{^2}{y^2}+\parfrac{^2}{z^2}\triangleq\laplace $——Laplace算子.
+
+    $$\parfrac{^2u}{x^2}+\parfrac{^2u}{y^2}+\parfrac{^2u}{z^2}=0\Rightarrow\left(\parfrac{^2}{x^2}+\parfrac{^2}{y^2}+\parfrac{^2}{z^2}\right)u=0\Rightarrow \laplace u=0$$
+\end{remark}
+
+\begin{homework} 
+    ex9.2:21,22,23,24,36(2)(5),38.
+\end{homework}
+
+
