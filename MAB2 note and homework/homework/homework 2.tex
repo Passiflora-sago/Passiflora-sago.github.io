@@ -297,7 +297,7 @@
             $\begin{cases}
                 x=a\sinh u\cos v,\\
                 y=b\sinh u\sin v,\\
-                z=c\cosh u,\\
+                z=\pm c\cosh u,\\
             \end{cases}\\u\in(-\infty,+\infty),v\in[0,2\pi)$
         \end{enumerate}
         \end{multicols}
@@ -315,7 +315,7 @@
             $\begin{cases}
                 x=a\tan u\cos v,\\
                 y=b\tan u\sin v,\\
-                z=c\sec u,\\
+                z=\pm c\sec u,\\
             \end{cases}\\u\in(-\frac{\pi}{2},\frac{\pi}{2}),v\in[0,2\pi)$
         \end{enumerate}
         \end{multicols}
@@ -333,7 +333,7 @@
             $\begin{cases}
                 x=a\cot u\cos v,\\
                 y=b\cot u\sin v,\\
-                z=c\csc u,\\
+                z=\pm c\csc u,\\
             \end{cases}\\u\in(0,\pi),v\in[0,2\pi)$
         \end{enumerate}
         \end{multicols}
@@ -471,8 +471,8 @@
             &=\lim_{r\to+\infty}\e^{r^2(\cos^2\theta-\sin^2\theta)}\sin(2r^2\sin\theta\cos\theta)\\
             &=\lim_{r\to+\infty}\e^{r^2\cos2\theta}\sin(r^2\sin2\theta)\\
             &=\begin{cases}
-                \text{不存在},&\cos2\theta\ges0\\
-                0,&\cos2\theta<0
+                \text{不存在},&\cos2\theta\ges0\text{且}\sin2\theta\neq0\\
+                0,&\cos2\theta<0\text{或}\sin2\theta=0
             \end{cases}
         \end{align*}
         因此当$\theta\in(\frac{\pi}{4},\frac{3\pi}{4})\cup(\frac{5\pi}{4},\frac{7\pi}{4}) \cup \{ 0 , \pi , 2\pi \}$时极限存在.
