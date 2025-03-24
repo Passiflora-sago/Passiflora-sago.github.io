@@ -113,7 +113,7 @@
     \begin{align*}
         \frac{\diff^2 z}{\dif x^2} &= \frac{\dif}{\dif x}\left( 2x + 2y \frac{\dif y}{\dif x} \right)\\
         &= 2 + 2\left( \frac{\dif y}{\dif x} \right)^2 + 2y \frac{\diff^2 y}{\dif x^2}\\
-        &= \frac{10x^3 - 24 x^2y + 18xy^2 - 8y^3}{(x-2y)^3}
+        &= \frac{10x^3 - 24 x^2y + 30xy^2 - 8y^3}{(x-2y)^3}
     \end{align*}
 \end{solution}
 
@@ -367,17 +367,26 @@ F(x, y, z) = \sqrt{x^2 + y^2 + z^2 - (x + y + z)} + 4 = 0
 \end{exercise}
 
 \begin{solution}
-    切点处的法向量也是平面$x-y+2z=0$的法向量$\n = (1, -1, 2)$,于是切点处椭球面的一个法向量为$\n = (1, -1, 2)$.
-
-    设切点为$(x_0, y_0, z_0)$,则切平面方程为
-    $$x_0(x-x_0) + 2y_0(y-y_0) + z_0(z-z_0) = 0$$
-    注意到$(x_0, y_0, z_0) = \n = (1, -1, 2)$,所以设切点为$(t,-t,2t)$,代入椭圆方程得
-    $$t^2 + 2 t^2 + 4t^2 = 1 \Rightarrow t = \pm \frac{1}{\sqrt 6}$$
-    故切平面方程为
-    $$(x-\frac{1}{\sqrt 6}) - (y+\frac{1}{\sqrt 6}) + 2(z-\frac{2}{\sqrt 6}) = 0$$
-    和
-    $$(x+\frac{1}{\sqrt 6}) - (y-\frac{1}{\sqrt 6}) + 2(z+\frac{2}{\sqrt 6}) = 0$$
-    即$$x-y+2z = \pm \frac{4}{\sqrt 6}$$
+    设切点为$(x_0,y_0,z_0)$,对于椭圆而言,在这一点的切平面的法向量为$(2x_0, 4y_0, 2z_0)$,而平面$x-y+2z=0$的法向量为$(1, -1, 2)$,切平面的法向量与平面$x-y+2z=0$的法向量平行,即
+    $$
+    \begin{cases}
+        2x_0 = \lambda,\\
+        4y_0 = -\lambda,\\
+        2z_0 = 2\lambda.
+    \end{cases}
+    $$
+    又由椭球面方程得
+    $$
+    x_0^2 + 2y_0^2 + z_0^2 = 1.
+    $$
+    联立解得
+    $$
+    (x_0, y_0, z_0) = \left( \frac{2}{\sqrt{22}}, -\frac{1}{\sqrt{22}}, \frac{4}{\sqrt{22}} \right) \quad \text{或} \quad (x_0, y_0, z_0) = \left( -\frac{2}{\sqrt{22}}, \frac{1}{\sqrt{22}}, -\frac{4}{\sqrt{22}} \right).
+    $$
+    代入切平面方程$2x_0(x-x_0) + 4y_0(y-y_0) + 2z_0(z-z_0) = 0$得
+    $$
+    x + 2y + z = \frac{\sqrt{22}}{2} \quad \text{或} \quad x + 2y + z = -\frac{\sqrt{22}}{2}.
+    $$
 \end{solution}
 
 \begin{exercise}{9.4.11}
