@@ -1,0 +1,112 @@
+\setcounter{chapter}{11} % 设置章节计数器
+
+\chapter{多元函数微分学的几何应用}
+
+\section{空间曲线的切线(tangent)与法平面(normal plane)}
+\subsection{向径式}
+\begin{definition}{光滑曲线}
+    设$\Gamma$的方程为向径式:$\r(t)=(x(t),y(t),z(t))\in C^1(I)$,且$r'(t)\neq \0$,称这样的曲线$\Gamma$为光滑曲线.
+\end{definition}
+\begin{definition}{逐段光滑曲线}
+    由有限段光滑曲线连接而成的曲线称为逐段光滑曲线.
+\end{definition}
+\begin{definition}{切向量}
+    设$M_0(x(t_0),y(t_0),z(t_0)),M(x(t_0+\Delta t),y(t_0+\Delta t),z(t_0+\Delta t))\in\Gamma$,若极限
+    \begin{align*}
+        &\lim_{\Delta t\to0}\frac{\r(t_0+\Delta t)-\r(t_0)}{\Delta t}\\
+        =&\lim_{\Delta t\to 0}\frac{(x(t_0+\Delta t)-x(t_0),y(t_0+\Delta t)-y(t_0),z(t_0+\Delta t)-z(t_0))}{\Delta t}
+        =&(x'(t_0),y'(t_0),z'(t_0))\\
+        \triangleq \btau
+    \end{align*}
+    
+    存在,则记$\btau=$为$\Gamma$在切点$M_0$处切线$T$的切向量.
+\end{definition}
+\begin{remark}
+    切向量$\btau$的方向恒指向参数$t$增加的方向,即恒指向质点运动的运动方向.
+\end{remark}
+    由直线点向式知:$\Gamma$上过切点$M_0(x_0,y_0,z_0)$的切线$T$方程为:
+    $$\frac{x-x_0}{x'(t_0)}=\frac{y-y_0}{y'(t_0)}=\frac{z-z_0}{z'(t_0)},$$
+
+    而过$M_0$且垂直于$T$的$\Gamma$的法平面$\pi$为:
+
+    $$x'(t_0)(x-x_0)=y'(t_0)(y-y_0)=z'(t_0)(z-z_0)=0,$$
+
+    其中,$M(x,y,z)$是法平面$\pi$中的动点坐标组成的点.
+
+\subsection{交面式}
+    设$\Gamma$的交面式:$\begin{cases}
+        F(x,y,z)=0,\\
+        G(x,y,z)=0;
+    \end{cases}$其中,$F,G\in C^1$且$\parfrac{(F,G)}{(y,z)}\neq 0$,依隐函数组存在定理,该方程组唯一确定函数组$\begin{cases}
+        x=x,\\
+        y=y(x),\\
+        z=z(x);
+    \end{cases}$且$y'(x)=\parfrac{(F,G)}{(x,z)}\bigg/\parfrac{(F,G)}{(y,z)},z'(x)=\parfrac{(F,G)}{(y,z)}\bigg/\parfrac{(F,G)}{(y,z)}$.令$\r=(x,y(x),z(x))$,则$\tau=\r'(x)=(1,y'(x),z'(x))\neq \0$.此时,$\Gamma$上点$M_0(x_0,y_0,z_0)$处的切线下的方程为:
+    $$\frac{x-x_0}{1}=\frac{y-y_0}{y'(x_0)}=\frac{z-z_0}{z'(x_0)},$$
+    而过切点$M_0$的法平面$\pi$为
+    $$1(x-x_0)+y'(x_0)(y-y_0)+z'(x_0)(z-z_0)=0$$
+
+    其中,$y'(x_0)=\parfrac{(F,G)}{(x,z)}\bigg|_{M_0}\bigg/\parfrac{(F,G)}{(y,z)}\bigg|_{M_0},z'(x)=\parfrac{(F,G)}{(y,z)}\bigg|_{M_0}\bigg/\parfrac{(F,G)}{(y,z)}\bigg|_{M_0}$
+
+
+\section{曲面$\Sigma$的切平面与法线$N$}
+\subsection{隐式曲面}
+\begin{definition}{光滑曲面}
+    设曲面$\Sigma$为隐式曲面$F(x,y,z)=0$,而$F\in C^1$,且$\nabla F=(F'_x,F'_y,F'_z)\neq0$.称这样的曲面$\Sigma$为光滑曲面.
+\end{definition}
+\begin{definition}{逐片光滑曲面}
+    由有限段光滑曲面连接而成的曲面为逐片光滑曲面.
+\end{definition}
+    例如长方体表面,四面体表面均为逐片光滑曲面.
+
+    设$M_0(x_0,y_0,z_0)\in \Sigma,\Gamma_1:\r_1(t)=(x_1(t),y_1(t),z_1(t)),\Gamma_2:\r_2(t)=(x_2(t),y_2(t),z_2(t))$是$\Sigma$中过点$M_0$的任意两条光滑曲线,从而$$\begin{cases}
+        F(x_1(t),y_1(t),z_1(t))\equiv 0\\
+        F(x_2(t),y_2(t),z_2(t))\equiv 0
+    \end{cases}$$
+    两边对$t$求导有
+    $$\begin{cases}
+        F'_x(M_0)x'_1(t)+F'_y(M_0)y'_1(t)+F'_z(M_0)z'_1(t)=0\\
+        F'_x(M_0)x'_2(t)+F'_y(M_0)y'_2(t)+F'_z(M_0)z'_2(t)=0
+    \end{cases}$$
+    令$\btau_1=(x'_1(t_0),y'_1(t_0),z'_1(t_0)),\btau_2=(x'_2(t_0),y'_2(t_0),z'_2(t_0),\n(M_0)=(F'_x(M_0),F'_y(M_0),F'_z(M_0))=(F'_x,F'_y,F'_z)\bigg|_{M_0}=\nabla F\bigg|_{M_0}$,则$\n(M_0)=\nabla F\bigg|_{M_0}\neq \0$,且$\n(M_t)=\btau_1\times\btau_2$.即向量$\n(M_0)$是由$\btau_1,\btau_2$确定的平面$\pi$的法向量.由$\Gamma_1,\Gamma_2$在$\Sigma$内的任意性可知,$\Sigma$内过点$M_0$的所有曲线$\Gamma$在$M_0$处的切线都共面,由过点$M_0$的所有切线组成的平面$\pi$称之为曲面$\Sigma$在点$M_0$处的切平面,由点法式知,$\pi$的方程为:
+    $$F'_x(M_0)(x-x_0)+F'_y(M_0)(y-y_0)+F'_z(z-z_0)=0$$
+    或
+    $$\nabla F\big|_{M_0}\cdot \overrightarrow{M_0M}=0$$
+
+    $M(x,y,z)$是切平面$\pi$中的动点,$\overrightarrow{M_0M}=(x-x_0,y-y_0,z-z_0)$,过切点$M_0$垂直于切平面$\pi$的直线——法线$N$的方程:
+    $$\frac{x-x_0}{F'_x(M_0)}=\frac{y-y_0}{F'_y(M_0)}=\frac{z-z_0}{F'_z(M_0)}$$
+    或
+    $$\nabla F\bigg|_{M_0}\times \overrightarrow{M_0M}=\0$$
+\subsection{显式曲面}
+    当曲面为显式曲面$$\Sigma:z=f(x,y)\in C^1(D)$$时,设$M_0(x_0,y_0,z_0)\in\Sigma$,则$z_0=f(x_0,y_0)=f(P_0),P_0(x_0,y_0)$.此时
+    $$F(x,y,z)=f(x,y)-z,\n(M_0)=(F'_x,F'_y,F'_z)\bigg|_{M_0}=(f'_x(P_0),f'_y(P_0),-1)\neq\0$$.过点$M_0(x_0,y_0,z_0)$的切平面$\pi:f'_x(P_0)(x-x_0)+f'_y(p_0)(y-y_0)-(z-z_0)=0$.而$f'_x(P_0)(x-x_0)+f'_y(p_0)(y-y_0)$恰好是$z=f(x,y)$在$P_0(x_0,y_0)$点的全微分$\dif{}z\big|_{P_0}$.
+
+    设$P(x,y)$是$P_0(x_0,y_0)$邻近的一点,$P(x,y)\in D$.则曲面$z=f(x,y)$的$\Delta z=f(P)-f(P_0)=f'_x(P_0)(x-x_0)+f'_y(P_0)(y-y_0)+o(\rho),\rho=|\overrightarrow{P_0P}|$,当$\rho$较小时,有曲面$\Delta z\approx f'_x(P_0)(x-x_0)+f'_y(P_0)(y-y_0)=\dif{}z\big|_{P_0}=\text{切平面的}\Delta z$\footnote{正如我们所提到过的,不建议将$\dif{}z\big|_{P_0}$理解成线性主部$f'_x(P_0)(x-x_0)+f'_y(P_0)(y-y_0)$,更准确的表达应当是$\dif{}z\big|_{P_0}(x-x_0,y-y_0)=f'_x(P_0)(x-x_0)+f'_y(P_0)(y-y_0)$类似这样的表述,当然这里领会精神即可}.即在点$M_0$的局部范围内,曲面$\Sigma$可用点$M_0$的切平面$\pi$来代替.即局部可线性化.
+    $$\Delta z\approx f'_x(P_0)(x-x_0)^1+f'_y(P_0)(y-y_0)^1,\rho>0\text{比较小时成立}$$
+\subsection{向径式}
+    设$\Sigma$的向径式:$$\Sigma:\r(u,v)=(x(u,v),y(u,v),z(u,z))\in C^1(D_{u,v1})$$
+    且$\btau_u=\r_v(u,v)=(x'_u,y'_u,z'_u)\neq \0,\btau_v=\r_v(u,v)=(x'_v,y'_v,z'_v)\neq \0$
+    则过点$M_0(x_0,y_0,z_0)$的切平面$\pi$的法向量$\n(M_0)=\btau_u\times\btau_v\bigg|_{M_0}=\begin{matrix}
+        \begin{vmatrix}
+            \i&\j&\k\\
+            x'_u&y'_u&z'_u\\
+            x'_v&y'_v&z'_v
+        \end{vmatrix}
+    \end{matrix}_{M_0}=\left(\parfrac{(y,z)}{(u,v)},\parfrac{(z,x)}{(u,v)},\parfrac{(x,y)}{(u,v)}\right)$
+
+    $\pi$的方程:$$\left.\parfrac{(y,z)}{(u,v)}\right|_{M_0}\cdot(x-x_0)+\left.\parfrac{(z,x)}{(u,v)}\right|_{M_0}\cdot(y-y_0)+\left.\parfrac{(x,y)}{(u,v)}\right|_{M_0}\cdot(z-z_0)=0$$
+    或用向量式表示为$$(\btau_u\times\btau_v)\bigg|_{M_0}\cdot\overrightarrow{M_0M}=0$$
+    $M(x,y,z)$是切平面$\pi$中的动点,过点$M$且垂直于$\pi$的法线$N:(\btau_u\times\btau_v)\bigg|_{M_0}\times\overrightarrow{M_0M}=\0$
+
+\section{例题}
+\begin{example}
+    证明:二次曲面$\Sigma:Ax^2+By^2+Cz^2+Dx+Ey+Fz+G=0$在其任一点$M_0(x_0,y_0,z_0)$处的切平面$\pi$的方程为$$Ax_0x+By_0y+Cz_0z+D\frac{x_0+x}{2}+E\frac{y_0+y}{2}+F\frac{z_0+z}{2}+G=0$$
+\end{example}
+\begin{example}
+    证明:二次曲线$\Gamma:Ax^2+B^2+Cx+Dy+E=0$上点$M_0(x_0,y_0)$处的切线$T$的方程为$$Ax_0x+By_0y+C\frac{x_0+x}{2}+D\frac{y_0+y}{2}+E=0$$
+\end{example}
+
+
+\begin{homework} 
+    ex9.4:3,4,8(1)(4),9,11,16(1),17(2).
+\end{homework}
