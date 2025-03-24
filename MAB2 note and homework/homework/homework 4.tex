@@ -1,0 +1,489 @@
+\setcounter{chapter}{3} % 设置章节计数器
+\chapter{}
+
+\section{Mar 17 ex9.2:31,ex9.3:6,7,8,10,11(1),14.}
+
+\begin{exercise}{9.2.31}
+试证:方程$\parfrac[2]{u}{x} + 2 \cos x \parfrac{u}{x,y} - \parfrac[2]{u}{y} \sin^2 x - \parfrac{u}{y} \sin x = 0$经变换$\begin{cases}
+    \xi = x - \sin x + y,\\
+    \eta = x + \sin x - y
+\end{cases}$后可化为$\parfrac{u}{\xi,\eta} = 0$.(其中二阶偏导数均连续)
+\end{exercise}
+
+\begin{solution}
+    由链式法则得
+    \begin{align*}
+        \parfrac{u}{x} &= \parfrac{u}{\xi} \parfrac{\xi}{x} + \parfrac{u}{\eta} \parfrac{\eta}{x} = (1-\cos x) \parfrac{u}{\xi} + (1+\cos x) \parfrac{u}{\eta}\\
+        \parfrac{u}{y} &= \parfrac{u}{\xi} \parfrac{\xi}{y} + \parfrac{u}{\eta} \parfrac{\eta}{y} = \parfrac{u}{\xi} - \parfrac{u}{\eta}
+    \end{align*}
+    因此
+    \begin{align*}
+        \parfrac[2]{u}{x} &= \parfrac{}{x} \left( (1-\cos x) \parfrac{u}{\xi} + (1+\cos x) \parfrac{u}{\eta} \right)\\
+        &= \left( (1-\cos x) \parfrac{}{\xi} + (1+\cos x) \parfrac{}{\eta} \right) \left( (1-\cos x) \parfrac{u}{\xi} + (1+\cos x) \parfrac{u}{\eta} \right)\\
+        &= (1-\cos x)^2 \parfrac[2]{u}{\xi} + (1+\cos x)^2 \parfrac[2]{u}{\eta} + 2(1-\cos x)(1+\cos x) \parfrac{u}{\xi,\eta}\\
+        \parfrac[2]{u}{y} &= \parfrac{}{y} \left( \parfrac{u}{\xi} - \parfrac{u}{\eta} \right) = \parfrac{}{\xi} \left( \parfrac{u}{\xi} - \parfrac{u}{\eta} \right) - \parfrac{}{\eta} \left( \parfrac{u}{\xi} - \parfrac{u}{\eta} \right)\\
+        &= \parfrac[2]{u}{\xi} - \parfrac[2]{u}{\eta} - 2\parfrac{u}{\xi,\eta}\\
+        \parfrac{u}{x,y} &= \parfrac{}{y} \left( (1-\cos x) \parfrac{u}{\xi} + (1+\cos x) \parfrac{u}{\eta} \right)\\
+        &= \left( \parfrac{}{\xi} - \parfrac{}{\eta} \right) \left( (1-\cos x) \parfrac{u}{\xi} + (1+\cos x) \parfrac{u}{\eta} \right)\\
+        &= (1-\cos x) \parfrac[2]{u}{\xi} - (1+\cos x) \parfrac[2]{u}{\eta} + 2 \cos x \parfrac{u}{\xi,\eta}
+    \end{align*}
+    代入得
+    \begin{align*}
+        0 &= \parfrac[2]{u}{x} + 2 \cos x \parfrac{u}{x,y} - \parfrac[2]{u}{y} \sin^2 x - \parfrac{u}{y} \sin x \\
+        &= \left( (1-\cos x)^2 + (1-\cos x) 2 \cos x -\sin^2 x \right) \parfrac[2]{u}{\xi}\\
+        &+ \left( (1-\cos x)2(1-\cos^2 x) + 2\cos x 2\cos x - \sin^2 x (-2) \right) \parfrac{u}{\xi,\eta}\\
+        &+ \left( (1-\cos x)(1+\cos x)^2 + 2\cos x (-(1+\cos x)) - \sin^2 x (1+\cos x) \right)\parfrac[2]{u}{\eta}\\
+        &= 2 \parfrac{u}{\xi,\eta}
+    \end{align*}
+
+\end{solution}
+
+
+
+\begin{exercise}{9.3.6}
+    设$z = z(x,y)$是由方程$2 \sin (x +2y-3z) = x + 2y - 3z$确定的隐函数,求$$\parfrac{z}{x} + \parfrac{z}{y} = 1.$$
+\end{exercise}
+
+\begin{solution}
+    对方程两边求微分,得
+    $$
+    2 \cos (x + 2y - 3z) \left( \dif x + 2 \dif y - 3 \dif z \right) = \dif x + 2 \dif y - 3 \dif z
+    $$
+
+    整理得
+    $$
+    (3 - 6 \cos(x + 2y - 3z) ) \dif z = (1 - 2 \cos(x + 2y - 3z)) \dif x + 2(1 - 2 \cos(x + 2y - 3z)) \dif y
+    $$
+    由此得
+    \begin{align*}
+        \parfrac{z}{x} &= \frac{1 - 2 \cos(x + 2y - 3z)}{3 - 6 \cos(x + 2y - 3z)},\\
+        \parfrac{z}{y} &= \frac{2(1 - 2 \cos(x + 2y - 3z))}{3 - 6 \cos(x + 2y - 3z)}
+    \end{align*}
+    于是
+    $$
+    \parfrac{z}{x} + \parfrac{z}{y} = \frac{1 - 2 \cos(x + 2y - 3z) + 2(1 - 2 \cos(x + 2y - 3z))}{3 - 6 \cos(x + 2y - 3z)} = 1.
+    $$
+\end{solution}
+
+\begin{exercise}{9.3.7}
+设$z = z(x,y)$是由方程$\varphi(cx-az,cy-bz) = 0$确定的隐函数,其中$\varphi$可微,证明$a \parfrac{z}{x} + b \parfrac{z}{y} = c$.
+\end{exercise}
+
+\begin{solution}
+    对方程两边求微分,得
+    $$
+    \parfrac{\varphi}{x} (c \dif x - a \dif z) + \parfrac{\varphi}{y} (c \dif y - b \dif z) = 0
+    $$
+    整理得
+    $$
+    (c \parfrac{\varphi}{x} - a \parfrac{\varphi}{y}) \dif z = c \parfrac{\varphi}{x} \dif x + c \parfrac{\varphi}{y} \dif y
+    $$
+    由此得
+    \begin{align*}
+        \parfrac{z}{x} &= \frac{c \parfrac{\varphi}{x}}{c \parfrac{\varphi}{x} - a \parfrac{\varphi}{y}},\\
+        \parfrac{z}{y} &= \frac{c \parfrac{\varphi}{y}}{c \parfrac{\varphi}{x} - a \parfrac{\varphi}{y}}
+    \end{align*}
+    于是
+    $$
+    a \parfrac{z}{x} + b \parfrac{z}{y} = \frac{ac \parfrac{\varphi}{x} + bc \parfrac{\varphi}{y}}{c \parfrac{\varphi}{x} - a \parfrac{\varphi}{y}} = c.
+    $$
+\end{solution}
+
+\begin{exercise}{9.3.8}
+    设$z = x^2 + y^2$其中$y = y(x)$为由方程$x^2-xy+y^2=1$所定义的函数,求$\frac{\dif z}{\dif x},\frac{\diff^2 z}{\dif x^2}$.
+\end{exercise}
+
+\begin{solution}
+    对方程两边求微分,得
+    $$
+    2x \dif x + 2y \dif y = 0
+    $$
+    整理得
+    $$
+    \frac{\dif y}{\dif x} = -\frac{2x-y}{x-2y}
+    $$
+    由此得
+    \begin{align*}
+        \frac{\diff^2 y}{\diff x^2} &= \frac{(x-2y)(2-\frac{\dif y}{\dif x}) -(2x-y)(1-2\frac{\dif y}{\dif x})}{(x-2y)^2}\\
+        &= -\frac{3y}{(x-2y)^2}+ \frac{6x^2-3xy}{(x-2y)^3} = 6 \frac{(x-y)^2}{(x-2y)^3}
+    \end{align*}
+    故
+    $$
+    \frac{\dif z}{\dif x} = 2x + 2y \frac{\dif y}{\dif x} = 2x + 2y \frac{2x-y}{x-2y} = \frac{2x^2-2y^2}{x-2y}$$
+    \begin{align*}
+        \frac{\diff^2 z}{\dif x^2} &= \frac{\dif}{\dif x}\left( 2x + 2y \frac{\dif y}{\dif x} \right)\\
+        &= 2 + 2\left( \frac{\dif y}{\dif x} \right)^2 + 2y \frac{\diff^2 y}{\dif x^2}\\
+        &= \frac{10x^3 - 24 x^2y + 18xy^2 - 8y^3}{(x-2y)^3}
+    \end{align*}
+\end{solution}
+
+\begin{exercise}{9.3.10}
+设$x = x(z),y = y(z)$是由方程组$\begin{cases}
+    x + y + z = 0,\\
+    x^2 + y^2 + z^2 = 1
+\end{cases}$所确定的隐函数组,求$\frac{\dif x}{\dif z},\frac{\dif y}{\dif z}$.
+\end{exercise}
+
+\begin{solution}
+    对方程组两边求微分得到
+    \begin{align*}
+        \dif x + \dif y + \dif z &= 0,\\
+        2x \dif x + 2y \dif y + 2z \dif z &= 0
+    \end{align*}
+    将其视为关于$\dif x,\dif y$的方程组,解得
+    \begin{align*}
+        \dif x &= -\frac{y-z}{y-x} \dif z,\\
+        \dif y &= -\frac{x-z}{y-x} \dif z
+    \end{align*}
+\end{solution}
+
+\begin{exercise}{9.3.11(1)}
+设$u = u(x,y),v = v(x,y)$是由下列方程组所确定的隐函数组,求$\parfrac{(u,v)}{(x,y)}$.
+\begin{enumerate}
+    \item[(1)] $\begin{cases}
+        u^2 + v^2 + x^2 + y^2 =1,\\
+        u+v+x+y=0.
+    \end{cases}$
+\end{enumerate}
+\end{exercise}
+
+\begin{solution}
+    对方程组两边求微分得到
+    \begin{align*}
+        2u \dif u + 2v \dif v + 2x \dif x + 2y \dif y &= 0,\\
+        \dif u + \dif v + \dif x + \dif y &= 0
+    \end{align*}
+    将其视为关于$\dif u,\dif v$的方程组,解得
+    \begin{align*}
+        \dif u &= \frac{x-v}{u-v} \dif x + \frac{y-v}{u-v} \dif y,\\
+        \dif v &= \frac{x-u}{v-u} \dif x + \frac{y-u}{v-u} \dif y
+    \end{align*}
+    于是
+    $$
+    \parfrac{(u,v)}{(x,y)} = \begin{vmatrix}
+        \frac{x-v}{u-v} & \frac{y-v}{u-v}\\
+        \frac{x-u}{v-u} & \frac{y-u}{v-u}
+    \end{vmatrix} =\frac{x-y}{u-v}$$
+\end{solution}
+
+\begin{exercise}{9.3.14}
+设$y = y(x),z = z(x)$是由方程$z = xf(x+y)$和$F(x,y,z) = 0$所确定的函数,其中$f$和$F$分别具有一阶连续导数和一阶连续偏导数,求$\frac{\dif z}{\dif x}$.
+\end{exercise}
+
+\begin{solution}
+    对方程组两边求微分得到
+    \begin{align*}
+        \dif z &= f(x+y) \dif x + x f'(x+y) \dif y ( \dif x + \dif y),\\
+        0 &= F_x' \dif x + F_y' \dif y + F_z' \dif z
+    \end{align*}
+    将其视为关于$\dif z,\dif y$的方程组,解得
+    $$
+    \dif z = \frac{F_z' f + xF_x' f' - x F_x' f'}{F_z'(1+xf')} \dif x
+    $$
+    于是
+    $$
+    \frac{\dif z}{\dif x} = \frac{F_z' f + xF_x' f' - x F_x' f'}{F_z'(1+xf')}
+    $$
+\end{solution}
+
+\section{Mar 19 ex9.2:21,22,23,24,36(2)(5),38}
+
+\begin{exercise}{9.2.21}
+    求函数$u = xyz$在点$(1,2,-1)$沿方向$\bm l = (3,-1,1)$的方向微商.
+\end{exercise}
+
+\begin{solution}
+    $$\nabla u = \left( \parfrac{}{x} u, \parfrac{}{y} u, \parfrac{}{z} u \right) = (yz, xz, xy)$$
+    于是所求方向微商为
+    $$\nabla u \cdot \frac{\bm l}{|\bm l|} = \left( \parfrac{}{x} u, \parfrac{}{y} u, \parfrac{}{z} u \right) \cdot \frac{\bm l}{|\bm l|} = (3, -1, 1) \cdot \frac{(3, -1, 1)}{\sqrt{11}} = \frac{3}{\sqrt{11}}$$
+\end{solution}
+
+\begin{exercise}{9.2.22}
+试求函数$z = \arctan \frac{y}{x}$在圆$x^2+y^2-2x=0$上一点$P(\frac12,\frac{\sqrt{3}}{2})$处沿该圆周逆时针方向上的方向微商.
+\end{exercise}
+
+\begin{solution}
+    将圆参数化为$\begin{cases}
+        x = 1 + \cos \theta,\\
+        y = \sin \theta
+    \end{cases}$,则$\theta = \frac{2\pi}{3}$时位于$P$点.且方向向量为$\bm l  = (x'(\theta), y'(\theta)) = (-\sin \theta, \cos \theta) =(-\frac{\sqrt 3}{2}, -\frac12) $,于是所求方向微商为
+    $$\nabla z \left(\frac12,\frac{\sqrt 3}{2}\right) \cdot \bm l = \left( - \frac{y}{x^2+y^2}, \frac{x}{x^2+y^2} \right) \Bigg|_{(x,y) =(\frac{1}{2},\frac{\sqrt 3}{2})} \cdot (-\frac{\sqrt 3}{2}, -\frac12) = \frac12$$
+\end{solution}
+
+\begin{exercise}{9.2.23}
+求函数$u = x^2+2y^2+3z^2+xy+3x-2y-6z$在点$(1,1,-1)$的梯度和最大方向微商.
+\end{exercise}
+
+\begin{solution}
+    $$\nabla u = (2x+y+3, 4y+x-2, 6z-6)$$
+    在点$(1,1,-1)$处
+    $$\nabla u = (6, 3, -12)$$
+    最大方向微商为沿着$\nabla u$的方向,即
+    $$\nabla u \cdot \frac{\nabla u}{|\nabla u|} = (6, 3, -12) \cdot \frac{(6, 3, -12)}{\sqrt{6^2+3^2+12^2}} = 3\sqrt{21}$$
+\end{solution}
+
+\begin{exercise}{9.2.24}
+设$\bm r = x \i + y \j + z\k, r = | \bm r|$,试求(1) $\grad \frac{1}{r^2}$; (2) $\grad \ln r$.
+\end{exercise}
+
+\begin{solution}
+$$\grad \frac{1}{r^2} = \grad \frac{1}{x^2+y^2+z^2} = -\frac{2x}{(x^2+y^2+z^2)^2} \i - \frac{2y}{(x^2+y^2+z^2)^2} \j - \frac{2z}{(x^2+y^2+z^2)^2} \k = - \frac{2\bm r}{r^4};$$
+
+$$\grad \ln r = \grad \ln \sqrt{x^2+y^2+z^2} = \frac{x}{x^2+y^2+z^2} \i + \frac{y}{x^2+y^2+z^2} \j + \frac{z}{x^2+y^2+z^2} \k= \frac{\bm r}{r^2}.$$
+\end{solution}
+
+\begin{exercise}{9.2.36(2)(5)}
+求下列复合函数的微分$\dif u$
+\begin{enumerate}
+    \item[(2)] $u = f(\xi,\eta) ,\xi = xy, \eta = \frac{x}{y}$;
+    \item[(5)] $u = f(\xi,\eta,\zeta),\xi = x^2+y^2, \eta = x^2 -y^2, \zeta = 2xy$.
+\end{enumerate}
+\end{exercise}
+
+\begin{solution}
+    \begin{enumerate}
+        \item[(2)] \begin{align*}
+            \dif u &= f_1' \dif \xi + f_2' \dif \eta\\
+            &= f_1' (y \dif x + x \dif y) + f_2' \left( \frac{1}{y} \dif x - \frac{x}{y^2} \dif y \right)\\
+            &= (f_1' y + f_2' \frac{1}{y}) \dif x + (f_1' x - f_2' \frac{x}{y^2}) \dif y
+        \end{align*}
+        \item[(5)] \begin{align*}
+            \dif u &= f_1' \dif \xi + f_2' \dif \eta + f_3' \dif \zeta\\
+            &= f_1' (2x \dif x + 2y \dif y) + f_2' (2x \dif x - 2y \dif y) + f_3' (2y \dif x + 2x \dif y)\\
+            &= (2xf_1' + 2xf_2' + 2yf_3') \dif x + (2yf_1' - 2yf_2' + 2xf_3') \dif y
+        \end{align*}
+    \end{enumerate}
+\end{solution}
+
+\begin{exercise}{9.2.38}
+求直角坐标和极坐标的坐标变换$x = x(r,\theta) = r \cos \theta, y = y(r,\theta) = r \sin \theta$的Jacobi行列式.
+\end{exercise}
+
+\begin{solution}
+    坐标变换为
+    $$x = r \cos \theta, \quad y = r \sin \theta$$
+    偏导数为
+    $$\frac{\partial x}{\partial r} = \cos \theta, \quad \frac{\partial x}{\partial \theta} = -r $$
+    $$\frac{\partial y}{\partial r} = \sin \theta, \quad \frac{\partial y}{\partial \theta} = r $$
+    Jacobi行列式为
+    $$\parfrac{(x,y)}{(r,\theta)} = \begin{vmatrix}
+        \cos \theta & -r \sin \theta\\
+        \sin \theta & r \cos \theta
+    \end{vmatrix} = r \cos^2 \theta + r \sin^2 \theta = r.$$
+\end{solution}
+
+
+
+
+
+\section{Mar 21 ex9.4:3,4,8(1)(4),9,11,16(1),17(2)}
+
+\begin{exercise}{9.4.3}
+证明曲线$x = a \cos t, y = a \sin t, z = bt$的切线与$Oz$轴成定角.
+\end{exercise}
+
+\begin{solution}
+    由$\bm r(t) = (a \cos t, a \sin t, bt)$
+    可知$$\bm r'(t) = (-a \sin t, a \cos t, b)$$
+    切线方向向量为$\bm r'(t)$,与$Oz$轴的夹角$\theta$有
+    $$\cos \theta = \frac{\bm r'(t) \cdot \bm k}{|\bm r'(t)|} = \frac{b}{\sqrt{a^2+b^2}}$$为常数,所以切线与$Oz$轴成定角.
+\end{solution}
+
+\begin{exercise}{9.4.4}
+设$\bm r = \left( \frac{t}{1+t},\frac{1+t}{t},t^2 \right) (t > 0 )$,判断它是不是简单曲线,是不是光滑曲线,并求出它在$t = 1$时的切线方程和法平面方程.
+
+\begin{solution}
+    简单曲线:无自交点,即$\bm r(t_1) = \bm r(t_2) \Rightarrow t_1 = t_2$.
+
+    设$\bm r(t_1) = \bm r(t_2)$,则$t_1^2 = t_2^2 \Rightarrow t_1 = \pm t_2$,但$t > 0$,所以$t_1 = t_2$,故是简单曲线.
+
+    光滑曲线:$\bm r$满足$\bm r^{(n)}(t) = \left( \frac{(-1)^{n+1} n!}{(t+1)^{n+1}}, - \frac{(-1)^{n+1}n!}{t^{n+1}},0 \right),n \ges 3$.即$\bm r$的各阶导数都存在且连续,且$\bm r'(t) \neq \bm 0$,所以是光滑曲线.
+
+    在$t = 1$时,切线方程为
+    $$\bm r'(1) = \left( \frac{1}{4}, -1, 2 \right)$$
+    所以切线方程为
+    $$\frac{x-\frac12}{\frac14} = \frac{y-2}{-1} = \frac{z-1}{2}$$
+    设法平面方程为$\frac{1}{4}x - y + 2z = d$,代入$\bm r(1) = \left( \frac12, 2, 1 \right)$得$d = \frac{1}{8}$,所以法平面方程为
+    $$\frac{x}{4} - y + 2z = \frac18$$
+\end{solution}
+\end{exercise}
+
+\begin{exercise}{9.4.8(1)(4)}
+求下列曲面在指定点的切平面和法线方程.
+\begin{enumerate}
+    \item[(1)] $z = \sqrt{x^2+y^2} - xy$,在点$(3,4,-7)$;
+    \item[(4)] $4 + \sqrt{x^2+y^2+z^2} = x+y+z$,在点$(2,3,6)$.
+\end{enumerate}
+\end{exercise}
+
+\begin{solution}
+    \begin{enumerate}
+        \item 曲面可参数化为
+        \[
+        r(x, y) = \left( x, y, \sqrt{x^2 + y^2 - xy} \right)
+        \]
+        于是\begin{align*}
+            &r_x = \left( 1, 0, \frac{x}{\sqrt{x^2 + y^2}} - y \right) \quad \Rightarrow \quad r_x(3, 4) = \left( 1, 0, -\frac{17}{5} \right)\\
+            &r_y = \left( 0, 1, \frac{y}{\sqrt{x^2 + y^2}} - x \right) \quad \Rightarrow \quad r_y(3, 4) = \left( 0, 1, -\frac{11}{5} \right)
+        \end{align*}
+        因此 $(3, 4, -7)$ 处法向量为
+\[
+\n = \left( 1, 0, \frac{-17}{5} \right) \times \left( 0, 1, \frac{-11}{5} \right) = \left( \frac{17}{5}, \frac{11}{5}, 1 \right)
+\]
+法线为
+\[
+\frac{x - 3}{17} = \frac{y - 4}{11} = \frac{z + 7}{5}
+\]
+设切平面为 $17x + 11y + 5z + d = 0$，代入 $(3, 4, -7)$ 得到 $d = -60$。于是切平面方程为
+\[
+17x + 11y + 5z - 60 = 0
+\]
+\item 
+对于隐式曲面
+\[
+F(x, y, z) = \sqrt{x^2 + y^2 + z^2 - (x + y + z)} + 4 = 0
+\]
+于是\begin{align*}
+   & F_x = \frac{x}{\sqrt{x^2 + y^2 + z^2}} - 1 \quad \Rightarrow \quad F_x(2, 3, 6) = \frac{-5}{7}\\
+    &F_y = \frac{y}{\sqrt{x^2 + y^2 + z^2}} - 1 \quad \Rightarrow \quad F_y(2, 3, 6) = \frac{-4}{7}
+    &F_z = \frac{z}{\sqrt{x^2 + y^2 + z^2}} - 1 \quad \Rightarrow \quad F_z(2, 3, 6) = \frac{-1}{7}
+\end{align*}
+因此 $(2, 1, 0)$ 处法向量为
+\[
+\n = (5, 4, 1)
+\]法线为
+\[
+\frac{x - 2}{5} = \frac{y - 3}{4} = z - 6
+\]设切平面为 $5x + 4y + z + d = 0$，代入 $(2, 3, 6)$ 得到 $d = -28$。于是切平面方程为
+\[
+5x + 4y + z - 28 = 0
+\]
+
+    \end{enumerate}
+\end{solution}
+
+\begin{exercise}{9.4.9}
+求椭球面$x^2+2y^2+z^2=1$上平行于平面$x-y+2z=0$的切平面方程.
+\end{exercise}
+
+\begin{solution}
+    切点处的法向量也是平面$x-y+2z=0$的法向量$\n = (1, -1, 2)$,于是切点处椭球面的一个法向量为$\n = (1, -1, 2)$.
+
+    设切点为$(x_0, y_0, z_0)$,则切平面方程为
+    $$x_0(x-x_0) + 2y_0(y-y_0) + z_0(z-z_0) = 0$$
+    注意到$(x_0, y_0, z_0) = \n = (1, -1, 2)$,所以设切点为$(t,-t,2t)$,代入椭圆方程得
+    $$t^2 + 2 t^2 + 4t^2 = 1 \Rightarrow t = \pm \frac{1}{\sqrt 6}$$
+    故切平面方程为
+    $$(x-\frac{1}{\sqrt 6}) - (y+\frac{1}{\sqrt 6}) + 2(z-\frac{2}{\sqrt 6}) = 0$$
+    和
+    $$(x+\frac{1}{\sqrt 6}) - (y-\frac{1}{\sqrt 6}) + 2(z+\frac{2}{\sqrt 6}) = 0$$
+    即$$x-y+2z = \pm \frac{4}{\sqrt 6}$$
+\end{solution}
+
+\begin{exercise}{9.4.11}
+求椭球面$x^2+2y^2+3z^2 = 21$在某点$M$处的切平面$\pi$的方程,使$\pi$过已知直线$L:\frac{x-6}{2} = \frac{y-3}{1} = \frac{2z-1}{-2}$.
+\end{exercise}
+
+\begin{solution}
+    椭球面可以写为隐式曲面$F(x, y, z) = x^2 + 2y^2 + 3z^2 - 21 = 0$,由此得$$F_x = 2x, \quad F_y = 4y, \quad F_z = 6z$$
+    故$(x_0, y_0, z_0)$ 处的切平面方程为
+\[
+x_0(x - x_0) + 2y_0(y - y_0) + 3z_0(z - z_0) = 0
+\]
+展开得
+\[
+x_0x + 2y_0y + 3z_0z = x_0^2 + 2y_0^2 + 3z_0^2 = 21
+\]
+任取直线 $L$ 上两点 $(6, 3, \frac{1}{2})$ 和 $(0, 0, \frac{7}{2})$，代入切平面方程，得到$z_0 = \frac{7}{2}$，进而切平面方程为
+\[
+6x_0 + 6y_0 = 21 - \frac{3}{2} z_0 = \frac{63}{4}
+\]
+再结合
+\[
+x_0^2 + 2y_0^2 + z_0^2 = 21
+\]
+解得
+\[
+(x_0, y_0, z_0) = (3, 0, 2) \quad \text{或} \quad (x_0, y_0, z_0) = (1, 2, 2)
+\]
+进而切平面方程为
+\[
+x + 2z = 7 \quad \text{或} \quad x + 4y + 6z = 21
+\]
+\end{solution}
+
+\begin{exercise}{9.4.16(1)}
+求下列曲线在给定点的切线和法平面方程
+\begin{enumerate}
+    \item[(1)] $x^3y+xy^3 =3 - x^2y^2$在点$(1,1)$.
+\end{enumerate}
+\end{exercise}
+
+\begin{solution}
+    \begin{enumerate}
+        \item[(1)] 对于隐式曲线
+        \[
+        F(x, y) = x^3y + xy^3 + x^2 + y^2 - 3 = 0
+        \]
+        有
+        \[
+        F_x = 3x^2y + y^3 + 2xy^2 \quad \Rightarrow \quad F_x(1, 1) = 6
+        \]
+        \[
+        F_y = x^3 + 3xy^2 + 2x^2y \quad \Rightarrow \quad F_y(1, 1) = 6
+        \]
+        故 $(1, 1)$ 处法向量为 $n = (1, 1)$，进一步切向量为 $\t = (1, -1)$。
+
+        进而切线和法线依次为
+        \[
+        y = -x + 2 \quad \text{和} \quad y = x
+        \]
+    \end{enumerate}
+\end{solution}
+
+\begin{exercise}{9.4.17(2)}
+求下列曲线在给定点的切线和法平面方程
+\begin{enumerate}
+    \item[(2)] $\begin{cases}
+        2x^2 + 3y^2 + z^2 = 47,\\
+        x^2 + 2y^2 =z
+    \end{cases}$在点$(-2,1,6)$.
+\end{enumerate}
+\end{exercise}
+
+\begin{solution}
+    \begin{enumerate}
+        \item [(2)]
+考虑隐式曲面
+\[
+F(x, y, z) = 2x^2 + 3y^2 + z^2 - 47 = 0, \quad G(x, y, z) = x^2 + 2y^2 - z = 0
+\]
+不难得到它们在 $(-2, 1, 6)$ 处的法向量分别为
+\[
+\n_1 = (-4, 3, 6), \quad \n_2 = (-4, 4, -1)
+\]
+于是曲线的切向量为
+\[
+\t = \n_1 \times \n_2 = (-27, -28, -4)
+\]
+因此 $(1, 3, 4)$ 处切线为
+\[
+\frac{x + 2}{27} = \frac{y - 1}{28} = \frac{z - 6}{4}
+\]
+设切平面为 $27x + 28y + 4z + d = 0$，代入 $(-2, 1, 6)$ 得到 $d = 2$。于是切平面方程为
+\[
+27x + 28y + 4z + 2 = 0
+\]
+    \end{enumerate}
+\end{solution}
+
+
+
+
+
+
+
+
+
+
+

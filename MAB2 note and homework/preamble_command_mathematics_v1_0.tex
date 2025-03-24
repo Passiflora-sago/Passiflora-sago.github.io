@@ -5,8 +5,6 @@
 % ---------- macro definition ----------
 % ----- equation setting -----
 \everymath{\displaystyle}
-\usepackage{pgfplots}
-\usepackage{subcaption}  % 用于插入子图
 
 % ----- command -----
 \newcommand{\les}{\leqslant}
@@ -27,7 +25,6 @@
 \newcommand{\by}{\leftarrow}
 
 \newcommand{\join}{\Join}
-
 
 % \renewcommand\pi{\piup}
 \newcommand{\PI}{\uppi}
@@ -51,7 +48,7 @@
 \DeclareMathOperator{\diff}{d}
 \DeclareMathOperator{\trans}{T}
 \DeclareMathOperator{\tr}{tr}
-\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\grad}{\mathbf{grad}}
 \DeclareMathOperator{\rank}{rank}
 \DeclareMathOperator{\diag}{diag}
 \DeclareMathOperator{\sinc}{sinc}
@@ -237,3 +234,27 @@
 \newcommand{\bPsi}{\bm{\Psi}}
 \newcommand{\bZeta}{\bm{\Zeta}}
 \newcommand{\ve}{\varepsilon}
+\newcommand{\laplace}{\Delta}
+
+% 启用 expl3 语法处理多个变量
+\ExplSyntaxOn
+
+% 定义 \parfrac 宏，默认阶数为 1，支持多个变量
+\NewDocumentCommand{\parfrac}{O{1} m m}
+{
+  \frac{
+    \int_compare:nNnTF {#1} = {1} {\partial #2} {\partial^{#1} #2}
+  }
+  {
+    \parfrac_process_vars:n { #3 }
+  }
+}
+
+% 处理逗号分隔的多个偏导变量
+\cs_new_protected:Nn \parfrac_process_vars:n
+{
+  \seq_set_split:Nnn \l_tmpa_seq { , } { #1 }
+  \seq_map_inline:Nn \l_tmpa_seq { \partial ##1 }
+}
+
+\ExplSyntaxOff

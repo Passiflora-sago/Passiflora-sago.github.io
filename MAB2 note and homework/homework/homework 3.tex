@@ -1,0 +1,516 @@
+\setcounter{chapter}{2} % 设置章节计数器
+\chapter{}
+
+\section{Mar 10 ex9.2:2(2)(5)(8),3,4,6,13(4)(6),16.}
+
+\begin{exercise}{9.2.2}
+    求下列函数对于每个自变量的偏微商:
+        \begin{enumerate}
+            \item[(2)] $z = 3^{-y/x}$;
+            \item[(5)] $u = \arctan\left( \frac{x + y}{x - y} \right)$;
+            \item[(8)] $u = x\e^{-z} + \ln(x + \ln y) + z$;
+        \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+    \begin{enumerate}
+        \item[(2)] \begin{align*}
+            \parfrac{z}{x} &= 3^{-y/x} \ln 3 \cdot \left( -\frac{y}{x} \right)' = 3^{-y/x} \ln 3 \cdot \frac{y}{x^2}\\
+            \parfrac{z}{y} &= 3^{-y/x} \ln 3 \cdot \left( -\frac{y}{x} \right)' = 3^{-y/x} \ln 3 \cdot \left( -\frac{1}{x} \right)
+        \end{align*}
+        \item[(5)] \begin{align*}
+            \parfrac{u}{x} &= \frac{(x-y)^2}{2x^2+2y^2} \frac{-2y}{(x-y)^2} = -\frac{y}{x^2+y^2}\\
+            \parfrac{u}{y} &= \frac{(x-y)^2}{2x^2+2y^2} \frac{2x}{(x-y)^2} = \frac{x}{x^2+y^2}\\
+        \end{align*}
+        \item[(8)] \begin{align*}
+            \parfrac{u}{x} &= \e^{-z} + \frac{1}{x + \ln y}\\
+            \parfrac{u}{y} &= \frac{1}{y(x + \ln y)}\\
+            \parfrac{u}{z} &= -x\e^{-z} + 1
+        \end{align*}
+    \end{enumerate}
+\end{solution}
+
+\begin{exercise}{9.2.3}
+    设$f(x, y) = \int_{1}^{x^2y} \frac{\sin t}{t} \dif t$, 求$\frac{\partial f}{\partial x}$, $\frac{\partial f}{\partial y}$.
+    \begin{solution}
+    \begin{align*}
+        \parfrac{f}{x} &= \frac{\sin x^2y}{x^2y} \parfrac{(x^2y)}{x} = \frac{2\sin x^2y}{x}\\
+        \parfrac{f}{y} &= \frac{\sin x^2y}{x^2y} \parfrac{(x^2y)}{y} = \frac{x^2\sin x^2y}{x^2y} = \frac{\sin x^2y}{y}
+    \end{align*}
+    \end{solution}
+\end{exercise}
+
+\begin{exercise}{9.2.4}
+    设$f(x, y) = \begin{cases}
+        y \sin\left( \frac{1}{x^2 + y^2} \right), & x^2 + y^2 \neq 0, \\
+        0, & x^2 + y^2 = 0.
+    \end{cases}$ 考察函数$f(x, y)$在原点$(0, 0)$的偏导数.
+    \begin{solution}
+    $x$ 方向的偏导数为
+    $$\parfrac{f}{x}(0,0) = \lim_{h \to 0} \frac{f(h, 0) - f(0, 0)}{h} = \lim_{h \to 0} 0 \cdot \sin \frac{1}{h^2 + 0^2} = 0$$
+    $y$ 方向的偏导数为
+    $$\parfrac{f}{y}(0,0) = \lim_{h \to 0} \frac{f(0, h) - f(0, 0)}{h} = \lim_{h \to 0} \frac{h \sin \frac{1}{0^2 + h^2} - 0}{h} = \lim_{h \to 0} \sin \frac{1}{h^2}= \text{不存在}$$
+    \end{solution}
+\end{exercise}
+
+\begin{exercise}{9.2.6}
+    求曲面$z=\frac{x^2+y^2}{4}$与平面$y=4$的交线在点$(2,4,5)$处的切线与$Ox$轴正向所成的角度.
+\end{exercise}
+
+\begin{solution}
+    夹角$\theta$的正弦为
+$$\parfrac{z}{x} \bigg|_{(x,y) = (2,4)} = \left( \parfrac{}{x} \frac{x^2 + 4^2}{4} \right) \bigg|_{x=2} = 1$$
+因此夹角$\theta = \frac{\pi}{4}$.
+\end{solution}
+
+\begin{exercise}{9.2.13}
+    求下列函数的微分,或在给定点的微分
+    \begin{enumerate}
+        \item[(4)] $z = \arctan \frac{y}{x}$,
+        \item[(6)] $z = x^4 + y^4-4x^2y^2$在点$(0,0), (1,1)$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+解法一:
+\begin{enumerate}
+    \item \begin{align*}
+    \parfrac{z}{x} &= \frac{1}{1 + \left( \frac{y}{x} \right)^2} \cdot \left( -\frac{y}{x^2} \right) = -\frac{y}{x^2 + y^2}\\
+    \parfrac{z}{y} &= \frac{1}{1 + \left( \frac{y}{x} \right)^2} \cdot \frac{1}{x} = \frac{x}{x^2 + y^2}
+\end{align*}
+由此得
+$$
+\dif z = \parfrac{z}{x} \dif x + \parfrac{z}{y} \dif y = -\frac{y}{x^2 + y^2} \dif x + \frac{x}{x^2 + y^2} \dif y
+$$
+\item \begin{align*}
+    \parfrac{z}{x} &= 4x^3 - 8xy^2\\
+    \parfrac{z}{y} &= 4y^3 - 8x^2y
+\end{align*}
+由此得
+$$
+\dif z = (4x^3 - 8xy^2) \dif x + (4y^3 - 8x^2y) \dif y
+$$
+代入得
+\begin{align*}
+    \dif z|_{(0,0)} &= 0\\
+    \dif z|_{(1,1)} &= -4 \dif x - 4 \dif y
+\end{align*}
+\end{enumerate}
+
+\end{solution}
+
+\begin{solution}
+    解法二:
+    \begin{enumerate}
+        \item $$\dif z= \frac{1}{1 + \left( \frac{y}{x} \right)^2} \dif \left( \frac{y}{x} \right) = \frac{1}{1 + \left( \frac{y}{x} \right)^2} \left( -\frac{y}{x^2} \dif x + \frac{1}{x} \dif y \right)= \frac{-y \dif x + x \dif y}{x^2 + y^2}$$
+        \item $$\dif z = 4x^3 \dif x + 4y^3 \dif y - 4(2xy^2 \dif x + 2x^2y \dif y) = 4(x^3 - 2xy^2) \dif x + 4(y^3 - 2x^2y) \dif y$$
+    \end{enumerate}
+    其余部分同解法一.
+\end{solution}
+
+\begin{exercise}{9.2.16}
+    证明函数$f(x,y) = \begin{cases}
+        \frac{x^2y}{x^2 + y^2}, & x^2 + y^2 \neq 0,\\
+        0, & x^2 + y^2 = 0.
+    \end{cases}$在点$(0,0)$连续且偏导数存在,但是在此点不可微.
+\end{exercise}
+
+\begin{solution}
+    由
+    $$
+    0 \les \lim_{x \to 0} \left| \frac{x^2 y}{x^2 + y^2} \right| \les \lim_{x \to 0} \left| \frac{x}{2} \right| = 0
+    $$
+    可得$f(x, y)$在$(0, 0)$连续.$(0,0)$处的偏导数为
+    \begin{align*}
+        \parfrac{f}{x}(0,0) &= \lim_{x \to 0} \frac{xy}{x^2 + y^2} \Big|_{y=0} = 0\\
+        \parfrac{f}{y} &= \lim_{y \to 0} \frac{y^2}{x^2 + y^2} \Big|_{x=0} = 0
+    \end{align*}
+    故$f(x, y)$在$(0, 0)$处的偏导数存在.
+
+    下证不可微,假设可微,则极限
+    $$
+    \lim_{x \to 0, y \to 0} \frac{f(x, y)}{\sqrt{x^2 + y^2}} = \lim_{x \to 0, y \to 0} \frac{x^2 y}{(x^2 + y^2)^{3/2}}
+    $$
+    存在,但是
+    \begin{align*}
+        &\lim_{x \to 0, y =0} \frac{x^2 y}{(x^2 + y^2)^{3/2}} = 0\\
+        &\lim_{x \to 0, y =x} \frac{x y}{(x^2 + y^2)^{3/2}} = \frac{1}{2\sqrt{2}}
+    \end{align*}
+    矛盾,故$f(x, y)$在$(0, 0)$不可微.
+\end{solution}
+
+\section{Mar 12 ex9.2:2(7),8,11,15,26,27,28.}
+
+\begin{exercise}
+    {9.2.2(7)}
+    求下列函数对于每个自变量的偏微商:
+    \begin{enumerate}
+        \item[(7)] $u = x^{y^z}$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{align*}
+    \parfrac{u}{x} &= y^z x^{y^z - 1}\\
+    \parfrac{u}{y} &= z y^{z - 1} x^{y^z} \ln x\\
+    \parfrac{u}{z} &= y^z x^{y^z} \ln x \ln y
+\end{align*}
+
+\begin{exercise}{9.2.8}
+    证明函数$u= \frac{1}{\sqrt t} \e^{-\frac{x^2}{4t}}$满足热传导方程$\frac{\partial u}{\partial t} = \frac{\partial^2 u}{\partial x^2}$.
+\end{exercise}
+
+\begin{solution}
+    \begin{align*}
+        \parfrac{u}{t} &= -\frac{1}{2}t^{-\frac{3}{2}}\e^{-\frac{x^2}{4t}} + \frac{1}{\sqrt t} \cdot \frac{x^2}{4t^2} \e^{-\frac{x^2}{4t}}\\
+        \parfrac{u}{x} &= \frac{1}{\sqrt t} \e^{-\frac{x^2}{4t}} \cdot \left( -\frac{x}{2t} \right)\\
+        \parfrac{^2u}{x^2} &= \frac{1}{\sqrt t} \e^{-\frac{x^2}{4t}} \cdot \left( -\frac{1}{2t} + \frac{x^2}{4t^2} \right)
+    \end{align*}
+\end{solution}
+
+\begin{exercise}
+    {9.2.11}
+    设$r = \sqrt{x^2 + y^2 + z^2}$, 证明当$r \neq 0$时,有
+    \begin{enumerate}
+        \item[(1)] $\parfrac[2]{r}{x} + \parfrac[2]{r}{y} + \parfrac[2]{r}{z} = \frac{2}{r}$;
+        \item[(2)] $\parfrac[2]{\ln r}{x} + \parfrac[2]{\ln r}{y} + \parfrac[2]{\ln r}{z} = \frac{1}{r^2}$.
+        \item[(3)] $\parfrac[2]{}{x} \frac{1}{r} + \parfrac[2]{}{y} \frac{1}{r} + \parfrac[2]{}{z} \frac{1}{r} = 0$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    证明一:
+    \begin{enumerate}
+        \item $$
+        \parfrac[2]{r}{x} = \parfrac{}{x} \left( \frac{x}{\sqrt{x^2 + y^2 + z^2}} \right) = \frac{y^2 + z^2}{(x^2 + y^2 + z^2)^{\frac{3}{2}}} \Rightarrow \Delta r = \frac{2}{r}
+        $$
+        \item $$
+        \parfrac[2]{\ln r}{x} = \parfrac{}{x} \left( \frac{x}{x^2 + y^2 + z^2} \right) = \frac{y^2 + z^2-x^2}{(x^2 + y^2 + z^2)^2} \Rightarrow \Delta \ln r = \frac{1}{r^2}
+        $$
+        \item $$
+        \parfrac[2]{}{x} \frac{1}{r} = \parfrac{}{x} \left( - \frac{x}{(x^2 + y^2 + z^2)^{\frac{3}{2}}} \right) = \frac{y^2 + z^2-2x^2}{(x^2 + y^2 + z^2)^{\frac{5}{2}}} \Rightarrow \Delta \frac{1}{r} = 0$$
+    \end{enumerate}
+\end{proof}
+
+\begin{proof}
+    证明二:
+    \begin{enumerate}
+        \item
+    $$
+    \nabla r = \left(\parfrac{r}{x}, \parfrac{r}{y}, \parfrac{r}{z}\right) = \left( \frac{x}{r}, \frac{y}{r}, \frac{z}{r} \right) = \frac{1}{r} (x, y, z) := \frac{1}{r} \bm{r}
+    $$
+    $$
+    \nabla \cdot \bm{r} = \parfrac{}{x} x + \parfrac{}{y} y + \parfrac{}{z} z = 3
+    $$
+    由此得
+    $$
+    \Delta r = \nabla^2 r = \nabla \cdot \nabla r = \nabla \cdot \frac{1}{r} \bm{r} = \frac{1}{r} \nabla \cdot \bm r + \bm r \cdot \nabla \left( \frac{1}{r} \right) = \frac{3-1}{r} = \frac{2}{r}
+    $$
+    \item 
+    $$
+    \nabla \ln r = \left( \parfrac{\ln r}{x}, \parfrac{\ln r}{y}, \parfrac{\ln r}{z} \right) = \left( \frac{1}{r} \parfrac{r}{x}, \frac{1}{r} \parfrac{r}{y}, \frac{1}{r} \parfrac{r}{z} \right) = \frac{1}{r} \nabla r = \frac{1}{r^2} (x, y, z) := \frac{1}{r^2} \bm{r}
+    $$
+    由此得
+    $$
+    \Delta \ln r = \nabla^2 \ln r = \nabla \cdot \nabla \ln r = \nabla \cdot \frac{1}{r^2} \bm{r} = \frac{1}{r^2} \nabla \cdot \bm r + \bm r \cdot \nabla \left( \frac{1}{r^2} \right) = \frac{3}{r^2} = \frac{1}{r^2}
+    $$
+    \item 
+    $$
+    \nabla \frac{1}{r} = \left( \parfrac{}{x} \frac{1}{r}, \parfrac{}{y} \frac{1}{r}, \parfrac{}{z} \frac{1}{r} \right) = \left( -\frac{1}{r^2} \parfrac{r}{x}, -\frac{1}{r^2} \parfrac{r}{y}, -\frac{1}{r^2} \parfrac{r}{z} \right) = -\frac{1}{r^2} \nabla r = -\frac{1}{r^3} (x, y, z) := -\frac{1}{r^3} \bm{r}
+    $$
+    由此得
+    $$
+    \Delta \frac{1}{r} = \nabla^2 \frac{1}{r} = \nabla \cdot \nabla \frac{1}{r} = \nabla \cdot \left( -\frac{1}{r^3} \bm{r} \right) = -\frac{1}{r^3} \nabla \cdot \bm r - \bm r \cdot \nabla \left( \frac{1}{r^3} \right) = 0
+    $$
+\end{enumerate}
+\end{proof}
+
+\begin{exercise}{9.2.15}
+    根据可微的定义证明,函数$f(x,y) = \sqrt{|xy|}$在原点不可微.
+\end{exercise}
+
+\begin{proof}
+    假设$f(x,y) = \sqrt{|xy|}$在原点可微,则极限
+    $$
+    f(h,k) - f(0,0) = \sqrt{|hk|} = ah+bk + o(\sqrt{h^2 + k^2})
+    $$
+    由对称性,有$a = b$,然而取$k = -h$时有
+    $$
+    |h| = (a-b)h + o(h) = o(h)
+    $$
+    矛盾,故$f(x,y) = \sqrt{|xy|}$在原点不可微.
+\end{proof}
+
+\begin{exercise}
+    {9.2.26}
+    设$z=f(xy)$,$f$为可微函数.证明$x \parfrac{z}{x} - y \parfrac{z}{y} = 0$.
+\end{exercise}
+
+\begin{proof}
+    由链式法则得
+    $$
+    \parfrac{z}{x} = f'(xy) y, \quad \parfrac{z}{y} = f'(xy) x
+    $$
+    代入得
+    $$
+    x \parfrac{z}{x} - y \parfrac{z}{y} = f'(xy) xy - f'(xy) xy = 0
+    $$
+\end{proof}
+
+\begin{exercise}
+    {9.2.27}
+    设$z=f(\ln x + \frac{1}{y})$, $f$为可微函数.证明$x \parfrac{z}{x} + y^2 \parfrac{z}{y} = 0$.
+\end{exercise}
+
+\begin{proof}
+    由链式法则,
+    \begin{align*}
+        \parfrac{z}{x} &= f'(\ln x + \frac{1}{y}) \cdot \frac{1}{x}\\
+        \parfrac{z}{y} &= f'(\ln x + \frac{1}{y}) \cdot \left( -\frac{1}{y^2} \right)
+    \end{align*}
+    代入得
+    $$
+    x \parfrac{z}{x} + y^2 \parfrac{z}{y} = f'(\ln x + \frac{1}{y}) - f'(\ln x + \frac{1}{y}) = 0
+    $$
+\end{proof}
+
+\begin{exercise}
+    {9.2.28}
+    证明函数$u = \varphi(x-at) + \psi(x+at)$满足波动方程$$\frac{\partial^2 u}{\partial t^2} = a^2 \frac{\partial^2 u}{\partial x^2}.$$
+\end{exercise}
+
+\begin{proof}
+
+    令$\begin{cases}
+        v=x-at,\\
+        w=x+at;
+    \end{cases}$则有$u=\varphi(v)+\psi(w)$且
+    $\begin{cases}
+        \frac{\partial v}{\partial x}=1,\\
+        \frac{\partial w}{\partial x}=1;\\
+    \end{cases}$与
+    $\begin{cases}
+        \frac{\partial v}{\partial t}=-a,\\
+        \frac{\partial w}{\partial t}=a;\\
+    \end{cases}$
+
+    因此我们有$\frac{\partial u}{\partial x}=\varphi'(v)\frac{\partial v}{\partial x}+\psi'(w)\frac{\partial w}{\partial x}=\varphi'(v)+\psi'(w)$,
+    
+    故$\frac{\partial^ 2 u}{\partial x^2}=\varphi''(v)\frac{\partial v}{\partial x}+\psi''(w)\frac{\partial w}{\partial x}=\varphi''(v)+\psi''(w).$
+
+    同时$\frac{\partial u}{\partial t}=\varphi'(v)\frac{\partial v}{\partial t}+\psi'(w)\frac{\partial w}{\partial t}=-a\varphi'(v)+a\psi'(w),$
+    
+    故$\frac{\partial^ 2 u}{\partial x^2}=-a\varphi''(v)\frac{\partial v}{\partial x}+a\psi''(w)\frac{\partial w}{\partial x}=a^2\left(\varphi''(v)+\psi''(w)\right)=a^2\frac{\partial^ 2 u}{\partial x^2}.$
+\end{proof}
+
+\section{Mar 14 ex9.2:20(2)(3)(4),25,28,32; ex9.3:1(1),2(2)(5),4(1).}
+
+\begin{exercise}{9.2.20}
+    求下列复合函数的偏导数或倒数,其中各题中的$f$均有连续的二阶偏导数.
+    \begin{enumerate}
+        \item[(2)] 设$u = f(x,y,z), x = \sin t, y = \cos t,z = \e^t$, 求$\frac{\dif u}{\dif t}$;
+        \item[(3)] 设$u = f(x^2-y^2,\e^{xy})$,求$\parfrac{u}{x}$和$\parfrac{u}{x,y}$;
+        \item[(4)] 设$u = f(x+y+z,x^2+y^2+z^2)$,求$\parfrac{u}{x},\parfrac[2]{u}{x},\parfrac{u}{x,y}$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+\begin{enumerate}
+    \item[(2)] \begin{align*}
+        \frac{\dif u}{\dif t} &= \parfrac{u}{x} \frac{\dif x}{\dif t} + \parfrac{u}{y} \frac{\dif y}{\dif t} + \parfrac{u}{z} \frac{\dif z}{\dif t}\\
+        &= f_1' \cos t - f_2' \sin t + f_3' \e^t
+    \end{align*}
+    \begin{remark}
+        在$u=f(x,y,z)$,$f$中的变量不复杂的时候可以使用$f_x',f_y',f_z'$来表示$f_1',f_2',f_3'$.但是对后面两题使用$f_x'$会有歧义.
+    \end{remark}
+    \item[(3)]
+    \begin{align*}
+        \parfrac{u}{x} &= f_1' \cdot 2x - f_2' y \e^{xy}\\
+        \parfrac{u}{x,y} &= \parfrac{}{x} \left( -2y f_1' + x \e^{xy} f_2'\right)\\
+        &= -4 xy f_{11}'' + 2(x^2 - y^2) \e^{xy} f_{12}'' + (x+y) \e^{xy} f_2' +xy \e^{xy} f_{22}''
+    \end{align*}
+    \item[(4)]
+    \begin{align*}
+        \parfrac{u}{x} &= f_1' + 2x f_2'\\
+        \parfrac[2]{u}{x} &= f_{11}'' + 4x f_{12}'' + 4x^2 f_{22}''\\
+        \parfrac{u}{x,y} &= \parfrac{}{x} \left( f_1' + 2x f_2' \right)\\
+        &= f_{11}'' + 2(x+y) f_{12}'' + 4xy f_{22}''
+    \end{align*}
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}
+    {9.2.25}
+    设$u =f(t),t = \varphi(xy,x+y)$,其中$f,\varphi$分别具有连续的二阶偏导数及偏导数,求$\parfrac{u}{x},\parfrac{u}{y},\parfrac{u}{x,y}$.
+\end{exercise}
+
+\begin{solution}
+    \begin{align*}
+        \parfrac{u}{x} &= y \varphi_1' f'(t) + \varphi_2' f'(t)\\
+        \parfrac{u}{y} &= x \varphi_1' f'(t) + \varphi_2' f'(t)\\
+    \end{align*}
+
+    \begin{align*}
+        \parfrac{u}{x,y} &= \parfrac{}{x} \left( y \varphi_1' f'(t) + \varphi_2' f'(t) \right)\\
+        &= \varphi_1 f'(t) + xy \varphi_{11}'' f'(t) + x \varphi_{12}'' f'(t) + x (\varphi_1')^2 f''(t) + x \varphi_1' \varphi_2' f''(t) \\
+        &+ y \varphi_{21}'' f'(t) + \varphi_{22}'' f'(t) + y \varphi_1' \varphi_2' f''(t) + (\varphi_2)^2 f''(t)\\
+        &= f'(t)(\varphi_1' + xy \varphi_{11}'' + x \varphi_{12}'' + y \varphi_{21}'' + \varphi_{22}) + f''(t)(xy (\varphi_1')^2 + (x+y) \varphi_1' \varphi_2' + (\varphi_2)^2)\\
+        &= f'(t)\left(\varphi_1' + xy \varphi_{11}'' + (x+y) \varphi_{12}'' + \varphi_{22}'' \right) + f''(t)\left(xy (\varphi_1')^2 + (x+y) \varphi_1' \varphi_2' + (\varphi_2)^2\right)
+    \end{align*}
+\end{solution}
+
+\begin{exercise}
+    {9.2.28}
+    设$u = f(x^2-y^2,\e^{xy})$,求$\parfrac{u}{x},\parfrac{u}{y},\parfrac{u}{x,y}$.
+\end{exercise}
+
+\begin{proof}
+
+    令$\begin{cases}
+        v=x-at,\\
+        w=x+at;
+    \end{cases}$则有$u=\varphi(v)+\psi(w)$且
+    $\begin{cases}
+        \frac{\partial v}{\partial x}=1,\\
+        \frac{\partial w}{\partial x}=1;\\
+    \end{cases}$与
+    $\begin{cases}
+        \frac{\partial v}{\partial t}=-a,\\
+        \frac{\partial w}{\partial t}=a;\\
+    \end{cases}$
+
+    因此我们有$\frac{\partial u}{\partial x}=\varphi'(v)\frac{\partial v}{\partial x}+\psi'(w)\frac{\partial w}{\partial x}=\varphi'(v)+\psi'(w)$,
+    
+    故$\frac{\partial^ 2 u}{\partial x^2}=\varphi''(v)\frac{\partial v}{\partial x}+\psi''(w)\frac{\partial w}{\partial x}=\varphi''(v)+\psi''(w).$
+
+    同时$\frac{\partial u}{\partial t}=\varphi'(v)\frac{\partial v}{\partial t}+\psi'(w)\frac{\partial w}{\partial t}=-a\varphi'(v)+a\psi'(w),$
+    
+    故$\frac{\partial^ 2 u}{\partial x^2}=-a\varphi''(v)\frac{\partial v}{\partial x}+a\psi''(w)\frac{\partial w}{\partial x}=a^2\left(\varphi''(v)+\psi''(w)\right)=a^2\frac{\partial^ 2 u}{\partial x^2}.$
+\end{proof}
+
+\begin{exercise}
+    {9.2.32}
+    设变换$\begin{cases}
+        u = x-2y,\\
+        v = x + ay
+    \end{cases}$可把方程$6 \parfrac[2]{z}{x} + \parfrac{z}{x,y} - \parfrac[2]{z}{y} = 0$化为$\parfrac[2]{w}{u} = 0$,求常数$a$.
+\end{exercise}
+
+\begin{solution}
+    由链式法则得
+    \begin{align*}
+        \parfrac{z}{x} &= \parfrac{z}{u} \parfrac{u}{x} + \parfrac{z}{v} \parfrac{v}{x} = \parfrac{z}{u} + a \parfrac{z}{v}\\
+        \parfrac{z}{y} &= \parfrac{z}{u} \parfrac{u}{y} + \parfrac{z}{v} \parfrac{v}{y} = -2 \parfrac{z}{u} + a \parfrac{z}{v}\\
+    \end{align*}
+    得
+    \begin{align*}
+        \parfrac[2]{z}{x} &= \parfrac{}{x} \left( \parfrac{z}{u} + \parfrac{z}{v} \right) = \left( \parfrac{}{u} + \parfrac{}{v} \right) \left(\parfrac{z}{u} + \parfrac{z}{v} \right) = \parfrac[2]{z}{u} + 2 \parfrac{z}{u,v} + \parfrac[2]{z}{v}\\
+        \parfrac{z}{x,y} &= \parfrac{}{x} \left( -2 \parfrac{z}{u} + a \parfrac{z}{v} \right) = \left( \parfrac{}{u} + \parfrac{}{v} \right) \left( -2 \parfrac{z}{u} + a \parfrac{z}{v} \right) = -2 \parfrac[2]{z}{u} + (a-2) \parfrac{z}{u,v} + a \parfrac[2]{z}{v}\\
+        \parfrac[2]{z}{y} &= \parfrac{}{y} \left( -2 \parfrac{z}{u} + a \parfrac{z}{v} \right) = \left( -2 \parfrac{}{u} + a \parfrac{}{v} \right) \left( -2 \parfrac{z}{u} + a \parfrac{z}{v}\right) = 4 \parfrac{z}{u} -4a \parfrac{z}{u,v} + a^2 \parfrac{z}{v}
+    \end{align*}
+    代入得
+    \begin{align*}
+        0 &= 6 \parfrac[2]{z}{x} + \parfrac{z}{x,y} - \parfrac[2]{z}{y}\\
+        &= 6 \parfrac[2]{z}{u} + 12 \parfrac{z}{u,v} + 6 \parfrac[2]{z}{v} + (a-2) \parfrac{z}{u,v} + a \parfrac[2]{z}{v} + 4 \parfrac{z}{u} -4a \parfrac{z}{u,v} + a^2 \parfrac{z}{v}\\
+        &= (10+5a) \parfrac{z}{u,v} - (6 + a -a^2) \parfrac[2]{z}{v}
+    \end{align*}
+    故$a = 3$或$a = -2$,但是当$a=-2$时,方程会变为$0 = 0$,无意义,故$a=3$.
+\end{solution}
+
+\begin{exercise}
+    {9.3.1(1)}
+    证明下列方程在指定点的附近对$y$有唯一解,并求出$y$对$x$在该点处的一阶和二阶导数
+    \begin{enumerate}
+        \item[(1)] $x^2+xy+y^2 = 7$,在$(2,1)$处.
+    \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+    已知
+\[
+F(x, y) = x^2 + xy + y^2 - 7 \in C^1(\mathbb{R}^2)
+\]
+且
+\[
+F(2, 1) = 0, \quad F_y'(2, 1) = 4 \neq 0
+\]
+由隐函数定理,知该方程在$(2, 1)$附近有唯一解$y(x)$.
+
+两边微分得到
+\begin{align*}
+    2x \dif x + y \dif x + x \dif y + 2y \dif y &= 0 \\
+    \Rightarrow \frac{\dif y}{\dif x} &= \frac{-2x + y}{x + 2y} \\
+    \Rightarrow y'(2) &= \frac{-5}{4}
+    \end{align*}
+
+    进一步
+    \begin{align*}
+    \frac{\diff^2 y}{\dif x^2} &= - \frac{(2 \dif x + \dif y)(x + 2y) - (2x + y)(\dif x + 2 \dif y)}{(x + 2y)^2} \, \dif x \\
+    &= \frac{(2x + y) - 2(x + 2y)}{(x + 2y)^2} + \frac{2(2x + y) - (x + 2y)}{(x + 2y)^2} \frac{\dif y}{\dif x} \\
+    &= \frac{6(x^2 + xy + y^2)}{(x + 2y)^3} \\
+    \Rightarrow y''(2) &= -\frac{21}{32}
+    \end{align*}
+
+
+\end{solution}
+
+\begin{exercise}
+    {9.3.2(2)}
+    求由下列方程所确定的隐函数的导数.
+    \begin{enumerate}
+        \item[(2)] $\ln \sqrt{x^2+y^2} = \arctan \frac{y}{x}$,求$\frac{\dif y}{\dif x}$和$\frac{\diff^2 y}{\dif x^2}$;
+        \item[(5)] $\frac{x}{z} = \ln \frac{z}{y}$,求$\parfrac{z}{x},\parfrac{z}{y}$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+    \begin{enumerate}
+        \item 两边微分,得到
+        \[
+        \frac{x^2 \dif x + y \dif y}{x^2 + y^2} = \left( \frac{-y}{x^2} \dif x + \frac{1}{x} \dif y \right)
+        \]
+        整理得
+        \[
+        \frac{\dif y}{\dif x} = \frac{x + y}{x - y}
+        \]
+        故
+        \[
+        \dif \left( \frac{\dif y}{\dif x} \right) = \frac{1}{(x - y)^2} \left( ((\dif x + \dif y)(x - y) - (x + y)(\dif x + \dif y)) \right)
+        \]
+        代入 $\dif y = \frac{x + y}{x - y}$ 得
+        \[
+        \frac{\diff^2 y}{\dif x^2} = - \frac{2y}{(x - y)^2} + \frac{2y(x + y)}{(x - y)^3} = \frac{4y^2}{(x - y)^3}
+        \]
+        \item 两边微分,得到
+        \[
+        \frac{1}{z} \dif x - \frac{x}{z^2} \dif z
+        \]
+        整理得
+        \[
+        \frac{\partial z}{\partial x} = \frac{z}{x + z}
+        \]
+        故
+        \[
+        \frac{\partial z}{\partial y} = \frac{z^2}{y(x + z)}
+        \]
+    \end{enumerate}
+\end{solution}
+
+
+\begin{exercise}
+    {9.3.4(1)}
+    试求由下列方程所确定的隐函数的微分.
+    \begin{enumerate}
+        \item[(1)] $\cos^2 x + \cos^2 y + \cos^2 z = 1$,求$\dif z$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+    两边微分,得到
+    \[
+    -2 \sin x \cos x \dif x - 2 \sin y \cos y \dif y - 2 \sin z \cos z \dif z = 0
+    \]
+    整理得
+    \[
+    \dif z = - \frac{\sin x \cos x \dif x + \sin y \cos y \dif y}{\sin z \cos z} = - \frac{ \sin 2x \dif x + \sin 2y \dif y}{2 \sin 2z}.
+    \]
+\end{solution}
