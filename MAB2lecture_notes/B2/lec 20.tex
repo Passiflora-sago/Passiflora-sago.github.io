@@ -1,0 +1,181 @@
+\setcounter{chapter}{19} % 设置章节计数器
+
+\chapter{二重积分的一般变量代换}
+
+\section{变量代换}
+
+我们考虑一下的变量的代换
+$$
+\begin{cases}
+    x = x(u,v)\\
+    y = y(u,v)
+\end{cases}
+$$
+其中通常有$(u,v) \in D_{uv}$,$x(u,v),y(u,v) \in C^1(D_{uv})$.且Jacobian行列式$\pdv{(x,y)}{(u,v)}$在$D_{uv}$中有界且不为零.利用二元函数的全微分,有:
+
+$$
+\begin{cases}
+    \dif x = \dif x(u,v) = x_u' \dif u + x_v' \dif v\\
+    \dif y = \dif y(u,v) = y_u' \dif u + y_v' \dif v
+\end{cases}
+$$
+从而
+$$\dif x \dif y = (x_u' \dif u + x_v' \dif v)(y_u' \dif u + y_v' \dif v) = (x_u'y_v' - x_v'y_u') \dif u \dif v =\pdv{(x,y)}{(u,v)} \dif u \dif v$$
+
+\begin{remark}
+    汪老师(也就是上面的讲义)与课本讲的是不同的.请注意区别,汪老师上课讲的所有微是微分形式,也就是说老师证明的是:
+    $$\dif x \wedge \dif y = \pdv{(x,y)}{(u,v)} \dif u \wedge \dif v$$
+
+    课本上讲的$\dif x \dif y$是面积微元,面积微元$\dif x \dif y = \dif y \dif x$,因此书上证明的是:
+    $$\dif x \dif y = \left| \pdv{(x,y)}{(u,v)} \right| \dif u \dif v$$
+    微分形式与面积微元的区别在于,微分形式是有方向的,而面积微元是无方向的.因此在书上讲的$\dif x \dif y$是无方向的,而汪老师讲的$\dif x \wedge \dif y$是有方向的.
+
+    助教推荐大家计算二重积分的时候,用书上的换元公式,也就是后者,前者的积分的意义我们会在后面微分形式的积分中再提到.
+\end{remark}
+
+\begin{example}
+    作广义极坐标变换:
+    $$
+    \begin{cases}
+        x = r \cos \theta\\
+        y = r \sin \theta
+    \end{cases}
+$$
+则$\pdv{(x,y)}{(r,\theta)} = \begin{vmatrix}
+    \cos \theta & -r \sin \theta\\
+    \sin \theta & r \cos \theta
+\end{vmatrix} = r \left( \cos^2 \theta + \sin^2 \theta \right) = r$.因此有
+$$\dif x \dif y = r \dif r \dif \theta$$
+\end{example}
+
+\section{例题}
+
+\begin{example}
+    计算$$I = \iint_D \frac{x^2}{x^2 + y^2} \dif x \dif y$$
+    其中$D:\{ (x,y) | x^2 + y^2 \les x\}$.
+\end{example}
+
+\begin{solution}
+    利用极坐标换元$$(x,y) = (r \cos \theta,r \sin \theta)$$
+    则
+    $$D_{r,\theta} = \{ (r,\theta) | r \ges 0, \theta \in [0,2\pi) , (r \cos \theta)^2 + (r \sin \theta)^2 \les r \cos \theta \} = \{ (r,\theta) | \theta \in [-\frac{\pi}{2},\frac{\pi}{2}], r \les \cos \theta \}$$
+    因此有
+    \begin{align*}
+        I &= \int_0^{\frac{\pi}{2}} \int_0^{\cos \theta} \frac{(r \cos \theta)^2}{(r \cos \theta)^2 + (r \sin \theta)^2} r \dif r \dif \theta\\
+        &= \int_0^\frac{\pi}{2} \cos^4 \theta \dif \theta = \frac{3}{16} \pi
+    \end{align*}
+\end{solution}
+
+\begin{example}
+    计算$$I = \iint_D xy \dif x \dif y$$其中$D$是第一象限中$xy = a, xy = b, y^2 = cx, y^2 = dx$所围成的区域,其中$b > a > 0, d > c > 0$.
+\end{example}
+
+\begin{solution}
+    作代换$u = xy, v = \frac{y^2}{x}$,则
+    $$\pdv{(u,v)}{(x,y)} = \begin{vmatrix}
+        y & x\\
+        -\frac{y^2}{x^2} & \frac{2y}{x}
+    \end{vmatrix} = \frac{3y^2}{x}$$
+    故
+    $$\pdv{(x,y)}{(u,v)} = \frac{1}{\pdv{(u,v)}{(x,y)}} = \frac{x}{3y^2} = \frac{1}{3v}$$
+
+    因此有
+    $$I = \int_a^b u \dif u \int_c^d \frac{1}{3v} \dif v = \frac{b^2 - a^2}{6} \ln \frac{d}{c}$$
+
+\end{solution}
+
+
+\begin{example}
+    计算$$I = \int_{- \infty}^{+ \infty} \int_{- \infty}^{+ \infty}\e^{-(x^2 + y^2)} \cos(x^2 + y^2) \dif x \dif y$$
+\end{example}
+
+\begin{solution}
+    作代换$x = r \cos \theta, y = r \sin \theta$,则
+    $$I = \int_0^{2\pi} \dif \theta \int_0^{+\infty} \e^{-r^2} \cos(r^2) r \dif r =2 \pi \frac{1}{2} \int_0^{+\infty} \e^t \cos t \dif t = \frac{\pi}{2}$$
+\end{solution}
+
+
+\begin{example}
+    设$$f(x,y) = \frac{1}{2 \pi \sigma_1 \sigma_2 \sqrt{1- \rho^2}} \e^{-\frac{1}{2(1-\rho^2)} \left( \frac{(x- \mu_1)^2}{\sigma_1^2} + \frac{(y- \mu_2)^2}{\sigma_2^2} - \frac{2\rho (x- \mu_1)(y- \mu_2)}{\sigma_1 \sigma_2} \right)}$$
+    其中$\mu_1,\mu_2$为常数, $\sigma_1,\sigma_2$为正数, $\rho \in (-1,1)$.
+    证明:$$I = \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} f(x,y) \dif x \dif y = 1$$
+\end{example}
+
+
+
+\begin{solution}
+    作代换$$\begin{cases}
+        s = \frac{x- \mu_1}{\sigma_1} - \rho \frac{y- \mu_2}{\sigma_2}\\
+        t = \frac{y- \mu_2}{\sigma_2} \sqrt{1- \rho^2}
+    \end{cases}$$
+
+    则Jacobian行列式为
+    $$\pdv{(s,t)}{(x,y)} = \begin{vmatrix}
+        \frac{1}{\sigma_1} & -\frac{\rho}{\sigma_2}\\
+        0 & \frac{1}{\sigma_2}\sqrt{1- \rho^2}
+    \end{vmatrix} = \frac{\sqrt{1- \rho^2}}{\sigma_1 \sigma_2}$$
+
+    因此$$I = \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} \frac{1}{2 \pi (1- \rho^2)} \e^{- \frac{1}{2(1- \rho^2)} \left( s^2 + t^2 \right)} \dif s \dif t$$
+
+    再令$u = \frac{s}{\sqrt{2(1- \rho^2)}}, v = \frac{t}{\sqrt{2(1- \rho^2)}}$,则
+    $$I = \frac{1}{\pi} \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} \e^{-u^2 - v^2} \dif u \dif v= \frac{1}{\pi} \left( \int_{-\infty}^{+\infty} \e^{-u^2} \dif u \right)^2 = \frac{1}{\pi} \cdot \pi = 1$$
+\end{solution}
+
+
+\section{补充证明}
+
+下面我们将证明$$\pdv{(x,y)}{(u,v)} = \frac{1}{\pdv{(u,v)}{(x,y)}}$$
+
+当$\pdv{(x,y)}{(u,v)} \neq 0 $时,方程组$\begin{cases}
+    x = x(u,v)\\
+    y = y(u,v)
+\end{cases}$可唯一确定$\begin{cases}
+    u = u(x,y)\\
+    v = v(x,y)
+\end{cases}$,
+
+方程中直接对$u$求导,得到方程组
+$$\pdv{u}{x} \pdv{x}{u} + \pdv{u}{y} \pdv{y}{u} = 1$$
+$$\pdv{v}{x} \pdv{x}{u} + \pdv{v}{y} \pdv{y}{u} = 0$$
+
+由此可以解出逆映射的偏微商
+$$\pdv{x}{u}= \frac{\pdv{v}{y}}{\pdv{u}{x}\pdv{v}{y} - \pdv{v}{x}\pdv{u}{y}}$$
+$$\pdv{y}{u} = - \frac{\pdv{v}{x}}{\pdv{u}{x}\pdv{v}{y} - \pdv{v}{x}\pdv{u}{y}}$$
+
+同样的,方程中对$v$求导,得到方程组
+$$\pdv{u}{x} \pdv{x}{v} + \pdv{u}{y} \pdv{y}{v} = 0$$
+$$\pdv{v}{x} \pdv{x}{v} + \pdv{v}{y} \pdv{y}{v} = 1$$
+
+由此可以解出逆映射的偏微商
+$$\pdv{x}{v}= - \frac{\pdv{u}{y}}{\pdv{u}{x}\pdv{v}{y} - \pdv{v}{x}\pdv{u}{y}}$$
+$$\pdv{y}{v} =\frac{\pdv{u}{x}}{\pdv{u}{x}\pdv{v}{y} - \pdv{v}{x}\pdv{u}{y}}$$
+
+因此
+$$\pdv{(x,y)}{(u,v)} = \begin{vmatrix}
+    \pdv{x}{u} & \pdv{x}{v}\\
+    \pdv{y}{u} & \pdv{y}{v}
+\end{vmatrix} = \frac{\pdv{v}{y} \pdv{u}{x} - \pdv{v}{x} \pdv{u}{y}}{\left( \pdv{u}{x}\pdv{v}{y} - \pdv{v}{x}\pdv{u}{y} \right)^2} = \frac{1}{\pdv{(u,v)}{(x,y)}}
+$$
+
+\begin{homework}
+    ex10.2:2(3)(4)(7)(9),3(3),5.
+\end{homework}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
