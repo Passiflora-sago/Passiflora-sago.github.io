@@ -1,0 +1,684 @@
+\setcounter{chapter}{7} % 设置章节计数器
+\chapter{}
+
+\section{Apr  7 ex10.1:3,5,6,7; ex10.2:1(1),2(1)(2),3(1)}
+
+\begin{exercise}{10.1.3}
+    利用函数的奇偶性计算下列积分：
+    \begin{enumerate}
+        \item $\iint_D (x^2+y^2) \dif x \dif y, D: -1 \les x \les 1, -1 \les y \les 1$;
+        \item $\iint_D \sin x \sin y \dif x \dif y, D: x^2 - y^2 = 1,x^2+y^2=9$围成含原点的部分;
+    \end{enumerate}
+    
+\end{exercise}
+
+\begin{solution}
+    \begin{enumerate}
+        \item \begin{align*}
+            \iint_D (x^2 + y^2) \dif x \dif y 
+            &= \int_{-1}^1 \dif y \int_{-1}^1 (x^2 + y^2) \dif x \\
+            &= 4 \int_0^1 \dif y \int_0^1 (x^2 + y^2) \dif x \\
+            &= 4 \int_0^1 \left( \frac{1}{3} + y^2 \right) \dif y \\
+            &= \frac{8}{3}
+            \end{align*}
+        \item 令
+        \[
+        D_1 = \{ (x, y) \in D \mid y \ges 0 \}, \quad
+        D_2 = \{ (x, y) \in D \mid y < 0 \}
+        \]
+        
+        则
+        \begin{align*}
+        \iint_D \sin x \sin y \dif x \dif y 
+        &= \iint_{D_1} \sin x \sin y \dif x \dif y + \iint_{D_2} \sin x \sin y \dif x \dif y \\
+        &= \iint_{D_1} \sin x \sin y \dif x \dif y - \iint_{D_1} \sin x \sin y \dif x \dif y \\
+        &= 0
+        \end{align*}
+    \end{enumerate}
+\end{solution}
+
+\begin{exercise}
+    {10.1.5}
+
+    设函数$f(x)$在$[0,a]$上连续,证明
+    $$
+    \int_0^a \dif x \int_0^x f(x)f(y) \dif y = \frac12 \left( \int_0^a f(x) \dif x \right)^2,
+    $$
+    $$
+    \int_0^a \dif x \int_0^x f(y) \dif y = \int_0^a (a-x) f(x) \dif x.
+    $$
+\end{exercise}
+
+\begin{proof}
+    由对称性
+\[
+\int_0^a \dif x \int_0^x f(x)f(y) \dif y = \int_0^a \dif y \int_0^y f(x)f(y) \dif x
+\]
+
+因此
+\begin{align*}
+\int_0^a \dif x \int_0^x f(x)f(y) \dif y 
+&= \frac{1}{2} \int_0^a \dif x \int_0^x f(x)f(y) \dif y 
++ \frac{1}{2} \int_0^a \dif y \int_0^y f(x)f(y) \dif x \\
+&= \frac{1}{2} \iint_{D_1} f(x)f(y) \dif x \dif y + \iint_{D_2} f(x)f(y) \dif x \dif y \\
+&= \frac{1}{2} \iint_{[0,a] \times [0,a]} f(x)f(y) \dif x \dif y \\
+&= \frac{1}{2} \int_0^a f(x) \dif x \int_0^a f(y) \dif y \\
+&= \frac{1}{2} \left( \int_0^a f(x) \dif x \right)^2
+\end{align*}
+
+其中
+\[
+D_1 = \{ (x, y) \mid 0 \les x, y \les a,\, y \les x \}, \quad
+D_2 = \{ (x, y) \mid 0 \les x, y \les a,\, x < y \}
+\]
+
+另一方面
+\[
+\int_0^a \dif x \int_0^x f(y) \dif y 
+= \int_0^a \dif y \int_y^a f(y) \dif x 
+= \int_0^a (a - y)f(y) \dif y 
+= \int_0^a (a - x)f(x) \dif x
+\]
+\end{proof}
+
+\begin{exercise}
+    {10.1.6}
+
+    设函数$f(x,y)$有连续的二阶偏导数,在$D=[a,b]\times [c,d]$上,求积分
+    $$
+    \iint_D \pdv{f(x,y)}{x}{y} \dif x \dif y
+    $$
+\end{exercise}
+
+\begin{solution}
+    \begin{align*}
+        \iint_D \pdv[2]{f}{x}{y} \dif x \dif y &= \int_c^d \dif y \int_a^b \pdv{}{x} \left( \pdv{f}{y} \right) \dif x \\
+&= \int_c^d \left( f_y(b, y) - f_y(a, y) \right) \dif y\\
+&= f(b,d) -f(a,d) - f(b,c) + f(a,c)
+    \end{align*}
+\end{solution}
+
+\begin{exercise}
+    {10.1.7}
+
+    设函数$f(x,y)$连续,求极限
+    $$
+    \lim_{r \to 0} \frac{1}{\bm \pi r^2} \iint_{x^2+y^2 \les r^2} f(x,y) \dif x \dif y.
+    $$
+\end{exercise}
+
+\begin{solution}
+    由题，$\forall \varepsilon > 0$，$\exists \delta > 0$，当 $\sqrt{x^2 + y^2} < \delta$ 时，有
+\[
+\left| f(x, y) - f(0,0) \right| < \varepsilon
+\]
+
+因此，只要 $r < \delta$，就有
+\begin{align*}
+\left| \frac{1}{\bm \pi r^2} \iint_{B(0,r)} f(x,y) \dif x \dif y - f(0,0) \right|
+&= \left| \frac{1}{\bm \pi r^2} \iint_{B(0,r)} \left( f(x,y) - f(0,0) \right) \dif x \dif y \right| \\
+&\les \frac{1}{\bm \pi r^2} \iint_{B(0,r)} \left| f(x,y) - f(0,0) \right| \dif x \dif y \\
+&\les \frac{1}{\bm \pi r^2} \iint_{B(0,r)} \varepsilon \dif x \dif y \\
+&= \varepsilon
+\end{align*}
+
+即
+\[
+\lim_{r \to 0} \frac{1}{\bm \pi r^2} \iint_{B(0,r)} f(x,y) \dif x \dif y = f(0,0)
+\]
+\end{solution}
+
+\begin{exercise}
+    {10.2.1(1)}
+
+    计算下列积分.
+    \begin{enumerate}
+        \item $\int_0^R \dif x \int_0^{\sqrt{R^2 - x^2}} \ln (1+x^2+y^2) \dif y$;
+    \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+    \begin{enumerate}
+        \item 令 $t = r^2$，则
+        \begin{align*}
+        \int_0^R \dif x \int_0^{\sqrt{R^2 - x^2}} \ln(1 + x^2 + y^2) \dif y 
+        &= \iint_D \ln(1 + x^2 + y^2) \dif x \dif y \\
+        &= \int_0^{\frac{\pi}{2}} \dif \theta \int_0^R r \ln(1 + r^2) \dif r \\
+        &= \frac{\pi}{4} \int_0^{R^2} \ln(1 + t) \dif t \\
+        &= \frac{\pi}{4} \left[ (1 + R^2)\ln(1 + R^2) - R^2 \right]
+        \end{align*}
+    \end{enumerate}
+\end{solution}
+
+\begin{exercise}
+    {10.2.2(1)(2)}
+
+    计算下面二重积分.
+    \begin{enumerate}
+        \item $\iint_D \sqrt{x^2+y^2} \dif x \dif y, D: x^2+y^2 \les x+y;$
+        \item $\iint_D \sqrt{\frac{x^2}{a^2}+\frac{y^2}{b^2}} \dif x \dif y, D: x^2+y^2 =4,y=0,y=x$所围成的第一象限部分;
+    \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+    \begin{enumerate}
+        \item 令 $x = r\cos\theta$, $y = r\sin\theta$，则
+        \[
+        x^2 + y^2 \le x + y \Longrightarrow r \le \sin\theta + \cos\theta 
+        = \sqrt{2} \sin\left(\theta + \frac{\pi}{4}\right)
+        \]
+        
+        于是由于 $r \ge 0$，知 $-\frac{\pi}{4} \le \theta \le \frac{3\pi}{4}$，于是
+        \begin{align*}
+        \iint_D \sqrt{x^2 + y^2} \dif x \dif y 
+        &= \int_{-\frac{\pi}{4}}^{\frac{3\pi}{4}} \dif \theta \int_0^{\sin\theta + \cos\theta} r^2 \dif r \\
+        &= \frac{1}{3} \int_{-\frac{\pi}{4}}^{\frac{3\pi}{4}} \left( \sin\theta + \cos\theta \right)^3 \dif \theta \\
+        &= \frac{1}{\sqrt{2}} \int_{-\frac{\pi}{4}}^{\frac{3\pi}{4}} \sin^3\left(\theta + \frac{\pi}{4}\right) \dif \theta \\
+        &= \frac{1}{\sqrt{2}} \int_{-\frac{\pi}{4}}^{\pi} \sin^3 \theta \dif \theta \\
+        &= \frac{8\sqrt{2}}{9}
+        \end{align*}
+        \item 令 $x = ar \cos\theta,\, y = br \sin\theta$，则
+        \[
+        0 \le y \le x \Longrightarrow 0 \le \tan\theta \le \frac{b}{a} \Longrightarrow 0 \le \theta \le \arctan \frac{b}{a}
+        \]
+        
+        且
+        \[
+        \pdv{(x, y)}{(r, \theta)} =
+        \begin{vmatrix}
+        a\cos\theta & -ar\sin\theta \\
+        b\sin\theta & br\cos\theta
+        \end{vmatrix}
+        = abr
+        \]
+        
+        于是不难得到
+        \begin{align*}
+        \iint_D \sqrt{\frac{x^2}{a^2} + \frac{y^2}{b^2}} \dif x \dif y 
+        &= ab \int_0^{\arctan \frac{b}{a}} \dif\theta \int_0^1 r^2 \dif r \\
+        &= ab \cdot \arctan \frac{b}{a} \cdot \int_0^2 r^2 \dif r \\
+        &= ab \cdot \arctan \frac{b}{a} \cdot \frac{8}{3} \\
+        &= \frac{8}{3} ab \arctan \frac{b}{a}
+        \end{align*}
+    \end{enumerate}
+\end{solution}
+
+
+\begin{exercise}
+    {10.2.3(1)}
+
+    求下列曲线所围成的平面区域的面积:
+    \begin{enumerate}
+        \item $x^2+2y^2 = 3$和$xy=1$(不含原点部分);
+    \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+    \begin{enumerate}
+        \item 设该图形第一象限的部分为 $D$。  
+        不难得到两曲线在第一象限交于 $(1, 1)$ 和 $\left( \sqrt{2}, \frac{\sqrt{2}}{2} \right)$，于是：
+        
+        \begin{align*}
+        S &= 2 \iint_D \dif x \dif y 
+        = \int_1^{\sqrt{2}} \dif x \int_{1/x}^{\sqrt{\frac{3 - x^2}{2}}} \dif y \\
+        &= \int_1^{\sqrt{2}} \left( \sqrt{\frac{3 - x^2}{2}} - \frac{1}{x} \right) \dif x \\
+        &= \frac{3}{\sqrt{2}} \arcsin \frac{1}{3} - \ln 2
+        \end{align*}
+    \end{enumerate}
+\end{solution}
+
+
+
+\section{Apr 9 ex10.1:1(4)(6),2(6)(8); ex10.2:2(3)(4)(7)(9),3(3),5}
+
+\begin{exercise}
+    {10.1.1(4)(6)}
+    改变下列积分的顺序.
+
+    \begin{enumerate}
+        % 设置itemize计数器为3
+        \setcounter{enumi}{3}
+        \item $\int_a^b \dif y \int_y^b f(x,y) \dif x;$
+        \setcounter{enumi}{5}
+        \item $\int_0^1 \dif y \int_{\frac{1}{2}}^1 f(x,y) \dif x + \int_1^2 \dif y \int_{\frac12}^{\frac{1}{y}} f(x,y) \dif x.$
+    \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+    \begin{enumerate}
+        \setcounter{enumi}{3}
+        \item \[
+\int_a^b \dif y \int_y^b f(x,y) \dif x = \int_a^b \dif x \int_a^x f(x,y) \dif y
+\]
+        \setcounter{enumi}{5}
+        \item \[
+\int_0^1 \dif y \int_{1/2}^1 f(x,y) \dif x + \int_1^2 \dif y \int_{1/2}^{1/y} f(x,y) \dif x = \int_{1/2}^1 \dif x \int_0^{1/x} f(x,y) \dif y
+\]
+    \end{enumerate}
+\end{solution}
+
+\begin{exercise}
+    {10.1.2(6)(8)}
+
+    计算下列积分.
+    \begin{enumerate}
+        \setcounter{enumi}{5}  
+        \item $\iint_D \frac{\sin y}{y} \dif x \dif y,D:$由$y=x$和$x=y^2$围成;
+        \setcounter{enumi}{7}
+        \item $\iint_D | \cos (x+y) | \dif x \dif y$,其中$D$是由直线$y=x,y=0,x=\frac{\pi}{2}$所围成;
+    \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+    \begin{enumerate}
+        \setcounter{enumi}{5}
+        \item \[
+\iint_D \frac{\sin y}{y} \dif x \dif y = \int_0^1 \dif y \int_{y^2}^y \frac{\sin y}{y} \dif x = \int_0^1 (\sin y - y \sin y) \dif y = 1 - \sin 1
+\]
+        \setcounter{enumi}{7}
+        \item 记
+        $$D_1 = \{ (x,y) \in D: x+y \les \frac{\pi}{2} \}$$
+        $$D_2 = \{ (x,y) \in D: x+y > \frac{\pi}{2} \}$$
+        则
+        \begin{align*}
+            \iint_{D} |{\cos(x+y)} | \dif x \dif y 
+            &= \iint_{D_1} \cos(x+y) \dif x \dif y - \iint_{D_2} \cos(x+y) \dif x \dif y \\
+            &= \int_0^{\pi/4} \dif y \int_y^{\pi/2 - x} \cos(x+y) \dif x 
+                - \int_{\pi/4}^{\pi/2} \dif x \int_{\pi/2 - x}^x \cos(x+y) \dif y \\
+            &= \int_0^{\pi/4} (1 - \sin 2y) \dif y - \int_{\pi/4}^{\pi/2} (\sin 2x - 1) \dif x \\
+            &= \int_0^{\pi/2} (1 - \sin 2y) \dif y \\
+            &= \frac{\pi}{2} - 1
+            \end{align*}
+    \end{enumerate}
+\end{solution}
+
+
+\begin{exercise}
+    {10.2.2(3)(4)(7)(9)}
+
+    计算下面二重积分.
+    \begin{enumerate}
+        \setcounter{enumi}{2}
+        \item $\iint_D (x^2+y^2) \dif x \dif y,D$:由$xy=1,xy=2,y=x,y=2x$所围成的第一象限部分;
+        \setcounter{enumi}{3}
+        \item $\iint_D \dif x \dif y, D$:由$y^2 = ax ,y^2 = bx, x^2=my , x^2 = ny$所围成的区域$(a > b> 0, m>n>0)$;
+        \setcounter{enumi}{6}
+        \item $\iint_D \frac{x^2 -y^2}{\sqrt{x+y+3}} \dif x \dif y,D$:$|x| + |y| \les 1;$
+        \setcounter{enumi}{8}
+        \item $\iint_D |xy| \dif x \dif y,D= \{ (x,y) : x^2 + y^2 \les a^2 \}$
+    \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+    \begin{enumerate}
+        \setcounter{enumi}{2}
+        \item 令 $s = xy,\, t = \frac{y}{x}$，则
+        $$
+        \begin{cases}
+            x = \sqrt \frac{s}{t}\\
+            y = \sqrt{st}
+        \end{cases}
+        $$
+        则
+        \[
+        \pdv{(x, y)}{(s, t)} = 
+        \begin{vmatrix}
+        \frac{1}{2\sqrt{st}} & -\frac{1}{2t}\sqrt{\frac{s}{t}} \\
+        \frac{1}{2}\sqrt{\frac{t}{s}} & \frac{1}{2}\sqrt{\frac{s}{t}}
+        \end{vmatrix}
+        = \frac{1}{2t}
+        \]
+
+        \begin{remark}
+            如果你不想用$s=s(x,y),t=t(x,y)$反解出$x=x(s,t),y=y(s,t)$,你也可以:
+            $$
+            \pdv{(s,t)}{(x,y)} = 
+            \begin{vmatrix}
+                \pdv{s}{x} & \pdv{s}{y} \\
+                \pdv{t}{x} & \pdv{t}{y} 
+            \end{vmatrix}=
+            \begin{vmatrix}
+                y & x \\
+                -\frac{y}{x^2} & \frac{1}{x}
+            \end{vmatrix} = 2 \frac{y}{x}
+            $$
+            于是
+            $$
+            \pdv{(x,y)}{(s,t)} = \frac{1}{2 \frac{y}{x}} = \frac{1}{2t}
+            $$
+        \end{remark}
+        
+        于是不难得到
+        \begin{align*}
+        \iint_D (x^2 + y^2) \dif x \dif y 
+        &= \int_1^2 \dif s \int_1^2 \frac{1}{2t} \left( \frac{s}{t} + st \right) \dif t \\
+        &= \int_1^2 \dif s \int_1^2 \frac{1}{2t} \cdot \frac{s(1 + t^2)}{t} \dif t \\
+        &= \int_1^2 \dif s \cdot s \cdot \frac{3}{4} \\
+        &= \frac{3}{4} \int_1^2 s \dif s = \frac{3}{4} \cdot \frac{3}{2} = \frac{9}{8}
+        \end{align*}
+        \item 令 $s = \frac{x^2}{y},\; t = \frac{y^2}{x}$，则
+        \[
+        \pdv{(x, y)}{(s, t)} = 
+        \begin{vmatrix}
+        \frac{2}{3} \sqrt[3]{\frac{t}{s}} & \frac{1}{3} \sqrt[3]{\frac{s^2}{t^2}} \\
+        \frac{1}{3} \sqrt[3]{\frac{t^2}{s^2}} & \frac{2}{3} \sqrt[3]{\frac{s}{t}} \\
+        \end{vmatrix}
+        = \frac{1}{3}
+        \]
+        或者
+        $$
+        \pdv{(s,t)}{(x,y)} =
+        \begin{vmatrix}
+            \frac{2x}{y} & -\frac{x^2}{y^2} \\
+            -\frac{y^2}{x^2} & \frac{2y}{x}
+        \end{vmatrix} = 3 \ \Rightarrow \pdv{(x,y)}{(s,t)} = \frac{1}{3}
+        $$
+        
+        于是
+        \[
+        \iint_D \dif x \dif y = \int_n^m \dif s \int_b^a \frac{1}{3} \dif t 
+        = \frac{(a - b)(m - n)}{3}
+        \]
+        \setcounter{enumi}{6}
+        \item 令 $s = x + y,\; t = x - y$，则
+        \[
+        \pdv{(x, y)}{(s, t)} = 
+        \begin{vmatrix}
+        \frac{1}{2} & \frac{1}{2} \\
+        \frac{1}{2} & -\frac{1}{2}
+        \end{vmatrix}
+        = -\frac{1}{2}
+        \]
+
+        或者
+        $$
+        \pdv{(s,t)}{(x,y)} =
+        \begin{vmatrix}
+            1 & 1 \\
+            1 & -1
+        \end{vmatrix} = 2 \ \Rightarrow \pdv{(x,y)}{(s,t)} = \frac{1}{2}
+        $$
+        
+        于是
+        \begin{align*}
+        \iint_D \frac{x^2 - y^2}{x + y + 3} \dif x \dif y 
+        &= \frac{1}{2} \int_{-1}^1 \dif s \int_{-1}^1 \frac{st}{\sqrt{s + 3}} \dif t \\
+        &= \int_{-1}^1 \frac{s}{\sqrt{s + 3}} \dif s \cdot \int_{-1}^1 t \dif t = 0
+        \end{align*}
+        \setcounter{enumi}{8}
+        \item 令 $x = r\cos\theta,\; y = r\sin\theta$，并取
+        \[
+        D_1 = \{(x, y) \in D \mid x, y \ge 0\}
+        \]
+        
+        则
+        \begin{align*}
+        \iint_D |xy| \dif x \dif y 
+        &= 4 \iint_{D_1} \abs{xy} \dif x \dif y \\
+        &= \int_0^{2 \pi} \dif \theta \int_0^a r^3 \left| \sin\theta \cos\theta \right| \dif r \\
+        &= 4\int_0^{\frac{\pi}{2}} \sin\theta \cos\theta \dif \theta \cdot \int_0^a r^3 \dif r \\
+        &= 4\frac{1}{2} \int_0^{\frac{\pi}{2}} \sin(2\theta) \dif \theta \cdot \frac{a^4}{4} 
+        = 4 \cdot \frac{1}{2}\cdot 1 \cdot \frac{a^4}{4} = \frac{1}{2} a^4
+        \end{align*}
+    \end{enumerate}
+\end{solution}
+
+\begin{exercise}
+    {10.2.3(3)}
+
+    求下列曲线所围成的平面区域的面积:
+    \begin{enumerate}
+        \setcounter{enumi}{2}
+        \item 由直线$x+y=a,x+y=b,y=kx,y=mx (0<a<b,0<k<m)$所围成的的平面区域.
+    \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+    \begin{enumerate}
+        \setcounter{enumi}{2}
+        \item 令$s = x + y,\  t = \frac{y}{x}$，则
+        $$
+        \pdv{(s,t)}{(x,y)} =
+        \begin{vmatrix}
+            1 & 1 \\
+            -\frac{y}{x^2} & \frac{1}{x}
+        \end{vmatrix} = \frac{1}{x} + \frac{y}{x^2}
+        $$
+        于是
+        $$
+        \pdv{(x,y)}{(s,t)} =
+        \frac{1}{\frac{1}{x} + \frac{y}{x^2}} =
+        \frac{x^2}{x + y} = \frac{\left( \frac{s}{1+t} \right)^2}{s} = \frac{s}{(1+t)^2}
+        $$
+
+        于是
+\begin{align*}
+S &= \iint_D \dif x \dif y 
+= \int_a^b \dif s \int_k^m \frac{s}{(1 + t)^2} \dif t 
+= \int_a^b s \dif s \int_k^m \frac{1}{(1 + t)^2} \dif t \\
+&= \int_a^b s \dif s \cdot \left[ \frac{1}{1 + k} - \frac{1}{1 + m} \right] 
+= \frac{b^2 - a^2}{2} \left( \frac{1}{1 + k} - \frac{1}{1 + m} \right)
+\end{align*}
+    \end{enumerate}
+\end{solution}
+
+\begin{exercise}
+    {10.2.5}
+
+    设$f(x)$在$[0,1]$上连续,证明
+    $$
+    \int_0^1 \e^{f(x)} \dif x \cdot \int_0^1 \e^{- f(y)} \dif y \ges 1.
+    $$
+\end{exercise}
+
+\begin{proof}
+    由对称性知
+\[
+\int_0^1 \e^{f(x)} \dif x \int_0^1 \e^{-f(y)} \dif y 
+= \iint_{[0,1]^2} \e^{f(x) - f(y)} \dif x \dif y 
+= \iint_{[0,1]^2} \e^{f(y) - f(x)} \dif x \dif y
+\]
+
+于是
+\begin{align*}
+\int_0^1 \e^{f(x)} \dif x \int_0^1 \e^{-f(y)} \dif y 
+&= \frac{1}{2} \iint_{[0,1]^2} \e^{f(x) - f(y)} \dif x \dif y 
++ \frac{1}{2} \iint_{[0,1]^2} \e^{f(y) - f(x)} \dif x \dif y \\
+&= \frac{1}{2} \iint_{[0,1]^2} \left( \e^{f(x) - f(y)} + \e^{f(y) - f(x)} \right) \dif x \dif y \\
+&\ge \frac{1}{2} \iint_{[0,1]^2} 2 \dif x \dif y = 1
+\end{align*}
+\end{proof}
+
+
+
+
+
+
+\section{Apr 11 ex10.3:1(1)(2),2(1)(2)(3),3(1)(3)(6),7,8}
+
+
+
+\begin{exercise}
+    {10.3.1(1)(2)}
+
+    计算下列三重积分.
+    \begin{enumerate}
+        \item $\iiint_V xy \dif x \dif y \dif z, V: 1 \les x \les 2, -2 \les y \les 1, 0 \les z \les \frac{1}{2};$
+        \item $\iiint_V xy^2 z^3 \dif x \dif y \dif z, V$:由$z=xy, y=x, x=1, z= 0$围成;
+    \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+    \begin{enumerate}
+        \item $$\iiint_V xy \dif x \dif y \dif z = \int_1^2 x \dif x \int_{-2}^1 y \dif y \int_0^{\frac{1}{2}} \dif z = \frac{3}{2} \cdot \frac{-3}{2} \cdot \frac{1}{2} = - \frac{9}{8}$$
+        \item \begin{align*}
+            \iiint_V xy^2 z^3 \dif x \dif y \dif z 
+            &= \int_0^1 \dif x \int_0^x \dif y \int_0^{xy} x^2 y^2 z^3 \dif z\\
+            &= \int_0^1 \dif x \int_0^x \frac{1}{4} x^5 y^6 \dif y \\
+            &= \int_0^1 \frac{1}{4} \cdot \frac{1}{7} x^{12} \dif x \\
+            &= \frac{1}{4} \cdot \frac{1}{7} \cdot \frac{1}{13} = \frac{1}{364}
+        \end{align*}
+    \end{enumerate}
+\end{solution}
+
+\begin{exercise}
+    {10.3.2(1)(2)(3)}
+
+    计算下列积分值.
+    \begin{enumerate}
+        \item $\int_0^2 \dif x \int_0^{\sqrt{2x-x^2}} \dif y \int_0^a z \sqrt{x^2 + y^2} \dif z;$
+        \item $\int_{-R}^R \dif x \int_{- \sqrt{R^2 - x^2}}^{\sqrt{R^2 - x^2}} \dif y \int_0^{\sqrt{R^2 - x^2 - y^2}} (x^2 + y^2 ) \dif z;$
+        \item $\int_0^1 \dif x \int_0^{\sqrt{1-x^2}} \dif y \int_0^{\sqrt{1-x^2-y^2}} \sqrt{x^2+y^2+z^2} \dif z;$
+    \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+    \begin{enumerate}
+        \item $$
+        D = \{(x,y) \mid 0 \les x \les 2, 0 \les y \les \sqrt{2x - x^2} \} = \{ (x,y) \mid (x-1)^2 + y^2 \les 1, 0 \les y\}
+        $$
+
+        令$x = r \cos\theta, y = r \sin\theta$，则$y = \sqrt{2x - x^2} \Rightarrow x^2 + y^2 \les 0 \Rightarrow r \les 2\cos\theta$,结合图像可知
+        $$
+        D = \{ (r, \theta) \mid 0 \les r \les 2\cos\theta, 0 \les \theta \les \frac{\pi}{2} \}
+        $$
+        \begin{align*}
+            \int_0^2 \dif x \int_0^{\sqrt{2x-x^2}} \dif y \int_0^a z \sqrt{x^2 + y^2} \dif z 
+            &= \int_0^a z \dif z \int_D \sqrt{x^2 + y^2} \dif x \dif y \\
+            &= \int_0^a z \dif z \int_0^{\frac{\pi}{2}} \dif \theta \int_0^{2\cos\theta} r \cdot \pdv{(x,y)}{(r,\theta)} \dif r \\
+            &= \int_0^a z \dif z \int_0^{\frac{\pi}{2}} \dif \theta \int_0^{2\cos\theta} r^2 \dif r\\
+            &= \int_0^a z \dif z \int_0^{\frac{\pi}{2}} \dif \theta \cdot \frac{8}{3} \cos^3\theta\\
+            &= \int_0^a z \dif z \cdot \frac{8}{3} \cdot \frac{2}{3} = \frac{8}{9} a^2
+        \end{align*}
+        \item 区域
+        \begin{align*}
+            V &= \{ (x,y,z) | -R \les x \les R, -\sqrt{R^2 - x^2} \les y \les \sqrt{R^2 - x^2}, 0 \les z \les \sqrt{R^2 - x^2 - y^2} \} \\
+            &= \{ (x,y,z) | x^2 + y^2 + z^2 \les R^2, 0 \les z \}
+        \end{align*}
+
+        令$x = r \sin \theta \cos \varphi, y = r \sin \theta \sin \varphi, z = r \cos \theta$，则
+        $$V = \{ (r, \theta, \varphi) | 0 \les r \les R, 0 \les \theta \les \frac{\pi}{2}, 0 \les \varphi \les 2\pi \}$$
+        
+        于是
+        $$
+        \iiint_V x^2 + y^2 \dif x \dif y \dif z = \int_0^{2 \pi} \dif \varphi \int_0^{\frac{\pi}{2}} \dif \theta \int_0^R (r^2 \sin^2\theta) \cdot (r^2 \sin\theta) \dif r
+        = \frac{4 \pi}{15} R^5
+        $$
+        \item 区域
+        \begin{align*}
+            V &= \{ (x,y,z) | 0 \les x \les 1, 0 \les y \les \sqrt{1 - x^2}, 0 \les z \les \sqrt{1 - x^2 - y^2} \} \\
+            &= \{ (x,y,z) | x^2 + y^2 + z^2 \les 1, x, y, z \ge 0 \}\\
+            &= \{ (r, \theta, \varphi) | 0 \les r \les 1, 0 \les \theta \les \frac{\pi}{2}, 0 \les \varphi \les \frac{\pi}{2} \}
+        \end{align*}
+
+        令$x = r \sin \theta \cos \varphi, y = r \sin \theta \sin \varphi, z = r \cos \theta$，则
+        \begin{align*}
+            \int_0^1 \dif x \int_0^{\sqrt{1-x^2}} \dif y \int_0^{\sqrt{1-x^2-y^2}} \sqrt{x^2+y^2+z^2} \dif z 
+            &= \int_0^{\frac{\pi}{2}} \dif \varphi \int_0^{\frac{\pi}{2}} \dif \theta \int_0^1 (r) \cdot (r^2 \sin \theta) \dif r = \frac{\pi}{8}
+        \end{align*}
+    \end{enumerate}
+\end{solution}
+
+\begin{exercise}
+    {10.3.3(1)(3)(6)}
+
+    计算下列三重积分.
+    \begin{enumerate}
+        \item $\iiint_V (x^2 + y^2) \dif x \dif y \dif z, V:$由$x^2 + y^2 = 2z, z=2$围成;
+        \setcounter{enumi}{2}
+        \item $\iiint_V z \dif x \dif y \dif z, V:$由$\sqrt{4-x^2-y^2} = z, x^2 + y^2 = 3z$围成;
+        \setcounter{enumi}{5}
+        \item $\iiint_V | x^2 +y^2 + z^2 - 1| \dif x \dif y \dif z,V: x^2 + y^2 + z^2 \les 4$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+    \begin{enumerate}
+        \item 令$x=r \cos\theta, y = r \sin\theta, z = z$，则
+        \begin{align*}
+            \iiint_V (x^2 + y^2) \dif x \dif y \dif z 
+            &= \int_0^2 \dif z \int_{x^2 + y^2 \les 2z} (x^2 + y^2) \dif x \dif y \\
+            &= \int_0^2 \dif z \int_0^{2\pi} \dif \theta \int_0^{\sqrt{2z}} r^2 \cdot r \dif r \\
+            &= \int_0^2 \frac{1}{4} (\sqrt{2z})^4 \dif z \cdot 2\pi = 2 \pi \int_0^2 z^2 \dif z \\
+            &= 2 \pi \cdot \frac{8}{3} = \frac{16\pi}{3}
+        \end{align*}
+        \setcounter{enumi}{2}
+        \item 令$x = r \cos\theta, y = r \sin\theta, z = z$，则
+        \begin{align*}
+            V &= \{ (x,y,z) \mid \sqrt{4-x^2 - y^2} \les z \les \frac{1}{3} (x^2 + y^2) , x^2 + y^2 \les 3 \}\\
+            &= \{ (r, \theta, z) \mid 0 \les r \les \sqrt 3, \sqrt{4 - r^2} \les z \les \frac{1}{3} r^2 , 0 \les \theta \les 2\pi \}
+        \end{align*}
+        于是
+        \begin{align*}
+            \iiint_V z \dif x \dif y \dif z 
+            &= \int_0^{2\pi} \dif \theta \int_0^{\sqrt{3}} \dif r \int_{\sqrt{4 - r^2}}^{\frac{1}{3} r^2} z \cdot r \dif z \\
+            &= \pi \int_0^{\sqrt 3} r \left( \frac{r^4}{9} - 4 + r^2 \right) \dif r \\
+            &= \frac{13 \pi}{4} 
+        \end{align*}
+        \setcounter{enumi}{5}
+        \item 令$x = r \sin\theta \cos\varphi, y = r \sin\theta \sin\varphi, z = r \cos\theta$，则
+        $$ V = \{ (x,y,z) \mid x^2 + y^2 + z^2 \les 4 \} = \{ (r, \theta, \varphi) \mid 0 \les r \les 2, 0 \les \theta \les \pi, 0 \les \varphi \les 2\pi \} $$
+
+        于是
+        \begin{align*}
+            \iiint_V \abs{x^2 + y^2 + z^2 - 1} \dif x \dif y \dif z 
+            &= \int_0^{2\pi} \dif\varphi \int_0^{\pi} \dif\theta \int_0^2 \abs{r^2 - 1} r^2 \sin\theta \dif r \\
+            &= 4\pi \left( \int_0^1 (1 - r^2) r^2 \dif r + \int_1^2 (r^2 - 1) r^2 \dif r \right) \\
+            &= 4\pi \left( \int_0^1 (r^2 - r^4) \dif r + \int_1^2 (r^4 - r^2) \dif r \right) \\
+            &= 16\pi
+            \end{align*}
+                    
+    \end{enumerate}
+\end{solution}
+
+\begin{exercise}
+    {10.3.7}
+
+    设$F(t) = \iiint_{x^2 + y^2 + z^2 \les t^2 } f(x^2 + y^2 + z^2) \dif x \dif y \dif z$,其中$f$为可微函数,求$F'(t)$.
+\end{exercise}
+
+\begin{proof}
+    令$x=r \sin\theta \cos\varphi, y = r \sin\theta \sin\varphi, z = r \cos\theta$，则
+    $$ V = \{ (x,y,z) \mid x^2 + y^2 + z^2 \les t^2 \} = \{ (r, \theta, \varphi) \mid 0 \les r \les t, 0 \les \theta \les \pi, 0 \les \varphi \les 2\pi \} $$
+
+于是
+\begin{align*}
+F(t) 
+&= \iiint_{x^2 + y^2 + z^2 \le t^2} f(x^2 + y^2 + z^2) \dif x \dif y \dif z \\
+&= \int_0^{2\pi} \dif\varphi \int_0^{\pi} \dif\theta \int_0^t f(r^2) r^2 \sin\theta \dif r \\
+&= 4\pi \int_0^t f(r^2) r^2 \dif r
+\end{align*}
+
+因此
+\[
+F'(t) = \dv{t} \left( 4\pi \int_0^t f(r^2) r^2 \dif r \right) 
+= 4\pi t^2 f(t^2)
+\]
+\end{proof}
+
+
+\begin{exercise}
+    {10.3.8} 
+
+    证明:
+    $$
+    \iiint_{x^2+y^2+z^2 \les 1} f(z) \dif V = \bm \pi \int_{-1}^1 f(z) (1-z^2) \dif z.
+    $$
+\end{exercise}
+
+\begin{proof}
+    令$x = r \cos \theta, y = r \sin \theta, z = z$，则
+    $$ V = \{ (x,y,z) \mid x^2 + y^2 + z^2 \les 1 \} = \{ (r, \theta, z) \mid 0 \les r \les \sqrt{1 - z^2}, 0 \les \theta \les 2\pi, -1 \les z \les 1\} $$
+
+    于是
+    \begin{align*}
+    \iiint_{x^2+y^2+z^2 \les 1} f(z) \dif V =& \iiint_{x^2+y^2+z^2 \les 1} f(z) \dif x \dif y \dif z \\
+    =& \int_0^{2\pi} \dif \theta \int_0^{\sqrt{1-z^2}} \dif r \int_0^1 f(z) r \dif z \\
+    =& \pi \int_{-1}^1 f(z) (1 - z^2) \dif z
+    \end{align*}
+\end{proof}
+
+
+
+
+

@@ -6,9 +6,13 @@
 % ----- equation setting -----
 \everymath{\displaystyle}
 
+\usepackage{physics}
+
 % ----- command -----
 \newcommand{\les}{\leqslant}
 \newcommand{\ges}{\geqslant}
+\renewcommand{\le}{\les}
+\renewcommand{\ge}{\ges}
 \newcommand{\degree}{^{\circ}}
 \newcommand{\circA}{\overset{\circ}{\mathrm{A}}}
 \newcommand{\dageq}{\stackrel{\dag}{ = }}
@@ -47,18 +51,18 @@
 \DeclareMathOperator{\dif}{d\!}
 \DeclareMathOperator{\diff}{d}
 \DeclareMathOperator{\trans}{T}
-\DeclareMathOperator{\tr}{tr}
-\DeclareMathOperator{\grad}{\mathbf{grad}}
-\DeclareMathOperator{\rank}{rank}
+% \DeclareMathOperator{\tr}{tr}
+% \DeclareMathOperator{\grad}{\mathbf{grad}}
+% \DeclareMathOperator{\rank}{rank}
 \DeclareMathOperator{\diag}{diag}
 \DeclareMathOperator{\sinc}{sinc}
 \DeclareMathOperator{\ad}{ad}
 \DeclareMathOperator{\ex}{E}
-\DeclareMathOperator{\var}{Var}
+% \DeclareMathOperator{\var}{Var}
 \DeclareMathOperator{\argmin}{arg\,min}
 \DeclareMathOperator{\argmax}{arg\,max}
 \DeclareMathOperator{\softmax}{softmax}
-\DeclareMathOperator{\arccot}{arccot}
+% \DeclareMathOperator{\arccot}{arccot}
 \DeclareMathOperator{\st}{s.t.}
 \DeclareMathOperator{\iid}{i.i.d.}
 \DeclareMathOperator{\Exp}{Exp}
@@ -236,25 +240,69 @@
 \newcommand{\ve}{\varepsilon}
 \newcommand{\laplace}{\Delta}
 
-% 启用 expl3 语法处理多个变量
 \ExplSyntaxOn
 
-% 定义 \parfrac 宏，默认阶数为 1，支持多个变量
-\NewDocumentCommand{\parfrac}{O{1} m m}
+% 定义 \parfrac 宏，支持星号、阶数、括号组和逗号变量
+\NewDocumentCommand{\parfrac}{ s O{1} m m }
 {
-  \frac{
-    \int_compare:nNnTF {#1} = {1} {\partial #2} {\partial^{#1} #2}
+  \group_begin:
+  \IfBooleanT {#1} { \cs_set:Npn \__parfrac_fractype: { \flatfrac } } % 星号用 \flatfrac
+  \frac
+  {
+    \__parfrac_process_numerator:nn {#2}{#3} % 分子处理
   }
   {
-    \parfrac_process_vars:n { #3 }
+    \__parfrac_process_denominator:nn {#2}{#4} % 分母处理（传入阶数）
   }
+  \group_end:
 }
 
-% 处理逗号分隔的多个偏导变量
-\cs_new_protected:Nn \parfrac_process_vars:n
+% 处理分子（带阶数）
+\cs_new_protected:Nn \__parfrac_process_numerator:nn
 {
-  \seq_set_split:Nnn \l_tmpa_seq { , } { #1 }
-  \seq_map_inline:Nn \l_tmpa_seq { \partial ##1 }
+  \int_compare:nNnTF {#1} = {1}
+    { \partial #2 }
+    { \partial^{#1} #2 }
+}
+
+% 处理分母（自动识别括号组/逗号变量，并应用阶数）
+\cs_new_protected:Nn \__parfrac_process_denominator:nn
+{
+  \tl_set:Nn \l_tmpa_tl {#2}
+  % 判断是否为括号组（如 (x,y)）
+  \tl_if_in:NnTF \l_tmpa_tl {(}
+  {
+    \partial \l_tmpa_tl % 保留整体括号
+    \int_compare:nNnT {#1} > {1} { ^{#1} } % 添加阶数
+  }
+  {
+    \seq_set_split:Nnn \l_tmpa_seq { , } {#2}
+    \int_compare:nNnTF {#1} = {1}
+    {
+      \seq_map_inline:Nn \l_tmpa_seq { \partial ##1 } % 单阶数
+    }
+    {
+      \seq_map_inline:Nn \l_tmpa_seq { \partial ##1 ^{#1} } % 多变量各自加阶数
+    }
+  }
 }
 
 \ExplSyntaxOff
+
+\DeclareDocumentCommand\pdv{ s o m g g d() }
+{ 
+    \IfBooleanTF{#1}
+    {\let\fractype\flatfrac}
+    {\let\fractype\frac}
+    \IfNoValueTF{#4}
+    {
+        \IfNoValueTF{#6}
+        {\fractype{\partial \IfNoValueTF{#2}{}{^{#2}}}{\partial #3\IfNoValueTF{#2}{}{^{#2}}}}
+        {\fractype{\partial \IfNoValueTF{#2}{}{^{#2}}}{\partial #3\IfNoValueTF{#2}{}{^{#2}}} \argopen(#6\argclose)}
+    }
+    {
+        \IfNoValueTF{#5}
+        {\fractype{\partial \IfNoValueTF{#2}{}{^{#2}} #3}{\partial #4\IfNoValueTF{#2}{}{^{#2}}}}
+        {\fractype{\partial^2 #3}{\partial #4 \partial #5}}
+    }
+}

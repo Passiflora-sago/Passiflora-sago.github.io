@@ -1,0 +1,464 @@
+\setcounter{chapter}{7} % 设置章节计数器
+
+\chapter{}
+
+
+\section{Apr 14 补充题，CH10.5，6，8.}
+
+
+
+\begin{exercise}
+    {补充题1}
+
+    用五种方法计算$\Omega:\frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}\les 1$的体积$V(\Omega)$.
+\end{exercise}
+
+\begin{solution}
+    先一后二,先二后一,球坐标换元,柱坐标换元,放缩
+
+    \begin{align*}
+        V &= \int_{-a}^a \dif x \iint_{\frac{y^2}{b^2}+\frac{z^2}{c^2} \les 1 - \frac{x^2}{a^2}} \dif y \dif z \\
+        &= \int_{-a}^a bc \left( 1 - \frac{x^2}{a^2} \right) \pi \dif x = \frac{4}{3} \pi abc
+    \end{align*}
+
+    \begin{align*}
+        V &= \iint_{\frac{y^2}{b^2}+\frac{z^2}{c^2} \les 1} \int_{-a\sqrt{1 - \frac{y^2}{b^2} - \frac{z^2}{c^2}}}^{a\sqrt{1 - \frac{y^2}{b^2} - \frac{z^2}{c^2}}} \dif x \dif y \dif z \\
+        &= \int_{-b}^b \dif y \int_{-c}^c \sqrt{1 - \frac{y^2}{b^2} - \frac{z^2}{c^2}} \dif z \\
+        &= \frac{4}{3} \pi abc
+    \end{align*}
+
+    令$(x,y,z) = (a \sin \theta \cos \varphi, b \sin \theta \sin \varphi, c \cos \theta)$，则
+    \begin{align*}
+        V &= \int_0^{2\pi} \dif \varphi \int_0^{\pi} \dif \theta \int_0^1 r^2 \sin \theta \dif r \\
+        &= \int_0^{2\pi} \dif \varphi \int_0^{\pi} \sin \theta \dif \theta \int_0^1 r^2 \dif r = \frac{4}{3} \pi abc
+    \end{align*}
+\end{solution}
+
+
+
+
+
+
+\begin{exercise}
+    {补充题2}
+
+    计算$I_1= \iiint_{x^2 + y^2 + z^2 \les 1} \cos (ax + by + cz) \dif x \dif y \dif z$与$I_2 = \iiint_{x^2 + y^2 + z^2 \les 1} (ax + by + cz)^m \dif x \dif y \dif z$的值.其中$(a,b,c) \neq \theta$为常向量,$m \in N^+$.
+\end{exercise}
+
+\begin{solution}
+    \begin{align*}
+        I_1 &= \iiint_{x^2 + y^2 + z^2 \leq 1} \cos(ax + by + cz) \, \dif V 
+        = \iiint_{x^2 + y^2 + z^2 \leq 1} \cos\left( \sqrt{a^2 + b^2 + c^2} \, x \right) \dif V \\
+        &= \int_{-1}^{1} \dif x \iint_{y^2 + z^2 \leq 1 - x^2} \cos(rx) \, \dif S 
+        = \pi \int_{-1}^{1} (1 - x^2) \cos(rx) \, \dif x \\
+        &= -\frac{4\pi}{\sqrt{a^2 + b^2 + c^2}} \cos \sqrt{a^2 + b^2 + c^2} 
+        + \frac{4\pi}{\left( a^2 + b^2 + c^2 \right)^{3/2}} \sin \sqrt{a^2 + b^2 + c^2}
+        \end{align*}
+
+        \begin{align*}
+            I_2 &= \iiint_{x^2 + y^2 + z^2 \leq 1} (ax + by + cz)^m \, \dif V 
+            = r^m \iiint_{x^2 + y^2 + z^2 \leq 1} x^m \, \dif V \\
+            &= r^m \int_{-1}^{1} (1 - x^2) x^m \, \dif V 
+            = \pi \left( \frac{1 - (-1)^{m+1}}{m + 1} - \frac{1 - (-1)^{m+3}}{m + 3} \right) \\
+            &= \frac{2\pi}{(m+1)(m+3)} \left( 1 - (-1)^{m+1} \right)
+            \end{align*}
+
+\end{solution}
+
+
+
+\begin{exercise}{CH10.5}
+    试求圆盘$(x-a)^2+(y-a)^2\les a^2$ 与曲线$(x^2+y^2)^2=8a^2xy$的所围部分相交的区域$D$的面积.
+    \end{exercise}
+    \begin{solution}
+        由于所求区域为$(x-a)^2+(y-a)^2\les a^2$与$(x^2+y^2)^2\les 8a^2xy$的交集,$xy$总是可以用$u=\frac{x+y}{\sqrt{2}},v=\frac{x-y}{\sqrt{2}}$来变换成两个分开的$u^2-v^2$的形式来简化计算.
+    
+        令$$u=\frac{x+y}{\sqrt{2}},v=\frac{x-y}{\sqrt{2}}$$则区域为$$u^2+v^2-2\sqrt{2}au+a^2\les 0,(u^2+v^2)^2\les4a^2(u^2-v^2)$$所求为$$\frac{1}{2}\iint_{D'}\dif u \dif v$$
+        此时可以反解计算,但仍然比较麻烦,需要对带累次根号的函数积分.
+    
+        这时候再做换元,令$$u=r\cos\theta,v=r\sin\theta$$则区域为$$r^2-2\sqrt{2}ar\cos\theta+a^2\les 0,r^2\les4a^2\cos 2\theta$$所求为$$\frac{1}{2}\iint_{D''}r\dif r \dif \theta.$$
+    
+        对于限制区域的两个方程,可以分别解出$r$满足的范围为$$[\sqrt{2}a\cos\theta-a\sqrt{\cos2\theta},\sqrt{2}a\cos\theta+a\sqrt{\cos2\theta}],[0,2a\sqrt{\cos2\theta}]$$
+    
+        由于$\cos\theta=\sqrt{\frac{\cos2\theta+1}{2}}$,
+        综合二者比较可得$[a(\sqrt{1+\cos2\theta}-\sqrt{\cos2\theta}),2a\sqrt{\cos2\theta}]$
+    
+        因此得到$$\cos2\theta\ges\frac{1}{8},\theta\in[-\frac{1}{2}\arccos\frac{1}{8},\frac{1}{2}\arccos\frac{1}{8}]$$.
+    
+        因此此时得到\begin{align*}
+            S&=\int_{-\frac{1}{2}\arccos\frac{1}{8}}^{\frac{1}{2}\arccos\frac{1}{8}}\dif \theta \int_{a(\sqrt{1+\cos2\theta}-\sqrt{\cos2\theta})}^{2a\sqrt{\cos2\theta}}r\dif r\\
+            &=\int_{-\frac{1}{2}\arccos\frac{1}{8}}^{\frac{1}{2}\arccos\frac{1}{8}}\frac{1}{2}\left(\left(2a\sqrt{\cos2\theta}\right)^2-\left(a(\sqrt{1+\cos2\theta}-\sqrt{\cos2\theta})\right)^2\right)\dif \theta \\
+            &=\frac{a^2}{2}\int_{-\frac{1}{2}\arccos\frac{1}{8}}^{\frac{1}{2}\arccos\frac{1}{8}}2\cos2\theta -1+2\sqrt{1+\cos2\theta}\sqrt{\cos2\theta}\dif \theta \\
+            &=a^2\int_{0}^{\frac{1}{2}\arccos\frac{1}{8}}2\cos2\theta -1+2\sqrt{1+\cos2\theta}\sqrt{\cos2\theta}\dif \theta \\
+            &=a^2\left(\sin2\theta-\theta\right)\bigg|_0^{\arccos\frac{1}{8}}+2a^2\int_{0}^{\frac{1}{2}\arccos\frac{1}{8}}\sqrt{1+\cos2\theta}\sqrt{\cos2\theta}\dif \theta \\
+            &=a^2\left(\frac{3\sqrt{7}}{8}-\frac{1}{2}\arccos\frac{1}{8}\right)+2a^2\int_{0}^{\frac{1}{2}\arccos\frac{1}{8}}\sqrt{1+\cos2\theta}\sqrt{\cos2\theta}\dif \theta 
+        \end{align*}
+    
+        并计算\begin{align*}
+            &\int_{0}^{\frac{1}{2}\arccos\frac{1}{8}}\sqrt{1+\cos2\theta}\sqrt{\cos2\theta}\dif \theta \\
+            \overset{t=\cos 2\theta}{=}&\int_{\frac{1}{8}}^{1}\sqrt{1+t}\sqrt{t}\frac{1}{2\sqrt{1-t^2}}\dif t\\
+            =&\frac{1}{2}\int_{\frac{1}{8}}^{1}\sqrt{\frac{t}{1-t}}\dif t\\
+            =&\frac{1}{2}\int_{\frac{1}{8}}^{1}\frac{t}{\sqrt{\frac{1}{4}-(t-\frac{1}{2})^2}}\dif t\\
+            =&\frac{1}{4}\int_{\frac{1}{8}}^{1}\frac{2t-1}{\sqrt{\frac{1}{4}-(t-\frac{1}{2})^2}}+\frac{1}{\sqrt{\frac{1}{4}-(t-\frac{1}{2})^2}}\dif t\\
+            \overset{s=2t-1}{=}&\frac{1}{4}\int_{-\frac{3}{4}}^{1}\frac{s}{\sqrt{1-s^2}}+\frac{1}{\sqrt{1-s^2}}\dif s\\
+            =&\frac{1}{4}\left(-\sqrt{1-s^2}+\arcsin s\right)\bigg|_{-\frac{3}{4}}^{1}\\
+            =&\frac{\pi}{8}+\frac{1}{4}\arcsin\frac{3}{4}+\frac{\sqrt{7}}{16}\\
+            =&\frac{1}{4}\arccos-\frac{3}{4}+\frac{\sqrt{7}}{16}\\
+        \end{align*}
+        带回得到\begin{align*}
+            S=&a^2\left(\frac{3\sqrt{7}}{8}-\frac{1}{2}\arccos\frac{1}{8}+2(\frac{1}{4}\arccos\frac{3}{4}+\frac{\sqrt{7}}{16})\right)\\
+            =&a^2\left(\frac{\sqrt{7}}{2}+\frac{1}{2}\left(\arccos-\frac{3}{4}-\arccos\frac{1}{8}\right)\right)\\
+            =&a^2\left(\frac{\sqrt{7}}{2}+\arccos\frac{5\sqrt{2}}{8}\right)\\
+        \end{align*}
+        其中$\frac{1}{2}\left(\arccos\frac{3}{4}-\arccos\frac{1}{8}\right)$可以考虑判断一下角的范围,之后利用三角函数直接计算,
+        相当于求$\frac{1}{2}(\theta_1-\theta_2)$,由于$0<\theta_1-\theta_2<\frac{\pi}{2}$,因此$\frac{1}{2}(\theta_1-\theta_2)=\arccos\cos\frac{1}{2}(\theta_1-\theta_2)$
+        因此\begin{align*}
+            &\cos\frac{1}{2}(\theta_1-\theta_2)\\
+            =&\sqrt{\frac{\cos(\theta_1-\theta_2)+1}{2}}\\
+            =&\sqrt{\frac{\cos\theta_1\cos\theta_2+\sin\theta_1\sin\theta_2+1}{2}}\\
+            =&\sqrt{\frac{-\frac{3}{4}\cdot\frac{1}{8}+\frac{\sqrt{7}}{4}\cdot\frac{3\sqrt{7}}{8}+1}{2}}\\
+            =&\sqrt{\frac{\frac{9}{16}+1}{2}}\\
+            =&\sqrt{\frac{25}{32}}\\
+            =&\frac{5\sqrt{2}}{8}\\
+        \end{align*}
+        即得.
+    \end{solution} 
+
+
+\begin{exercise}
+    {CH10.6}
+    计算曲面$$
+    (x^2 + y^2)^2 + z^4 = y
+    $$所围成的体积$V$.
+\end{exercise}
+
+\begin{solution}
+    作球坐标换元$$(x,y,z)=(r\sin \varphi \cos \theta,r\sin \varphi \sin \theta,r\cos \varphi)$$
+
+    原题中的积分区域$\Omega$关于$xy$平面和$yz$平面对称,又$y \ges 0 $,由对称性可以只考虑
+    $$\Omega_1 = \{ (x,y,z) \mid (x^2+y^2)^2+z^4 \les y, x \ges 0, z \ges 0 \}$$
+    的部分.则$$\dif x \dif y \dif z = r^2 \sin \varphi \dif r \dif \varphi \dif \theta$$其中
+    $$(x^2+y^2)^2+z^4 \les y \Rightarrow r^4 \sin^4 \varphi + r^4 \cos^4 \varphi \les r \sin \varphi \sin \theta \Rightarrow 0 \les r \les \sqrt[3]{\frac{ \sin \theta \sin \varphi}{\sin^4 \varphi + \cos^4 \varphi}}$$
+    $$x \ges 0 , y \ges 0 , z \ges 0 \Rightarrow \theta \in [0,\frac{\pi}{2}], \varphi \in [0,\frac{\pi}{2}]$$
+
+    故
+    \begin{align*}
+        V &= 4\int_0^{\frac{\pi}{2}} \dif \theta \int_0^{\frac{\pi}{2}} \dif \varphi \int_0^{\sqrt[3]{\frac{ \sin \theta \sin \varphi}{\sin^4 \varphi + \cos^4 \varphi}}} r^2 \sin \varphi \dif r \\
+        &=4\int_0^{\frac{\pi}{2}} \dif \theta \int_0^{\frac{\pi}{2}} \dif \varphi  \sin \varphi \left( \frac13 \frac{\sin \theta \sin \varphi}{\sin^4 \varphi + \cos^4 \varphi} \right) \\
+        &=\frac43 \int_0^{\frac{\pi}{2}} \sin \theta \dif \theta \int_0^{\frac{\pi}{2}} \frac{\sin^2 \varphi}{\sin^4 \varphi + \cos^4 \varphi} \dif \varphi \\
+        &=\frac43 \cdot \int_0^{\frac{\pi}{2}} \frac{\sin^2 \varphi(\sin^2 \varphi + \cos^2 \varphi)}{\sin^4 \varphi + \cos^4 \varphi} \dif \varphi \\
+        &=\frac43 \cdot \int_0^{+\infty} \frac{t^2}{1+ t^4} \dif t \\
+        &=\frac{\sqrt 2}{3} \pi
+    \end{align*}
+\end{solution}
+
+
+
+\begin{exercise}{CH10.8}
+    证明:$$\iint_{x^2+y^2\les 1}f(ax+by+c)\dif x \dif y=2\int_{-1}^{1}\sqrt{1-t^2}f(t\sqrt{a^2+b^2}+c)\dif t$$
+\end{exercise}
+\begin{solution}
+    令$t=\frac{ax+by}{\sqrt{a^2+b^2}},s=\frac{bx-ay}{\sqrt{a^2+b^2}}$,相当于正交变换,$|J|=1$,得到
+    \begin{align*}
+        I=&\iint_{t^2+s^2\les 1}f(t\sqrt{a^2+b^2}+c)\dif t \dif s\\
+        =&2\int_{-1}^{1}\sqrt{1-t^2}f(t\sqrt{a^2+b^2}+c)\dif t
+    \end{align*}
+\end{solution}
+
+
+\section{Apr 16 ex10.3:5(8),6,12,14,16,19;CH10:4}
+
+\begin{exercise}
+    {ex10.3.5(8)}
+
+    计算下列曲面围成的立体体积.
+    \begin{enumerate}
+        %设置item序号为7
+        \setcounter{enumi}{7}
+        \item $(x^2+y^2+z^2)^2 = a^3 x$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+    取球坐标换元,$x = r \cos \theta, y = r \sin \theta \cos \varphi, z = r \sin \theta \sin \varphi$,
+    则$$\dif x \dif y \dif z = r^2 \sin \theta \dif r \dif \theta \dif \varphi$$
+
+    积分区域为$$\Omega = \{ (x,y,z) \mid (x^2+y^2+z^2)^2 = a^3 x \}$$
+    $$\Rightarrow (r^2)^2 = a^3 r \cos \theta \Rightarrow r^3 = a^3 \cos \theta$$
+
+    故$\varphi \in [0, 2 \pi], \theta \in [0, \frac{\pi}{2}], r \in [0, a \sqrt[3]{\cos \theta}]$
+
+    \begin{align*}
+        V &= \int_0^{2\pi} \dif \varphi \int_0^{\frac{\pi}{2}} \dif \theta \int_0^{a \sqrt[3]{\cos \theta}} r^2 \sin \theta \dif r \\
+        &= \int_0^{2 \pi} \dif \varphi \int_0^{\frac{\pi}{2}} \dif \theta \sin \theta \left( \frac{1}{3} a^3 \cos \theta \right) \\
+        &= \frac{\pi}{3} a^3
+    \end{align*}
+\end{solution}
+
+
+
+\begin{exercise}
+{ex10.3.6}
+
+    求函数$f(x,y,z) = x^2 + y^2 + z^2$在区域$x^2 + y^2 + z^2 \les x + y + z$上的平均值.
+\end{exercise}
+
+\begin{solution}
+    $$x^2 + y^2 + z^2 \les x+ y +z \Rightarrow \left( x- \frac{1}{2} \right)^2 + \left( y - \frac{1}{2} \right)^2 + \left( z - \frac{1}{2} \right)^2 \les \frac{3}{4}$$
+    于是令$$(x,y,z) = \left( \frac{1}{2} + \frac{1}{2} r \sin \theta \cos \varphi, \frac{1}{2} + \frac{1}{2} r \sin \theta \sin \varphi, \frac{1}{2} + \frac{1}{2} r \cos \theta \right)$$
+
+    区域的体积$$V(\Omega) = \frac{\sqrt 3}{2} \pi$$
+
+    $f$在区域上的积分
+    $$I = \iiiint_{\Omega} (x^2 + y^2 + z^2) \dif x \dif y \dif z$$
+    \begin{align*}
+        I &= \iiiint_{\Omega} (x^2 + y^2 + z^2) \dif x \dif y \dif z \\
+        &= \int_{0}^{2\pi} \dif \varphi \int_{0}^{\pi} \dif \theta \int_{0}^{1} \left( \frac{1}{4} + \frac{1}{4} r^2 + r^2 \sin^2 \theta \right) r^2 \sin \theta \dif r \\
+        &= \frac{3 \sqrt 3}{5} \pi
+    \end{align*}
+
+    故平均值$\bar f = \frac{I}{V} = \frac65$.
+\end{solution}
+
+\begin{exercise}
+    {ex10.3.12}
+
+    一个物体是由两个半径各为$R$和$r$($R \ges r$)的同心球所围成,已知材料的密度和到球心的距离成反比,且在距离为1的球面出密度为$k$,求该物体的质量.
+\end{exercise}
+
+\begin{solution}
+    \begin{align*}
+    I &= \iiint_{r^3 \les x^2 + y^2 + z^2 \les R^3} \frac{k}{\sqrt{x^2 + y^2 + z^2}} \dif x \dif y \dif z \\
+    &= \int_{0}^{2\pi} \dif \varphi \int_0^{\pi} \dif \theta \int_{r}^{R} \frac{k}{r^2} \cdot r^2 \sin \theta \dif r \\
+    &=2 \pi k (R^2 - r^2)
+\end{align*}
+\end{solution}
+
+\begin{exercise}
+    {ex10.3.14}
+
+    有一个均匀质地的薄板,它是由半径为$a$的半圆和一个长方形拼接而成,为了使重心正好在圆心上,问长方形的宽$b$应为多少?
+\end{exercise}
+
+\begin{solution}
+    设圆心为原点,薄板所在的区域为$$\Omega = \{ (x,y) \mid x^2 + y^2 \les a^2, y \ges 0 \} \cup \{ (x,y) \mid -a \les x \les a, -b \les y \les 0 \}$$
+
+    设重心坐标为$(\bar x, \bar y)$,则$$\bar x = \frac{1}{I} \iint_{\Omega} x \dif x \dif y = 0 $$
+
+    $$\bar y = 0 \Rightarrow \iint_\Omega y \dif x \dif y = 0 \Rightarrow \iint_{x^2 + y^2 \les a^2, y \ges 0} y \dif x \dif y + \iint_{-a \les x \les a, -b \les y \les 0} y \dif x \dif y = 0$$
+
+    其中
+    $$\iint_{x^2 + y^2 \les a^2, y \ges 0} y \dif x \dif y = \frac{1}{2} \int_0^{\pi} \int_0^a r \sin \theta \cdot r \dif r \dif \theta = \frac13 \pi a^3$$
+
+    $$\iint_{-a \les x \les a, -b \les y \les 0} y \dif x \dif y = \int_{-a}^a \dif x \int_{-b}^0 y \dif y = -\frac{1}{2} ab^2$$
+
+    因此$$\frac{1}{3} \pi a^3 - \frac12 ab^2 = 0 \Rightarrow b = \frac{\sqrt 6}{3} a$$
+
+\end{solution}
+
+\begin{exercise}
+    {ex10.3.16}
+
+    设球体$x^2 + y^2 + z^2 \les 2az$内各点密度与各点到原点的距离成反比,求其重心坐标.
+\end{exercise}
+
+\begin{solution}
+    球体质量为
+    \begin{align*}
+        I &= \iiint_{x^2 + y^2 + z^2 \les 2az} \frac{1}{\sqrt{x^2 + y^2 + z^2}} \dif x \dif y \dif z \\
+        &= \int_0^{2\pi} \dif \varphi \int_0^{\pi} \dif \theta \int_0^{\sqrt{2a^2 - 2az}} r^2 \sin \theta \cdot \frac{1}{r} r^2 \sin \theta \dif r \\
+        &= 4\pi a^3 \\
+    \end{align*}
+
+    球体重心为
+    \begin{align*}
+        \bar x &= \frac{1}{I} \iiint_{x^2 + y^2 + z^2 \les 2az} x \cdot \frac{1}{\sqrt{x^2 + y^2 + z^2}} \dif x \dif y \dif z = 0\\
+        \bar y &= \frac{1}{I} \iiint_{x^2 + y^2 + z^2 \les 2az} y \cdot \frac{1}{\sqrt{x^2 + y^2 + z^2}} \dif x \dif y \dif z = 0\\
+        \bar z &= \frac{1}{I} \iiint_{x^2 + y^2 + z^2 \les 2az} z \cdot \frac{1}{\sqrt{x^2 + y^2 + z^2}} \dif x \dif y \dif z = \frac{4}{5} a
+    \end{align*}
+
+    故重心坐标为$(0, 0, \frac{4}{5} a)$.
+\end{solution}
+
+\begin{exercise}
+    {ex10.3.19}
+
+
+    求密度为$\rho$的均匀球锥体对在其顶点为$1$单位质量的质点的引力,设球的半径为$R$,而轴截面的扇形的角度为$2\alpha$.
+\end{exercise}
+
+
+\begin{solution}
+    设球锥体的顶点为$O$,球锥体的区域为$$\Omega = \{ (x,y,z) \mid x^2 + y^2 + z^2 \les R^2, z \ges 0, \frac{y}{x} \les \tan \alpha \}$$
+
+    则$(x,y,z)$处$\dif x \dif y \dif z$的微元带来的引力为$$\dif \bm F = -\frac{G \rho(x,y,z) \dif x \dif y \dif z}{(x^2 + y^2 + z^2)^{3/2}} (x,y,z)$$
+
+    故总引力为
+
+    $$F_x = \iiint_{\Omega} -\frac{G \rho}{(x^2 + y^2 + z^2)^{3/2}} x \dif x \dif y \dif z= 0 $$
+
+    $$F_y = \iiint_{\Omega} -\frac{G \rho}{(x^2 + y^2 + z^2)^{3/2}} y \dif x \dif y \dif z= 0 $$
+
+    $$F_z = \iiint_{\Omega} -\frac{G \rho}{(x^2 + y^2 + z^2)^{3/2}} z \dif x \dif y \dif z = \pi GR \rho \sin^2 \alpha$$
+
+    因此$$|| \bm F|| = \sqrt{F_x^2 + F_y^2 + F_z^2} = \pi GR \rho \sin^2 \alpha$$
+
+\end{solution}
+
+\begin{exercise}
+    {CH10.4}
+    设$D = \{ (x,y) \mid x^2 + y^2 \les 1 \}$,求$I = \iint_D \left| \frac{x+y}{\sqrt 2} - x^2 - y^2 \right| \dif x \dif y$.
+\end{exercise}
+
+\begin{solution}
+    不难得到
+\begin{align*}
+\iint_D \left| \frac{x + y}{\sqrt{2}} - x^2 - y^2 \right| \dif x \dif y 
+&= \iint_{B(0,1)} \left( x^2 + y^2 - \frac{x + y}{\sqrt{2}} \right) \dif x \dif y \\
+&+ 2 \iint_{B\left( \frac{1}{2\sqrt{2}}, \frac{1}{2} \right)} \left( \frac{x + y}{\sqrt{2}} - x^2 - y^2 \right) \dif x \dif y
+\end{align*}
+
+一方面，令 $x = r \cos \theta,\ y = r \sin \theta$，则
+\begin{align*}
+I_1 &= \iint_{B(0,1)} \left( x^2 + y^2 - \frac{x + y}{\sqrt{2}} \right) \dif x \dif y \\
+&= \int_0^{2\pi} \dif \theta \int_0^1 r \left( r^2 + \frac{r \cos \theta + r \sin \theta}{2} \right) \dif r \\
+&= \int_0^{2\pi} \left( \frac{1}{4} + \frac{1}{3\sqrt{2}} (\cos \theta + \sin \theta) \right) \dif \theta \\
+&= \frac{\pi}{2}
+\end{align*}
+
+另一方面，令 $x = \frac{1}{2\sqrt{2}} + \frac{r}{2} \cos \theta,\ y = \frac{1}{2\sqrt{2}} + \frac{r}{2} \sin \theta$，则
+\begin{align*}
+I_2 &= \iint_{B\left( \frac{1}{2\sqrt{2}}, \frac{1}{2} \right)} \left( \frac{x + y}{\sqrt{2}} - x^2 - y^2 \right) \dif x \dif y \\
+&= \frac{1}{16} \int_0^{2\pi} \dif \theta \int_0^1 r (1 - r^2) \dif r \\
+&= \frac{\pi}{32}
+\end{align*}
+
+因此
+\begin{align*}
+\iint_D \left| \frac{x + y}{\sqrt{2}} - x^2 - y^2 \right| \dif x \dif y 
+= I_1 - 2I_2 = \frac{9\pi}{16}
+\end{align*}
+\end{solution}
+
+
+\section{Apr 16 补充题,ex10.4:1;CH10:3}
+
+
+
+
+\begin{exercise}
+    {补充题1}
+
+    推导半径为$R$的$n$维球体的体积公式$$V_n(R) = \frac{R^n}{n!} \int_0^{\frac{\pi}{2}} \sin^{n-1} \theta \dif \theta$$
+\end{exercise}
+
+
+
+\begin{exercise}
+    化简$$I = \int \cdots \int_{\Omega} f\left( \sum_{i=1}^{6} a_i x_i \right) \dif x_1 \cdots \dif x_6$$
+
+    这里 $\Omega$ 是 $\mathbb{R}^6$ 的单位球.
+\end{exercise}
+
+\begin{solution}
+    对于 $\bm{a} = (a_1, \cdots, a_6)$，记 $a = \abs{\bm{a}}$，则旋转坐标系可得
+    \begin{align*}
+    I = \int \cdots \int_{\Omega} f\left(ax_1\right) \dif x_1 \cdots \dif x_6 
+    = \int_{-1}^{1} m\left(B(x_1)\right) f(ax_1) \dif x_1 
+    = \frac{8\pi^2}{15} \int_{-1}^{1} \left(1 - x^2\right)^{\frac{5}{2}} f(ax) \dif x
+    \end{align*}
+
+    这里
+    $$
+    B(x_1) = \left\{ \bf{x}' = (x_2, x_3, x_4, x_5, x_6) \,\middle|\, \norm{\bf{x}'}^2 < 1 - x_1^2 \right\}
+    $$
+
+
+\end{solution}
+
+
+
+
+\begin{exercise}
+    {ex10.4.1}
+
+    计算下列$n$重积分.
+    \begin{enumerate}
+        \item $\int \cdots \int_{[0,1]^n} \left( x_1^2 + x_2^2 + \cdots + x_n^2 \right) \dif x_1 \cdots \dif x_n$;
+        \item $\int \cdots \int_{[0,1]^n} \left( x_1 + x_2 + \cdots + x_n \right)^2 \dif x_1 \cdots \dif x_n$;
+        \item $\int_0^1 \dif x_1 \int_0^{x_1} \dif x_2 \cdots \int_0^{x_{n-1}} x_1 \cdot x_2 \cdots x_n \dif x_n$;
+    \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+    \begin{enumerate}
+        \item \begin{align*}
+            \int \cdots \int_{[0,1]^n} \left( x_1^2 + \cdots + x_n^2 \right) \dif x_1 \cdots \dif x_n 
+            &= \sum_{i=1}^n \int \cdots \int_{[0,1]^n} x_i^2 \dif x_1 \cdots \dif x_n \\
+            &= \sum_{i=1}^n \int_0^1 x_i^2 \dif x_i = \frac{n}{3}
+            \end{align*}
+            \item \begin{align*}
+                & \ \int \cdots \int_{[0,1]^n} (x_1 + \cdots + x_n)^2 \dif x_1 \cdots \dif x_n\\ 
+                =& \int_0^1 \cdots \int_0^1 (x_1 + \cdots + x_n)^2 \dif x_n \\
+                =& \frac{1}{3} \int_0^1 \cdots \int_0^1 \left((x_1 + \cdots + x_{n-1} + 1)^3 - (x_1 + \cdots + x_{n-1})^3 \right) \dif x_{n-1} \\
+                =& \frac{1}{3} \int_0^1 \cdots \int_0^1 \left( 3(x_1 + \cdots + x_{n-1})^2 + 3(x_1 + \cdots + x_{n-1}) + 1 \right) \dif x_{n-1} \\
+                =& \frac{1}{3} + \int_0^1 \cdots \int_0^1 (x_1 + \cdots + x_{n-1})^2 \dif x_{n-1} 
+                + \int_0^1 \cdots \int_0^1 (x_1 + \cdots + x_{n-1}) \dif x_{n-1} \\
+                =& \frac{1}{3} + \int_0^1 \cdots \int_0^1 (x_1 + \cdots + x_{n-1})^2 \dif x_{n-1} 
+                + \sum_{i=1}^{n-1} \int_0^1 \cdots \int_0^1 x_i \dif x_{n-1} \\
+                =& \int_0^1 \cdots \int_0^1 (x_1 + \cdots + x_{n-1})^2 \dif x_{n-1} + \frac{n-1}{2} + \frac{1}{3} \\
+                &= \int_0^1 \cdots \int_0^1 (x_1 + \cdots + x_{n-2})^2 \dif x_{n-2} + \frac{n-1}{2} + \frac{n-2}{2} + \frac{2}{3} \\
+                =& \cdots \\
+                =& \frac{n(n-1)}{4} + \frac{n}{3} = \frac{n(3n + 1)}{12}
+                \end{align*}
+        \item \begin{align*}
+            \int_0^1 \dif x_1 \int_0^{x_1} \dif x_2 \cdots \int_0^{x_{n-1}} x_1 x_2 \cdots x_n \, \dif x_n 
+            &= \frac{1}{2} \int_0^1 \dif x_1 \int_0^{x_1} \dif x_2 \cdots \int_0^{x_{n-2}} x_1 x_2 \cdots x_{n-2} x_{n-1}^3 \, \dif x_{n-1} \\
+            &= \frac{1}{8} \int_0^1 \dif x_1 \int_0^{x_1} \dif x_2 \cdots \int_0^{x_{n-3}} x_1 x_2 \cdots x_{n-3} x_{n-2}^5 \, \dif x_{n-2} \\
+            &= \cdots \\
+            &= \frac{1}{(n-1)! \, 2^{n-1}} \int_0^1 x_1^{2n - 1} \dif x_1 \\
+            &= \frac{1}{n! \, 2^n}
+            \end{align*}
+            
+    \end{enumerate}
+\end{solution}
+
+
+
+\begin{exercise}{CH10.3} 
+    计算$$I_1=\int_{0}^{1}\sin\left(\ln\frac{1}{x}\right)\cdot\frac{x^b-x^a}{\ln x}\dif x,I_2=\int_{0}^{1}\cos\left(\ln\frac{1}{x}\right)\cdot\frac{x^b-x^a}{\ln x}\dif x$$
+\end{exercise}
+\begin{solution}
+    \begin{align*}
+        I_1=&\int_{0}^{1}\sin\left(\ln\frac{1}{x}\right)\cdot\frac{x^b-x^a}{\ln x}\dif x\\
+        =&\int_{0}^{1}\sin\left(\ln\frac{1}{x}\right)\left(\int_{a}^{b}x^y\dif y\right)\dif x\\
+        =&\int_{a}^{b}\dif y\int_{0}^{1}\sin\left(\ln\frac{1}{x}\right)\cdot x^y\dif x(\text{化为二重积分})\\
+        =&\int_{a}^{b}(\int_{0}^{1}\sin\left(\ln\frac{1}{x}\right) \cdot x^y\dif x)\dif y\\
+    \end{align*}
+    因此问题转化为计算$$g_1(y)=\int_{0}^{1}\sin\left(\ln\frac{1}{x}\right)\cdot x^y\dif x,g_2(y)=\int_{0}^{1}\cos\left(\ln\frac{1}{x}\right)\cdot x^y\dif x$$
+    分部一下,得到\begin{align*}
+        g_1(y)&=\sin\left(\ln\frac{1}{x}\right)\cdot \frac{x^{y+1}}{y+1}\bigg|_0^1-\int_{0}^{1}\cos\left(\ln\frac{1}{x}\right)\left(-\frac{1}{x}\right)\cdot \frac{x^{y+1}}{y+1}\dif x\\
+        &=\int_{0}^{1}\cos\left(\ln\frac{1}{x}\right)\cdot \frac{x^{y}}{y+1}\\
+        &=\frac{1}{y+1}g_2(y)\\
+        g_2(y)&=\cos\left(\ln\frac{1}{x}\right)\cdot \frac{x^{y+1}}{y+1}\bigg|_0^1+\int_{0}^{1}\sin\left(\ln\frac{1}{x}\right)\left(-\frac{1}{x}\right)\cdot \frac{x^{y+1}}{y+1}\dif x\\
+        &=\frac{1}{y+1}-\int_{0}^{1}\sin\left(\ln\frac{1}{x}\right)\cdot \frac{x^{y}}{y+1}\\
+        &=\frac{1}{y+1}-\frac{1}{y+1}g_1(y)
+    \end{align*}
+    因此$g_1(y)=\frac{1}{1+(y+1)^2},g_2(y)=\frac{y+1}{1+(y+1)^2}$
+    $$I_1=\int_{a}^{b}\frac{1}{1+(y+1)^2}\dif y=\arctan(a+1)-\arctan (b+1)$$
+    $$I_2=\int_{a}^{b}\frac{y+1}{1+(y+1)^2}\dif y=\frac{1}{2}\ln(1+(a+1)^2)-\frac{1}{2}\ln(1+(b+1)^2)
+    $$
+\end{solution}
+
+
+
+
+
+
+
+
+
+
+
+
+

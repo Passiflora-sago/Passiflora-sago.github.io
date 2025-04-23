@@ -1,0 +1,545 @@
+\setcounter{chapter}{4} % 设置章节计数器
+\chapter{}
+
+\section{Mar 24 ex9.5:2(2),3,4(1)(3)(7),7(1)(3)(4).}
+
+\begin{exercise}{9.5.2(2)}
+    求下列函数由点$(x_0,y_0)$变到$(x_0+h,y_0+k)$时函数的增量.
+    $$f(x,y)=x^2y+xy^2-2xy,(x_0,y_0)=(1,-1)$$
+\end{exercise}
+\begin{solution}
+    可知$$f(x,y)=(x+y-2)xy$$因此增量为
+    \begin{align*}
+        &f(1+h,-1+k)-f(1,-1)\\
+        =&(1+h-1+k-2)(1+h)(-1+k)-(1-1-2)(1)(-1)\\
+        =&(h+k-2)(1+h)(-1+k)-2\\
+        =&(h+k-2)(hk-h+k-1)-2\\
+        =&h^2k+hk^2-h^2-2hk+hk-hk+k^2+2h-h-2k-k+2-2\\
+        =&h^2k+hk^2-h^2-2hk+k^2+h-3k
+    \end{align*}
+    或
+
+    依次求得一二三阶偏导数利用Taytor公式可得上式.
+\end{solution}
+
+\begin{exercise}{9.5.3}
+    对于函数$f(x,y)=\sin \pi x+\cos\pi y$,用微分中值定理证明,存在一个数$\theta\in(0,1)$,使得
+    $$\frac{4}{\pi}=\cos\frac{\pi\theta}{2}+\sin[\frac{\pi(1-\theta)}{2}]$$
+\end{exercise}
+\begin{solution}
+    在线段$\begin{cases}
+        x=\frac{t}{2},\\
+        y=\frac{1-t}{2};
+    \end{cases}t\in[0,1]$
+    上,有$$g(t)=f(\frac{t}{2},\frac{1-t}{2})=\sin \frac{\pi t}{2}+\cos\frac{\pi(1-t)}{2},t\in[0,1]$$
+    $$g'(t)=\frac{\pi}{2}\cos\frac{\pi t}{2}+\frac{\pi}{2}\sin\frac{\pi(1-t)}{2}$$
+    $$g(0)=0,g(1)=2$$
+    利用微分中值定理可得$g(1)-g(0)=1\cdot g'(\theta)$
+    即$$2=\frac{\pi}{2}\left(\cos\frac{\pi \theta}{2}+\sin\frac{\pi(1-\theta)}{2}\right)$$
+    可得
+    $$\frac{4}{\pi}=\cos\frac{\pi\theta}{2}+\sin[\frac{\pi(1-\theta)}{2}]$$
+\end{solution}
+
+
+
+
+\begin{exercise}{9.5.4}
+    求下列函数的Taylor公式,并指出展开式成立的区域.
+    \begin{enumerate}
+        \item[(1)] $f(x,y)=\e^x\ln (1+y)$在$(0,0)$展开到三阶为止.
+        \item[(3)] $f(x,y)=\frac{1}{1-x-y+xy}$在$(0,0)$展开到$n$阶为止.
+        \item[(7)] $f(x,y)=2x^2-xy-y^2-6x-3y+5$在$(1,-2)$的Taylor公式.
+    \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+    \begin{enumerate}
+        \item[(1)] 我们避开暴力计算的方式,尽管这样做也不复杂.
+        利用$$\e^x=1+x+\frac{x^2}{2}+\frac{x^3}{6}+o(x^3),x\to0$$
+        $$\ln (1+y)=y-\frac{y^2}{2}+\frac{y^3}{3}+o(y^3),y\to0$$
+        立刻可得\begin{align*}
+            f(x,y)
+            &=\e^x\ln (1+y)\\
+            &=\left(1+x+\frac{x^2}{2}+\frac{x^3}{6}+o(x^3)\right)\left(y-\frac{y^2}{2}+\frac{y^3}{3}+o(y^3)\right)\\
+            &=y+xy-\frac{y^2}{2}+\frac{xy^2}{2}+\frac{x^2y}{2}-\frac{xy^2}{2}+\frac{y^3}{3}+o(\rho^3)
+        \end{align*}
+        在$x\in\R,y>-1$时成立.
+        
+        \item[(3)] $f(x,y)=\frac{1}{1-x-y+xy}=\frac{1}{(1-x)(1-y)}$
+        此时无论是像(1)一样分别带入两部分的Taylor公式,或者直接带入二元Taylor公式都可以计算.
+        $$\frac{1}{1-x}=1+x+x^2+\cdots+x^n+o(x^n),x\to0$$
+        \begin{align*}
+            \parfrac{^{m+n}f}{x^m,y^n}
+            &=\left(\frac{1}{1-x}\right)^{(m)}_x\left(\frac{1}{1-y}\right)^{(n)}_y\\
+            &=\frac{m!}{(1-x)^{m+1}}\frac{n!}{(1-y)^{n+1}}
+        \end{align*}
+        因此在$(0,0)$处,$\left.\parfrac{^{m+n}f}{x^m,y^n}\right|_{(0,0)}=m!n!$
+        故\begin{align*}
+            f(x,y)
+            &=1+\sum_{k=1}^{n}\frac{1}{k!}\sum_{i+j=k}\frac{k!}{i!j!}x^iy^j\left.\parfrac{^k f}{x^i,y^j}\right|_{(0,0)}+o(\rho^n)\\
+            &=1+\sum_{k=1}^{n}\sum_{i+j=k}\frac{1}{i!j!}x^iy^j i!j!+o(\rho^n)\\
+            &=\sum_{k=0}^{n}\sum_{i+j=k}x^iy^j+o(\rho^n)
+        \end{align*}
+        在$x<1,y<1$时成立.
+
+        \item[(7)]
+        可以直接带入$(1+x,-2+y)$计算,当然也依次计算在$(1,-2)$处
+        $$f=5,f'_{1}=0,f'_{2}=0,f''_{11}=4,f''_{12}=-1,f''_{22}=-2$$
+        因此$f(1+x,-2+y)=5+2x^2-xy-y^2$
+        
+        代换成$$f(x,y)=5+2(x-1)^2-(x-1)(y+2)-(y+2)^2$$
+
+        在$\R^2$上成立.
+    \end{enumerate}
+\end{solution}
+
+\begin{exercise}{9.5.7}
+    求下列函数的极值.
+    \begin{enumerate}
+        \item[(1)] $f(x,y)=xy+\frac{50}{x}+\frac{20}{y}(x>0,y>0)$;
+        \item[(3)] $f(x,y)=\e^{2x}(x+2y+y^2)$;
+        \item[(4)] $(x^2+y^2)^2=a^2(x^2-y^2)$,求隐函数$y(x)$的极值.
+    \end{enumerate}
+\end{exercise}
+\begin{solution}
+    \begin{enumerate}
+        \item[(1)] $f(x,y)=xy+\frac{50}{x}+\frac{20}{y}$,则$\nabla f(x,y)=(y-\frac{50}{x^2},x-\frac{20}{y^2})$
+        
+        令$\nabla f(x,y)=(0,0)$,可得可得$x=5,y=2$.\\
+        计算Hesse矩阵$\begin{pmatrix}
+            \frac{4}{5}&1\\
+            1&5
+        \end{pmatrix}$正定,因此$(5,2)$为极小值点,极小值$f(5,2)=30$.
+        \item[(3)] $f(x,y)=\e^{2x}(x+2y+y^2)$,则$\nabla f(x,y)=(\e^{2x}(2x+4y+2y^2+1),\e^{2x}(2+2y))$
+        
+        令$\nabla f(x,y)=(0,0)$,可得$x=\frac{1}{2},y=-1$.\\
+        计算Hesse矩阵$\begin{pmatrix}
+            2\e&0\\
+            0&2\e
+        \end{pmatrix}$正定,因此$(\frac{1}{2},-1)$为极小值点,极小值$f(\frac{1}{2},-1)=-\frac{\e}{2}$.
+        \item[(4)] $F(x,y;\lambda)=y-\lambda((x^2+y^2)^2-a^2(x^2-y^2))$,
+        $$\begin{cases}
+            F'_x=-\lambda(4(x^2+y^2)x-2a^2x)=0,\\
+            F'_y=1-\lambda(4(x^2+y^2)y+2a^2y)=0,\\
+            (x^2+y^2)^2-a^2(x^2-y^2)=0.
+        \end{cases}$$
+        可得
+        $$\begin{cases}
+            -x\lambda(2(x^2+y^2)-a^2)=0,\\
+            F'_y=1-y\lambda(4(x^2+y^2)+2a^2)=0,\\
+            (x^2+y^2)^2-a^2(x^2-y^2)=0.
+        \end{cases}$$
+        对第一个式子,$x=0$时由第三个式子,$y=0$,此时第二个式子矛盾,因此一定是
+        $$\begin{cases}
+            x^2+y^2=\frac{a^2}{2},\\
+            x^2-y^2=\frac{a^2}{4},\\
+            \lambda=\frac{1}{4a^2y},
+        \end{cases}$$
+        解得
+        $$(x,y)=\left(\pm\frac{\sqrt{6}a}{4},\pm\frac{\sqrt{2}a}{4}\right)$$
+        对应了极大值$\frac{\sqrt{2}a}{4}$和极小值$-\frac{\sqrt{2}a}{4}$.
+    \end{enumerate}
+\end{solution}
+
+\section{Mar 26 ex9.5:7(2)(5),8,11(2)(4),17;ch9:6,14.}
+\begin{exercise}{9.5.7}
+    求下列函数的极值.
+    \begin{enumerate}
+        \item[(2)] $f(x,y)=4(x-y)-x^2-y^2$;
+        \item[(5)] $x^2+y^2+z^2-2x+2y-4z-10=0$,求隐函数$z=z(x,y)$的极值.
+    \end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+    \item[(2)] $f(x,y)=4(x-y)-x^2-y^2$,则$\nabla f(x,y)=(4-2x,-4-2y)$
+        令$\nabla f(x,y)=(0,0)$,可得可得$x=2,y=-2$.\\
+        计算Hesse矩阵$\begin{pmatrix}
+            -2&0\\
+            0&-2
+        \end{pmatrix}$负定,因此$(2,-2)$为极大值点,极大值$f(2,-2)=8$.
+    \item[(5)] $F(x,y,z;\lambda)=z-\lambda(x^2+y^2+z^2-2x+2y-4z-10)$,
+    $$\begin{cases}
+        F'_x=-\lambda(2x-2)=0,\\
+        F'_y=-\lambda(2y+2)=0,\\
+        F'_z=1-\lambda(2z-4)=0,\\
+        x^2+y^2+z^2-2x+2y-4z-10=0;
+    \end{cases}$$
+    解得
+    $$\begin{cases}
+       x=1,\\
+       y=-1,\\
+       z=-2\text{or}6,\\
+       \lambda=-\frac{1}{8}\text{or}\frac{1}{8};
+    \end{cases}$$
+    对应极大值$6$,极小值$-2$.
+
+    另:注意到这是一个椭球面$(x-1)^2+(y+1)^2+(z-2)^2=4^2$,可验证该结果$z=2\pm 4$为最大最小值.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}{9.5.8}
+    求一个三角形,使得它的三个角的正弦乘积最大.
+\end{exercise}
+\begin{solution}
+    即求$f(x,y,z)=\sin x\sin y\sin z$在约束$x+y+z=\pi;x,y,z>0$上的最大值.
+    令$F(x,y,z;\lambda)=\sin x\sin y\sin z-\lambda(x+y+z-\pi)$
+    $$\begin{cases}
+        F'_x=\cos x\sin y\sin z-\lambda=0,\\
+        F'_y=\sin x\cos y\sin z-\lambda=0,\\
+        F'_z=\sin x\sin y\cos z-\lambda=0,\\
+        x+y+z-\pi=0;
+    \end{cases}$$
+    前三个式子轮换相减可得
+    $$\begin{cases}
+        \sin z \sin(y-x)=0\\
+        \sin x \sin(z-y)=0\\
+        \sin y \sin(x-z)=0\\
+    \end{cases}$$
+    从而由于$\sin x,\sin y,\sin z>0$,有$x=y=z=\frac{\pi}{3}$,
+
+    并验证Hesse矩阵为
+    $\begin{pmatrix}
+        -\frac{3\sqrt{3}}{8}&\frac{\sqrt{3}}{8}&\frac{\sqrt{3}}{8}\\
+        \frac{\sqrt{3}}{8}&-\frac{3\sqrt{3}}{8}&\frac{\sqrt{3}}{8}\\
+        \frac{\sqrt{3}}{8}&\frac{\sqrt{3}}{8}&-\frac{3\sqrt{3}}{8}\\
+    \end{pmatrix}=\frac{\sqrt{3}}{8}\begin{pmatrix}
+        -3&1&1\\
+        1&-3&1\\
+        1&1&-3\\
+    \end{pmatrix}$负定.
+
+    因此在等边三角形时有最大值$\frac{3\sqrt{3}}{8}$.
+
+    此外,这类题想要说清是极大值也是最大值还是比较麻烦的,除了用积化和差之类的手段放缩,也可以这样解释为什么这个极大值是最大值.
+
+    注意到在闭集$\bar{D}=\{(x,y,z)|x+y+z=\pi;x,y,z\ges0\}$上,$f$可以取到最大最小值,而最大值一定是极值点,且由于在$D=\{(x,y,z)|x+y+z=\pi;x,y,z>0\}$范围内,$f>0$,$\partial D$上$f=0$.
+    因此$\bar{D}$最大值一定取在$D$中,这也是我们要求的$D$中最大值,这一定是极值点,因此上述所求的唯一极大值一定是该最大值点.
+\end{solution}
+
+\begin{exercise}{9.5.11}
+    求下列函数在指定范围内的最大值和最小值.
+    \begin{enumerate}
+        \item[(2)] $z=x^2-xy-y^2$,$\{(x,y)| |x|+|y|\les 1\}$.
+        \item[(4)] $z=x^2y(4-x-y)$,$\{(x,y)| x\ges 0,y\ges 0,x+y\les 6\}$. 
+    \end{enumerate}
+\end{exercise}
+\begin{solution}
+    \begin{enumerate}
+        \item[(2)] 在内部,
+        
+        $\nabla z=(2x-y,2y-x)=(0,0)$,
+        即$(x,y)=(0,0)$.
+
+        计算Hesse矩阵 $\begin{pmatrix}
+            2&-1\\
+            -1&2
+        \end{pmatrix}$正定,因此$(0,0)$为极小值点,极小值$z(0,0)=0$.
+        
+        在边界,
+        
+        由于该函数关于原点对称,因此不妨只考虑$x+y=1,x-y=1$两个边界:
+
+        在$x+y=1$上,$f(t,1-t)=t^2+t^2-2t+1-t+t^2=3t^2-3t+1,t\in[0,1]$,因此最大最小值为$f(1,0)=f(0,1)=1,f(\frac{1}{2},\frac{1}{2})=\frac{1}{4}$.
+        
+        在$x-y=1$上,$f(t,t-1)=t^2+t^2-2t+1+t-t^2=t^2-t+1,t\in[0,1]$,因此最大最小值为$f(1,0)=f(0,-1)=1,f(\frac{1}{2},-\frac{1}{2})=\frac{3}{4}$.
+        
+        综上,最小值$f(0,0)=0$,最大值在$(\pm1,0),(0,\pm1)$处取得,为$1$.
+
+        \item[(4)] 在内部,
+        
+        $\nabla z=(8xy-3x^2y-2xy^2,4x^2-x^3-2x^2y)=(xy(8-3x-2y),x^2(4-x-2y))=0$
+        即$(x,y)=(2,1)$,
+
+        计算Hesse矩阵 $\begin{pmatrix}
+            -6&-4\\
+            -4&-8
+        \end{pmatrix}$负定,因此$(2,1)$为极大值点,极大值$f(2,1)=4$.
+
+        在边界,
+        
+        $x=0,f(0,y)=0$;
+        
+        $y=0,f(x,0)=0$;
+        
+        $x+y=6,g(t)=f(t,6-t)=-2(6t^2-t^3),t\in[0,6]$,
+
+        $g'(t)=-2(12t-3t^2)$,因此可知$g(4)=f(4,2)=-64$是这一边界上最小值,$g(6,0)=g(0,6)=0$是这一边界上最大值.
+
+        综上,最小值$f(4,2)=-64$,最大值$f(2,1)=4$.
+    \end{enumerate}
+\end{solution}
+
+\begin{exercise}{9.5.17}
+   在椭圆$\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$上求一点$M(x,y)(x,y\ges0)$,使椭圆在该点的切线与坐标轴构成的三角形面积最小,并求其面积.
+\end{exercise}
+\begin{solution}
+    在点$(x_0,y_0)$处切线为$\frac{x_0x}{a^2}+\frac{y_0y}{b^2}=1$.
+
+    因此围成的三角形的三个顶点为$(0,0)(\frac{a^2}{x_0},0)(0,\frac{b^2}{y_0})$,
+    $S=\frac{1}{2}\frac{a^2}{x_0}\frac{b^2}{y_0}=\frac{a^2b^2}{2x_0y_0}$
+    
+    因此所求为$f(x,y)=\frac{a^2b^2}{2xy}$在约束$\frac{x^2}{a^2}+\frac{y^2}{b^2}=1;x,y\ges0$上的最小值.
+
+    构造$F(x,y;\lambda)=\frac{a^2b^2}{2xy}-\lambda(\frac{x^2}{a^2}+\frac{y^2}{b^2}-1)$
+
+    $$\begin{cases}
+        F'_x=-\frac{a^2b^2}{2x^2y}-2\lambda\frac{x}{a^2}=0\\
+        F'_y=-\frac{a^2b^2}{2xy^2}-2\lambda\frac{y}{b^2}=0\\
+        \frac{x^2}{a^2}+\frac{y^2}{b^2}=1
+    \end{cases}$$
+
+    可得$\frac{x^2}{a^2}=\frac{y^2}{b^2}=\frac{1}{2}$.
+
+    因此$(x,y)=(\frac{\sqrt{2}a}{2},\frac{\sqrt{2}b}{2})$,$S=\frac{a^2b^2}{2\frac{\sqrt{2}a}{2}\frac{\sqrt{2}b}{2}}=ab$
+\end{solution}
+
+\begin{exercise}{ch9.6}
+    证明:不等式$\frac{x^2+y^2}{4}\les\e^{x+y-2}$
+\end{exercise}
+\begin{solution}
+   $\e^t\ges \e t$,因此
+   \begin{align*}
+        \e^{x+y-2}
+        =\frac{\e^{x+y}}{\e^2}
+        =\left(\frac{\e^{\frac{x+y}{2}}}{\e}\right)^2
+        \ges \left(\frac{\e\frac{x+y}{2}}{\e}\right)^2
+        =\frac{(x+y)^2}{4}
+        \ges \frac{x^2+y^2}{4}
+   \end{align*}
+\end{solution}
+
+\begin{exercise}{ch9.14}
+    求函数$f(x,y)=x^2+xy^2-x$在区域$D=\{(x,y)|x^2+y^2\les 2\}$上的最大值和最小值.
+\end{exercise}
+\begin{solution}
+    在内部,
+
+    $\nabla f=(2x+y^2-1,2xy)=(0,0)$,解得$(x,y)=(0,\pm1)$或$(x,y)=(\frac{1}{2},0)$
+
+    分别计算Hesse矩阵$\begin{pmatrix}
+        2&2y\\
+        2y&2x
+    \end{pmatrix}$
+
+    分别为$\begin{pmatrix}
+        2&\pm2\\
+        \pm2&0
+    \end{pmatrix}$不定,
+    $\begin{pmatrix}
+        2&0\\
+        0&1
+    \end{pmatrix}$正定,
+    
+    因此其中$(\frac{1}{2},0)$为极小值点,极小值$f(\frac{1}{2},0)=-\frac{1}{4}$.
+
+    在边界,
+    $F(x,y;\lambda)=x^2+xy^2-x-\lambda(x^2+y^2-2)$,
+    $$\begin{cases}
+        F'_x=2x+y^2-1-\lambda(2x)=0,\\
+        F'_y=2xy-\lambda(2y)=0,\\
+        x^2+y^2-2=0;
+    \end{cases}$$
+
+    可得$$\begin{cases}
+        x=\pm\sqrt{2},\\
+        y=0;
+    \end{cases}
+    \text{或}
+    \begin{cases}
+        x=1,\\
+        y=\pm1;
+    \end{cases}
+    \text{或}
+    \begin{cases}
+        x=-\frac{1}{3},\\
+        y=\pm\frac{\sqrt{17}}{3};
+    \end{cases}$$
+
+    分别计算得$f(\pm\sqrt{2},0)=2\mp \sqrt{2},f(1,\pm 1)=1,f(-\frac{1}{3},\pm\frac{\sqrt{17}}{3})=\frac{29}{27}$
+
+    最小值$-\frac{1}{4}$,最大值$\frac{29}{27}$
+\end{solution}
+
+\section{Mar 28 ex9.5:10(1)(4),12,15,18,19,20}
+
+\begin{exercise}{9.5.10}
+    求下列函数在指定条件下的极值.
+    \begin{enumerate}
+        \item[(1)] $u=x^2+y^2$,若$\frac{x}{a}+\frac{y}{b}=1$;
+        \item[(4)] $u=xyz$,若$x+y+z=0$且$x^2+y^2+z^2=1$.
+    \end{enumerate}
+\end{exercise}
+\begin{solution}
+    \begin{enumerate}
+        \item [(1)] 考虑$F(x,y;\lambda)=x^2+y^2-\lambda\left(\frac{x}{a}+\frac{y}{b}-1\right)$
+        $$\begin{cases}
+            F'_x=2x-\frac{\lambda}{a}=0,\\
+            F'_y=2y-\frac{\lambda}{b}=0,\\
+            \frac{x}{a}+\frac{y}{b}-1=0;
+        \end{cases}$$
+        可得$$\begin{cases}
+            x=\frac{\lambda}{2a},\\
+            y=\frac{\lambda}{2b},\\
+            \frac{\lambda}{2a^2}+\frac{\lambda}{2b^2}=1;
+        \end{cases}$$
+        解得$$\begin{cases}
+            \lambda=\frac{2a^2b^2}{a^2+b^2},\\
+            x=\frac{ab^2}{a^2+b^2},\\
+            y=\frac{a^2b}{a^2+b^2};
+        \end{cases}$$
+        计算Hesse矩阵$\begin{pmatrix}
+            2&0\\
+            0&2
+        \end{pmatrix}$正定,
+        
+        因此该点为极小值点,有极小值$u=\left(\frac{ab^2}{a^2+b^2}\right)^2+\left(\frac{a^2b}{a^2+b^2}\right)^2=\frac{a^2b^2}{a^2+b^2}$
+        \item[(10)] 考虑$F(x,y,;\lambda,\mu)=xyz-\lambda\left(x+y+z\right)-\mu(x^2+y^2+z^2-1)$
+        $$\begin{cases}
+            F'_x=yz-\lambda-2\mu x=0,\\
+            F'_y=xz-\lambda-2\mu y=0,\\
+            F'_z=xy-\lambda-2\mu z=0,\\
+            x+y+z=0,\\
+            x^2+y^2+z^2=1;
+        \end{cases}$$
+        可得$$\begin{cases}
+            xy+yz+zx-3\lambda -2\mu (x+y+z)=0\\
+            3xyz-\lambda (x+y+z)-2\mu (x^2+y^2+z^2)=0\\
+            xyz(x+y+z)-\lambda (x^2+y^2+z^2)-2\mu (x^3+y^3+z^3)=0\\
+            x+y+z=0,\\
+            x^2+y^2+z^2=1;
+        \end{cases}$$
+        其中$(x^3+y^3+z^3)=(x+y+z)(x^2+y^2+z^2-xy-yz-xz)+3xyz=3xyz,2(xy+yz+zx)=(x+y+z)^2-(x^2+y^2+z^2)$
+        因此$$\begin{cases}
+            \lambda=-\frac{1}{6},\\
+            \mu=\pm\frac{\sqrt{6}}{12},\\
+            xyz=\pm\frac{\sqrt{6}}{18},\\
+            x^2+y^2+z^2=1,\\
+            x+y+z=0;\\
+        \end{cases}$$
+        该条件下的最值存在且为对应为大小极值,因此极大值$\frac{\sqrt{6}}{18}$,极小值$-\frac{\sqrt{6}}{18}$.
+    \end{enumerate}
+\end{solution}
+
+\begin{exercise}{9.5.12}
+    在平面$3x-2z=0$上求一点,使它与点$A(1,1,1)$和$B(2,3,4)$的距离平方和最小.
+\end{exercise}
+\begin{solution}
+    设$P(x,y,z)$为所求点,则所求为$f(x,y,z)=(x-1)^2+(y-1)^2+(z-1)^2+(x-2)^2+(y-3)^2+(z-4)^2$在约束$3x-2z=0$上的最小值.
+    令$F(x,y,z;\lambda)=f(x,y,z)-\lambda(3x-2z)$,则$$\begin{cases}
+        F'_x=2(x-1)+2(x-2)-3\lambda=0\\
+        F'_y=2(y-1)+2(y-3)=0\\
+        F'_z=2(z-1)+2(z-4)+2\lambda=0\\
+        3x-2z=0;
+    \end{cases}$$
+    可得$$\begin{cases}
+        x=\frac{21}{13},\\
+        y=2,\\
+        z=\frac{63}{26},\\
+        \lambda=-\frac{2}{13};
+    \end{cases}$$
+    因此点$P(\frac{21}{13},2,\frac{63}{26})$为所求点.
+\end{solution}
+
+\begin{exercise}{9.5.15}
+    一帐篷的下部为圆柱形,上部盖以圆锥形的顶篷,设帐篷的容易为一定数$V_0$.试证:当$R=\sqrt{5}H,h=2H$时($R,H$为圆柱底半径和高,$h$为圆锥形的高),所用篷布最省.
+\end{exercise}
+\begin{solution}
+    设圆柱底半径为$R$,高为$H$,圆锥形的高为$h$,则所用篷布面积为$S(R,H,h)=2\pi R H +\pi R \sqrt{R^2+h^2}$,约束为$\pi R^2 H+\frac{\pi}{3}R^2h=V_0$.
+    
+    设$F(R,H,h)=2\pi R H +\pi R \sqrt{R^2+h^2}-\lambda(\pi R^2 H+\frac{\pi}{3}R^2h-V_0)$
+    
+    $$\begin{cases}
+        F'_R=2\pi H+\pi \frac{2R^2+h^2}{\sqrt{R^2+h^2}}-\lambda(2\pi RH+\frac{2\pi}{3}Rh)=0\\
+        F'_H=2\pi R-\lambda(\pi R^2)=0\\
+        F'_h=\frac{\pi Rh}{\sqrt{R^2+h^2}}-\lambda(\frac{\pi}{3}R^2)=0\\
+        \pi R^2 H+\frac{\pi}{3}R^2h-V_0=0;
+    \end{cases}$$
+    可得$$\begin{cases}
+        \lambda=\frac{2}{R}\\
+        R=\sqrt{5}H\\
+        h=2H\\
+    \end{cases}$$
+\end{solution}
+
+\begin{exercise}{9.5.18}
+    求平面上一点,使其到$n$个点$(x_1,y_1),(x_2,y_2),\cdots,(x_n,y_n)$的距离平方和最小.
+\end{exercise}
+\begin{solution}
+    设所求点为$(x,y)$,则所求为$f(x,y)=\sum_{i=1}^{n}((x-x_i)^2+(y-y_i)^2)$,即
+    $$\begin{cases}
+        F'_x=2\sum_{i=1}^{n}(x-x_i)=0\\
+        F'_y=2\sum_{i=1}^{n}(y-y_i)=0\\
+    \end{cases}$$
+    可得$$\begin{cases}
+        x=\frac{1}{n}\sum_{i=1}^{n}x_i\\
+        y=\frac{1}{n}\sum_{i=1}^{n}y_i\\
+    \end{cases}$$
+
+    并验证可知Hesse矩阵为$\begin{pmatrix}
+        2n&0\\
+        0&2n
+    \end{pmatrix}$正定,因此该点为极小值点.同时由于对于上述函数$F\ges 0$且连续,因此该函数在$\R^2$上有最小值,因此该点为极小值,因此可知求出的点为最小值点.
+
+    也可以配方,但相对没有求驻点过程这样简单,实际上算起来差不多.
+\end{solution}
+
+\begin{exercise}{9.5.19}
+    在椭球体$\frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}\les 1$的内接长方体中,求体积最大的长方体的体积.
+\end{exercise}
+\begin{solution}
+    我们不加证明的给出如下结果,也就是内接长方体一定是"横平竖直"的,各个面总是与两条坐标轴平行(或者等效于该情形).
+
+    因此问题变成了过椭球面上$(x,y,z)$的长方体最大体积$V(x,y,z)=8|xyz|$.
+    构造$F(x,y,z;\lambda)=x^2y^2z^2-\lambda(\frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}-1)$
+    $$\begin{cases}
+        F'_x=2xy^2z^2-\lambda\frac{2x}{a^2}=0,\\
+        F'_y=2x^2yz^2-\lambda\frac{2y}{b^2}=0,\\
+        F'_z=2x^2y^2z-\lambda\frac{2z}{c^2}=0,\\
+        \frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}-1=0;
+    \end{cases}$$
+    可得$$\begin{cases}
+        x^2=\frac{a^2}{3},\\
+        y^2=\frac{b^2}{3},\\
+        z^2=\frac{c^2}{3};\\
+    \end{cases}\text{或} \quad xyz=0$$
+    可知对应最大值的恰好为极大值,也就是对应前一组解的情况,因此$$V=8\sqrt{x^2y^2z^2}=\frac{8\sqrt{3}}{9}abc$$
+
+
+    喜欢不等式放缩的同学也可以采用$$\sqrt[3]{\frac{x^2}{a^2}\cdot\frac{y^2}{b^2}\cdot\frac{z^2}{c^2}}\les \frac{\frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}}{3}=\frac{1}{3}$$
+    可得$|xyz|\les \frac{abc}{3\sqrt{3}}$,因此$V=8|xyz|\les \frac{8abc}{3\sqrt{3}}$,
+    并验证取等条件可以取到即可.
+\end{solution}
+
+\begin{exercise}{9.5.20}
+    在旋转椭球面$\frac{x^2}{4}+y^2+z^2=1$上,求距平面$x+y+2z=9$最远和最近的点.
+\end{exercise}
+\begin{solution}
+    对于点$(x,y,z)$,到平面$x+y+2z=9$的距离为$D=\frac{|x+y+2z-9|}{\sqrt{1^2+1^2+2^2}}=\frac{|x+y+2z-9|}{3}$,
+    因此可以转化为求$f(x,y,z)=(x+y+2z-9)^2$在约束$\frac{x^2}{4}+y^2+z^2=1$上的最大值和最小值.
+    令$F(x,y,z;\lambda)=f(x,y,z)-\lambda(\frac{x^2}{4}+y^2+z^2-1)$,则$$\begin{cases}
+        F'_x=2(x+y+2z-9)-\lambda\frac{2x}{4}=0,\\
+        F'_y=2(x+y+2z-9)-\lambda(2y)=0,\\
+        F'_z=4(x+y+2z-9)-\lambda(2z)=0,\\
+        \frac{x^2}{4}+y^2+z^2-1=0;
+    \end{cases}$$
+    可得$x+y+2z=\pm 3$
+    可解得$$\begin{cases}
+        x=\pm \frac{4}{3},\\
+        y=\pm \frac{1}{3},\\
+        z=\pm \frac{2}{3};\\
+    \end{cases}$$
+    由于最大最小值可以取到,一定对应算出的极大极小值点.
+    因此对应最大值点$(\frac{4}{3},\frac{1}{3},\frac{2}{3})$和最小值点$(-\frac{4}{3},-\frac{1}{3},-\frac{2}{3})$,对应的最大值和最小值分别为$D=\frac{1}{3}$和$D=-\frac{1}{3}$.
+
+    这种做法解复杂方程还是太吃操作了,有没有更简单的方法?
+    有的,兄弟,有的.
+    我们直接构造切平面使得切平面与已知平面平行即可.
+    过椭球面上点$(x,y,z)$的切平面法向量为$(\frac{x}{2},2y,2z)$,与平面$x+y+2z=9$平行,因此我们有
+    $$\begin{cases}
+        \frac{x}{2}=t,\\
+        2y=t,\\
+        2z=2t,\\
+        \frac{x^2}{4}+y^2+z^2=1;
+    \end{cases}$$
+    立刻可得$t=\pm \frac{2}{3}$,因此$(x,y,z)$立刻可得.
+\end{solution}
