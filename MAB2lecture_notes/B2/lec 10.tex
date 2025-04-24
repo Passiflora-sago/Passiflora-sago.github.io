@@ -171,6 +171,10 @@ $$
         \end{enumerate}
         老师要表示的实际是第二种情况,即$z = z(x)$.只不过写成的形式看起来像是第一种情况.
     \end{remark}
+    \begin{remark}
+        正是因为老师这里写模糊了,所以会有疑问为什么当$F(x,z) = \varphi(x^2, \e^{\sin x}, z)$时, $$F_x' = \varphi_1' \cdot 2x + \varphi_2' \e^{\sin x} \cos x$$而不是$$F_x' = \varphi_1' \cdot 2x + \varphi_2' \cdot \e^{\sin x} \cos x+\varphi_3' \cdot z_x'$$
+        后者是$F(x) = \varphi(x^2, \e^{\sin x}, z(x))$时的$F_x' = F'(x)$.而为了求$\frac{\dif z}{\dif x}$,我们需要对$F(x,z)$这个函数利用隐函数定理,此时$x,z$都是这个$F(x,z)$的自变量,因此$F_x'=\varphi_1' \cdot 2x + \varphi_2' \e^{\sin x} \cos x$.
+    \end{remark}
 \end{solution}
 
 \begin{example}
@@ -360,8 +364,8 @@ $$
     解法一:
 
     $\dif u = \parfrac{u}{x} \dif x + \parfrac{u}{y} \dif y$, $\dif v = \parfrac{v}{x} \dif x + \parfrac{v}{y} \dif y$,对$\begin{cases}
-        F(x,y,u,v) = 0,\\
-        G(x,y,u,v) = 0
+        F(x,y,u(x,y),v(x,y)) = 0,\\
+        G(x,y,u(x,y),v(x,y)) = 0
     \end{cases}$两边关于$x$求偏导,可得
     $$
     \begin{cases}
@@ -369,6 +373,47 @@ $$
         G_x' \cdot 1 + G_u' \cdot \parfrac{u}{x} + G_v' \cdot \parfrac{v}{x} = 0.
     \end{cases}
     $$
+    \begin{remark}
+        助教注:这里的对$F=0$两侧对$x$求偏导,我们区分两个描述
+        \begin{enumerate}
+            \item $F(x,y,u,v) = 0$,两侧对$x$求偏导,也就是对第一个分量求偏导,得到$F_x' = 0$.
+            \item 我们令$\tilde F(x,y) = F(x,y,u(x,y),v(x,y))$,两侧对$x$求偏导,求的是$\frac{\partial \tilde F}{\partial x}$,得到
+            $$\frac{\partial \tilde F}{\partial x} = F_x' + F_u' \cdot \parfrac{u}{x} + F_v' \cdot \parfrac{v}{x} = 0$$
+        \end{enumerate}
+        后者才是隐函数定理的表述,多元函数的隐函数定理是这样的
+        \begin{theorem}
+            [多元函数隐函数定理]
+
+            设$F:\R^{n+m} \to \R^m$是一个连续可微函数,设$\bm x \in \R^{n},\bm y \in \R^m$.若方程
+            $$\begin{cases}
+                F^1(\bm x, \bm y) = 0,\\
+                F^2(\bm x, \bm y) = 0,\\
+                \cdots\\
+                F^m(\bm x, \bm y) = 0
+            \end{cases}
+            $$
+            满足在$(\bm {x_0},\bm {y_0})$处,有$F(\bm {x_0},\bm {y_0}) = 0$,且$\frac{\partial (F^1,F^2,\cdots,F^m)}{\partial (\bm y)} \neq 0$,则存在一个邻域$U$和一个函数$$\bm y = \bm \varphi(\bm x) = (\varphi_1(\bm x), \varphi_2(\bm x), \cdots, \varphi_m(\bm x))
+            $$
+            使得在$U$中,有$\bm y = \bm \varphi(\bm x)$是$\bm x$的函数,且在$U$中有解集可以写为
+            \begin{equation}\label{eq:implicit}
+                F^1(\bm x, \bm \varphi(\bm x)) = 0, F^2(\bm x, \bm \varphi(\bm x)) = 0, \cdots, F^m(\bm x, \bm \varphi(\bm x)) = 0
+            \end{equation}
+            我们希望求隐函数的偏导数,是希望求$\bm \varphi = (\varphi_1, \varphi_2, \cdots, \varphi_m)$的偏导数.
+            也就是说
+            $$\frac{\partial y_1}{\partial x_1} = \frac{\partial \varphi_1}{\partial x_1} $$
+            而$\frac{\partial \varphi_1}{\partial x_1}$由10.1求出.
+        \end{theorem}
+        因此我们在求$\frac{\partial u}{\partial x}$时,我们是对$F(x,y,u(x,y),v(x,y))$两侧对$x$求偏导.
+    \end{remark}
+    \begin{remark}
+        那有的同学会说,这不对啊,为什么例10.3中就是对$F(x,z)=0$对$x$求偏导时就是把$x,z$视作不相关的自变量呢?
+        
+        这是因为,如果我们已知$z=z(x)$,然后对$F(x,z(x)) = 0$两侧对$x$求导,得到
+        $$F_x' + F_z' \cdot z_x' = 0$$
+        还是能得到$z_x' = -\frac{F_x'}{F_z'}$.
+
+        我们继续原来的题目.
+    \end{remark}
     标准化为
     $$
     \begin{cases}
