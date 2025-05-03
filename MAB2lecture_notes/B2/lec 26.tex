@@ -1,0 +1,218 @@
+\setcounter{chapter}{25} % 设置章节计数器
+
+\chapter{第一类曲面积分}
+
+第一类曲面积分(Surface Integral)形如$$\iint_{\Sigma} f(x,y,z) \dif S$$
+其中$\Sigma$是空间曲面,$f(x,y,z)$是定义在$\Sigma$上的连续函数,$\dif S$是曲面元.
+
+\section{第一型曲面积分}
+
+设$\Sigma$为光滑曲面,$\r(u,v) = (x(u,v),y(u,v),z(u,v)) \in C^1(D_{uv})$且$\n = \r_u' \times \r_v' \neq \theta, \forall (u,v) \in D_{uv}$,称这样的曲面$\Sigma$为正则曲面,$\varphi(x,y,z)$是曲面$\Sigma$上的连续函数,
+
+\begin{definition}
+    我们如此定义第一类曲面积分:
+    $$\iint_{\Sigma} \varphi(x,y,z) \dif S$$
+
+    \begin{enumerate}
+        \item 分割:$\Sigma = \Sigma_1 \cup \Sigma_2 \cup \cdots \cup \Sigma_n$,设$\Sigma_i$的面积为$\Delta S_i$,直径为$d_i, i = 1,2,\cdots,n$,记$\lambda = \max\{ d_1,d_2,\cdots,d_n\}$.
+        \item 近似:在$\Sigma_i$上任取一点$$\left( x(\xi_i,\eta_i),z(\xi_i,\eta_i) \right),$$
+        取
+        $$\varphi(x(\xi_i,\eta_i),y(\xi_i,\eta_i),z(\xi_i,\eta_i)) \cdot \Delta s_i \quad i= 1,2,\cdots,n$$
+        \item 求和,记
+        $$I = \sum_{i=1}^n \varphi(x(\xi_i,\eta_i),y(\xi_i,\eta_i),z(\xi_i,\eta_i)) \cdot \Delta S_i$$
+        \item 极限,当$\lambda \to 0$时,如果$$\lim_{\lambda \to 0} I = \iint_{\Sigma} \varphi(x,y,z) \dif S$$存在且唯一,则称$\varphi(x,y,z)$在曲面$\Sigma$上可积,并称$$\iint_{\Sigma} \varphi(x,y,z) \dif S = \lim_{\lambda \to 0} \sum_{i=1}^n \varphi(x(\xi_i,\eta_i),y(\xi_i,\eta_i),z(\xi_i,\eta_i)) \cdot \Delta S_i$$为第一类曲面积分.
+    \end{enumerate}
+\end{definition}
+
+
+当$\varphi(x,y,z)$是在$\Sigma$上的有界函数时,上述极限可能存在唯一,也可能不存在唯一.但当$\varphi(x,y,z)$在$\Sigma$上连续时,上述极限存在唯一,即$\varphi(x,y,z)$在$\Sigma$上可积.
+
+\section{第一类曲面积分的主要性质}
+
+\begin{proposition}
+    [线性性质]
+
+    $$\iint_{\Sigma} \left( c_1 f + c_2 g \right) \dif S = c_1 \iint_{\Sigma} f \dif S + c_2 \iint_{\Sigma} g \dif S$$
+    其中$c_1,c_2$为常数,$f,g$为定义在$\Sigma$上的连续函数.
+\end{proposition}
+
+\begin{proposition}
+    曲面$\Sigma$的面积$S(\Sigma)$为
+$$S(\Sigma) = \iint_{\Sigma} 1 \dif S$$
+\end{proposition}
+
+\begin{proposition}
+    [积分中值定理]
+
+    设$\Sigma$为光滑曲面,$\varphi(x,y,z) \in C(\Sigma)$,则存在$M_0 \in \Sigma$,使得
+$$\iint_{\Sigma} \varphi(x,y,z) \dif S = \varphi(M_0) S(\Sigma)$$
+    也可以写为
+$$\varphi(M_0) = \frac{1}{S(\Sigma)} \iint_{\Sigma} \varphi(x,y,z) \dif S$$
+
+        其中$S(\Sigma)$为曲面$\Sigma$的面积.$\varphi(M_0)$表示了函数$\varphi(x,y,z)$在$\Sigma$上的平均值.
+\end{proposition}
+
+\begin{proposition}
+    [积分区域可加性]
+
+    设$\Sigma_1,\Sigma_2,\cdots,\Sigma_m$是两条不相交的光滑曲面,且$$\Sigma = \Sigma_1 \cup \Sigma_2 \cup \cdots \cup \Sigma_m$$
+    此时有
+    $$\iint_{\Sigma} \varphi \dif S = \iint_{\Sigma_1} \varphi \dif S + \iint_{\Sigma_2} \varphi \dif S + \cdots + \iint_{\Sigma_m} \varphi \dif S$$
+
+
+\end{proposition}
+
+\section{第一型曲面积分的计算}
+
+由
+$$\dif S = \abs{\r_u' \dif u \times \r_v' \dif v} = \abs{\r_u' \times \r_v'} \dif u \dif v = \sqrt{\abs{\r_u'}^2 \abs{\r_v'}^2 - \left( \r_u' \cdot \r_v' \right)^2} \dif u \dif v$$
+
+我们记
+$$E = \abs{\r_u'}^2 = \abs{(x_u',y_u',z_u')}^2 = x_u'^2 + y_u'^2 + z_u'^2$$
+$$G = \abs{\r_v'}^2 = \abs{(x_v',y_v',z_v')}^2 = x_v'^2 + y_v'^2 + z_v'^2$$
+$$F = \r_u' \cdot \r_v' = x_u' x_v' + y_u' y_v' + z_u' z_v'$$
+
+得
+$$I = \iint_{\Sigma} \varphi(x,y,z) \dif S = \iint_{D_{uv}} \varphi(x(u,v),y(u,v),z(u,v)) \sqrt{EG - F^2} \dif u \dif v$$
+
+即第一型曲面积分是通过化为参数域$D_{uv}$上的二重积分来计算的,证明方法域第一型线积分证明方法类似.特别地,当$\Sigma$为显式曲面$z = z(x,y) \in C(D_{xy})$时,可以将$x,y$作为参变量,因此有
+
+$$\r(x,y) = (x,y,z(x,y)) \Rightarrow \begin{cases}
+    \r_x' = (1,0,z_x')\\
+    \r_y' = (0,1,z_y')
+\end{cases}$$
+
+$$E = \abs{\r_x'}^2 = 1 + z_x'^2$$
+$$G = \abs{\r_y'}^2 = 1 + z_y'^2$$
+$$F = \r_x' \cdot \r_y' = z_x' z_y'$$
+因此
+$$\dif S = \sqrt{EG - F^2} = \sqrt{(1 + z_x'^2)(1 + z_y'^2) - (z_x' z_y')^2} = \sqrt{1 + z_x'^2 + z_y'^2}$$
+
+故
+$$I = \iint_{\Sigma} \varphi(x,y,z) \dif S = \iint_{D_{xy}} \varphi(x,y,z(x,y)) \sqrt{1 + z_x'^2 + z_y'^2} \dif x \dif y$$
+
+\begin{remark}
+    助教注:不建议硬背$\sqrt{EG - F^2}$,而建议理解$\dif S$是如何变为$\dif u \dif v$的,有时候计算叉乘$\r_u' \times \r_v'$会比计算$\sqrt{EG - F^2}$更简单.
+\end{remark}
+
+
+\begin{example}
+    计算球面$\Sigma: x^2 + y^2 + z^2 = a^2$的面积$S(\Sigma)$.
+\end{example}
+
+\begin{solution}
+    利用球面参数方程$$\r(u,v) = (a \sin u \cos v,a \sin u \sin v,a \cos u), u \in [0,\pi], v \in [0,2\pi],$$我们有
+    $$E = \abs{\r_u'}^2 = x_u'^2 + y_u'^2 + z_u'^2 = a^2 \cos^2 u + a^2 \sin^2 u = a^2$$
+    $$G = \abs{\r_v'}^2 = x_v'^2 + y_v'^2 + z_v'^2 = a^2 \sin^u \sin^2 v + a^2 \sin^2 u = a^2 \sin^2 u$$
+    $$F = \r_u' \cdot \r_v' = x_u' x_v' + y_u' y_v' + z_u' z_v' = 0$$
+    因此
+    $$\dif S = \sqrt{EG - F^2} = \sqrt{a^2 a^2 \sin^2 u} = a^2 \sin u \dif u \dif v$$
+    于是
+    $$S(\Sigma) = \iint_{\Sigma} 1 \dif S = \iint_{D_{uv}} 1 \cdot a^2 \sin u \dif u \dif v = a^2 \int_0^{2\pi} \dif v \int_0^\pi \sin u \dif u = 4 \pi a^2$$
+\end{solution}
+
+\begin{solution}
+    事实上这里计算叉乘也未必麻烦,我们有
+    $$\r_u' = (a \cos u \cos v,a \cos u \sin v,-a \sin u)$$
+    $$\r_v' = (-a \sin u \sin v,a \sin u \cos v,0)$$
+    因此$$\r_u' \times \r_v' = \begin{vmatrix}
+        \i & \j & \k\\
+        a \cos u \cos v & a \cos u \sin v & -a \sin u\\
+        -a \sin u \sin v & a \sin u \cos v & 0
+    \end{vmatrix} = (a^2 \sin^2 u \cos v, a^2 \sin^2 u \sin v, a^2 \sin u \cos u)$$
+    于是
+    $$\dif S = \abs{\r_u' \times \r_v'} = \sqrt{(a^2 \sin^2 u \cos v)^2 + (a^2 \sin^2 u \sin v)^2 + (a^2 \sin u \cos u)^2} = a^2 \sin u \dif u \dif v$$
+
+    其余计算同上.
+\end{solution}
+
+\begin{solution}
+    我们也可以使用显式曲面,设$\Sigma_1$为上半球面:$z=\sqrt{a^2 - x^2 - y^2}$,则有
+    $$\dif S = \sqrt{1 + z_x'^2 + z_y'^2} = \sqrt{1 + \frac{x^2}{a^2 - x^2 - y^2} + \frac{y^2}{a^2 - x^2 - y^2}} = \sqrt{\frac{a^2}{a^2 - x^2 - y^2}}$$
+    因此
+    \begin{align*}
+        S(\Sigma) &= 2 \iint_{\Sigma_1} 1 \dif S\\
+        &= 2 \iint_{x^2 + y^2 \les a^2} \sqrt{\frac{a^2}{a^2 - x^2 - y^2}} \dif x \dif y\\
+        &\overset{x = r \cos \theta,y = r \sin \theta}{=} 2 \int_0^{2\pi} \dif \theta \int_0^a \sqrt{\frac{a^2}{a^2 - r^2}} r \dif r\\
+        &= 4 \pi a^2.
+    \end{align*}
+\end{solution}
+
+\begin{example}
+    设$\Sigma$是球面$\Sigma_1: x^2 + y^2 + z^2 = a^2(a > 0)$被柱面$\Sigma_2: x^2 + y^2 = ax$截下的部分,求$\Sigma$的面积$S(\Sigma)$.
+\end{example}
+
+\begin{solution}
+    像上题最后一种解法一样,我们设$\Sigma_{11}$为上半球面被柱面截下的部分.还是有
+    $$\dif S = \sqrt{1 + z_x'^2 + z_y'^2} = \sqrt{\frac{a^2}{a^2 - x^2 - y^2}}$$
+    因此\begin{align*}
+        S(\Sigma_1) &= 2 \iint_{\Sigma_{11}} 1 \dif S\\
+        &= 2 \iint_{x^2 + y^2 \les ax} \sqrt{\frac{a^2}{a^2 - x^2 - y^2}} \dif x \dif y\\
+        &\overunderset{x = r \cos \theta, y = r \sin \theta}{r \les a \cos \theta}{=} 2\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \dif \theta \int_0^{a \cos \theta} \sqrt{\frac{a^2}{a^2 - r^2}} r \dif r\\
+        &= 4a^2 \left( \frac{\pi}{2} - 1 \right).
+    \end{align*}
+\end{solution}
+
+
+\section{对称性}
+
+第一型曲线积分$\int_L \varphi(x,y) \dif s, \int_L \varphi(x,y,z) \dif s$的奇偶对称性与轮换对称性:
+\begin{enumerate}
+    \item 若$\varphi(x,y) \in C(L)$,且$\varphi(x,y)$关于$y$为奇函数,则当$L$关于坐标轴$y=0$对称时,有$\int_L \varphi(x,y) \dif s = 0$.
+    \item 若$\varphi(x,y) \in C(L)$,且$\varphi(x,y)$关于$x$为偶函数,则当$L$关于坐标轴$x=0$对称时,有$\int_L \varphi(x,y) \dif s = 2 \int_{L_1} \varphi(x,y) \dif s$,其中$L_1$为$L$在$x=0$的对称部分.
+    \item 若$\varphi(x,y) \in C(L)$且当$x,y$互换时$\varphi(x,y)$不变,则当$L$关于$x=y$对称时,有$\int_L \varphi(x,y) \dif s = \int_L \varphi(y,x) \dif s = \frac{1}{2} \int_L \left( \varphi(x,y) + \varphi(y,x) \right) \dif s$.
+\end{enumerate}
+
+\begin{enumerate}
+    \item 若$\varphi(x,y,z) \in C(L)$,且$\varphi(x,y,z)$关于$z$为奇函数,则当$L$关于坐标面$z=0$对称时,有$\int_L \varphi(x,y,z) \dif s = 0$.
+    \item 若$\varphi(x,y,z) \in C(L)$,且$\varphi(x,y,z)$关于$y$为偶函数,则当$L$关于坐标面$y=0$对称时,有$\int_L \varphi(x,y,z) \dif s = 2 \int_{L_1} \varphi(x,y,z) \dif s$,其中$L_1$为$L$在$y=0$的对称部分.
+    \item 若$\varphi(x,y,z) \in C(L)$且当$(x,y,z) \to (y,z,x) \to (z,x,y)$时,$L$的方程不变,则有第一型线积分的轮换对称性
+    \begin{align*}
+        I &= \int_L \varphi(x,y,z) \dif s = \int_L \varphi(y,z,x) \dif s = \int_L \varphi(z,x,y) \dif s\\
+        &= \frac{1}{3} \int_L \left[ \varphi(x,y,z) + \varphi(y,z,x) + \varphi(z,x,y) \right] \dif s\\
+    \end{align*}
+\end{enumerate}
+
+
+
+第一型曲面积分$\iint_\Sigma \varphi(x,y,z) \dif S$也有类似的奇偶对称性与轮换对称性:
+\begin{enumerate}
+    \item 若$\varphi(x,y,z) \in C(\Sigma)$,且$\varphi(x,y,z)$关于$z$为奇函数,则当$\Sigma$关于坐标面$z=0$对称时,有$\iint_\Sigma \varphi(x,y,z) \dif S = 0$.
+    \item 若$\varphi(x,y,z) \in C(\Sigma)$,且$\varphi(x,y,z)$关于$y$为偶函数,则当$\Sigma$关于坐标面$y=0$对称时,有$\iint_\Sigma \varphi(x,y,z) \dif S = 2 \iint_{\Sigma_1} \varphi(x,y,z) \dif S$,其中$\Sigma_1$为$\Sigma$在$y=0$的对称部分.
+    \item 若$\varphi(x,y,z) \in C(\Sigma)$且当$(x,y,z) \to (y,z,x) \to (z,x,y)$时,$\Sigma$的方程不变,则有第一型曲面积分的轮换对称性
+    \begin{align*}
+        I &= \iint_\Sigma \varphi(x,y,z) \dif S = \iint_\Sigma \varphi(y,z,x) \dif S = \iint_\Sigma \varphi(z,x,y) \dif S\\
+        &= \frac{1}{3} \iint_\Sigma \left[ \varphi(x,y,z) + \varphi(y,z,x) + \varphi(z,x,y) \right] \dif S\\
+    \end{align*}
+\end{enumerate}
+
+
+\begin{example}
+    计算$I = \iint_\Sigma (x^2 + y^2) \dif S$,其中$\Sigma$为球面$x^2 + y^2 + z^2 = a^2$在第一卦限内的部分.
+\end{example}
+
+\begin{solution}
+    由奇偶对称性,设$\Sigma'$为球面$x^2 + y^2 + z^2 = a^2$,则
+    $$I = \frac{1}{8} \iint_\Sigma' (x^2 + y^2) \dif S$$
+    再由轮换对称性,我们有
+    $$I = \frac{1}{8} \iint_\Sigma' \frac{1}{3} (2x^2 + 2y^2 + 2z^2) \dif S = \frac{1}{12} \iint_\Sigma' (x^2 + y^2 + z^2) \dif S = \frac{1}{3} \pi a^4$$
+\end{solution}
+
+\begin{homework}
+    ex11.2:1(1)(4)(6)(7),2(2)(3),3(1)(2).
+\end{homework}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

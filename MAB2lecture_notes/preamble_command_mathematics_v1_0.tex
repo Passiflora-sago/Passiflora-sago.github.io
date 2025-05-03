@@ -5,7 +5,6 @@
 % ---------- macro definition ----------
 % ----- equation setting -----
 \everymath{\displaystyle}
-
 % ----- command -----
 \newcommand{\les}{\leqslant}
 \newcommand{\ges}{\geqslant}
@@ -170,7 +169,7 @@
 \renewcommand{\o}{\bm{o}}
 \newcommand{\p}{\bm{p}}
 \newcommand{\q}{\bm{q}}
-% \renewcommand\r{\bm{r}}
+\renewcommand\r{\bm{r}}
 \newcommand{\br}{\bm{r}}
 \newcommand{\s}{\bm{s}}
 \renewcommand{\t}{\bm{t}}
@@ -235,6 +234,8 @@
 \newcommand{\bZeta}{\bm{\Zeta}}
 \newcommand{\ve}{\varepsilon}
 \newcommand{\laplace}{\Delta}
+
+\newcommand{\abs}[1]{\left|#1\right|}
 
 \ExplSyntaxOn
 
@@ -302,3 +303,5 @@
         {\fractype{\partial^2 #3}{\partial #4 \partial #5}}
     }
 }
+
+\usepackage{esint}

@@ -1,0 +1,199 @@
+\setcounter{chapter}{27} % 设置章节计数器
+
+\chapter{第二类曲线积分}
+
+\section{第二类曲线积分的定义与性质}
+
+第二类曲线积分形如$$\int_L \v(x,y,z) \cdot \dif \r$$
+
+\begin{definition}
+    设 $\bm{v} = P(x,y,z)\bm{i} + Q(x,y,z)\bm{j} + R(x,y,z)\bm{k}$ 是空间区域 $D$ 中的向量场，$L_{AB}$ 是 $D$ 中定向曲线，在 $L_{AB}$ 上从 $A$ 到 $B$ 依次选取任意的分割点：
+
+\[
+A = M_0, M_1, \dots, M_n = B,
+\]
+
+其中分割点的坐标是 $M_i(x_i, y_i, z_i), i = 0, \dots, n$，则
+
+\[
+\Delta \bm{r}_i = \overrightarrow{M_{i-1}M_i} = \Delta x_i \bm{i} + \Delta y_i \bm{j} + \Delta z_i \bm{k}
+\]
+
+在每一段弧 $\overset{\frown}{M_{i-1}M_i}$ 上任选一点 $N_i(\xi_i, \zeta_i, \chi_i)$，当分割的最大长度 $|T| \to 0$ 时，如果下列和式
+
+\[
+\sum_{i=1}^{n} \bm{v}(\xi_i, \zeta_i, \chi_i) \cdot \Delta \bm{r}_i = \sum_{i=1}^{n}  P(\xi_i, \zeta_i, \chi_i)\Delta x_i + Q(\xi_i, \zeta_i, \chi_i)\Delta y_i + R(\xi_i, \zeta_i, \chi_i)\Delta z_i 
+\]
+
+的极限存在且有限，那么极限值称为向量场 $\bm{v}$ 沿曲线（或路径）$L_{AB}$ 的积分（也称为\textbf{第二型曲线积分}），记为
+
+\[
+\int_{L_{AB}} \bm{v} \cdot \mathrm{d}\bm{r}.
+\]
+
+定向曲线 $L_{AB}$ 被称为积分路径.当$L$是封闭曲线时,积分称为向量场$\bm v$沿环路$L$的环量,通常记为
+$$\oint_L \bm v \cdot \dif \bm r$$
+\end{definition}
+
+\begin{proposition}
+    设$\v_1(x,y,z)$,$\v_2(x,y,z)$是定义在区域$D$上的连续向量场,$L \subset D$是定向曲线,$c_1,c_2$是常数,则有
+    \begin{enumerate}
+        \item 线性性质:$$\int_L \left( c_1 \v_1 + c_2 \v_2 \right) \cdot \dif \bm r = c_1 \int_L \v_1 \cdot \dif \bm r + c_2 \int_L \v_2 \cdot \dif \bm r$$
+        \item 积分区域可加性:$$\int_{L_1 + L_2} \v \cdot \dif \bm r = \int_{L_1} \v \cdot \dif \bm r + \int_{L_2} \v \cdot \dif \bm r$$
+        \item 积分路径方向性:$$\int_{L_{AB}} \v \cdot \dif \r = - \int_{L_{BA}} \v \cdot \dif \bm r$$
+    \end{enumerate}
+\end{proposition}
+
+特别地,设$L$是有向直线段,且位于$x$轴上的$[a,b]$上,给定正向为$x$轴正方向,则有
+$$\int_L \v \cdot \dif \r = \int_L P(x,0,0) \dif x \dif x = \int_a^b P(x,0,0) \dif x$$
+其中在积分路径上$y,z$为常值,因此$\dif y = \dif z = 0$.
+
+考虑一个闭合路径上的积分$\oint_L \v \cdot \dif \r$,记$D$为路径$L$所围成的区域,即$L = \partial D$,我们常常有
+\begin{enumerate}
+    \item 当区域$D$在$L$的左侧时,称$L$为$D$的正向边界.当$D$是单连通区域,即$D$中任意闭路径都可以在$D$中收缩为一个点时,$L = \partial D$的正向即为逆时针方向,
+    \item 当$D$是多连通区域,即$D$为有洞的区域时,$L = \partial D$的正向为外边界的逆时针,内边界顺时针方向.
+\end{enumerate}
+
+\section{第二类曲线积分的计算}
+
+设向量场 $\bm{v} = P(x,y,z)\bm{i} + Q(x,y,z)\bm{j} + R(x,y,z)\bm{k}$ 在区域 $D$ 内连续，曲线 $L_{AB} \subset D$ 具有参数方程表示
+
+\[
+L_{AB} : \bm{r} = \bm{r}(t) = x(t)\bm{i} + y(t)\bm{j} + z(t)\bm{k}, \quad \alpha \leq t \leq \beta,
+\]
+
+且有连续的导函数，参数 $t$ 是正向参数，则向量场在 $L_{AB}$ 上可积，且可化为下列定积分
+
+\begin{align*}
+    \int_{L_{AB}} \bm{v} \cdot \dif \bm{r} &= \int_{\alpha}^{\beta} \bm{v}(\r(t)) \cdot \bm{r}'(t) \dif t\\
+    &= \int_{\alpha}^{\beta} \left( Px' + Qy' + Rz' \right) \dif t
+\end{align*}
+
+\begin{proof}
+    对参数所在的区间 $[\alpha, \beta]$ 进行的任意分割 $T: \alpha = t_0 < t_1 < \cdots < t_n = \beta$，则对应曲线上沿方向从 $A$ 到 $B$ 的任意分割 $A = M_0, M_1, \dots, M_n = B$，根据曲线参数方程表示的连续性可知，关于 $t$ 的分割最大长度趋于零等价于曲线上对应的分割最大长度趋于零。此时
+
+\begin{align*}
+\Delta \bm{r}_i &= \overrightarrow{M_{i-1} M_i} = \bm{r}(t_i) - \bm{r}(t_{i-1}) \\
+&= \Delta x_i \bm{i} + \Delta y_i \bm{j} + \Delta z_i \bm{k}
+\end{align*}
+
+根据微分中值定理有
+
+\[
+\Delta x_i = x'(\lambda_i)\Delta t_i, \quad \Delta y_i = y'(\mu_i)\Delta t_i, \quad \Delta z_i = z'(\nu_i)\Delta t_i,
+\]
+
+其中 $t_{i-1} \leq \lambda_i, \mu_i, \nu_i \leq t_i$。取第 $i$ 段曲线上任意一点
+
+\[
+(\xi_i, \zeta_i, \chi_i) = (x(\tau_i), y(\tau_i), z(\tau_i)), \quad t_{i-1} \leq \tau_i \leq t_i
+\]
+
+这里 $i = 1,2,\dots,n$，则
+
+\begin{align*}
+\sum_{i=1}^n \bm{v}(\xi_i, \zeta_i, \chi_i) \cdot \Delta \bm{r}_i 
+&= \sum_{i=1}^n \bm{v}(x(\tau_i), y(\tau_i), z(\tau_i)) \cdot \Delta \bm{r}_i \\
+&= \sum_{i=1}^n P(x(\tau_i), y(\tau_i), z(\tau_i)) x'(\lambda_i) \Delta t_i \\
+&\quad + \sum_{i=1}^n Q(x(\tau_i), y(\tau_i), z(\tau_i)) y'(\mu_i) \Delta t_i \\
+&\quad + \sum_{i=1}^n R(x(\tau_i), y(\tau_i), z(\tau_i)) z'(\nu_i) \Delta t_i
+\end{align*}
+
+注意到上述式最后一个等式中，虽然三个求和项都不是严格的 Riemann 和，但可以采取函数在曲线上积分时的处理方法，进行必要的修正，使得每个求和都能表示成严格的 Riemann 和与一个修正项之和。当 $|T| \to 0$ 时，修正项的极限为零，所以有
+
+\begin{align*}
+\lim_{|T| \to 0} \sum_{i=1}^n \bm{v}(x(\tau_i), y(\tau_i), z(\tau_i)) \cdot \Delta \bm{r}_i 
+&= \int_{\alpha}^{\beta} \left( P x'(t) + Q y'(t) + R z'(t) \right) \, \mathrm{d}t \\
+&= \int_{\alpha}^{\beta} \bm{v}(\bm{r}(t)) \cdot \bm{r}'(t) \, \mathrm{d}t
+\end{align*}
+\end{proof}
+
+\begin{example}
+    设$L$为三角形$OAB$的正向边界:$$L = L_1 + L_2 + L_3,\quad \begin{cases}
+        L_1: 0 \les x \les 1, y \equiv 0, x = x\\
+        L_2: 0 \les y \les 2, x \equiv 1, y = y\\
+        L_3: \begin{cases}
+            y = 2x,\\
+            x=x\\
+        \end{cases},x : 1 \to 0
+    \end{cases}$$
+    计算$$I  = \oint_L xy \dif x + x^2 \dif y$$
+\end{example}
+
+\begin{solution}
+    我们逐段计算:
+    \begin{enumerate}
+        \item 在$L_1$上,$y \equiv 0 \Rightarrow \dif y = 0$,因此$$I_1 = \int_{L_1} xy \dif x = \int_0^1 0 \cdot \dif x = 0$$
+        \item 在$L_2$上,$x \equiv 1 \Rightarrow \dif x = 0$,因此$$I_2 = \int_{L_2} x^2 \dif y = \int_0^2 1 \dif y = 2$$
+        \item 在$L_3$上,参数化为$$\begin{cases}
+            x = 1-t\\
+            y = 2(1-t)\\
+        \end{cases}, \quad x:1 \to 0 \Rightarrow t:0 \to 1$$
+        因此$$\dif y = -2 \dif t ,\quad \dif x = -\dif t$$
+        $$I_3 = \int_{L_3} xy \dif x + x^2 \dif y = \int_0^1 (1-t)(2-2t) (-\dif t) + (1-t)^2 (-2 \dif t) = -\frac{4}{3}$$
+    \end{enumerate}
+    综上所述$$I = I_1 + I_2 + I_3 = 0 + 2 - \frac{4}{3} = \frac{2}{3}$$
+\end{solution}
+
+\begin{example}
+    计算平面向量场$\v = P(x,y) \bm{i} + Q(x,y) \bm{j}$沿一个局限$D = [a,b] \times [c,d]$的边界$L = \partial D$的环量,方向为逆时针方向.
+\end{example}
+
+\begin{solution}
+    将矩形的边界分为四段,则
+    \begin{align*}
+        \int_L P \dif x + Q \dif y &= \int_{L_1} P \dif x + Q \dif y + \int_{L_2} P \dif x + Q \dif y + \int_{L_3} P \dif x + Q \dif y + \int_{L_4} P \dif x + Q \dif y
+    \end{align*}
+    其中$L_1$,$L_2$,$L_3$,$L_4$分别为矩形的四条边界,即
+    $$\begin{cases}
+        L_1: y = c , x : a \to b\\
+        L_2: x = b, y: c \to d\\
+        L_3: y = d, x : b \to a\\
+        L_4: x = a, y : d \to c\\
+    \end{cases}$$
+
+    其中在 $L_1$ 和 $L_3$ 上，$dy = 0$，注意到线段 $L_1$ 和 $L_3$ 分别的取向，有
+
+\begin{align*}
+\int_{L_1} P \dif x + Q \dif y + \int_{L_3} P \dif x + Q \dif y 
+&= \int_a^b P(x, c) \dif x - \int_a^b P(x, d) \dif x \\
+&= \int_a^b \left(P(x, c) - P(x, d)\right) dx \\
+&= - \int_a^b \int_c^d \frac{\partial P(x, y)}{\partial y}  \dif y \dif x \\
+&= - \iint_D \frac{\partial P(x, y)}{\partial y}  \dif x \dif y
+\end{align*}
+
+同理，沿 $L_2$ 和 $L_4$，有 $dx = 0$，同时注意到 $L_2$ 和 $L_4$ 分别的取向，有
+
+\begin{align*}
+\int_{L_2} P \dif x + Q \dif y + \int_{L_4} P \dif x + Q \dif y 
+= \iint_D \frac{\partial Q(x, y)}{\partial x}  \dif x \dif y.
+\end{align*}
+
+所以，平面向量场沿矩形边界的环量为
+
+\[
+\int_L P \dif x + Q \dif y = \iint_D \left( \frac{\partial Q(x, y)}{\partial x} - \frac{\partial P(x, y)}{\partial y} \right) dx \dif y.
+\]
+\end{solution}
+
+\begin{example}
+    计算$$I = \oint_L \frac{-y \dif x + x \dif y}{x^2 + y^2}$$
+    其中$L$是正向圆周,$x^2 + y^2 = a^2(a > 0)$.
+\end{example}
+
+\begin{solution}
+    令$$\begin{cases}
+        x = a \cos \theta\\
+        y = a \sin \theta\\
+    \end{cases}, \quad \theta : 0 \to 2\pi$$
+    则有$$\dif x = -a \sin \theta \dif \theta, \quad \dif y = a \cos \theta \dif \theta$$
+    $$I = \int_0^{2\pi} \frac{-a \sin^2 \theta - a \cos^2 \theta}{a^2} \dif \theta = \int_0^{2\pi} 1 \dif \theta = 2\pi$$
+\end{solution}
+
+\begin{homework}
+    ex11.3:1(1)(3)(4),2,3,4(1),5(1)(2).
+\end{homework}
+
+
+
+

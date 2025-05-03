@@ -1,0 +1,241 @@
+\setcounter{chapter}{24} % 设置章节计数器
+
+
+\chapter{第一类曲线积分}
+
+第一类曲线积分形如$$\int_\Gamma f(x,y,z) \dif s$$其中$\Gamma$是空间曲线,$f(x,y,z)$是定义在$\Gamma$上的连续函数,$\dif s$是曲线元素.
+
+\section{定义与主要性质}
+
+\begin{definition}
+    设 \( \Gamma \) 是三维空间中一条光滑（或逐段光滑）曲线段，\( f(x, y, z) \) 是定义在曲线 \( \Gamma \) 上的数量场（或函数）。作 \( \Gamma \) 的任意分割：\( M_0, M_1, \cdots, M_n \)，并记每段 \( M_{i-1}M_i \) 的弧长为 \( \Delta s_i \)，最大长度为 \( \lambda = \max\{|\Delta s_i| \mid i = 1, \cdots, n\} \)。在每段弧上 \( M_{i-1}M_i \) 任取一点 \( N_i(\xi_i, \eta_i, \zeta_i) \)。如果下列和式的极限
+\[
+\lim_{\lambda \to 0} \sum_{i=1}^{n} f(\xi_i, \eta_i, \zeta_i) \Delta s_i
+\]
+是一个有限数，且与点 \( N_i(\xi_i, \eta_i, \zeta_i) \) 的选择无关，则称函数 \( f(x, y, z) \) 在曲线 \( \Gamma \) 上可积，极限值称为数量场在曲线上的积分，或称为第一型曲线积分，记为
+\[
+\int_{\Gamma} f(x, y, z) \dif s
+\]
+\end{definition}
+
+若$L$为$Oxy$平面中的一段光滑曲线,且$L$的参数方程为$\r(t) = (x(t),y(t)), t \in [\alpha,\beta]$,则$L$的第一类曲线积分为
+$$\int_L \varphi(x,y) \dif s = \lim_{\lambda \to 0} \sum_{i=1}^{n} \varphi(x_i,y_i) \Delta s_i$$
+我们也将此称为数量场$z=\varphi(x,y)$在曲线$L$上的线积分.不难证明,当$\varphi \in C(L)$时,必有$\varphi \in R(L)$,即$\varphi$在曲线$L$上可积.
+
+事实上,当$L$恰好位于$ox$轴上的直线段$[\alpha,\beta]$时,$\varphi(x,y)$在$L$上的线积分即为定积分$\int_{\alpha}^{\beta} \varphi(x,0) \dif x$.由此可以看出,第一类曲线积分是定积分的推广.
+
+由于第一类线积分的定义与定积分的定义相同,因此第一型的线积分也有十大性质,如
+\begin{proposition}[线性性质]
+    $$\int_L \left( c_1 f + c_2 g \right) \dif s = c_1 \int_L f \dif s + c_2 \int_L g \dif s$$
+其中$c_1,c_2$为常数,$f,g$为定义在$L$上的连续函数.
+\end{proposition}
+
+\begin{proposition}
+    [积分中值定理]
+
+    当$\varphi(x,y) \in C(L)$时,必有$M_0 \in L$,使得
+    $$\int_L \varphi(x,y) \dif s = \varphi(M_0) S(L)$$
+    也可以写为
+    $$f(M_0) = \frac{1}{S(L)} \int_L f(x,y) \dif s$$
+    其中$S(L)$为曲线$L$的长度.$f(M_0)$表示了函数$f(x,y)$在$L$上的平均值.
+\end{proposition}
+
+\begin{proposition}
+    [积分区域可加性]
+
+    设$L_1,L_2$是两条不相交的光滑曲线,且$L = L_1 \cup L_2$,则有
+    $$\int_L f(x,y) \dif s = \int_{L_1} f(x,y) \dif s + \int_{L_2} f(x,y) \dif s$$
+
+\end{proposition}
+
+线积分积分区域可加性是定积分的积分区域可加性的推广,这条性质说明当$\varphi(x,y)$在分段光滑的曲线$L$上连续时,也是可积的.具体而言,设$L$是由光滑曲线$L_1,L_2,\cdots,L_n$组成的分段光滑曲线,即$L = L_1 \cup L_2 \cup \cdots \cup L_n$,则有
+$$\int_L \varphi(x,y) \dif s = \int_{L_1} \varphi(x,y) \dif s + \int_{L_2} \varphi(x,y) \dif s + \cdots + \int_{L_n} \varphi(x,y) \dif s$$
+
+
+\section{第一型线积分的计算方法}
+
+设曲线 \( L \) 的参数方程表示为
+\[
+\r = \r(t) = x(t)\i + y(t)\j + z(t)\k, \quad t \in [\alpha, \beta]
+\]
+其中 \( x(t), y(t), z(t) \) 在区间 \( [\alpha, \beta] \) 上有连续的一阶微商 \( x'(t), y'(t), z'(t) \)，且 \( |\r'(t)| \ne 0 \)，  
+\( \phi(x, y, z) \) 在 \( L \) 上连续，因此 \( \phi(x(t), y(t), z(t)) \) 在 \( [\alpha, \beta] \) 上连续。那我们有一下定理:
+
+\begin{theorem}[第一类线积分的计算]
+    设 \( \Gamma \) 是空间中一条光滑曲线，其参数方程表示为
+\[
+\r(t) = x(t)\i + y(t)\j + z(t)\k, \quad t \in [\alpha, \beta]
+\]
+若函数 \( f(x, y, z) \) 在 \( \Gamma \) 上连续，则 \( f(x, y, z) \) 在曲线 \( \Gamma \) 上可积，且
+\begin{align*}
+\int_{\Gamma} f(x, y, z)\dif s &= \int_{\alpha}^{\beta} f(x(t), y(t), z(t)) \abs{\r'(t)} \dif t \\
+&= \int_{\alpha}^{\beta} f(x(t), y(t), z(t)) \sqrt{x'^2(t) + y'^2(t) + z'^2(t)} \dif t.
+\end{align*}
+\end{theorem}
+
+\begin{proof}
+    作 \( [\alpha, \beta] \) 的分割
+\[
+T : \alpha = t_0 < t_1 < \cdots < t_{n-1} < t_n = \beta
+\]
+
+由此对应曲线 \( L \) 上的 \( M_i(x(t_i), y(t_i), z(t_i)) \)，\( i = 0, \cdots, n \) 为分割点的分割。由弧长的计算公式与积分中值定理，得到弧段 \( M_{i-1}M_i \) 的长度为
+\[
+\Delta s_i = \int_{t_{i-1}}^{t_i} |\r'(t)| \dif t = |\r'(\theta_i)| \Delta t_i,
+\]
+其中 \( t_{i-1} \leq \theta_i \leq t_i \)，\( (i = 1, 2, \cdots, n) \)。
+
+取弧段上任意一点 \( N_i(x(\tau_i), y(\tau_i), z(\tau_i)) \)，\( t_{i-1} \leq \tau_i \leq t_i \)，\( (i = 1, 2, \cdots, n) \)，于是
+\[
+\sum_{i=1}^n \phi(x(\tau_i), y(\tau_i), z(\tau_i)) \Delta s_i = \sum_{i=1}^n \phi(x(\tau_i), y(\tau_i), z(\tau_i)) |\r'(\theta_i)| \Delta t_i
+\]
+等式右边还不是一个函数的 Riemann 和，但我们可作如下修正
+\begin{align*}
+\sum_{i=1}^n \phi(x(\tau_i), y(\tau_i), z(\tau_i)) \Delta s_i
+&= \sum_{i=1}^n \phi(x(\tau_i), y(\tau_i), z(\tau_i)) |\r'(\tau_i)| \Delta t_i \\
+&\quad + \sum_{i=1}^n \phi(x(\tau_i), y(\tau_i), z(\tau_i)) (|\r'(\theta_i)| - |\r'(\tau_i)|) \Delta t_i.
+\end{align*}
+
+使得右端的第一项正是函数 \( \phi(x(t), y(t), z(t))|\r'(t)| \) 在 \( [\alpha, \beta] \) 上标准的 Riemann 和，而第二项将被证明在 \( |T| \to 0 \) 时的极限为零。
+
+为此，对于任意的 \( \varepsilon > 0 \)，由 \( \phi(x(t), y(t), z(t))|\r'(t)| \) 的连续性可知，它在 \( [\alpha, \beta] \) 上可积，因此存在 \( \delta_1 > 0 \)，使得当分割满足 \( |T| < \delta_1 \) 时，有
+\[
+\left| \sum_{i=1}^n \phi(x(\tau_i), y(\tau_i), z(\tau_i))|\r'(\tau_i)| \Delta t_i - \int_{\alpha}^{\beta} \phi(x(t), y(t), z(t))|\r'(t)| \dif t \right| < \varepsilon.
+\]
+
+由 \( \phi(x(t), y(t), z(t)) \) 的连续性，可知它在 \( [\alpha, \beta] \) 上有界，设 \( |\phi| \leq M \)，由 \( \r'(t) \) 的连续性推出在 \( [\alpha, \beta] \) 上一致连续，因此存在 \( \delta_2 > 0 \)，对任意的 \( t, t' \in [\alpha, \beta] \)，只要 \( 0 < |t - t'| < \delta_2 \)，就有
+\[
+\left\| \r'(t) - \r'(t') \right\| < \varepsilon.
+\]
+
+这样当 \( |T| < \delta_2 \) 时，对于任意的 \( \theta_i, \tau_i \in [t_{i-1}, t_i] \)，有 \( |\theta_i - \tau_i| \leq \Delta t_i \leq |T| < \delta_2 \)，因此
+\[
+\left| \sum_{i=1}^n \phi(x(\tau_i), y(\tau_i), z(\tau_i)) \left( |\r'(\theta_i)| - |\r'(\tau_i)| \right) \Delta t_i \right| < M(\alpha - \beta)\varepsilon.
+\]
+
+综上所述，当分割满足 \( |T| < \delta = \min\{\delta_1, \delta_2\} \) 时，有
+\[
+\left| \sum_{i=1}^n \phi(x(\tau_i), y(\tau_i), z(\tau_i)) \Delta s_i - \int_{\alpha}^{\beta} \phi(x(t), y(t), z(t))|\r'(t)| \dif t \right| < \varepsilon + M(\beta - \alpha)\varepsilon.
+\]
+
+由此得证.
+\end{proof}
+
+
+\begin{corollary}
+    若$L$为$y=f(x) \in C^1([a,b])$的光滑曲线,则有$\dif s = \sqrt{1 + f'(x)^2} \dif x$,因此有
+$$\int_L \varphi(x,y) \dif s = \int_a^b \varphi(x,f(x)) \sqrt{1 + f'(x)^2} \dif x$$
+
+若$L$为$\rho = \rho(\theta) \in C^1([\alpha,\beta])$的光滑曲线,则有$\dif s = \sqrt{\rho^2(\theta) + \rho'^2(\theta)} \dif \theta$,因此有
+$$\int_L \varphi(\rho,\theta) \dif s = \int_\alpha^\beta \varphi(\rho(\theta)\cos \theta,\rho(\theta)\sin \theta) \sqrt{\rho^2(\theta) + \rho'^2(\theta)} \dif \theta$$
+\end{corollary}
+
+特别地
+\begin{corollary}
+    当被积函数$\varphi(x,y)$或者$\varphi(x,y,z) = 1$时,第一类线积分即为曲线$L$的长度$S(L)$,即
+$$S(L) = \int_L 1 \dif s$$
+\end{corollary}
+
+\section{例题}
+
+\begin{example}
+    设$L$为$\begin{cases}
+        z^2 = 2ax \\
+        qy^2 = 16xz
+    \end{cases}$,求从点$O(0,0,0)$到点$A(2a, \frac{8a}{3},2a)$的$L$的弧长$S(L)$.
+\end{example}
+
+\begin{solution}
+设$L$的参数方程为$\begin{cases}
+    x = x \\
+    y = \frac{4}{3} \sqrt{x \sqrt{2ax}}\\
+    z = \sqrt{2ax}
+\end{cases}$,则有
+$$x_x' = 1$$
+$$y_x' = \sqrt[4]{2a} x^{-\frac{1}{4}}$$
+$$z_x' = \frac{1}{2} \sqrt{2a} x^{-\frac{1}{2}}$$
+因此有
+\begin{align*}
+S(L) &= \int_0^{2a} \dif s\\
+&=\int_0^{2a} \sqrt{1 + y_x'^2 + z_x'^2} \dif x\\
+&= \int_0^{2a} \sqrt{1 + \sqrt{2a}x^{-\frac{1}{2}} + \frac{a}{2x}} \dif x\\
+&= \int_0^{2a} 1 + \sqrt{\frac{a}{2x}} \dif x = 4a
+\end{align*}
+\end{solution}
+
+\begin{example}
+    求线积分$I$,
+    \begin{enumerate}
+        \item $\int_L (x+y+z) \dif s$,其中$L$为由$A(1,1,0)$到$B(1,0,0)$的直线,再由螺线$BC:x = \cos t, y = \sin t, z = t$,$t \in [0,2\pi]$组成的分段光滑曲线.
+    \end{enumerate}
+
+
+\begin{solution}
+    $$\int_{AB} (x+y+z) \dif s = \int_0^1 (1+(1-t) + 0) \dif t = \frac{3}{2}$$
+    \begin{align*}
+    \int_{BC} (x+y+z) \dif s &= \int_0^{2\pi} (\cos t + \sin t + t) \sqrt{\cos^2 t + \sin^2 t + 1} \dif t\\
+    &= \int_0^{2\pi} (\cos t + \sin t + t) \sqrt{2} \dif t\\
+    &= 2 \sqrt{2} \pi
+    \end{align*}
+
+    因此有$$I = \int_L (x+y+z) \dif s = \frac{3}{2} + 2\sqrt{2} \pi$$
+\end{solution}
+
+\begin{enumerate}
+    \setcounter{enumi}{1}
+    \item $\int_L x \dif s$,$L$为对数螺线$r = a \e^{k \varphi} (k > 0)$在圆$r \les a$内的部分
+\end{enumerate}
+
+\begin{solution}
+    设$L$的参数方程为$\begin{cases}
+        r = \rho(\varphi) = a \e^{k \varphi}\\
+        \theta = \varphi\\
+    \end{cases}$,则
+    $$\rho'(\varphi) = ak \e^{k \varphi}$$
+    \begin{align*}
+    \int_L x \dif s &= \int_{-\infty}^0 \rho \cos \theta \sqrt{\rho^2 + \rho'^2} \dif \varphi\\
+    &= \int_{-\infty}^0 a \e^{k \varphi} \cos \varphi \sqrt{a^2 \e^{2k\varphi} + a^2 k^2 \e^{2k\varphi}} \dif \varphi\\
+    &= a^2 \sqrt{1+k^2} \int_{-\infty}^0 \e^{2k \varphi} \cos \varphi \dif \varphi\\
+    &= a^2 \sqrt{1+k^2} \frac{2k}{1+4k^2}
+    \end{align*}
+\end{solution}
+
+\end{example}
+
+
+\section{线积分$I$的轮换对称性}
+
+若$(x,y,z) \to (y,z,x) \to (z,x,y)$时,$L$的方程不便,则称$L$具有轮换对称性.则
+\begin{align*}
+    I &= \int_L f(x,y,z) \dif s = \int_L f(y,z,x) \dif s = \int_L f(z,x,y) \dif s\\
+    &= \frac{1}{3} \left( \int_L \left[ f(x,y,z) + f(y,z,x) + f(z,x,y) \right] \dif s \right)
+\end{align*}
+
+对重积分$\iint_D f(x,y) \dif x \dif y, \iiint_\Omega f(x,y,z) \dif x \dif y \dif z$以及面积分$$\iint_\Sigma f(x,y,z) \dif S$$也有类似的轮换对称性.
+
+\begin{homework}
+    ex11.1:1(1)(3)(4),2(2)(3)(10)(11)(12),3,4.
+\end{homework}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,199 @@
+\setcounter{chapter}{29} % 设置章节计数器
+
+\chapter{第二类曲面积分}
+
+莫比乌斯环(Möbius strip)是一个不可定向的曲面
+$$x = (1+v \cos \theta) \sin 2\theta$$
+$$y = (1+v \cos \theta) \cos 2\theta$$
+$$z = v \sin \theta$$
+
+我们仅讨论可定向的曲面$S$,$S$也叫有向曲面.对于$S$上任意一点$M_0$,我们可以取出两个单位法向量$\n(M_0)$和$-\n(M_0)$.通过连续滑动可以确定曲面上所有的点$M$处的法向量$\n(M)$,并且可以使得$\n(M)$是连续的.我们称这样的法向量为\textbf{正向法向量},而$-\n(M)$为\textbf{负向法向量}.
+
+我们不会遇到可微性过于复杂的曲面,大家仅用掌握一个光滑曲面,或者退而求其次的,分区域光滑曲面上的第二类曲面积分.甚至说,我们几乎只讨论可以参数化为形如
+$$\r = x(u,v) \i + y(u,v) \j + z(u,v) \k \quad (u,v) \in D$$
+的光滑曲面,因此通常还要求$x(u,v),y(u,v),z(u,v)$的可微性还非常好.
+
+在实际问题中,我们通常先指定定向$\n$为正向,然后比较$\r_u' \times \r_v'$与$\n$的方向,如果两者相同,我们称$\r_u' \times \r_v'$指向曲面的正向,称$(u,v)$为正向参数.
+
+设$\v$是一个不可压缩流体的速度场,$S$是一张可定向的曲面.确定方向的单位法向量为$\n$,取$S$上一小块面积元$\dif S$,因此"有向面积元"为$\dif \S = \n \dif S$.
+
+因此我们定义第二类曲面积分为
+$$\iint_S \v \cdot \dif \S = \iint_S \v \cdot \n \dif S$$
+称之为$\v$在曲面$S$上的\textbf{第二类曲面积分}.当曲面$S$是一个封闭曲面时,称积分为向量场通过封闭曲面的通量,记为
+$$\oiint_S \v \cdot \dif \S$$
+
+向量场的曲面积分有如下性质
+\begin{enumerate}
+    \item 对向量场的线性性:若$\v = c_1 \v_1 + c_2 \v_2$,则
+    $$\iint_S \v \dif \S = c_1 \iint_S \v_1 \dif \S + c_2 \iint_S \v_2 \dif \S$$
+    \item 积分区域可加性:若$S = S_1 + S_2$,则
+    $$\iint_S \v \dif \S = \iint_{S_1} \v \dif \S + \iint_{S_2} \v \dif \S$$
+    \item 对曲面的方向性:若用$S^+$和$S^-$分别表示曲面$S$的正向和负向,$\n^+$和$\n^-$分别表示正向和负向的单位法向量,则
+    $$\iint_{S^+} \v \cdot \dif \S = -\iint_{S^-} \v \cdot \dif \S$$
+\end{enumerate}
+
+\section{第二类曲面积分的计算}
+
+设$S$是一张定向光滑曲面,具有正向参数表示
+$$\r = \r(u,v) = x(u,v) \i + y(u,v) \j + z(u,v) \k$$
+此时有向面积元$\dif \S$为
+$$\dif \S = (\r_u' \times \r_v') \dif u \dif v$$
+因此我们第二类曲面积分可以变为$D_{uv}$上的二重积分
+$$\iint_S \v \cdot \dif \S = \iint_{D_{uv}} ( \v \cdot r_u' \times \r_v') \dif u \dif v$$
+
+\begin{remark}
+    上面的公式就已经是给出$\v,\n,S$时的计算式了,但是我们在现实生活中有时候会只测量各点处平行于$Oxy$平面的流量$P$,平行于$Oxz$平面的流量$R$,平行于$Oyz$平面的流量$Q$,用这三个流量最终形成形如
+    $$\iint_S P(x,y,z) \dif x \wedge \dif y + Q(x,y,z) \dif y \wedge \dif z + R(x,y,z) \dif z \wedge \dif x$$的计算形式.
+
+    在此之前,我们要给出$\dif x \wedge \dif y$的形式化定义.
+\end{remark}
+
+我们已知$x,y,z$是光滑的,以参数$(u,v)$为自变量的函数.我们记
+$$\dif y \wedge \dif z = \pdv{(y,z)}{(u,v)} \dif u \wedge \dif v$$
+$$\dif z \wedge \dif x = \pdv{(z,x)}{(u,v)} \dif u \wedge \dif v$$
+$$\dif x \wedge \dif y = \pdv{(x,y)}{(u,v)} \dif u \wedge \dif v$$
+不难验证,此时测量出的流速恰好就是$\v = P \bm{i} + Q \bm{j} + R \bm{k}$.具体而言我们有
+$$I = \iint_S P \dif x \wedge \dif y + Q \dif y \wedge \dif z + R \dif z \wedge \dif x = \iint_S \begin{vmatrix}
+    P & Q & R\\
+    x_u' & y_u' & z_u'\\
+    x_v' & y_v' & z_v'\\
+\end{vmatrix} \dif u \wedge \dif v$$
+
+也就是说下面两个问题是等价的:
+\begin{example}
+    设$S$为上半球面$x^2 + y^2 + z^2 = a^2$,$z \geq 0$,取正向为上侧,
+    \begin{enumerate}
+        \item 给定$\v = (x^2,y^2,z^2)$,计算$$\iint_S \v \cdot \dif \S;$$
+        \item 计算$$\iint_S x^2 \dif y \wedge \dif z + y^2 \dif z \wedge \dif x + z^2 \dif x \wedge \dif y.$$
+    \end{enumerate}
+\end{example}
+
+\begin{solution}
+    将曲面参数化为
+    $$\begin{cases}
+        x = a \sin \theta \cos \varphi\\
+        y = a \sin \theta \sin \varphi\\
+        z = a \cos \theta\\
+    \end{cases}, \quad \theta \in \left[0,\frac{\pi}{2}\right], \varphi \in [0,2\pi]$$
+    因此$$\r_\theta' = \begin{pmatrix}
+        a \cos \theta \cos \varphi\\
+        a \cos \theta \sin \varphi\\
+        -a \sin \theta\\
+    \end{pmatrix}, \quad \r_\varphi' = \begin{pmatrix}
+        -a \sin \theta \sin \varphi\\
+        a \sin \theta \cos \varphi\\
+        0\\
+    \end{pmatrix} \quad \Rightarrow \r_\theta' \times \r_\varphi' = \begin{pmatrix}
+        a^2 \sin^2 \theta \cos \varphi\\
+        a^2 \sin^2 \theta \sin \varphi\\
+        a^2 \sin \theta\\
+    \end{pmatrix}$$
+    注意到$\r_\theta' \times \r_\varphi' \cdot (0,0,1) = a^2 \sin \theta >0,\theta \in [0,\frac{\pi}{2}]$,因此$(u,v)$是正向参数,而$\n = \frac{\r_\theta' \times \r_\varphi'}{|\r_\theta' \times \r_\varphi'|}$是正向法向量.
+    
+    又$$\v = (x^2,y^2,z^2) = (a^2 \sin^2 \theta \cos^2 \varphi, a^2 \sin^2 \theta \sin^2 \varphi, a^2 \cos^2 \theta)$$
+    因此$$\v \cdot \r_\theta' \times \r_\varphi' = a^4 \cos^3 \theta \sin \theta + a^4 \sin^4 \theta (\sin^3 \varphi + \cos^3 \varphi)$$
+    故
+    \begin{align*}
+        I &= \iint_S \v \cdot \dif \S = \iint_{D_{uv}} ( \v \cdot r_u' \times \r_v') \dif u \dif v\\
+        &= \int_0^{\frac{\pi}{2}} \dif \theta \int_0^{2\pi} (a^4 \cos^3 \theta \sin \theta + a^4 \sin^4 \theta (\sin^3 \varphi + \cos^3 \varphi)) \dif \varphi\\
+        &=\int_0^{\frac{\pi}{2}} (a^4 \cos^3 \theta \sin \theta)2 \pi \dif \theta = \frac{\pi}{2} a^4.
+    \end{align*}
+\end{solution}
+
+\begin{solution}
+    将曲面参数化为
+    $$\begin{cases}
+        x = x \\
+        y = y \\
+        z = \sqrt{a^2 - x^2 - y^2}\\
+    \end{cases} \quad x^2 + y^2 \leq a^2$$
+    因此$$\r_x' = \begin{pmatrix}
+        1\\
+        0\\
+        -\frac{x}{\sqrt{a^2 - x^2 - y^2}}\\
+        \end{pmatrix}, \quad \r_y' = \begin{pmatrix}
+        0\\
+        1\\
+        -\frac{y}{\sqrt{a^2 - x^2 - y^2}}\\
+        \end{pmatrix} \quad \Rightarrow \r_x' \times \r_y' = \begin{pmatrix}
+        \frac{x}{\sqrt{a^2 - x^2 - y^2}}\\
+        \frac{y}{\sqrt{a^2 - x^2 - y^2}}\\
+        1\\
+        \end{pmatrix}$$
+    又$$\v = (x^2,y^2,z^2) = (x^2,y^2,a^2 - x^2 - y^2)$$
+    
+    故$$I = \iint_{D_{xy}} \left[ a^2 - x^2 - y^2 + \frac{x^3}{\sqrt{a^2 - x^2 - y^2}} + \frac{y^3}{\sqrt{a^2 - x^2 - y^2}} \right] \dif x \dif y$$
+    由奇偶性$$\iint_{D_{xy}} \frac{x^3}{\sqrt{a^2 - x^2 - y^2}} \dif x \dif y = \iint_{D_{xy}} \frac{y^3}{\sqrt{a^2 - x^2 - y^2}} \dif x \dif y = 0$$
+    故
+    $$I = \iint_{x^2 + y^2 \les a^2} (a^2 - x^2 - y^2) \dif x \dif y = \frac{\pi}{2} a^4$$
+\end{solution}
+
+我们由法二获得了一点灵感,因为这道题里面$z$可以显式的写为$x,y$的函数(而不是隐函数),因此我们可以将曲面$S$的参数化为
+$$\r = \r(x,y) = x \i + y \j + \sqrt{a^2 - x^2 - y^2} \k$$
+
+我们不妨考虑以下问题:
+如果 $S$ 是显式曲面
+\[
+z = f(x, y), \quad (x, y) \in D,
+\]
+且不妨设曲面的正向为曲面的上侧，这时 $(x, y)$ 是曲面的正向参数，那么
+\begin{align*}
+    \iint_S \v \cdot \n \,\mathrm{d}S 
+    &= \iint_D 
+    \begin{vmatrix}
+        P & Q & R \\
+        1 & 0 & f_x' \\
+        0 & 1 & f_y'
+    \end{vmatrix} 
+    \,\mathrm{d}x\,\mathrm{d}y \\
+    &= \iint_D (-P f_x' - Q f_y' + R) \,\mathrm{d}x\,\mathrm{d}y.
+\end{align*}
+
+\begin{remark}
+    助教注:这里的$\dif x \dif y$是平面上的面积元,而不是有向面积元$\dif x \wedge \dif y$.也就是说$\iint_D (-P f_x' - Q f_y' + R) \,\mathrm{d}x\,\mathrm{d}y$是一个二重积分,而不是一个第二型曲面积分.
+\end{remark}
+
+\begin{remark}
+    这里定向的逻辑具体是这样的:
+    \begin{enumerate}
+        \item 计算$\r_x' \times \r_y'$的方向
+        \item 发现恰好是朝曲面上侧
+        \item 而正向定义为上侧
+        \item 因此$\r_x' \times \r_y'$就是正向法向量
+        \item 因此$(x,y)$是正向参数
+        \item 因此$I = \bm{(+1)} \iint_D \begin{vmatrix}
+            P & Q & R \\
+            1 & 0 & f_x' \\
+            0 & 1 & f_y'
+        \end{vmatrix} \,\mathrm{d}x\,\mathrm{d}y$
+    \end{enumerate}
+\end{remark}
+
+\section{第二类曲面积分的对称性}
+
+我们考虑第二型曲面积分$$\iint_S P \dif y \wedge \dif z + Q \dif z \wedge \dif x + R \dif x \wedge \dif y$$
+其具有偶零奇倍律,即
+\begin{enumerate}
+    \item 当$P(x,y,z)$是关于$x$的偶函数,且$S$关于$x=0$,即$Oyz$平面对称,时$$\iint_S P \dif y \wedge \dif z = 0$$,
+    \item 当$P(x,y,z)$是关于$x$的奇函数,且$S$关于$x=0$,即$Oyz$平面对称,时$$\iint_S P \dif y \wedge \dif z = 2 \iint_{S_1} P \dif y \wedge \dif z$$其中$\Sigma_1$是$x \ges 0$部分的$\Sigma$.
+    \item 当$Q(x,y,z)$是关于$y$的偶函数,且$S$关于$y=0$,即$Oxz$平面对称,时$$\iint_S Q \dif z \wedge \dif x = 0$$,
+    \item 当$Q(x,y,z)$是关于$y$的奇函数,且$S$关于$y=0$,即$Oxz$平面对称,时$$\iint_S Q \dif z \wedge \dif x = 2 \iint_{S_1} Q \dif z \wedge \dif x$$其中$\Sigma_1$是$y \ges 0$部分的$\Sigma$.
+    \item 当$R(x,y,z)$是关于$z$的偶函数,且$S$关于$z=0$,即$Oxy$平面对称,时$$\iint_S R \dif x \wedge \dif y = 0$$,
+    \item 当$R(x,y,z)$是关于$z$的奇函数,且$S$关于$z=0$,即$Oxy$平面对称,时$$\iint_S R \dif x \wedge \dif y = 2 \iint_{S_1} R \dif x \wedge \dif y$$其中$\Sigma_1$是$z \ges 0$部分的$\Sigma$.
+\end{enumerate}
+
+
+\begin{homework}
+ex11.4:1(1)(2)(4)(5)(6)(7),2.
+\end{homework}
+
+
+
+
+
+
+
+
+
+
+
